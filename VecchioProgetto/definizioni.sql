@@ -14,14 +14,14 @@ CREATE TABLE Autore_Riferimento(
     ID_Utente integer NOT NULL,
     Descr_Utente character varying(500),
     ID_Riferimento integer NOT NULL,
-	Ordine integer NOT NULL
+    Ordine integer NOT NULL
 );
 
 CREATE TABLE Categoria (
     ID_Categoria integer PRIMARY KEY,
     Descr_Categoria character varying(500) NOT NULL,
-	ID_Super_Categoria integer,
-	ID_Utente integer
+    ID_Super_Categoria integer,
+    ID_Utente integer
 );
 
 CREATE TABLE Riferimenti_Biblio (
@@ -29,17 +29,17 @@ CREATE TABLE Riferimenti_Biblio (
     Titolo_Riferimento character varying(200) NOT NULL,
     Data_Riferimento date,
     On_line boolean NOT NULL,
-	Tipo tipo_enum NOT NULL,
+    Tipo tipo_enum NOT NULL,
     URL character varying(500) UNIQUE,
     DOI integer UNIQUE,
     Descr_Riferimento character varying(1000),
-	Editore character varying(1000),
-	ISBN character varying(20) UNIQUE,
-	ISNN character varying(20) UNIQUE,
-	Luogo character varying(100),
-	Pag_Inizio integer,
-	Pag_Fine integer,
-	Edizione integer
+    Editore character varying(1000),
+    ISBN character varying(20) UNIQUE,
+    ISNN character varying(20) UNIQUE,
+    Luogo character varying(100),
+    Pag_Inizio integer,
+    Pag_Fine integer,
+    Edizione integer
 );
 
 CREATE TABLE Utente (
