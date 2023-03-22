@@ -4,9 +4,12 @@ La documentazione è completamente scritta in Latex. Suggerisco di apportare le 
 Versione attuale: pre-bozza.  
 Checklist:  
 
+- [x] Introduzione e descrizione progetto originale.  
+
+
 Documento dei Requisiti Software  
-- [ ] Introduzione e descrizione progetto originale.  
-- [ ] Analisi dei Requisiti  
+
+Analisi dei Requisiti  
 - [ ] Modellazione di tutti i casi d’uso richiesti  
 - [ ] Individuazione del target degli utenti  
 - [ ] Descrizioni Testuali Strutturate per almeno quattro (due, se si consegna prima del 31/03/2023) casi d’uso significativi (autenticazione esclusa) a scelta dei contraenti tra quelli richiesti  
