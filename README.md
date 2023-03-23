@@ -1,4 +1,7 @@
-# Alexandria
+<p align="center">
+  <img width="200" height="200" src="https://user-images.githubusercontent.com/72210745/227143590-76a21a56-6d18-40c9-97cd-1c2e76208143.png">
+</p>
+
 Progetto programma gestionale con basi di dati e applicativo con GUI Java per gestione di un sistema informatico di bibliografie.
 Si tratta del miglioramento e del porting su Android dell'applicativo originale sviluppato per versione Desktop. 
 
