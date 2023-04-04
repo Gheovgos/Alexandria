@@ -1,3 +1,4 @@
+import 'package:alexandria/login_screen.dart';
 import 'package:alexandria/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,8 @@ void main() {
     title: "Alexandria",
     initialRoute: 'welcome',
     routes: {
-      'welcome': (context) => WelcomeScreen()
+      'welcome': (context) => const WelcomeScreen(),
+      'login': (context) => const LoginScreen()
     },
   ));
 }
