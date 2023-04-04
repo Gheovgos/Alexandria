@@ -1,5 +1,10 @@
 package Model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import java.util.*;
+@Entity
+@Table
 public class Categoria {
     private final int id_Cat;
     private final String nome;

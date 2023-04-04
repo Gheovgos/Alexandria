@@ -1,5 +1,10 @@
 package Model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import java.util.*;
+@Entity
+@Table
 public class Riferimento {
     private int id_Rif;
     private String titolo;
