@@ -21,6 +21,8 @@ public class RiferimentoService {
         return riferimentoRepository.findAll();
     }
 
+    public Riferimento getRiferimentoById(Integer riferimentoId) {return riferimentoRepository.getById(riferimentoId);}
+
     public void update(Riferimento riferimento)
     {
         riferimentoRepository.save(riferimento);

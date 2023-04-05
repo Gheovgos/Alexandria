@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import Model.Utente;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UtenteService {
@@ -18,6 +19,10 @@ public class UtenteService {
     public List<Utente> getUtenti()
     {
         return utenteRepository.findAll();
+    }
+
+    public Optional<Utente> getUtenteById(Integer utenteId) {
+        return utenteRepository.findById(utenteId);
     }
 
     public void update(Utente utente)
