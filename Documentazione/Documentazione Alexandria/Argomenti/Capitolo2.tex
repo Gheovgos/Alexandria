@@ -26,7 +26,8 @@ Un altro possibile target di utenti sono gli autori stessi dei riferimenti bibli
 Un altro target di utenti sono le case editrici che intendono gestire le varie edizioni dei propri riferimenti pubblicati. 
 Considerando tutti i possibili utenti, il team si impegna di poter soddisfare tutte le esigenze degli usufruitori e di poter garantire un'eccellente usabilità e affidabilità del sistema.
 
-\raggedright{\section{4 casi d'uso in particolare}}
+\raggedright{\section{Casi d'uso significativi nel dettaglio}}
+Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando il template di Cockburn. La sezione \textit{Descrizione}, presente in tutte le tabelle, indica lo scenario di successo. Le estensioni indicano uno scenario di falllimento o tipi di errore. Lo scenario sottovariante indica una variante del caso di successo.
 \raggedright{\subsection{Caso d'uso: Ricerca Riferimenti}}
 
 \begin{table}[H]    
@@ -67,28 +68,30 @@ Considerando tutti i possibili utenti, il team si impegna di poter soddisfare tu
 
     \end{tabularx}
     \end{table}
+    
     \newpage
-    \begin{table}[H]
+    
+\begin{table}[H]
     \def\arraystretch{1.5}
     \begin{tabularx}{\linewidth}{|l|X|X|X|}
         
- \hline \multirow{2}{*}{Extensions A:  L'utente torna indietro} & Step &
+ \hline \multirow{2}{*}{Extension A:  L'utente torna indietro} & Step &
   Attore & Sistema \\
  \cline{2-4} & D.1 a D.7 & Preme su \textit{Indietro} & \\
  \cline{2-4} &  A.1 &  & Mostra frame \textit{HomePage} \\
  \hline
   \multirow{2}{*}{Extension B: L'utente non inserisce il testo} & Step & Attore & Sistema \\
 
-  \cline{2-4} & D.1 a D.7 & Utente preme su ricerca & \\
+  \cline{2-4} & D.1 a D.7 & Preme su ricerca & \\
   \cline{2-4} & B.1 &  & Mostra tutti i riferimenti esistenti \\
  \hline
   \multirow{2}{*}{Extension C: Non esistono i riferimenti ricercati} & Step & Attore & Sistema \\
 
-  \cline{2-4} & D.8 + D.9 & Utente preme su ricerca & \\
+  \cline{2-4} & D.8 + D.9 & Preme su ricerca & \\
   \cline{2-4} & C.1  &  & Mostra frame \textit{Ricerca Vuota} \\
-  \cline{2-4} & C.2  & L'utente preme su Crea &  \\
+  \cline{2-4} & C.2  & Preme su Crea &  \\
   \cline{2-4} & C.3  & & Mostra frame \textit{Crea Modifica Citazione}  \\
-  \cline{2-4} & C.2  & L'utente seleziona Indietro &  \\
+  \cline{2-4} & C.2  & Seleziona Indietro &  \\
   \cline{2-4} & C.4  & & Ritorna a frame \textit{Ricerca}  \\
 
  \hline Note & \multicolumn{3}{l|}{I nomi dei \textit{frame} provengono dai MockUp realizzati su Figma.} \\
@@ -99,105 +102,251 @@ Considerando tutti i possibili utenti, il team si impegna di poter soddisfare tu
 
 \end{table}
 
+\newpage
 \raggedright{\subsection{Caso d'uso: Creazione Riferimento}}
+
+\begin{table}[H]
+\def\arraystretch{1.3}
 \begin{tabularx}{\linewidth}{|l|X|X|X|}
 
-  \hline Caso d'Uso 1 & \multicolumn{3} {l|}{Ricerca di un riferimento} \\ \hline Obiettivo & \multicolumn{3}{>{\hsize=\dimexpr 3\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{%
-    This is a very long line. Lorem ipsum dolor sit amet, consectetur
-    adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-    dolore magna aliqua.  } \\
+  \hline Caso d'Uso 2 & \multicolumn{3} {l|}{Creazione di un Riferimento} \\ \hline Obiettivo & \multicolumn{3}{>{\hsize=\dimexpr 3\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{%
+    L'obiettivo principale è quello di creare un nuovo riferimento visualizzabile per tutti gli utenti.} \\
  \hline Precondizioni &
-  \multicolumn{3}{l|}{} \\
+  \multicolumn{3}{l|}{L'utente deve essere stato correttamente registrato in precedenza} \\
  \hline Condizioni di successo &
-  \multicolumn{3}{l|}{} \\
+  \multicolumn{3}{l|}{Viene creato un nuovo riferimento nel sistema, visualizzabile
+    per tutti gli utenti.} \\
  \hline Condizioni di fallimento &
-  \multicolumn{3}{l|}{} \\
+  \multicolumn{3}{l|}{Il riferimento è già esistente nel sistema.} \\
  \hline Attore principale &
-  \multicolumn{3}{l|}{} \\
- \hline Trigger & \multicolumn{3}{l|}{} \\
+  \multicolumn{3}{l|}{Utente registrato} \\
+ \hline Trigger & \multicolumn{3}{l|}{Utente preme su \textit{Crea Riferimento} nella barra di controllo} \\
 
   \hline \multirow{2}{*}{Descrizione} & Step & Attore & Sistema \\
 
-  \cline{2-4} & & & \\
- \hline \multirow{2}{*}{Extensions} & Step &
-  Attore & Sistema \\
- \cline{2-4} & & & \\
- \hline
-  \multirow{2}{*}{Sottovarianti} & Step & Attore & Sistema \\
+  \cline{2-4} & 1 & Inserisce titolo citazione & \\
+  \cline{2-4} & 2 & Preme sull'icona \textit{Data} & \\
+  \cline{2-4} & 3 & & Mostra dialog \textit{Crea Modifica Citazione Data}\\
+  \cline{2-4} & 4 & Sceglie una data e preme Ok & \\
+  \cline{2-4} & 5 & & Ritorna al frame \textit{Crea Modifica Citazione} \\
+  \cline{2-4} & 6 & Preme su Riferimento a & \\
+  \cline{2-4} & 7 & & Mostra dialog \textit{Crea Modifica Citazione Riferimento a} \\
+  \cline{2-4} & 8 & Cerca o sceglie un riiferimento e preme Ok & \\
+  \cline{2-4} & 9 & & Ritorna al frame \textit{Crea Modifica Citazione} \\
+  \cline{2-4} & 10 & Seleziona il tipo di riferimento & \\
+  \cline{2-4} & 11 & & Deseleziona i tipi di riferimento non scelti dall'utente \\
+  \cline{2-4} & 12 & Preme su Descrizione & \\
+  \cline{2-4} & 13 & & Mostra dialog \textit{Crea Modifica Citazione Descrizione}\\
+  \cline{2-4} & 14 & Inserisce una descrizione, un DOI, una edizione e numero delle pagine e preme Ok& \\
+  \cline{2-4} & 15 & & Ritorna al frame \textit{Crea Modifica Citazione} \\
+  \cline{2-4} & 16 & Preme su Link & \\
+  \cline{2-4} & 17 & & Mostra dialog \textit{Crea Modifica Citazione Link} \\
+  \cline{2-4} & 18 & Inserisce URL e preme Salva & \\
+  \cline{2-4} & 19 & & Ritorna al frame \textit{Crea Modifica Citazione} \\
+  \cline{2-4} & 20 & Inserisce i valori per \textit{Editore}, \textit{Luogo}, \textit{ISSN} e \textit{ISBN} e preme su conferma & \\
+  \cline{2-4} & 21 & & Mostra frame \textit{Crea Modifica Citazione Successo} \\
+  \cline{2-4} & 22 & Preme su Visualizza & \\
+  \cline{2-4} & 23 & & Mostra frame \textit{Visualizza Citazione} \\
+   \hline Note & \multicolumn{3}{l|}{I dialog sono descritti come \textit{Frame} su Figma.} \\
+   \hline
 
-  \cline{2-4} & & & \\
- \hline Nots & \multicolumn{3}{l|}{} \\
+  \end{tabularx}
+  \end{table}
+  
+\newpage
+
+\begin{table}[H]
+  \def\arraystretch{1.1}
+  \begin{tabularx}{\linewidth}{|l|X|X|X|}
+      
+ \hline \multirow{2}{*}{Extension A: Riferimento già esistente} & Step &
+  Attore & Sistema \\
+ \cline{2-4} &  D.20 & & Mostra dialog \textit{Crea Modifica Citazione Errore} \\
+ \cline{2-4} & A.1 & Attende pochi secondi & \\
+\cline{2-4} & A.2 & & Ritorna sul frame \textit{Crea Modifica Citazione} \\
+ \hline
+ 
+  \multirow{2}{*}{Extension B: Riferimento connesso non esistente} & Step & Attore & Sistema \\
+  \cline{2-4} & D.7 & Inserisce un riferimento non esistente e preme Ok & \\
+  \cline{2-4} & B.1 & & Mostra snackbar \textit{Errore Modifica Citazione Riferimento a} \\
+
+ \hline
+ 
+  \multirow{2}{*}{Extension C: Riferimento nullo} & Step & Attore & Sistema \\
+  \cline{2-4} & D.7 & Lascia un campo vuoto e preme Ok & \\
+  \cline{2-4} & C.1 & & Mostra snackbar \textit{Errore Modifica Citazione Riferimento a} \\
+
+ \hline
+ 
+  \multirow{2}{*}{Extension E: URL non valido} & Step & Attore & Sistema \\
+  \cline{2-4} & D.17 & Inserisce un link non valido e preme Ok & \\
+  \cline{2-4} & E.1 & & Mostra snackbar \textit{Errore Crea Modifica Citazione Link} \\
+
+ \hline
+ 
+  \multirow{2}{*}{Extension F: Descrizione non valida} & Step & Attore & Sistema \\
+  \cline{2-4} & D.13 & Inserisce valori non validi per la descrizione, pagine, edizione o DOI e preme Ok & \\
+  \cline{2-4} & F.1 & & Mostra snackbar \textit{Errore Crea Modifica Citazione Descrizione} \\
+  \cline{2-4} & F.2 & & Scomparsa della snackbar \\
+
+ \hline
+ 
+  \multirow{2}{*}{Extension G: Campi tutti vuoti} & Step & Attore & Sistema \\
+  \cline{2-4} & G.1 & Non inserisce nessun valore e preme su Conferma & \\
+  \cline{2-4} & G.2 & & Mostra dialog \textit{Crea Modifica Citazione Errore} \\
+  \cline{2-4} & G.3 & & Ritorna sul frame \textit{Crea Modifica Citazione} \\
+
+ \hline Note & \multicolumn{3}{l|}{} \\
  \hline
 
 
 \end{tabularx}
+\end{table}
 
+\newpage
 \raggedright{\subsection{Caso d'uso: Modifica propri Riferimenti}}
+
+\begin{table}[H]
+\def\arraystretch{1.5}
 \begin{tabularx}{\linewidth}{|l|X|X|X|}
 
-  \hline Caso d'Uso 1 & \multicolumn{3} {l|}{Ricerca di un riferimento} \\ \hline Obiettivo & \multicolumn{3}{>{\hsize=\dimexpr 3\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{%
-    This is a very long line. Lorem ipsum dolor sit amet, consectetur
-    adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-    dolore magna aliqua.  } \\
+  \hline Caso d'Uso 3 & \multicolumn{3} {l|}{Modifica dei propri riferimenti creati} \\ \hline Obiettivo & \multicolumn{3}{>{\hsize=\dimexpr 3\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{%
+    Poter modificare un proprio riferimento creato e poter visualizzare le modifiche correttamente. } \\
  \hline Precondizioni &
-  \multicolumn{3}{l|}{} \\
+  \multicolumn{3}{l|}{Utente deve essere correttamente registrato} \\
  \hline Condizioni di successo &
-  \multicolumn{3}{l|}{} \\
+  \multicolumn{3}{l|}{Modificare correttamente il riferimento} \\
  \hline Condizioni di fallimento &
-  \multicolumn{3}{l|}{} \\
+  \multicolumn{3}{l|}{I nuovi valori inseriti non sono validi} \\
  \hline Attore principale &
-  \multicolumn{3}{l|}{} \\
- \hline Trigger & \multicolumn{3}{l|}{} \\
+  \multicolumn{3}{l|}{Utente registrato} \\
+ \hline Trigger & \multicolumn{3}{l|}{L'utente preme su \textit{Mie Citazioni}} \\
 
   \hline \multirow{2}{*}{Descrizione} & Step & Attore & Sistema \\
 
-  \cline{2-4} & & & \\
- \hline \multirow{2}{*}{Extensions} & Step &
+  \cline{2-4} & 1 & Cerca titolo di una citazione & \\
+  \cline{2-4} & 2 &  & Mostra l'eventuale riferimento specificato \\
+  \cline{2-4} & 3 & Preme su Ordina per & \\
+  \cline{2-4} & 4 &  & Ordina i riferimenti per l'ordine specificato \\
+  \cline{2-4} & 5 & Seleziona un riferimento & \\
+  \cline{2-4} & 6 &  & Evidenzia il riferimento selezionato\\
+  \cline{2-4} & 7 & Preme su Modifica & \\
+  \cline{2-4} & 8 &  & Mostra dialog \textit{Visualizza Propri Riferimenti Conferma Modifica} \\
+  \cline{2-4} & 9 & Preme su Modifica & \\
+  \cline{2-4} & 10 &  & Mostra frame \textit{Crea Modifica Riferimento} \\
+  \cline{2-4} & 11 & Modifica il proprio riferimento e preme su Conferma & \\
+  \cline{2-4} & 12 &  & Mostra dialog \textit{Crea Modifica Citazione Successo}\\
+  \cline{2-4} & 13 & Preme su visualizza & \\
+  \cline{2-4} & 14 &  & Mostra frame \textit{Visualizza Citazione} \\
+  
+   \hline Note & \multicolumn{3}{l|}{I dettagli sulla modifica dei valori sono 
+   stati omessi.} \\
+   \hline Note & \multicolumn{3}{l|}{Funzionamento analogo alla creazione di un riferimento. Si consulti la sezione 2.3.2.} \\
+\hline
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\begin{table}[H]
+\def\arraystretch{1.5}
+\begin{tabularx}{\linewidth}{|l|X|X|X|}
+ 
+ \hline \multirow{2}{6cm}{Extension A: L'utente seleziona non seleziona un riferimento} & Step &
   Attore & Sistema \\
- \cline{2-4} & & & \\
+ \cline{2-4} & D.7 & & Mostra dialog \textit{Errore Visualizza Propri Riferimenti Selezione} \\
+ \cline{2-4} & A.1 & & Ritorna su \textit{Visualizza Propri Riferimenti} \\
  \hline
-  \multirow{2}{*}{Sottovarianti} & Step & Attore & Sistema \\
-
-  \cline{2-4} & & & \\
- \hline Nots & \multicolumn{3}{l|}{} \\
+  \multirow{2}{6cm}{Extension B: L'utente cerca un riferimento inesistente} & Step & Attore & Sistema \\
+ \cline{2-4} & D.7 & & Mostra dialog \textit{Errore Visualizza Propri Riferimenti Selezione} \\
+ \cline{2-4} & B.1 & & Ritorna su \textit{Visualizza Propri Riferimenti} \\
  \hline
 
+  \multirow{2}{6cm}{Extension C: L'utente modifica il riferimento inserendo valori non validi} & Step & Attore & Sistema \\
+ \cline{2-4} & D.11 & & Mostra dialog \textit{Crea Modifica Citazione Errore} \\
+ \cline{2-4} & C.1 & & Ritorna su \textit{Crea Modifica Citazione} \\
+ \hline 
+
+   \multirow{2}{6cm}{Sottovariante: L'utente elimina un riferimento} & Step & Attore & Sistema \\
+ \cline{2-4} & D.5 & Clicca su Elimina &  \\
+ \cline{2-4} & S.1 & & Mostra dialog \textit{Visualizza Propri Riferimenti Conferma Eliminazione} \\
+  \cline{2-4} & S.2 & Clicca su Elimina &  \\
+   \cline{2-4} & S.3 &  & Mostra dialog \textit{Visualizza Propri Riferimenti Ok Eliminazione} \\
+    \cline{2-4} & S.4 &  & Ritorna su \textit{Visualizza Propri Riferimenti}  \\
+
+
+
+ \hline 
+
+ Note & \multicolumn{3}{l|}{} \\
+ \hline
 
 \end{tabularx}
+\end{table}
 
+\newpage
 \raggedright{\subsection{Caso d'uso: Crea Categoria}}
+
+\begin{table}[H]
+\def\arraystretch{1.5}
 \begin{tabularx}{\linewidth}{|l|X|X|X|}
 
-  \hline Caso d'Uso 1 & \multicolumn{3} {l|}{Ricerca di un riferimento} \\ \hline Obiettivo & \multicolumn{3}{>{\hsize=\dimexpr 3\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{%
-    L'obiettivo principale è quello di ricercare un determinato riferimento inserendo
-    dettagli specifici.} \\
+  \hline Caso d'Uso 4 & \multicolumn{3} {l|}{Crea una categoria} \\ \hline Obiettivo & \multicolumn{3}{>{\hsize=\dimexpr 3\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{%
+    L'obiettivo principale è quella di creare una nuova categoria. Se ha sottocategorie, non deve essere sottocategoria di se stessa, anche transitivamente.} \\
  \hline Precondizioni &
-  \multicolumn{3}{l|}{} \\
+  \multicolumn{3}{l|}{Utente deve essere correttamente registrato} \\
  \hline Condizioni di successo &
-  \multicolumn{3}{l|}{} \\
+  \multicolumn{3}{l|}{Creare una categoria. Se ha sottocategorie, non deve essere sottocategoria di se stessa} \\
  \hline Condizioni di fallimento &
-  \multicolumn{3}{l|}{} \\
+  \multicolumn{3}{l|}{Creare una categoria che sia una sottocategoria di se stessa} \\
  \hline Attore principale &
-  \multicolumn{3}{l|}{} \\
- \hline Trigger & \multicolumn{3}{l|}{} \\
+  \multicolumn{3}{l|}{Utente registrato} \\
+ \hline Trigger & \multicolumn{3}{l|}{L'Utente preme su \textit{Crea Categoria}} \\
 
   \hline \multirow{2}{*}{Descrizione} & Step & Attore & Sistema \\
 
-  \cline{2-4} & & & \\
- \hline \multirow{2}{*}{Extensions} & Step &
-  Attore & Sistema \\
- \cline{2-4} & & & \\
- \hline
-  \multirow{2}{*}{Sottovarianti} & Step & Attore & Sistema \\
+  \cline{2-4} & 1 & Scrive il titolo della categoria & \\
+  \cline{2-4} & 2 & Cerca una sottocategoria & \\
+  \cline{2-4} & 3 & Seleziona una sottocategoria & \\
+  \cline{2-4} & 4 & Preme su Info & \\
+  \cline{2-4} & 5 & & Mostra \textit{Visualizza Categoria} della categoria selezionata \\
+  \cline{2-4} & 6 & Preme Indietro & \\
+  \cline{2-4} & 7 & & Mostra \textit{Crea Categoria} \\
+  \cline{2-4} & 8 &  Preme su Salva & \\
+  \cline{2-4} & 9 & & Mostra dialog \textit{Crea Categoria Successo} \\
+  \cline{2-4} & 10 & Preme su Visualizza & \\
+  \cline{2-4} & 11 & & Mostra frame \textit{Visualizza Categoria} \\
+ \hline 
 
-  \cline{2-4} & & & \\
- \hline Nots & \multicolumn{3}{l|}{} \\
+ \end{tabularx}
+ \end{table}
+
+ \begin{table}[H]
+\def\arraystretch{1.5}
+\begin{tabularx}{\linewidth}{|l|X|X|X|}
+ 
+ \hline \multirow{2}{6cm}{Extension A: Inserisce titolo non valido} & Step &
+  Attore & Sistema \\
+ \cline{2-4} & D.7 & & Mostra \textit{Errore Crea Categoria} \\
+  \cline{2-4} & A.1 & & Mostra \textit{Crea Categoria}\\
+ \hline
+  \multirow{2}{6cm}{Extension B: Cerca o seleziona una sottocategoria inesistente} & Step & Attore & Sistema \\
+ \cline{2-4} & D.7 & & Mostra \textit{Errore Crea Categoria} \\
+  \cline{2-4} & B.1 & & Mostra \textit{Crea Categoria}\\
+ \hline 
+   \multirow{2}{6cm}{Extension C: Utente preme su indietro} & Step & Attore & Sistema \\
+ \cline{2-4} & D.9 & Preme su indietro &  \\
+  \cline{2-4} & C.1 & & Mostra \textit{Crea Categoria}\\
+ \hline Note & \multicolumn{3}{l|}{} \\
  \hline
 
 
 \end{tabularx}
+\end{table}
+\newpage
 
 \raggedright{\section{MockUp Interfaccia grafica}}
+I prototipi si possono visualizzare tramite questo link su Figma.
 
 \raggedright{\section{Valutazione dell'usabilità}}
 
