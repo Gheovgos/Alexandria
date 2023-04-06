@@ -12,10 +12,10 @@ Documento dei Requisiti Software
 Analisi dei Requisiti  
 - [x] Modellazione di tutti i casi d’uso richiesti  
 - [x] Individuazione del target degli utenti  
-- [ ] Descrizioni Testuali Strutturate per almeno quattro (due, se si consegna prima del 31/03/2023) casi d’uso significativi (autenticazione esclusa) a scelta dei contraenti tra quelli richiesti  
+- [x] Descrizioni Testuali Strutturate per almeno quattro (due, se si consegna prima del 31/03/2023) casi d’uso significativi (autenticazione esclusa) a scelta dei contraenti tra quelli richiesti  
 - [x] Prototipazione visuale via Mock-up dell’interfaccia utente per tutti i casi d’uso assegnati. Si raccomanda caldamente l’uso del tool “Figma”.  
 - [ ] Valutazione dell’usabilità a priori.  
-- [ ] Glossario.  
+- [x] Glossario.  
         
 Specifica dei Requisiti.  
 
