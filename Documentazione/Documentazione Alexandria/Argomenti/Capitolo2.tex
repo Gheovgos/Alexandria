@@ -345,10 +345,69 @@ Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando
 \end{table}
 \newpage
 
-\raggedright{\section{MockUp Interfaccia grafica}}
-I prototipi si possono visualizzare tramite questo link su Figma.
+\raggedright{\section{Prototipazione Visuale}}
+L'interfaccia grafica della nuova applicazione prende ispirazione dall'applicativo originale, migliorandolo però dal punto di vista dell'usabilità. \\
+\raggedright{\subsection{Interfaccia Grafica progetto originale}}
+Mostriamo ora alcune schermate dell'applicativo originale spiegando i punti che poi andranno modificati per rispettare un buon criterio di ingegnerizzazione. \\ Innanzitutto, la schermata di accesso iniziale:  
+        \\~\\
+         \begin{center}
+            \includegraphics[width=.60\textwidth]{Immagini/VecchioProgetto/login.jpg} 
+        \end{center}
+È possibile effettuare l'accesso mediante solamente l'ID utente. Come già accennato in \hyperref[nuovo:accesso]{precedenza}, il nuovo sistema di acceso prevede l'utilizzo di credenziali univoche per ogni utente. Da qui, inserendo numeri casuali, è possibile effettuare l'accesso con utenti di cui non si dovrebbero disporre le credenziali. Inoltre, manca un eventuale aiuto se l'utente dovesse dimenticarsi delle proprie credenziali. Infine, l'utente non dovrebbe vedere il proprio ID essendo un'informazione prettamente riservata nel database.
+         \begin{center}
+            \includegraphics[width=.60\textwidth]{Immagini/VecchioProgetto/registrazione.jpg} 
+        \end{center}
+In fase di registrazione, il futuro nuovo utente deve inserire solamente il proprio cognome e nome, mentre l'ID sarà solamente visualizzato. Se l'utente non dovesse vedere il proprio numero, o non capire come effettuare l'accesso successivamente, perderebbe le proprie credenziali inaspettatamente. Dunque, la schermata di registrazione del nuovo applicativo chiederà all'utente, oltre al proprio nome e cognome, una email e una password, da usare successivamente. Inoltre, una volta completata la registrazione, il vecchio sistema non effettua in automatico il login, funzionalità abbastanza comoda che viene introdotta in Alexandria.
+
+         \begin{center}
+            \includegraphics[width=.80\textwidth]{Immagini/VecchioProgetto/homepage.jpg} 
+        \end{center}
+La HomePage del vecchio applicativo ci è sembrato piuttosto ambiguo su alcuni aspetti: che cosa si intende per \textit{Ultimi 5 riferimenti}? Gli ultimi 5 riferimenti creati dall'utente insertiti, gli ultimi 5 riferimenti visualizzati dall'utente, oppure ancora gli ultimi 5 riferimenti inseriti da altri utenti? Discorso analogo per quanto riguarda le citazioni. Abbiamo quindi interpretato che questi fossero delle cronologie delle citazioni e riferimenti inserite dall'utente stesso. Inoltre, si cercherà di migliorare l'affordance generale della schermata, facendo capire a intuito dove inserire il testo per cercare e come cercare.
+
+         \begin{center}
+            \includegraphics[width=.80\textwidth]{Immagini/VecchioProgetto/crea riferimento.jpg} 
+        \end{center}
+La schermata originale della creazione di un nuovo riferimento ci è risultata piuttosto confusonaria e alcune sezioni troppo grandi (come la lista degli autori) o troppo piccole (come quella della descrizione). Il nuovo applicativo cercherà di raggruppare tutte queste informazioni in spazi più piccoli e più intuibili, mostrando solamente le informazioni necessarie per l'inserimento.
+
+        \begin{center}
+            \includegraphics[width=.80\textwidth]{Immagini/VecchioProgetto/crea categoria.jpg} 
+        \end{center}
+
+Discorso analogo vale per la creazione di una categoria, ci è sembrato eccessivo mostrate tutte le sopra-categorie possibili. Essendo molte risulta poi difficoltoso per un utente ricercare quella desiderata.
+
+        \begin{center}
+            \includegraphics[width=.80\textwidth]{Immagini/VecchioProgetto/visualizza riferimenti.jpg} 
+        \end{center}
+        
+La schermata di visualizzazione dei riferimenti è ambigua nel suo nome: non solo è possibile visualizzare tutti i propri riferimenti creati, ma anche modificarli ed eliminarli. Verrà quindi descritto il suo scopo.
+
+\newpage
+\raggedright{\subsection{Interfaccia Grafica di Alexandria}}
+Queste sono alcune delle nuove schermate prototipizzate:
+
+ \begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.60\textwidth]{Immagini/Alexandria/Screen/login.PNG} 
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+              \includegraphics[width=.60\textwidth]{Immagini/Alexandria/Screen/homepage.PNG} 
+
+\end{minipage}
+\end{figure}
+
+La schermata di accesso e la schermata di homepage. Se si volesse consultare la prototipizzazione completa basta consulatare \href{https://www.figma.com/file/O9LZ0W5HYZAW2BCnP167fL/Alexandria?node-id=0%3A1&t=rqKqdyohunSYcSgf-1}{questo link cliccabile}, dove è annesso il flow dell'applicazione e tutti i frame completi, ognuno realizzato con Figma.
+
 
 \raggedright{\section{Valutazione dell'usabilità}}
+Attraverso la \href{https://www.my-personaltrainer.it/salute-benessere/la-ruota-delle-emozioni-di-plutchik-cos-e-a-cosa-serve-e-quali-sono-i-suoi-benefici.html}{ruota di Plutchik} abbiamo deciso di assegnare alla nostra nuova applicazione un nuovo colore: il verde chiaro e le sue variazioni.
+
+        \begin{center}
+            \includegraphics[width=.80\textwidth]{Immagini/Ruota di Plutchik.png} 
+        \end{center}
+Essendo un'applicazione che deve gestire i propri riferimenti, è importante che tale applicazione esprima \textit{Fiducia} nei confronti dell'utente, e consultando la ruota delle emozioni il verde ci è sembrato il colore più adatto alla scelta del tema principale dell'applicazione.
 
 \raggedright{\section{Classi, oggetti e relazioni d'analisi}}
 
