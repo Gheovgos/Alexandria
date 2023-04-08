@@ -1,7 +1,7 @@
 # Documentazione
 La documentazione è completamente scritta in Latex. Suggerisco di apportare le modifiche tramite questo link: https://www.overleaf.com/8774686427mjgkdhdyshzb per modificare la documentazione.
 # Versione
-Versione attuale: pre-bozza.  
+Versione attuale: Bozza | Prima parte della documentazione completata.  
 Checklist:  
 
 - [x] Introduzione e descrizione progetto originale.  
