@@ -419,20 +419,49 @@ Alla luce delle nuove funzionalità da inserire, vengono apportate queste nuove 
 La tabella utente ha nuovi attributi: \textit{password hashed}, che contiene la password hashata, \textit{salt}, che servirà per comporre l'hash nel Database e \textit{username}, che serve agli utenti per effettuare il login. Inoltre vengono rimossi gli attributi di \textit{Data Inizio Validità} e \textit{Data Fine Validità} poiché non venivano utilizzati all'interno dell'applicativo e non viene richiesto il suo scopo. Per il resto, la tabella ci è sembrata pressoché pertinente allo sviluppo della nuova app reingegnerizzata.
 
 \raggedright{\section{Diagrammi di Sequenza}}
+Di seguito vengono riportati i Sequence Diagram di design di due funzionalità: la ricerca di un autore e la creazione di un riferimento. 
 
-\raggedright{\subsection{Diagramma di Sequenza: Ricerca Riferimenti}}
+\raggedright{\subsection{Diagramma di Sequenza: Ricerca di un Autore}}
+
+        \begin{center}
+            \includegraphics[width=.95\textwidth]{Immagini/Alexandria/sequenceDiagramDesign1.PNG} 
+        \end{center}
+
+Il sequence Diagram qui presente rappresenta l'istante in cui un utente preme su \textit{Ricerca} una volta inseriti tutti i parametri preferiti, supponendo non abbia riscontrato problemi prima di premere invio. 
 
 \raggedright{\subsection{Diagramma di Sequenza: Creazione Riferimento}}
+
+        \begin{center}
+            \includegraphics[width=.95\textwidth]{Immagini/Alexandria/sequenceDiagramDesign2.PNG} 
+        \end{center}
+
+Il sequence diagram di design qui presente rappresenta l'istante in cui un utente naviga nella finestra dedicata alla creazione di un nuovo riferimento. In particolare, sono stati inseriti tutti i casi di errore e successo.
 
 \raggedright{\section{Prototipazione funzionale}}
 
 \raggedright{\subsection{Statechart: Ricerca Riferimenti}}
 
+        \begin{center}
+            \includegraphics[width=.95\textwidth]{Immagini/Alexandria/Statechart Ricerca.PNG} 
+        \end{center}
+
 \raggedright{\subsection{Statechart: Creazione Riferimento}}
+
+        \begin{center}
+            \includegraphics[width=.95\textwidth]{Immagini/Alexandria/Statechart Creazione Riferimento.PNG} 
+        \end{center}
 
 \raggedright{\subsection{Statechart: Modifica dei propri Riferimenti}}
 
+        \begin{center}
+            \includegraphics[width=.95\textwidth]{Immagini/Alexandria/Statechart Modifica Riferimento.PNG} 
+        \end{center}
+
 \raggedright{\subsection{Statechart: Creazione Categoria}}
+
+        \begin{center}
+            \includegraphics[width=.95\textwidth]{Immagini/Alexandria/Statechart Creazione Categoria.PNG} 
+        \end{center}
 
 
 
