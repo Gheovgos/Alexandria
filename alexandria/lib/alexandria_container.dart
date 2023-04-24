@@ -10,7 +10,7 @@ class AlexandriaContainer extends StatelessWidget {
     return Container(
       width: width,
       decoration: const BoxDecoration(
-        color: alexandriaGreen,
+        color: kAlexandriaGreen,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(120.0),
         ),
