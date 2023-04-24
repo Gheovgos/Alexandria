@@ -13,6 +13,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        iconSize: 30,
+        currentIndex: 0,
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
@@ -24,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
               icon: Icon(Icons.chat_bubble_outline_outlined), label: 'Boh'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: 'Settings'),
+              icon: Icon(Icons.settings), label: 'Impostazioni'),
         ],
         selectedItemColor: kAlexandriaGreen,
         unselectedItemColor: Colors.black,
