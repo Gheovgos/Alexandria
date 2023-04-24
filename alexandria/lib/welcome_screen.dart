@@ -43,6 +43,7 @@ class WelcomeScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           AlexandriaRoundedButton(
+            elevation: 2.0,
             padding: const EdgeInsets.all(15.0),
             backgroundColor: Colors.white,
             child: const Text(
