@@ -19,6 +19,7 @@ class AlexandriaRoundedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
+        foregroundColor: Colors.black,
         padding: padding,
         backgroundColor: backgroundColor??Colors.white,
         elevation: elevation,
