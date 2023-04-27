@@ -55,7 +55,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration:
                           kInputDecoration.copyWith(hintText: 'Username...')),
                 ),
-                const SizedBox(height: 5,),
+                const SizedBox(
+                  height: 5,
+                ),
                 Material(
                   borderRadius: const BorderRadius.all(Radius.circular(33.0)),
                   elevation: 5,
@@ -64,7 +66,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     keyboardType: TextInputType.visiblePassword,
                     textAlign: TextAlign.center,
                     onChanged: (value) {},
-                    decoration: kInputDecoration.copyWith(hintText: 'Password...'),
+                    decoration:
+                        kInputDecoration.copyWith(hintText: 'Password...'),
                   ),
                 ),
                 Row(
@@ -83,7 +86,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     TextButton(
                         onPressed: () {},
-                        child: const Text("Credenziali dimenticate?"))
+                        child: const Text(
+                          "Credenziali dimenticate?",
+                          style:
+                              TextStyle(decoration: TextDecoration.underline),
+                        ))
                   ],
                 ),
                 Row(
@@ -91,14 +98,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     AlexandriaRoundedButton(
                       elevation: 5,
-                      child: const Text("Registrati"),
+                      child: Text(
+                        "Registrati",
+                        style: TextStyle(
+                            fontSize: 15, color: Colors.black.withOpacity(0.7)),
+                      ),
                       onPressed: () {
                         Navigator.pushNamed(context, 'register');
                       },
                     ),
                     AlexandriaRoundedButton(
                       elevation: 5,
-                      child: const Text("Accedi"),
+                      child: Text(
+                        "Accedi",
+                        style: TextStyle(
+                            fontSize: 15, color: Colors.black.withOpacity(0.7)),
+                      ),
                       onPressed: () {
                         //TODO: logica del login, per ora skippa alla home
                         Navigator.pushNamed(context, 'home');
