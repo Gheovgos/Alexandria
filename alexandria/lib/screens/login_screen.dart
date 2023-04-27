@@ -40,12 +40,12 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             width: 350,
             child: Column(
               children: [
                 Material(
-                  borderRadius: BorderRadius.all(Radius.circular(33.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(33.0)),
                   elevation: 5,
                   child: TextField(
                       style: const TextStyle(color: Colors.black),
@@ -55,9 +55,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration:
                           kInputDecoration.copyWith(hintText: 'Username...')),
                 ),
-                SizedBox(height: 5,),
+                const SizedBox(height: 5,),
                 Material(
-                  borderRadius: BorderRadius.all(Radius.circular(33.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(33.0)),
                   elevation: 5,
                   child: TextField(
                     style: const TextStyle(color: Colors.black),
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               rememberMe = value!;
                               setState(() {});
                             }),
-                        Text("Ricordami")
+                        const Text("Ricordami")
                       ],
                     ),
                     TextButton(
