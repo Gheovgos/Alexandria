@@ -42,18 +42,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         children: [
                           const Text(
                             "REGISTRAZIONE",
-                            style: TextStyle(fontSize: 24),
+                            style: TextStyle(
+                                fontSize: 24, shadows: kTextElevation),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text("Nome"),
-                              TextField(
-                                style: const TextStyle(color: Colors.black),
-                                keyboardType: TextInputType.emailAddress,
-                                textAlign: TextAlign.left,
-                                onChanged: (value) {},
-                                decoration: kInputDecoration,
+                              Material(
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(33.0)),
+                                elevation: 5,
+                                child: TextField(
+                                  style: const TextStyle(color: Colors.black),
+                                  keyboardType: TextInputType.emailAddress,
+                                  textAlign: TextAlign.left,
+                                  onChanged: (value) {},
+                                  decoration: kInputDecoration,
+                                ),
                               )
                             ],
                           ),
@@ -61,12 +67,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text("Cognome"),
-                              TextField(
-                                style: const TextStyle(color: Colors.black),
-                                keyboardType: TextInputType.name,
-                                textAlign: TextAlign.left,
-                                onChanged: (value) {},
-                                decoration: kInputDecoration,
+                              Material(
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(33.0)),
+                                elevation: 5,
+                                child: TextField(
+                                  style: const TextStyle(color: Colors.black),
+                                  keyboardType: TextInputType.name,
+                                  textAlign: TextAlign.left,
+                                  onChanged: (value) {},
+                                  decoration: kInputDecoration,
+                                ),
                               )
                             ],
                           ),
@@ -74,10 +85,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text("Email"),
-                              TextField(
-                                keyboardType: TextInputType.emailAddress,
-                                onChanged: (value) {},
-                                decoration: kInputDecoration,
+                              Material(
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(33.0)),
+                                elevation: 5,
+                                child: TextField(
+                                  keyboardType: TextInputType.emailAddress,
+                                  onChanged: (value) {},
+                                  decoration: kInputDecoration,
+                                ),
                               )
                             ],
                           ),
@@ -85,12 +101,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text("Username"),
-                              TextField(
-                                style: const TextStyle(color: Colors.black),
-                                keyboardType: TextInputType.name,
-                                textAlign: TextAlign.left,
-                                onChanged: (value) {},
-                                decoration: kInputDecoration,
+                              Material(
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(33.0)),
+                                elevation: 5,
+                                child: TextField(
+                                  style: const TextStyle(color: Colors.black),
+                                  keyboardType: TextInputType.name,
+                                  textAlign: TextAlign.left,
+                                  onChanged: (value) {},
+                                  decoration: kInputDecoration,
+                                ),
                               )
                             ],
                           ),
@@ -101,14 +122,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               Row(
                                 children: [
                                   Expanded(
-                                    child: TextField(
-                                      obscureText: true,
-                                      style:
-                                          const TextStyle(color: Colors.black),
-                                      keyboardType: TextInputType.emailAddress,
-                                      textAlign: TextAlign.left,
-                                      onChanged: (value) {},
-                                      decoration: kInputDecoration,
+                                    child: Material(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(33.0)),
+                                      elevation: 5,
+                                      child: TextField(
+                                        obscureText: true,
+                                        style: const TextStyle(
+                                            color: Colors.black),
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        textAlign: TextAlign.left,
+                                        onChanged: (value) {},
+                                        decoration: kInputDecoration,
+                                      ),
                                     ),
                                   ),
                                   IconButton(
@@ -125,14 +152,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               Row(
                                 children: [
                                   Expanded(
-                                    child: TextField(
-                                      obscureText: true,
-                                      style:
-                                          const TextStyle(color: Colors.black),
-                                      keyboardType: TextInputType.emailAddress,
-                                      textAlign: TextAlign.left,
-                                      onChanged: (value) {},
-                                      decoration: kInputDecoration,
+                                    child: Material(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(33.0)),
+                                      elevation: 5,
+                                      child: TextField(
+                                        obscureText: true,
+                                        style: const TextStyle(
+                                            color: Colors.black),
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        textAlign: TextAlign.left,
+                                        onChanged: (value) {},
+                                        decoration: kInputDecoration,
+                                      ),
                                     ),
                                   ),
                                   IconButton(
