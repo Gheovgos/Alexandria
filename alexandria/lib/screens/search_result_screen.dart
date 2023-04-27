@@ -1,7 +1,7 @@
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:flutter/material.dart';
-import 'alexandria_navigation_bar.dart';
+import '../alexandria_navigation_bar.dart';
 
 class SearchResultScreen extends StatefulWidget {
   const SearchResultScreen({Key? key}) : super(key: key);

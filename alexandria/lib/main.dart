@@ -1,10 +1,10 @@
-import 'package:alexandria/login_screen.dart';
-import 'package:alexandria/register_screen.dart';
-import 'package:alexandria/search_result_screen.dart';
-import 'package:alexandria/settings_screen.dart';
-import 'package:alexandria/welcome_screen.dart';
+import 'package:alexandria/screens/login_screen.dart';
+import 'package:alexandria/screens/register_screen.dart';
+import 'package:alexandria/screens/search_result_screen.dart';
+import 'package:alexandria/screens/settings_screen.dart';
+import 'package:alexandria/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(MaterialApp(

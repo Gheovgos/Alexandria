@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'alexandria_container.dart';
-import 'alexandria_rounded_button.dart';
+import '../alexandria_container.dart';
+import '../alexandria_rounded_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:alexandria/constants.dart';
 import 'package:flutter/material.dart';
-import 'alexandria_navigation_bar.dart';
+import '../alexandria_navigation_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
