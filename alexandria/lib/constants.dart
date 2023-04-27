@@ -17,3 +17,7 @@ const InputDecoration kInputDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
 );
+
+const List<Shadow> kTextElevation = [
+  Shadow(offset: Offset(0.0, 2.0), blurRadius: 5.0, color: Colors.grey),
+];
