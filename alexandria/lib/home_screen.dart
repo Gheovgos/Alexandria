@@ -16,6 +16,13 @@ class _HomeScreenState extends State<HomeScreen> {
         iconSize: 30,
         currentIndex: 0,
         type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          switch(index)
+          {
+            case 4:
+              Navigator.pushNamed(context, 'settings');
+          }
+        },
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined), label: 'Home'),
