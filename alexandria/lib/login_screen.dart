@@ -40,60 +40,74 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-          Column(
-            children: [
-              TextField(
-                  style: const TextStyle(color: Colors.black),
-                  keyboardType: TextInputType.emailAddress,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {},
-                  decoration:
-                      kInputDecoration.copyWith(hintText: 'Username...')),
-              TextField(
-                style: const TextStyle(color: Colors.black),
-                keyboardType: TextInputType.visiblePassword,
-                textAlign: TextAlign.center,
-                onChanged: (value) {},
-                decoration: kInputDecoration.copyWith(hintText: 'Password...'),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    children: [
-                      Checkbox(
-                          value: rememberMe,
-                          onChanged: (value) {
-                            rememberMe = value!;
-                            setState(() {});
-                          }),
-                      Text("Ricordami")
-                    ],
+          Container(
+            width: 350,
+            child: Column(
+              children: [
+                Material(
+                  borderRadius: BorderRadius.all(Radius.circular(33.0)),
+                  elevation: 5,
+                  child: TextField(
+                      style: const TextStyle(color: Colors.black),
+                      keyboardType: TextInputType.emailAddress,
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {},
+                      decoration:
+                          kInputDecoration.copyWith(hintText: 'Username...')),
+                ),
+                SizedBox(height: 5,),
+                Material(
+                  borderRadius: BorderRadius.all(Radius.circular(33.0)),
+                  elevation: 5,
+                  child: TextField(
+                    style: const TextStyle(color: Colors.black),
+                    keyboardType: TextInputType.visiblePassword,
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {},
+                    decoration: kInputDecoration.copyWith(hintText: 'Password...'),
                   ),
-                  TextButton(
-                      onPressed: () {},
-                      child: const Text("Credenziali dimenticate?"))
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  AlexandriaRoundedButton(
-                    child: const Text("Registrati"),
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'register');
-                    },
-                  ),
-                  AlexandriaRoundedButton(
-                    child: const Text("Accedi"),
-                    onPressed: () {
-                      //TODO: logica del login, per ora skippa alla home
-                      Navigator.pushNamed(context, 'home');
-                    },
-                  ),
-                ],
-              ),
-            ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: rememberMe,
+                            onChanged: (value) {
+                              rememberMe = value!;
+                              setState(() {});
+                            }),
+                        Text("Ricordami")
+                      ],
+                    ),
+                    TextButton(
+                        onPressed: () {},
+                        child: const Text("Credenziali dimenticate?"))
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    AlexandriaRoundedButton(
+                      elevation: 5,
+                      child: const Text("Registrati"),
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'register');
+                      },
+                    ),
+                    AlexandriaRoundedButton(
+                      elevation: 5,
+                      child: const Text("Accedi"),
+                      onPressed: () {
+                        //TODO: logica del login, per ora skippa alla home
+                        Navigator.pushNamed(context, 'home');
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 80,
