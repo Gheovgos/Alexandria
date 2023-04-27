@@ -36,58 +36,66 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          //TODO: aggiungi gesture detector
-          SizedBox(
-            height: 100,
-            width: 300,
-            child: Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(50),
+          GestureDetector(
+            onTap: () {
+              //TODO: pulsante Ricerca
+            },
+            child: SizedBox(
+              height: 100,
+              width: 300,
+              child: Expanded(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
                   ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.zoom_in,
-                      size: 40,
-                    ),
-                    Text(
-                      "Ricerca",
-                      style: TextStyle(fontSize: 20, shadows: kTextElevation),
-                    ),
-                  ],
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.zoom_in,
+                        size: 40,
+                      ),
+                      Text(
+                        "Ricerca",
+                        style: TextStyle(fontSize: 20, shadows: kTextElevation),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-          //TODO: aggiungi gesture detector
-          SizedBox(
-            height: 100,
-            width: 300,
-            child: Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(50),
+          GestureDetector(
+            onTap: () {
+              //TODO: pulsante Cronologia
+            },
+            child: SizedBox(
+              height: 100,
+              width: 300,
+              child: Expanded(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
                   ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.arrow_upward_outlined,
-                      size: 40,
-                    ),
-                    Text(
-                      "Cronologia",
-                      style: TextStyle(fontSize: 20, shadows: kTextElevation),
-                    ),
-                  ],
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.arrow_upward_outlined,
+                        size: 40,
+                      ),
+                      Text(
+                        "Cronologia",
+                        style: TextStyle(fontSize: 20, shadows: kTextElevation),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
