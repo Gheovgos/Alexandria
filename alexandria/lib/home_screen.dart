@@ -1,5 +1,6 @@
 import 'package:alexandria/constants.dart';
 import 'package:flutter/material.dart';
+import 'alexandria_navigation_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,32 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        iconSize: 30,
-        currentIndex: 0,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          switch(index)
-          {
-            case 4:
-              Navigator.pushNamed(context, 'settings');
-          }
-        },
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book_outlined), label: 'Riferimenti'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.add), label: 'Crea'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.chat_bubble_outline_outlined), label: 'Boh'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: 'Impostazioni'),
-        ],
-        selectedItemColor: kAlexandriaGreen,
-        unselectedItemColor: Colors.black,
-      ),
+      bottomNavigationBar: AlexandriaNavigationBar(),
       backgroundColor: kAlexandriaGreen,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
