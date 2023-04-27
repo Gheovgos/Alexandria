@@ -80,11 +80,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   AlexandriaRoundedButton(
                     child: const Text("Registrati"),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, 'register');
+                    },
                   ),
                   AlexandriaRoundedButton(
                     child: const Text("Accedi"),
-                    onPressed: () {},
+                    onPressed: () {
+                      //TODO: logica del login, per ora skippa alla home
+                      Navigator.pushNamed(context, 'home');
+                    },
                   ),
                 ],
               ),
