@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: AlexandriaNavigationBar(),
+      bottomNavigationBar: const AlexandriaNavigationBar(),
       backgroundColor: kAlexandriaGreen,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: const Center(
                 child: Text(
                   "Benvenuto, Nome Cognome",
-                  style: TextStyle(fontSize: 30),
+                  style: TextStyle(fontSize: 24, shadows: kTextElevation),
                 ),
               ),
             ),
@@ -51,8 +51,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Icon(Icons.zoom_in),
-                    Text("Ricerca"),
+                    Icon(
+                      Icons.zoom_in,
+                      size: 40,
+                    ),
+                    Text(
+                      "Ricerca",
+                      style: TextStyle(fontSize: 20, shadows: kTextElevation),
+                    ),
                   ],
                 ),
               ),
@@ -73,8 +79,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Icon(Icons.arrow_upward_outlined),
-                    Text("Cronologia"),
+                    Icon(
+                      Icons.arrow_upward_outlined,
+                      size: 40,
+                    ),
+                    Text(
+                      "Cronologia",
+                      style: TextStyle(fontSize: 20, shadows: kTextElevation),
+                    ),
                   ],
                 ),
               ),
