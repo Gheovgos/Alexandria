@@ -1,5 +1,6 @@
 import 'package:alexandria/login_screen.dart';
 import 'package:alexandria/register_screen.dart';
+import 'package:alexandria/search_result_screen.dart';
 import 'package:alexandria/settings_screen.dart';
 import 'package:alexandria/welcome_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,8 @@ void main() {
       'login': (context) => const LoginScreen(),
       'register': (context) => const RegisterScreen(),
       'home': (context) => const HomeScreen(),
-      'settings': (context) => const SettingsScreen()
+      'settings': (context) => const SettingsScreen(),
+      'results': (context) => const SearchResultScreen()
     },
   ));
 }
