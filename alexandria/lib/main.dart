@@ -8,6 +8,7 @@ import 'home_screen.dart';
 
 void main() {
   runApp(MaterialApp(
+    theme: ThemeData(fontFamily: 'Josefin Sans'),
     title: "Alexandria",
     initialRoute: 'welcome',
     routes: {
