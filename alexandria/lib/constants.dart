@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 const Color kAlexandriaGreen = Color(0xFF37C534);
 const InputDecoration kInputDecoration = InputDecoration(
-  hintStyle: TextStyle(fontSize: 15,shadows: [
-    Shadow(offset: Offset(0.0, 1.0), blurRadius: 5.0, color: Colors.grey),
+  hintStyle: TextStyle(fontSize: 15, shadows: [
+    Shadow(offset: Offset(0.0, 2.0), blurRadius: 5.0, color: Colors.grey),
   ]),
   filled: true,
   fillColor: Color(0xFFE5FFE4),
