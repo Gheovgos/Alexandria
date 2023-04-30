@@ -67,41 +67,47 @@ class SearchDialog extends StatelessWidget {
             "Categorie",
             style: TextStyle(fontSize: 16),
           ),
-          Container(
-            decoration: BoxDecoration(
-                color: kAlexandriaGreen,
-                borderRadius: BorderRadius.circular(20)),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20,top: 15,right: 20,bottom: 15),
-              child: Column(
-                children: [
-                  Material(
-                    borderRadius: const BorderRadius.all(Radius.circular(33.0)),
-                    elevation: 5,
-                    child: TextField(
-                        style: const TextStyle(color: Colors.black),
-                        keyboardType: TextInputType.emailAddress,
-                        textAlign: TextAlign.left,
-                        onChanged: (value) {},
-                        decoration: kInputDecoration.copyWith(
-                            hintText: 'Cerca categoria...')),
-                  ),
-                  SizedBox(height: 10,),
-                  SizedBox(
-                    height: 100,
-                    width: 300,
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: 3,
-                      itemBuilder: (BuildContext context, int index) {
-                        return MiniInfoBox(name: "Risultato $index");
-                      },
+          Material(
+            borderRadius: BorderRadius.circular(20),
+            elevation: 2,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: kAlexandriaGreen,
+                  borderRadius: BorderRadius.circular(20)),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 20, top: 15, right: 20, bottom: 15),
+                child: Column(
+                  children: [
+                    Material(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(33.0)),
+                      elevation: 5,
+                      child: TextField(
+                          style: const TextStyle(color: Colors.black),
+                          keyboardType: TextInputType.emailAddress,
+                          textAlign: TextAlign.left,
+                          onChanged: (value) {},
+                          decoration: kInputDecoration.copyWith(
+                              hintText: 'Cerca categoria...')),
                     ),
-                  ),
-                    
-
-                ],
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 100,
+                      width: 300,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: 3,
+                        itemBuilder: (BuildContext context, int index) {
+                          return MiniInfoBox(name: "Risultato $index");
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
