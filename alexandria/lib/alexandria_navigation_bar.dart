@@ -14,8 +14,15 @@ class AlexandriaNavigationBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       onTap: (index) {
         switch (index) {
+          case 0:
+            Navigator.pushNamed(context, 'home');
+            break;
+          case 3:
+            Navigator.pushNamed(context, 'create_category');
+            break;
           case 4:
             Navigator.pushNamed(context, 'settings');
+            break;
         }
       },
       items: const [
@@ -24,7 +31,7 @@ class AlexandriaNavigationBar extends StatelessWidget {
             icon: Icon(Icons.menu_book_outlined), label: 'Riferimenti'),
         BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Crea'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_outline_outlined), label: 'Boh'),
+            icon: Icon(Icons.chat_bubble_outline_outlined), label: 'Categorie'),
         BottomNavigationBarItem(
             icon: Icon(Icons.settings), label: 'Impostazioni'),
       ],
