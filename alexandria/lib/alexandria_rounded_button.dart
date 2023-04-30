@@ -8,7 +8,9 @@ class AlexandriaRoundedButton extends StatelessWidget {
       this.backgroundColor,
       this.padding,
       this.elevation,
-      this.borderColor});
+      this.borderColor,
+      this.border});
+  OutlinedBorder? border;
   Color? borderColor;
   double? elevation;
   Color? backgroundColor;
@@ -24,7 +26,7 @@ class AlexandriaRoundedButton extends StatelessWidget {
         backgroundColor: backgroundColor??Colors.white,
         elevation: elevation,
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+            border??RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
         side:  BorderSide(color: borderColor??Colors.white)
       ),
       onPressed: onPressed,
