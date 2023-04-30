@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Icon(
-                        Icons.zoom_in,
+                        Icons.search,
                         size: 40,
                       ),
                       Text(
