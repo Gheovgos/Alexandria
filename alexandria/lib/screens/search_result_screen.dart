@@ -2,6 +2,7 @@ import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:flutter/material.dart';
 import '../alexandria_navigation_bar.dart';
+import '../mini_info_box.dart';
 
 class SearchResultScreen extends StatefulWidget {
   const SearchResultScreen({Key? key}) : super(key: key);
@@ -119,30 +120,4 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
   }
 }
 
-class MiniInfoBox extends StatelessWidget {
-  MiniInfoBox({super.key, required this.name});
-  String name;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 5),
-      padding: const EdgeInsetsDirectional.only(
-          start: 20, top: 5, bottom: 5, end: 10),
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadiusDirectional.all(
-            Radius.circular(20),
-          )),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            name,
-            style: const TextStyle(fontSize: 15),
-          ),
-          const Icon(Icons.info_outline)
-        ],
-      ),
-    );
-  }
-}
+
