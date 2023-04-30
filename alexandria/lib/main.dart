@@ -1,3 +1,4 @@
+import 'package:alexandria/screens/create_category_screen.dart';
 import 'package:alexandria/screens/login_screen.dart';
 import 'package:alexandria/screens/net_error_screen.dart';
 import 'package:alexandria/screens/register_screen.dart';
@@ -19,7 +20,8 @@ void main() {
       'register': (context) => const RegisterScreen(),
       'home': (context) => const HomeScreen(),
       'settings': (context) => const SettingsScreen(),
-      'results': (context) => const SearchResultScreen()
+      'results': (context) => const SearchResultScreen(),
+      'create_category': (context) => const CreateCategoryScreen()
     },
   ));
 }
