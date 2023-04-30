@@ -1,4 +1,5 @@
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/history_dialog.dart';
 import 'package:flutter/material.dart';
 import '../alexandria_navigation_bar.dart';
 import '../search_dialog.dart';
@@ -76,6 +77,10 @@ class _HomeScreenState extends State<HomeScreen> {
           GestureDetector(
             onTap: () {
               //TODO: pulsante Cronologia
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => HistoryDialog(),
+              );
             },
             child: SizedBox(
               height: 100,
