@@ -1,6 +1,7 @@
 import 'package:alexandria/constants.dart';
 import 'package:flutter/material.dart';
 import '../alexandria_navigation_bar.dart';
+import '../search_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -39,6 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
           GestureDetector(
             onTap: () {
               //TODO: pulsante Ricerca
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => SearchDialog(),
+              );
             },
             child: SizedBox(
               height: 100,
@@ -117,3 +122,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
