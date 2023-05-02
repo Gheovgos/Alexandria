@@ -15,7 +15,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const AlexandriaNavigationBar(),
+      bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 0,),
       backgroundColor: kAlexandriaGreen,
       body: SafeArea(
         child: Column(

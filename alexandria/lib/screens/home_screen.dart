@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const AlexandriaNavigationBar(),
+      bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 0,),
       backgroundColor: kAlexandriaGreen,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
