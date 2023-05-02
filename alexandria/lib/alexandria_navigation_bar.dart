@@ -4,18 +4,22 @@ import 'constants.dart';
 class AlexandriaNavigationBar extends StatelessWidget {
   const AlexandriaNavigationBar({
     super.key,
+    required this.currentIndex
   });
-
+  final int currentIndex;
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       iconSize: 30,
-      currentIndex: 0,
+      currentIndex: currentIndex,
       type: BottomNavigationBarType.fixed,
       onTap: (index) {
         switch (index) {
           case 0:
             Navigator.pushNamed(context, 'home');
+            break;
+          case 1:
+            Navigator.pushNamed(context, 'view_riferimenti');
             break;
           case 3:
             Navigator.pushNamed(context, 'create_category');
