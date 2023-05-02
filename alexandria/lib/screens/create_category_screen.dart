@@ -16,7 +16,7 @@ class _CreateCategoryScreenState extends State<CreateCategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const AlexandriaNavigationBar(),
+      bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 3,),
       backgroundColor: kAlexandriaGreen,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
