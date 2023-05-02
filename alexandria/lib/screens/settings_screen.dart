@@ -1,3 +1,4 @@
+import 'package:alexandria/alexandria_navigation_bar.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 4,),
       backgroundColor: kAlexandriaGreen,
       body: SafeArea(
         child: Column(
