@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MiniInfoBox extends StatelessWidget {
-  const MiniInfoBox({super.key, required this.name});
+  const MiniInfoBox({super.key, required this.name,this.fontSize});
   final String name;
+  final double? fontSize;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,7 +23,7 @@ class MiniInfoBox extends StatelessWidget {
               children: [
                 Text(
                   name,
-                  style: const TextStyle(fontSize: 15),
+                  style: TextStyle(fontSize: fontSize??15),
                 ),
                 const Icon(Icons.info_outline)
               ],
