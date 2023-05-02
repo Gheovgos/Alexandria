@@ -1,3 +1,4 @@
+import 'package:alexandria/Connessione/ConnectionHandler.dart';
 import 'package:alexandria/screens/create_category_screen.dart';
 import 'package:alexandria/screens/login_screen.dart';
 import 'package:alexandria/screens/net_error_screen.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 
 void main() {
+  //NetworkHelper conn = NetworkHelper();
   runApp(MaterialApp(
     theme: ThemeData(fontFamily: 'Josefin Sans'),
     title: "Alexandria",
