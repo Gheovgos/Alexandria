@@ -6,7 +6,13 @@ class AlexandriaRoundedButton extends StatelessWidget {
       required this.child,
       this.onPressed,
       this.backgroundColor,
-      this.padding});
+      this.padding,
+      this.elevation,
+      this.borderColor,
+      this.border});
+  OutlinedBorder? border;
+  Color? borderColor;
+  double? elevation;
   Color? backgroundColor;
   void Function()? onPressed;
   Widget child;
@@ -15,11 +21,13 @@ class AlexandriaRoundedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
+        foregroundColor: Colors.black,
         padding: padding,
-        backgroundColor: backgroundColor,
-        elevation: 2.0,
+        backgroundColor: backgroundColor??Colors.white,
+        elevation: elevation,
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+            border??RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+        side:  BorderSide(color: borderColor??Colors.white)
       ),
       onPressed: onPressed,
       child: child,

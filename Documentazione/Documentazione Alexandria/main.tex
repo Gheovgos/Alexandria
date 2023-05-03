@@ -10,33 +10,24 @@
 \usepackage[margin=0.5in]{geometry} %serve per i margini dx e sx
 \usepackage[utf8]{inputenc}
 \usepackage{glossaries}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+\usepackage{float} 
+\usepackage{tabularx}
+
 \makeglossaries
 
-\newglossaryentry{Alexandria}
-{
-    name=Alexandria,
-    description={Alexandria è un applicativo capace di gestire e creare i riferimenti bibliografici.}
-}
 
-\newglossaryentry{riferimento}
-{
-    name=riferimento,
-    description={Un riferimento è un collegamento ad un'opera bibliografica esistente dotato di nome, data, descrizione, codici univoci e di un eventuale URL per la visualizzazione}
-}
 \begin{document}
     \begin{figure}[htbp!]
-    
-
-    \centering\scshape\Medium\ UNIVERSITÀ DEGLI STUDI DI NAPOLI FEDERICO II \\
-    \centering\scshape\small\ SCUOLA POLITECNICA E DELLE SCIENZE DI BASE\\
-    \centering\scshape\Medium\ DIPARTIMENTO DI INGEGNERIA ELETTRICA E TECNOLOGIE DELL'INFORMAZIONE\\
-
         \begin{center}
+                UNIVERSITÀ DEGLI STUDI DI NAPOLI FEDERICO II \\
+                SCUOLA POLITECNICA E DELLE SCIENZE DI BASE\\
+                DIPARTIMENTO DI INGEGNERIA ELETTRICA E TECNOLOGIE DELL'INFORMAZIONE\\
             \includegraphics[width=.30\textwidth]{Immagini/FedericoII.png}
         \end{center}
     \end{figure}
          \begin{center}
-
             \includegraphics[width=.30\textwidth]{Immagini/Alexandria logo nome medium 2.png} 
         \end{center}
     \centering{\scshape\Large\bfseries\textbf{Progetto Bibliografia}}
@@ -62,8 +53,8 @@
 
     \include{Argomenti/Vuoto}
     \include{Argomenti/Capitolo1}
+    \include{Argomenti/Glossario}
     \include{Argomenti/Capitolo2}
-    \printglossary
     \include{Argomenti/Capitolo3}
     \include{Argomenti/Capitolo4}
     \include{Argomenti/Conclusione}

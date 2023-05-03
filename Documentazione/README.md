@@ -1,7 +1,7 @@
 # Documentazione
-La documentazione è completamente scritta in Latex. Suggerisco di apportare le modifiche tramite questo link: https://www.overleaf.com/8774686427mjgkdhdyshzb per modificare la documentazione.
+La documentazione è completamente scritta in Latex. 
 # Versione
-Versione attuale: pre-bozza.  
+Versione attuale: Bozza | Prima parte della documentazione completata.  
 Checklist:  
 
 - [x] Introduzione e descrizione progetto originale.  
@@ -12,16 +12,16 @@ Documento dei Requisiti Software
 Analisi dei Requisiti  
 - [x] Modellazione di tutti i casi d’uso richiesti  
 - [x] Individuazione del target degli utenti  
-- [ ] Descrizioni Testuali Strutturate per almeno quattro (due, se si consegna prima del 31/03/2023) casi d’uso significativi (autenticazione esclusa) a scelta dei contraenti tra quelli richiesti  
+- [x] Descrizioni Testuali Strutturate per almeno quattro (due, se si consegna prima del 31/03/2023) casi d’uso significativi (autenticazione esclusa) a scelta dei contraenti tra quelli richiesti  
 - [x] Prototipazione visuale via Mock-up dell’interfaccia utente per tutti i casi d’uso assegnati. Si raccomanda caldamente l’uso del tool “Figma”.  
-- [ ] Valutazione dell’usabilità a priori.  
-- [ ] Glossario.  
+- [x] Valutazione dell’usabilità a priori.  
+- [x] Glossario.  
         
 Specifica dei Requisiti.  
 
-- [ ] Classi, oggetti e relazioni di analisi.  
-- [ ] Diagrammi di sequenza di analisi per due casi d’uso significativi a scelta dei contraenti tra quelli assegnati.  
-- [ ] Prototipazione funzionale via statechart dell’interfaccia grafica, relativamente ai casi d’uso individuati al punto 1.a.iii.  
+- [x] Classi, oggetti e relazioni di analisi.  
+- [x] Diagrammi di sequenza di analisi per due casi d’uso significativi a scelta dei contraenti tra quelli assegnati.  
+- [x] Prototipazione funzionale via statechart dell’interfaccia grafica, relativamente ai casi d’uso individuati al punto 1.a.iii.  
         
 Documento di Design del sistema.
 
