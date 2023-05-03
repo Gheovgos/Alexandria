@@ -1,19 +1,40 @@
 package Model;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.util.*;
 @Entity
 @Table
 public class Riferimento {
+
+    @Id
+    @Column
     private int id_Rif;
+
+    @Column
     private String titolo;
+
+    @Column
     private Date dataCreazione;
+
+    @Column
     private String tipo;
+
+    @Column
     private String URL;
+
+    @Column
     private Integer DOI;
+
+    @Column
     private Boolean digitale;
+
+    @Column
     private String descrizione;
+
+
     private List<Categoria> categorie;
     private List<Utente> autori;
     private List<Riferimento> cited;
