@@ -1,5 +1,5 @@
 import 'package:alexandria/Connessione/ConnectionHandler.dart';
-import 'package:alexandria/screens/create_category_screen.dart';
+import 'package:alexandria/screens/create_categoria_screen.dart';
 import 'package:alexandria/screens/login_screen.dart';
 import 'package:alexandria/screens/net_error_screen.dart';
 import 'package:alexandria/screens/register_screen.dart';
@@ -26,7 +26,7 @@ void main() {
       'home': (context) => const HomeScreen(),
       'settings': (context) => const SettingsScreen(),
       'results': (context) => const SearchResultScreen(),
-      'create_category': (context) => const CreateCategoryScreen(),
+      'create_categoria': (context) => const CreateCategoriaScreen(),
       'my_riferimenti': (context) => const MyRiferimentiScreen(),
       'view_riferimento': (context) => const ViewRiferimentoScreen(),
       'view_categoria': (context) => const ViewCategoriaScreen()

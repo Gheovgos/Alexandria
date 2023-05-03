@@ -22,7 +22,7 @@ class AlexandriaNavigationBar extends StatelessWidget {
             Navigator.pushNamed(context, 'my_riferimenti');
             break;
           case 3:
-            Navigator.pushNamed(context, 'create_category');
+            Navigator.pushNamed(context, 'create_categoria');
             break;
           case 4:
             Navigator.pushNamed(context, 'settings');

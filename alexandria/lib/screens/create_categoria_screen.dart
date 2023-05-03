@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import '../alexandria_rounded_button.dart';
 import '../mini_info_box.dart';
 
-class CreateCategoryScreen extends StatefulWidget {
-  const CreateCategoryScreen({Key? key}) : super(key: key);
+class CreateCategoriaScreen extends StatefulWidget {
+  const CreateCategoriaScreen({Key? key}) : super(key: key);
 
   @override
-  State<CreateCategoryScreen> createState() => _CreateCategoryScreenState();
+  State<CreateCategoriaScreen> createState() => _CreateCategoriaScreenState();
 }
 
-class _CreateCategoryScreenState extends State<CreateCategoryScreen> {
+class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
