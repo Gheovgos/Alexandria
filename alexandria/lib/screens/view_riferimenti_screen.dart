@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 
 import '../mini_info_box.dart';
 
-class ViewRiferimenti extends StatefulWidget {
-  const ViewRiferimenti({Key? key}) : super(key: key);
+class MyRiferimentiScreen extends StatefulWidget {
+  const MyRiferimentiScreen({Key? key}) : super(key: key);
 
   @override
-  State<ViewRiferimenti> createState() => _ViewRiferimentiState();
+  State<MyRiferimentiScreen> createState() => _MyRiferimentiScreenState();
 }
 
-class _ViewRiferimentiState extends State<ViewRiferimenti> {
+class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -25,7 +25,7 @@ void main() {
       'settings': (context) => const SettingsScreen(),
       'results': (context) => const SearchResultScreen(),
       'create_category': (context) => const CreateCategoryScreen(),
-      'view_riferimenti': (context) => const ViewRiferimenti()
+      'my_riferimenti': (context) => const MyRiferimentiScreen(),
     },
   ));
 }
