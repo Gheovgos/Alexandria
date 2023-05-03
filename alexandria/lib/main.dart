@@ -5,7 +5,7 @@ import 'package:alexandria/screens/net_error_screen.dart';
 import 'package:alexandria/screens/register_screen.dart';
 import 'package:alexandria/screens/search_result_screen.dart';
 import 'package:alexandria/screens/settings_screen.dart';
-import 'package:alexandria/screens/view_riferimenti_screen.dart';
+import 'package:alexandria/screens/my_riferimenti_screen.dart';
 import 'package:alexandria/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
