@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/categoria")
+@RequestMapping(path = "categoria")
 public class CategoriaController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
     }
 
-    @GetMapping("/get/getAll")
+    @GetMapping("/get/findAll")
     public List<CategoriaDto> findAll()
     {
         List<Categoria> categorie = categoriaService.getCategorie();
@@ -42,7 +42,24 @@ public class CategoriaController {
     @GetMapping("/get/getCategoriaByRiferimento/{id_riferimento}")
     public CategoriaDto getCategoriaByRiferimento(@PathVariable String id_riferimento)
     {
-        Categoria categoria = categoriaService.
+        Categoria categoria = categoriaService.getCategoriaByRiferimento(id_riferimento);
+        CategoriaDto categoriaDto = convertDto(categoria);
+        return categoriaDto;
+    }
+
+    @GetMapping("/get/getCategoriaByName/{name}")
+    public CategoriaDto getCategoriaByName(@PathVariable String name)
+    {
+        Categoria categoria = categoriaService.getCategoriaByName(name);
+        CategoriaDto categoriaDto = convertDto(categoria);
+        return categoriaDto;
+    }
+
+    @GetMapping("/get/getNextId")
+    public Integer getNextId()
+    {
+        Integer id = categoriaService.getNextId();
+        return id;
     }
 
 

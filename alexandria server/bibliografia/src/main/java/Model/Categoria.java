@@ -10,13 +10,13 @@ public class Categoria {
 
     @Id
     @Column
-    private final int id_Cat;
+    private int id_Cat;
 
     @Column
-    private final String nome;
+    private String nome;
 
     @Column
-    private final int autore;
+    private int autore;
 
     @Column
     private int id_Generaliz;

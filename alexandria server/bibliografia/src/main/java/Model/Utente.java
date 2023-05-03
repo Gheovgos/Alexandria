@@ -8,7 +8,7 @@ import java.util.*;
 @Table
 public class Utente {
 
-    @Column.
+    @Column
     private final String nome;
 
     @Column

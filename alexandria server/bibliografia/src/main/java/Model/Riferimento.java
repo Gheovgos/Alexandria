@@ -54,6 +54,11 @@ public class Riferimento {
         this.descrizione = descrizione;
     }
 
+    public Riferimento()
+    {
+
+    }
+
     public String getTitolo() {
         return titolo;
     }

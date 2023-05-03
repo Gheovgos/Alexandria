@@ -33,6 +33,11 @@ public class RiferimentoDto {
         this.descrizione = descrizione;
     }
 
+    public RiferimentoDto()
+    {
+
+    }
+
     public String getTitolo() {
         return titolo;
     }
