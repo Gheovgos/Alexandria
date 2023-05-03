@@ -6,6 +6,7 @@ import 'package:alexandria/screens/register_screen.dart';
 import 'package:alexandria/screens/search_result_screen.dart';
 import 'package:alexandria/screens/settings_screen.dart';
 import 'package:alexandria/screens/my_riferimenti_screen.dart';
+import 'package:alexandria/screens/view_riferimento_screen.dart';
 import 'package:alexandria/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
@@ -26,6 +27,7 @@ void main() {
       'results': (context) => const SearchResultScreen(),
       'create_category': (context) => const CreateCategoryScreen(),
       'my_riferimenti': (context) => const MyRiferimentiScreen(),
+      'view_riferimento': (context) => const ViewRiferimentoScreen()
     },
   ));
 }
