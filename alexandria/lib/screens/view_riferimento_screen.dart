@@ -22,7 +22,7 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
         child: const Icon(Icons.link,color: Colors.black,),
       ),
       backgroundColor: kAlexandriaGreen,
-      bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 0),
+      bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 1),
       body: SingleChildScrollView(
         child: Column(
           children: [
