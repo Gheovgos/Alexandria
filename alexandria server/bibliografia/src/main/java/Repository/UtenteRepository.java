@@ -12,9 +12,13 @@ import java.util.Optional;
 @Repository
 public interface UtenteRepository extends JpaRepository<Utente, Integer> {
 
+
+    @Query(value = "SELECT DISTINCT * FROM utente WHERE id_utente = ?1", nativeQuery = true)
+    Utente getUtenteById(String id_utente);
+
     @Query(value = "SELECT utente.* FROM utente NATURAL JOIN autore_riferimento WHERE id_riferimento = ?1", nativeQuery = true)
-    Optional<List<Utente>> getByRiferimentoId(String id_riferimento);
+    List<Utente> getByRiferimentoId(String id_riferimento);
 
     @Query(value = "SELECT MAX(id_utente) FROM utente", nativeQuery = true)
-    Optional<Integer> getNextId();
+    Integer getNextId();
  }

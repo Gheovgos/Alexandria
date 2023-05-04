@@ -22,7 +22,7 @@ public class RiferimentoService {
         return riferimentoRepository.findAll();
     }
 
-    public Riferimento getRiferimentoById(Integer riferimentoId) {return riferimentoRepository.getById(riferimentoId);}
+    public Riferimento getRiferimentoById(String riferimentoId) {return riferimentoRepository.getRiferimentoById(riferimentoId);}
 
     public List<Riferimento> getRiferimentoByUserId(@PathVariable String user_id) {return riferimentoRepository.getRiferimentoByUserId(user_id);}
 

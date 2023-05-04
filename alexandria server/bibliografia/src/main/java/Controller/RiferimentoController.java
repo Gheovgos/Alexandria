@@ -7,10 +7,7 @@ import Service.RiferimentoService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +40,7 @@ public class RiferimentoController {
     }
 
     @GetMapping("get/getRiferimentoById/{riferimentoId}")
-    public RiferimentoDto getRiferimentoByID(@PathVariable Integer riferimentoId)
+    public RiferimentoDto getRiferimentoByID(@PathVariable String riferimentoId)
     {
         Riferimento riferimento = riferimentoService.getRiferimentoById(riferimentoId);
         RiferimentoDto riferimentoDto = convertDto(riferimento);
@@ -114,6 +111,26 @@ public class RiferimentoController {
         return riferimentiDto;
     }
 
+    @PostMapping("/create")
+    public void create(@RequestBody RiferimentoDto riferimentoDto)
+    {
+        Riferimento riferimento = convertEntity(riferimentoDto);
+        riferimentoService.create(riferimento);
+    }
+
+    @PutMapping("/update")
+    public void update(@RequestBody RiferimentoDto riferimentoDto)
+    {
+        Riferimento riferimento = convertEntity(riferimentoDto);
+        riferimentoService.update(riferimento);
+    }
+
+    @DeleteMapping("/delete")
+    public void delete(@RequestBody RiferimentoDto riferimentoDto)
+    {
+        Riferimento riferimento = convertEntity(riferimentoDto);
+        riferimentoService.delete(riferimento.getId_Rif());
+    }
 
     public Riferimento convertEntity(RiferimentoDto riferimentoDto)
     {

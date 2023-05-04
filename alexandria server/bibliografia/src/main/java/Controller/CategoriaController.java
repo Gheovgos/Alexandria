@@ -39,6 +39,14 @@ public class CategoriaController {
     }
 
 
+    @GetMapping("/get/getCategoriaById/{categoriaId}")
+    public CategoriaDto getCategoriaById(@PathVariable String categoriaId)
+    {
+        Categoria categoria = categoriaService.getCategoriaById(categoriaId);
+        CategoriaDto categoriaDto = convertDto(categoria);
+        return categoriaDto;
+    }
+
     @GetMapping("/get/getCategoriaByRiferimento/{id_riferimento}")
     public CategoriaDto getCategoriaByRiferimento(@PathVariable String id_riferimento)
     {
@@ -70,11 +78,20 @@ public class CategoriaController {
     }
 
 
+    @PutMapping("/update")
     public void update(@RequestBody CategoriaDto categoriaDto)
     {
         Categoria categoria = convertEntity(categoriaDto);
         categoriaService.update(categoria);
     }
+
+    @DeleteMapping("/delete")
+    public void delete(@RequestBody CategoriaDto categoriaDto)
+    {
+        Categoria categoria = convertEntity(categoriaDto);
+        categoriaService.delete(categoria.getId_Cat());
+    }
+
 
     private Categoria convertEntity(CategoriaDto categoriaDto)
     {

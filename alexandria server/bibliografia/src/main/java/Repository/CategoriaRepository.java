@@ -11,6 +11,10 @@ import java.util.Optional;
 @Repository
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
+
+    @Query(value = "SELECT DISTINCT * FROM categoria WHERE id_categoria = ?1", nativeQuery = true)
+    Categoria getCategoriaById(String id_categoria);
+
     @Query(value = "SELECT categoria.* FROM categoria NATURAL JOIN associativa_riferimenti_categoria WHERE id_riferimento = ?1", nativeQuery = true)
     Categoria getCategoriaByRiferimento(String id_riferimento);
 

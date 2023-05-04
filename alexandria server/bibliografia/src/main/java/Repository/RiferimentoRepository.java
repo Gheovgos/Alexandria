@@ -11,6 +11,10 @@ import java.util.Optional;
 @Repository
 public interface RiferimentoRepository extends JpaRepository<Riferimento, Integer> {
 
+
+    @Query(value = "SELECT DISTINCT * FROM riferimenti_biblio WHERE id_riferimento = ?1", nativeQuery = true)
+    Riferimento getRiferimentoById(String id_riferimento);
+
     @Query(value = "SELECT riferimenti_biblio.* FROM riferimenti_biblio NATURAL JOIN autore_riferimento WHERE id_utente = ?1", nativeQuery = true)
     List<Riferimento> getRiferimentoByUserId(String id_utente);
 

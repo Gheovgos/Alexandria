@@ -9,20 +9,20 @@ import java.util.*;
 public class Utente {
 
     @Column
-    private final String nome;
+    private String nome;
 
     @Column
-    private final String cognome;
+    private String cognome;
 
     @Id
     @Column
-    private final int user_ID;
+    private int user_ID;
 
     @Column
-    private final Date inizio;
+    private Date inizio;
 
     @Column
-    private final Date fine;
+    private Date fine;
 
     @Column
     @ManyToMany
@@ -39,6 +39,8 @@ public class Utente {
         this.fine = fine;
         this.riferimenti = new ArrayList<Riferimento>();
     }
+
+    public Utente() {}
 
     public String getNome() {
         return nome;

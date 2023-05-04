@@ -22,9 +22,9 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
-    public Optional<Categoria> getCategoriaById(Integer categoriaId)
+    public Categoria getCategoriaById(String categoriaId)
     {
-        return categoriaRepository.findById(categoriaId);
+        return categoriaRepository.getCategoriaById(categoriaId);
     }
 
     public void update(Categoria categoria)

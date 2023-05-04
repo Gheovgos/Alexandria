@@ -7,15 +7,15 @@ import java.util.List;
 
 public class UtenteDto {
 
-    private final String nome;
+    private String nome;
 
-    private final String cognome;
+    private String cognome;
 
-    private final int user_ID;
+    private int user_ID;
 
-    private final Date inizio;
+    private Date inizio;
 
-    private final Date fine;
+    private Date fine;
 
 
     public UtenteDto(final String nome, final String cognome, final int ID, final Date inizio, final Date fine) {
@@ -27,17 +27,28 @@ public class UtenteDto {
         this.fine = fine;
     }
 
+    public UtenteDto()
+    {
+
+    }
+
     public String getNome() {
         return nome;
     }
+
+    public void setNome(String nome) {this.nome = nome;}
 
     public String getCognome() {
         return cognome;
     }
 
+    public void setCognome(String cognome){this.cognome = cognome;}
+
     public int getUser_ID() {
         return user_ID;
     }
+
+    public void setUser_ID(int user_ID){this.user_ID = user_ID;}
 
     public String nominativoCompletoToString() {
         return this.nome + " " + this.cognome;
@@ -47,7 +58,11 @@ public class UtenteDto {
         return inizio;
     }
 
+    public void setInizio(Date inizio) {this.inizio = inizio;}
+
     public Date getFine() {
         return fine;
     }
+
+    public void setFine(Date fine) {this.fine = fine;}
 }

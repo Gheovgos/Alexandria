@@ -48,7 +48,22 @@
             <groupId>net.minidev</groupId>
             <artifactId>json-smart</artifactId>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>net.eunjae.android.modelmapper</groupId>
+            <artifactId>ModelMapper</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+		<dependency>
+			<groupId>net.eunjae.android.modelmapper</groupId>
+			<artifactId>ModelMapper</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>net.eunjae.android.modelmapper</groupId>
+			<artifactId>ModelMapper</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
