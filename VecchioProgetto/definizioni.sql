@@ -75,6 +75,12 @@ ADD CONSTRAINT fk_ID_Super_Categoria FOREIGN KEY (ID_Super_Categoria) REFERENCES
 ALTER TABLE Categoria
 ADD CONSTRAINT fk_ID_Categoria_Utente FOREIGN KEY (ID_Utente) REFERENCES Utente(ID_Utente) ON UPDATE CASCADE ON DELETE SET NULL;
 
+ALTER TABLE IF EXISTS public.utente
+    ADD COLUMN password_hashed "char"[];
+    
+ALTER TABLE IF EXISTS public.utente
+    ADD COLUMN salt "char"[];
+
 -- Popolazione tabella Utente
 INSERT INTO Utente VALUES (1, 'Agata12', 'Agata', 'Esposito', '2021-03-12', NULL);
 INSERT INTO Utente VALUES (2, 'finizioNe', 'Mario', 'Finizio', '2021-08-17', '2031-12-31');
