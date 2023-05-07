@@ -21,7 +21,7 @@ public class UtenteService {
         return utenteRepository.findAll();
     }
 
-    public Utente getUtenteById(String utenteId) {
+    public Utente getUtenteById(int utenteId) {
         return utenteRepository.getUtenteById(utenteId);
     }
 

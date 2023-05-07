@@ -18,8 +18,7 @@ public class UtenteController {
     @Autowired
     private final UtenteService utenteService;
 
-    @Autowired
-    private ModelMapper modelMapper;
+     private ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     public UtenteController(UtenteService utenteService)
@@ -57,7 +56,7 @@ public class UtenteController {
     }
 
     @GetMapping("/create/getUtenteById/{utenteId}")
-    public UtenteDto getUtenteById(@PathVariable String utenteId)
+    public UtenteDto getUtenteById(@PathVariable int utenteId)
     {
         Utente utente = utenteService.getUtenteById(utenteId);
         UtenteDto utenteDto = convertDto(utente);

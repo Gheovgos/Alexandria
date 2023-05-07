@@ -19,7 +19,7 @@ public class RiferimentoController {
     private final RiferimentoService riferimentoService;
 
     @Autowired
-    private ModelMapper modelMapper;
+    private ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     public RiferimentoController(RiferimentoService riferimentoService)

@@ -19,7 +19,7 @@ public class CategoriaController {
     private final CategoriaService categoriaService;
 
     @Autowired
-    private ModelMapper modelMapper;
+    private ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     public CategoriaController(CategoriaService categoriaService)
