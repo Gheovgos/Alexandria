@@ -1,15 +1,15 @@
 package bibliografia.Model;
+//import bibliografia.Model.Riferimento;
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.*;
 @Entity
-@Table(name = "utente")
+@Table(name = "utente", schema = "public")
 public class Utente {
 
     @Id
-    @Column(name = "user_ID")
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int user_ID;
 
     @Column(name = "nome")
@@ -17,7 +17,6 @@ public class Utente {
 
     @Column(name = "cognome")
     private String cognome;
-
 
     @Column(name = "inizio")
     private Date inizio;
@@ -34,12 +33,13 @@ public class Utente {
     @Column(name = "salt")
     private String salt;
 
-    @ManyToMany
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_Rif", referencedColumnName = "id_Rif")
-    private List<Riferimento> riferimenti = new ArrayList<>();
 
-    public Utente(final String nome, final String cognome, final int ID, final Date inizio, final Date fine, final String password_hashed, final String salt, final String username, ArrayList<Riferimento> riferimenti) {
+   /* @ManyToMany
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "")
+    private List<> categorie = new ArrayList<>();*/
+
+    public Utente(final String nome, final String cognome, final int ID, final Date inizio, final Date fine, final String password_hashed, final String salt, final String username) {
         super();
         this.nome = nome;
         this.cognome = cognome;
@@ -49,7 +49,7 @@ public class Utente {
         this.password_hashed = password_hashed;
         this.salt = salt;
         this.username = username;
-        this.riferimenti = riferimenti;
+        //this.riferimenti = riferimenti;
     }
 
     public Utente() {

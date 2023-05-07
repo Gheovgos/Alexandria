@@ -128,7 +128,7 @@ public class RiferimentoController {
     public void delete(@RequestBody RiferimentoDto riferimentoDto)
     {
         Riferimento riferimento = convertEntity(riferimentoDto);
-        riferimentoService.delete(riferimento.getId_Rif());
+        riferimentoService.delete(riferimento.getIdRiferimento());
     }
 
     public Riferimento convertEntity(RiferimentoDto riferimentoDto)
@@ -147,13 +147,13 @@ public class RiferimentoController {
         riferimentoDto = modelMapper.map(riferimento, RiferimentoDto.class);
 
         riferimentoDto.setDescrizione(riferimento.getDescrizione());
-        riferimentoDto.setDigitale(riferimento.getDigitale());
-        riferimentoDto.setDOI(riferimento.getDOI());
+        riferimentoDto.setDigitale(riferimento.getOnline());
+        riferimentoDto.setDOI(riferimento.getDoi());
         riferimentoDto.setTipo(riferimentoDto.getTipo());
-        riferimentoDto.setURL(riferimento.getURL());
+        riferimentoDto.setURL(riferimento.getUrl());
         riferimentoDto.setId_Rif(riferimentoDto.getId_Rif());
-        riferimentoDto.setTitolo(riferimento.getTitolo());
-        riferimentoDto.setDataCreazione(riferimento.getDataCreazione());
+        riferimentoDto.setTitolo(riferimento.getTitoloRiferimento());
+        //riferimentoDto.setDataCreazione(riferimento.getDataRiferimento());
 
         return riferimentoDto;
     }

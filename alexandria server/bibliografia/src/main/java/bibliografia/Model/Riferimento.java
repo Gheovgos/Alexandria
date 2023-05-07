@@ -1,50 +1,80 @@
 package bibliografia.Model;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.time.LocalDate;
 import java.util.*;
 @Entity
-@Table(name = "riferimenti_biblio")
+@Table(name = "riferimenti_biblio", schema = "public")
 public class Riferimento {
 
     @Id
-    @Column(name = "id_riferimento")
-    private int id_Rif;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private int id_riferimento;
 
-    @Column(name = "titolo_riferimento")
+    @Column
     private String titolo;
 
-    @Column(name = "data_riferimento")
-    private Date dataCreazione;
+    @Column
+    private LocalDate dataCreazione;
 
-    @Column(name = "tipo")
+    @Column
     private String tipo;
 
-    @Column(name = "url")
+    @Column
     private String URL;
 
-    @Column(name = "doi")
-    private Integer DOI;
+    @Column
+    private int DOI;
 
-    @Column(name = "on_line")
-    private Boolean digitale;
+    @Column
+    private boolean digitale;
 
-    @Column(name = "descr_riferimento")
+    @Column
     private String descrizione;
 
+    @Column
+    private String editore;
 
+    @Column
+    private String isbn;
+
+    @Column
+    private String isnn;
+
+    @Column
+    private String luogo;
+
+    @Column
+    private int pag_inizio;
+
+    @Column
+    private int pag_fine;
+
+    @Column
+    private int edizione;
+
+    /*
     private List<Categoria> categorie;
-    private List<Utente> autori;
-    private List<Riferimento> cited;
-    private List<Riferimento> citedIn;
 
-    public Riferimento(final int id_Rif, final String titolo, final Date dataCreazione, final String tipo,
-                       final String URL, final Integer DOI, final Boolean digitale, final String descrizione) {
+    @ManyToMany
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "autore", referencedColumnName = "user_ID")
+    @ElementCollection(targetClass = Riferimento.class)/
+
+    private List<Integer> autore;
+    private List<Riferimento> cited;
+    private List<Riferimento> citedIn;*/
+
+    public Riferimento(final int id_riferimento, final String titolo, final LocalDate dataCreazione, final String tipo,
+                       final String URL, final Integer DOI, final Boolean digitale, final String descrizione, final String editore,
+                       final String isbn, final String isnn, final String luogo, final int pag_inizio, final int pag_fine, final int edizione) {
         super();
-        this.id_Rif = id_Rif;
-        categorie = new ArrayList<>(0);
+        this.id_riferimento = id_riferimento;
+        //categorie = new ArrayList<>(0);
         this.titolo = titolo;
         this.dataCreazione = dataCreazione;
         this.DOI = DOI;
@@ -52,6 +82,13 @@ public class Riferimento {
         this.URL = URL;
         this.digitale = digitale;
         this.descrizione = descrizione;
+        this.edizione = edizione;
+        this.pag_fine = pag_fine;
+        this.pag_inizio = pag_inizio;
+        this.isbn = isbn;
+        this.isnn = isnn;
+        this.luogo = luogo;
+        this.editore = editore;
     }
 
     public Riferimento()
@@ -59,7 +96,7 @@ public class Riferimento {
 
     }
 
-    public String getTitolo() {
+    public String getTitoloRiferimento() {
         return titolo;
     }
 
@@ -67,11 +104,11 @@ public class Riferimento {
         this.titolo = titolo;
     }
 
-    public Date getDataCreazione() {
+    public LocalDate getDataCreazione() {
         return dataCreazione;
     }
 
-    public void setDataCreazione(final Date dataCreazione) {
+    public void setDataCreazione(final LocalDate dataCreazione) {
         this.dataCreazione = dataCreazione;
     }
 
@@ -83,7 +120,7 @@ public class Riferimento {
         this.tipo = tipo;
     }
 
-    public String getURL() {
+    public String getUrl() {
         return URL;
     }
 
@@ -91,14 +128,14 @@ public class Riferimento {
         this.URL = URL;
     }
 
-    public Boolean getDigitale() {
+    public Boolean getOnline() {
         return digitale;
     }
 
     public void setDigitale(final Boolean digitale) {
         this.digitale = digitale;
     }
-
+/*
     public List<Categoria> getCategorie() {
         return categorie;
     }
@@ -107,12 +144,12 @@ public class Riferimento {
         this.categorie = categorie;
     }
 
-    public List<Utente> getAutori() {
-        return autori;
+    public List<Integer> getAutori() {
+        return autore;
     }
 
-    public void setAutori(final List<Utente> autori) {
-        this.autori = autori;
+    public void setAutori(final List<Integer> autore) {
+        this.autore = autore;
     }
 
     public List<Riferimento> getCitazioni() {
@@ -178,16 +215,16 @@ public class Riferimento {
     public void setCitedIn(final List<Riferimento> citedIn) {
         this.citedIn = citedIn;
     }
-
-    public int getId_Rif() {
-        return id_Rif;
+*/
+    public int getIdRiferimento() {
+        return id_riferimento;
     }
 
-    public void setId_Rif(final int id_Rif) {
-        this.id_Rif = id_Rif;
+    public void setId_riferimento(final int id_riferimento) {
+        this.id_riferimento = id_riferimento;
     }
 
-    public Integer getDOI() {
+    public Integer getDoi() {
         return DOI;
     }
 

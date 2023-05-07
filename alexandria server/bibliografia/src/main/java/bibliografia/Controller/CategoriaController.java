@@ -1,6 +1,6 @@
 package bibliografia.Controller;
 
-import bibliografia.Dto.CategoriaDto;
+import bibliografia.Dto.*;
 import bibliografia.Model.Categoria;
 import bibliografia.Service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;

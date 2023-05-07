@@ -1,0 +1,10 @@
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/nome_database</property>
+        <property name="hibernate.connection.username">nome_utente</property>
+        <property name="hibernate.connection.password">password</property>
+        <mapping resource="bibliografia/Model/Riferimento.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 @SpringBootApplication
 public class BibliografiaApplication {
@@ -15,10 +16,9 @@ public class BibliografiaApplication {
 	{
 		return new ModelMapper();
 	}
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) throws UnknownHostException {
 		SpringApplication.run(BibliografiaApplication.class, args);
-		System.out.println("IP Server: "+InetAddress.getLoopbackAddress().getHostAddress());
+		System.out.println("IP Server: "+InetAddress.getLocalHost().getHostAddress());
 	}
 
 }

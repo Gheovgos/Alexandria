@@ -1,11 +1,9 @@
 package bibliografia.Model;
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.*;
 @Entity
-@Table(name = "categoria")
+@Table(name = "categoria", schema = "public")
 public class Categoria {
 
     @Id
@@ -21,10 +19,10 @@ public class Categoria {
     @Column
     private int id_Generaliz;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    /*@ManyToMany(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_Rif", referencedColumnName = "id_Rif")
-    private List<Riferimento> riferimenti;
+    @JoinColumn(name = "id_Rif", referencedColumnName = "id_Rif")*/
+    //private List<Riferimento> riferimenti;
 
     public Categoria(final int id_Cat, final String nome, final int autore, final int generaliz) {
         super();
@@ -32,7 +30,7 @@ public class Categoria {
         this.nome = nome;
         this.autore = autore;
         this.id_Generaliz = generaliz;
-        this.riferimenti = new ArrayList<Riferimento>();
+        //this.riferimenti = new ArrayList<Riferimento>();
     }
 
     public Categoria(final int id_Cat, final String nome, final int autore) {
@@ -62,6 +60,6 @@ public class Categoria {
         return id_Cat;
     }
 
-    public List<Riferimento> getRiferimenti() {return this.riferimenti;}
+   // public List<Riferimento> getRiferimenti() {return this.riferimenti;}
 
 }
