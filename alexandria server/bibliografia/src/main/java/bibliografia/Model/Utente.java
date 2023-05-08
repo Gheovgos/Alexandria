@@ -18,11 +18,6 @@ public class Utente {
     @Column(name = "cognome")
     private String cognome;
 
-    @Column(name = "inizio")
-    private Date inizio;
-
-    @Column(name = "fine")
-    private Date fine;
 
     @Column(name = "username")
     private String username;
@@ -39,13 +34,11 @@ public class Utente {
     @JoinColumn(name = "")
     private List<> categorie = new ArrayList<>();*/
 
-    public Utente(final String nome, final String cognome, final int ID, final Date inizio, final Date fine, final String password_hashed, final String salt, final String username) {
+    public Utente(final String nome, final String cognome, final int ID, final String password_hashed, final String salt, final String username) {
         super();
         this.nome = nome;
         this.cognome = cognome;
         this.user_ID = ID;
-        this.inizio = inizio;
-        this.fine = fine;
         this.password_hashed = password_hashed;
         this.salt = salt;
         this.username = username;
@@ -70,14 +63,6 @@ public class Utente {
 
     public String nominativoCompletoToString() {
         return this.nome + " " + this.cognome;
-    }
-
-    public Date getInizio() {
-        return inizio;
-    }
-
-    public Date getFine() {
-        return fine;
     }
 
     public String getPassword_hashed() {return password_hashed;}
