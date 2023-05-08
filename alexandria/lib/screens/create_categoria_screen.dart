@@ -16,6 +16,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 3,),
       backgroundColor: kAlexandriaGreen,
       body: Column(

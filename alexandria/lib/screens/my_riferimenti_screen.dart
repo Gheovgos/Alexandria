@@ -16,6 +16,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kAlexandriaGreen,
       bottomNavigationBar: const AlexandriaNavigationBar(
         currentIndex: 1,
