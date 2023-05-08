@@ -20,7 +20,7 @@ class Utente {
             salt = json['salt'];
 
 
-    Map<String, dynamic> toJson() => {
+    Map<dynamic, dynamic> toJson() => {
         'user_ID': user_ID,
         'nome': nome,
         'cognome': cognome,

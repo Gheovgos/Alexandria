@@ -21,4 +21,8 @@ class NetworkHelper {
   Future<dynamic> login(String username, String password) async {
     return unet.login(username, password);
   }
+
+  Future<dynamic> signup(String username, String password, String nome, String cognome, String email) async {
+    return unet.signup(username, password, nome, cognome, email);
+  }
 }

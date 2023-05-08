@@ -31,8 +31,11 @@ class UtenteNetwork {
   }
 
   Future<dynamic> signup(String username, String password, String nome, String cognome, String email) async {
+    utente = Utente(100, username, nome, cognome, email, password, "randomSalt");
+    String json = jsonEncode(utente);
+    
     getMapping = "/create";
-    serverResponse = await post(Uri.parse(url+requestMapping+getMapping));
+    serverResponse = await post(Uri.parse(url+requestMapping+getMapping), body: json);
     if(serverResponse.statusCode == 200) {
       return true;
     } else {
