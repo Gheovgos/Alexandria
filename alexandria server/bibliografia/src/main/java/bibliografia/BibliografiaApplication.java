@@ -18,7 +18,7 @@ public class BibliografiaApplication {
 	}
 	public static void main(String[] args) throws UnknownHostException {
 		SpringApplication.run(BibliografiaApplication.class, args);
-		System.out.println("IP Server: "+InetAddress.getLocalHost().getHostAddress());
+		System.out.println("IP Server: "+InetAddress.getLocalHost().getHostAddress()+"\nPorta: 8090");
 	}
 
 }

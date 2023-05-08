@@ -15,22 +15,16 @@ public class UtenteDto {
 
     private int user_ID;
 
-    private Date inizio;
-
-    private Date fine;
-
     private String password_hashed;
 
     private String salt;
 
 
-    public UtenteDto(final String nome, final String cognome, final int ID, final Date inizio, final Date fine, final String password_hashed, final String salt, final String username) {
+    public UtenteDto(final String nome, final String cognome, final int ID, final String password_hashed, final String salt, final String username) {
         super();
         this.nome = nome;
         this.cognome = cognome;
         this.user_ID = ID;
-        this.inizio = inizio;
-        this.fine = fine;
         this.password_hashed = password_hashed;
         this.username = username;
         this.salt = salt;
@@ -62,18 +56,6 @@ public class UtenteDto {
     public String nominativoCompletoToString() {
         return this.nome + " " + this.cognome;
     }
-
-    public Date getInizio() {
-        return inizio;
-    }
-
-    public void setInizio(Date inizio) {this.inizio = inizio;}
-
-    public Date getFine() {
-        return fine;
-    }
-
-    public void setFine(Date fine) {this.fine = fine;}
 
     public String getPassword_hashed() { return password_hashed; }
 

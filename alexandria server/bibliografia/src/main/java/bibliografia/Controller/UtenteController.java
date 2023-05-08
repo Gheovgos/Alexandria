@@ -30,10 +30,7 @@ public class UtenteController {
     }
 
     @PostMapping("/create")
-    public void create(UtenteDto utenteDto)
-    {
-        utenteService.create(convertEntity(utenteDto));
-    }
+    public void create(@RequestBody UtenteDto utenteDto) { utenteService.create(convertEntity(utenteDto));}
 
     @PutMapping("/update")
     public void update(UtenteDto utenteDto)
@@ -46,7 +43,7 @@ public class UtenteController {
     {
         utenteService.delete(convertEntity(utenteDto).getUser_ID());
     }
-//login eccellenza termodinamica nucleare incentrata sul mondo rinascente e rinomkato fondato sul killer germanico
+
     @GetMapping("/create/findAll")
     public List<UtenteDto> getUtenti()
     {
@@ -110,8 +107,6 @@ public class UtenteController {
         utenteDto = modelMapper.map(utente, UtenteDto.class);
 
         utenteDto.setCognome(utente.getCognome());
-        utenteDto.setFine(utente.getFine());
-        utenteDto.setInizio(utente.getInizio());
         utenteDto.setNome(utente.getNome());
         utenteDto.setUser_ID(utente.getUser_ID());
 
