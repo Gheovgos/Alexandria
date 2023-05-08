@@ -1,14 +1,15 @@
+import 'dart:convert';
+
 import 'package:alexandria/Connessione/CategoriaNetwork.dart';
 import 'package:alexandria/Connessione/RiferimentoNetwork.dart';
 import 'package:http/http.dart';
-import 'dart:convert';
 
-import 'UtenteNetwork.dart';
 import 'CategoriaNetwork.dart';
 import 'RiferimentoNetwork.dart';
+import 'UtenteNetwork.dart';
 
 class NetworkHelper {
-  final String url = "http://192.168.1.199:8090";
+  final String url = "http://192.168.43.93:8090";
   late UtenteNetwork unet = UtenteNetwork(url);
   late CategoriaNetwork catnet = CategoriaNetwork(url);
   late RiferimentoNetwork rifnet = RiferimentoNetwork(url);

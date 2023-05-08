@@ -1,5 +1,6 @@
-import 'package:http/http.dart';
 import 'dart:convert';
+
+import 'package:http/http.dart';
 
 class CategoriaNetwork {
   String url;
