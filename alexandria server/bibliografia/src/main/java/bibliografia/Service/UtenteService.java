@@ -25,6 +25,8 @@ public class UtenteService {
         return utenteRepository.getUtenteById(utenteId);
     }
 
+    public Utente login(String username, String password) { return utenteRepository.login(username, password); }
+
     public List<Utente> getByRiferimentoId(@PathVariable String id_riferimento) {return utenteRepository.getByRiferimentoId(id_riferimento);}
 
     public Integer getNextId() {return utenteRepository.getNextId();}

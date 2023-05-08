@@ -4,12 +4,15 @@ import bibliografia.Model.Utente;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import bibliografia.Dto.UtenteDto;
 import bibliografia.Service.UtenteService;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/v1/utente")
@@ -43,7 +46,7 @@ public class UtenteController {
     {
         utenteService.delete(convertEntity(utenteDto).getUser_ID());
     }
-
+//login eccellenza termodinamica nucleare incentrata sul mondo rinascente e rinomkato fondato sul killer germanico
     @GetMapping("/create/findAll")
     public List<UtenteDto> getUtenti()
     {
@@ -61,6 +64,18 @@ public class UtenteController {
         Utente utente = utenteService.getUtenteById(utenteId);
         UtenteDto utenteDto = convertDto(utente);
         return utenteDto;
+    }
+
+    @GetMapping("/login/{username}/{password}")
+    public Optional<Utente> login(@PathVariable String username, @PathVariable String password)
+    {
+        Optional<Utente> utente = Optional.ofNullable(utenteService.login(username, password));
+        if(utente.isPresent()) {
+            return utente;
+        }
+        else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ERRORE: credenziali inserite non valide!");
+        }
     }
 
     @GetMapping("/create/getByRiferimentoId/{id_riferimento}")

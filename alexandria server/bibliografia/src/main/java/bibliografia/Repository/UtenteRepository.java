@@ -20,4 +20,7 @@ public interface UtenteRepository extends JpaRepository<Utente, Integer> {
 
     @Query(value = "SELECT MAX(id_utente) FROM utente", nativeQuery = true)
     Integer getNextId();
+
+    @Query(value = "SELECT * FROM utente WHERE username = :username AND password_hashed = :password_hashed", nativeQuery = true)
+    Utente login(@Param("username") String username, @Param("password_hashed") String password_hashed);
  }
