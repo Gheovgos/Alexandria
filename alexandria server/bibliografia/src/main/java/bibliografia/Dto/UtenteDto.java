@@ -1,10 +1,6 @@
 package bibliografia.Dto;
 
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 public class UtenteDto {
 
     private String nome;

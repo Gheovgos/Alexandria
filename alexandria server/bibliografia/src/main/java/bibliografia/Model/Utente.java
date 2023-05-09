@@ -28,13 +28,16 @@ public class Utente {
     @Column(name = "salt")
     private String salt;
 
+    @OneToMany
+    private List<Categoria> categorie;
+
 
    /* @ManyToMany
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "")
     private List<> categorie = new ArrayList<>();*/
 
-    public Utente(final String nome, final String cognome, final int ID, final String password_hashed, final String salt, final String username) {
+    public Utente(final String nome, final String cognome, final int ID, final String password_hashed, final String salt, final String username, final Categoria categoria) {
         super();
         this.nome = nome;
         this.cognome = cognome;
@@ -42,6 +45,7 @@ public class Utente {
         this.password_hashed = password_hashed;
         this.salt = salt;
         this.username = username;
+        this.categorie.add(categoria);
         //this.riferimenti = riferimenti;
     }
 
@@ -70,4 +74,8 @@ public class Utente {
     public String getSalt() {return salt;}
 
     public String getUsername() {return username;}
+
+    public List<Categoria> getCategoria() {
+        return categorie;
+    }
 }

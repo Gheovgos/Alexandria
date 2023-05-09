@@ -89,7 +89,7 @@ public class CategoriaController {
     public void delete(@RequestBody CategoriaDto categoriaDto)
     {
         Categoria categoria = convertEntity(categoriaDto);
-        categoriaService.delete(categoria.getId_Cat());
+        categoriaService.delete(categoria.getId_categoria());
     }
 
 
@@ -108,10 +108,10 @@ public class CategoriaController {
         CategoriaDto categoriaDto = new CategoriaDto();
         categoriaDto = modelMapper.map(categoria, CategoriaDto.class);
 
-        categoriaDto.setAutore(categoria.getAutore());
-        categoriaDto.setId_Cat(categoria.getId_Cat());
-        categoriaDto.setNome(categoria.getNome());
-        categoriaDto.setId_Generaliz(categoria.getGeneraliz());
+        categoriaDto.setId_utente(categoria.getUser_id().getUser_ID());
+        categoriaDto.setId_categoria(categoria.getId_categoria());
+        categoriaDto.setNome(categoria.getDescr_categoria());
+        categoriaDto.setId_super_categoria(categoria.getGeneraliz());
 
         return categoriaDto;
     }
