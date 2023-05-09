@@ -28,8 +28,8 @@ public class Utente {
     @Column(name = "salt")
     private String salt;
 
-    @OneToMany
-    private List<Categoria> categorie;
+   /* @OneToMany
+    private List<Categoria> categorie;*/
 
 
    /* @ManyToMany
@@ -45,7 +45,7 @@ public class Utente {
         this.password_hashed = password_hashed;
         this.salt = salt;
         this.username = username;
-        this.categorie.add(categoria);
+       // this.categorie.add(categoria);
         //this.riferimenti = riferimenti;
     }
 
@@ -75,7 +75,7 @@ public class Utente {
 
     public String getUsername() {return username;}
 
-    public List<Categoria> getCategoria() {
+  /*  public List<Categoria> getCategoria() {
         return categorie;
-    }
+    }*/
 }
