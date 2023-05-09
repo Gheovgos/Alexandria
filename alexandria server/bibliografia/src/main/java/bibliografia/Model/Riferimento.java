@@ -1,8 +1,12 @@
 package bibliografia.Model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "riferimenti_biblio", schema = "public")
@@ -56,24 +60,23 @@ public class Riferimento {
     @Column
     private Integer edizione;
 
-    /*
-    private List<Categoria> categorie;
+    @ManyToMany
+    private List<Categoria> categorie = new ArrayList<Categoria>();
+
+    @ManyToMany(mappedBy = "riferimento_citante")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<Riferimento> riferimento_citato = new ArrayList<Riferimento>();
+
 
     @ManyToMany
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "autore", referencedColumnName = "user_ID")
-    @ElementCollection(targetClass = Riferimento.class)/
-
-    private List<Integer> autore;
-    private List<Riferimento> cited;
-    private List<Riferimento> citedIn;*/
+    private List<Riferimento> riferimento_citante = new ArrayList<Riferimento>();
 
     public Riferimento(final int id_riferimento, final String titolo_riferimento, final LocalDate data_riferimento, final tipo_enum tipo,
                        final String URL, final Integer DOI, final Boolean on_line, final String descr_riferimento, final String editore,
                        final String isbn, final String isnn, final String luogo, final int pag_inizio, final int pag_fine, final int edizione) {
         super();
         this.id_riferimento = id_riferimento;
-        //categorie = new ArrayList<>(0);
         this.titolo_riferimento = titolo_riferimento;
         this.data_riferimento = data_riferimento;
         this.DOI = DOI;

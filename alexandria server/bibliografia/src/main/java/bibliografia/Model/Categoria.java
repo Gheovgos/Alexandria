@@ -3,7 +3,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,21 +30,15 @@ public class Categoria {
 
     @OneToMany(mappedBy = "id_super_categoria")
     @JsonBackReference
-    private List<Categoria> id_sotto_categorie;
+    private List<Categoria> id_sotto_categorie = new ArrayList<Categoria>();
 
-    /*@ManyToMany(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_Rif", referencedColumnName = "id_Rif")*/
-    //private List<Riferimento> riferimenti;
-
-    public Categoria(final int id_categoria, final String descr_categoria, final Utente user_id, final Categoria generaliz, final Categoria sottoCategoria) {
+    public Categoria(final int id_categoria, final String descr_categoria, final Utente user_id, final Categoria generaliz, final Categoria sottoCategoria, final Riferimento riferimento) {
         super();
         this.id_categoria = id_categoria;
         this.descr_categoria = descr_categoria;
         this.user_id = user_id;
         this.id_super_categoria = generaliz;
         this.id_sotto_categorie.add(sottoCategoria);
-        //this.riferimenti = new ArrayList<Riferimento>();
     }
 
     public Categoria(final int id_categoria, final String descr_categoria, final Utente user_id) {
@@ -74,7 +71,4 @@ public class Categoria {
     public List<Categoria> getId_sotto_categorie() {
         return id_sotto_categorie;
     }
-
-   // public List<Riferimento> getRiferimenti() {return this.riferimenti;}
-
 }

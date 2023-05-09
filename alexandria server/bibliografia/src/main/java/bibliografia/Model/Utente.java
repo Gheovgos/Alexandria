@@ -1,6 +1,8 @@
 package bibliografia.Model;
 //import bibliografia.Model.Riferimento;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.*;
 @Entity
@@ -32,10 +34,9 @@ public class Utente {
     private List<Categoria> categorie;*/
 
 
-   /* @ManyToMany
+    @ManyToMany
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "")
-    private List<> categorie = new ArrayList<>();*/
+    private List<Riferimento> riferimento = new ArrayList<>();
 
     public Utente(final String nome, final String cognome, final int ID, final String password_hashed, final String salt, final String username, final Categoria categoria) {
         super();
