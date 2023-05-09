@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/v1/riferimento")
+@RequestMapping(path = "/api/v1/riferimento/")
 public class RiferimentoController {
 
     @Autowired
@@ -146,7 +146,7 @@ public class RiferimentoController {
         RiferimentoDto riferimentoDto = new RiferimentoDto();
         riferimentoDto = modelMapper.map(riferimento, RiferimentoDto.class);
 
-        riferimentoDto.setDescrizione(riferimento.getDescrizione());
+        riferimentoDto.setDescrizione(riferimento.getDescr_riferimento());
         riferimentoDto.setDigitale(riferimento.getOnline());
         riferimentoDto.setDOI(riferimento.getDoi());
         riferimentoDto.setTipo(riferimentoDto.getTipo());

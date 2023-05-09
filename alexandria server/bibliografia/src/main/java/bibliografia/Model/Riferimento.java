@@ -1,11 +1,9 @@
 package bibliografia.Model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
-import java.util.*;
+
 @Entity
 @Table(name = "riferimenti_biblio", schema = "public")
 public class Riferimento {
@@ -16,25 +14,26 @@ public class Riferimento {
     private int id_riferimento;
 
     @Column
-    private String titolo;
+    private String titolo_riferimento;
 
     @Column
-    private LocalDate dataCreazione;
+    private LocalDate data_riferimento;
 
+    @Enumerated(EnumType.STRING)
     @Column
-    private String tipo;
+    private tipo_enum tipo;
 
     @Column
     private String URL;
 
     @Column
-    private int DOI;
+    private Integer DOI;
 
     @Column
-    private boolean digitale;
+    private boolean on_line;
 
     @Column
-    private String descrizione;
+    private String descr_riferimento;
 
     @Column
     private String editore;
@@ -49,13 +48,13 @@ public class Riferimento {
     private String luogo;
 
     @Column
-    private int pag_inizio;
+    private Integer pag_inizio;
 
     @Column
-    private int pag_fine;
+    private Integer pag_fine;
 
     @Column
-    private int edizione;
+    private Integer edizione;
 
     /*
     private List<Categoria> categorie;
@@ -69,19 +68,19 @@ public class Riferimento {
     private List<Riferimento> cited;
     private List<Riferimento> citedIn;*/
 
-    public Riferimento(final int id_riferimento, final String titolo, final LocalDate dataCreazione, final String tipo,
-                       final String URL, final Integer DOI, final Boolean digitale, final String descrizione, final String editore,
+    public Riferimento(final int id_riferimento, final String titolo_riferimento, final LocalDate data_riferimento, final tipo_enum tipo,
+                       final String URL, final Integer DOI, final Boolean on_line, final String descr_riferimento, final String editore,
                        final String isbn, final String isnn, final String luogo, final int pag_inizio, final int pag_fine, final int edizione) {
         super();
         this.id_riferimento = id_riferimento;
         //categorie = new ArrayList<>(0);
-        this.titolo = titolo;
-        this.dataCreazione = dataCreazione;
+        this.titolo_riferimento = titolo_riferimento;
+        this.data_riferimento = data_riferimento;
         this.DOI = DOI;
         this.tipo = tipo;
         this.URL = URL;
-        this.digitale = digitale;
-        this.descrizione = descrizione;
+        this.on_line = on_line;
+        this.descr_riferimento = descr_riferimento;
         this.edizione = edizione;
         this.pag_fine = pag_fine;
         this.pag_inizio = pag_inizio;
@@ -97,26 +96,26 @@ public class Riferimento {
     }
 
     public String getTitoloRiferimento() {
-        return titolo;
+        return titolo_riferimento;
     }
 
-    public void setTitolo(final String titolo) {
-        this.titolo = titolo;
+    public void setTitolo_riferimento(final String titolo_riferimento) {
+        this.titolo_riferimento = titolo_riferimento;
     }
 
-    public LocalDate getDataCreazione() {
-        return dataCreazione;
+    public LocalDate getData_riferimento() {
+        return data_riferimento;
     }
 
-    public void setDataCreazione(final LocalDate dataCreazione) {
-        this.dataCreazione = dataCreazione;
+    public void setData_riferimento(final LocalDate data_riferimento) {
+        this.data_riferimento = data_riferimento;
     }
 
-    public String getTipo() {
+    public tipo_enum getTipo() {
         return tipo;
     }
 
-    public void setTipo(final String tipo) {
+    public void setTipo(final tipo_enum tipo) {
         this.tipo = tipo;
     }
 
@@ -129,11 +128,11 @@ public class Riferimento {
     }
 
     public Boolean getOnline() {
-        return digitale;
+        return on_line;
     }
 
-    public void setDigitale(final Boolean digitale) {
-        this.digitale = digitale;
+    public void setOn_line(final Boolean on_line) {
+        this.on_line = on_line;
     }
 /*
     public List<Categoria> getCategorie() {
@@ -228,15 +227,15 @@ public class Riferimento {
         return DOI;
     }
 
-    public void setDOI(final int dOI) {
+    public void setDOI(final Integer dOI) {
         DOI = dOI;
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    public String getDescr_riferimento() {
+        return descr_riferimento;
     }
 
-    public void setDescrizione(final String descrizione) {
-        this.descrizione = descrizione;
+    public void setDescr_riferimento(final String descr_riferimento) {
+        this.descr_riferimento = descr_riferimento;
     }
 }
