@@ -21,13 +21,15 @@ public class UtenteService {
         return utenteRepository.findAll();
     }
 
-    public Utente getUtenteById(int utenteId) {
+    public Utente getUtenteById(@PathVariable int utenteId) {
         return utenteRepository.getUtenteById(utenteId);
     }
 
     public Utente login(String username, String password) { return utenteRepository.login(username, password); }
 
     public List<Utente> getByRiferimentoId(@PathVariable String id_riferimento) {return utenteRepository.getByRiferimentoId(id_riferimento);}
+
+    public Utente getByUsername(@PathVariable String username) {return utenteRepository.getByUsername(username);}
 
     public Integer getNextId() {return utenteRepository.getNextId();}
 

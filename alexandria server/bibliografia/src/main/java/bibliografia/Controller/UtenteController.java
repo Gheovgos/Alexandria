@@ -63,10 +63,19 @@ public class UtenteController {
         return utenteDto;
     }
 
-    @GetMapping("/login/{username}/{password}")
+    @GetMapping("/login/{username}/{password}/{salt}")
     public Optional<Utente> login(@PathVariable String username, @PathVariable String password)
     {
-        Optional<Utente> utente = Optional.ofNullable(utenteService.login(username, password));
+        Utente ut = utenteService.getByUsername(username);
+        String passwordTmp = new String();
+        if(ut != null)
+        {
+            Integer hash = password.hashCode() + ut.getSalt().hashCode();
+            passwordTmp = hash.toString();
+        }
+        else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ERRORE: credenziali inserite non valide!");
+        Optional<Utente> utente = Optional.ofNullable(utenteService.login(username, passwordTmp));
         if(utente.isPresent()) {
             return utente;
         }
