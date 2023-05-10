@@ -14,14 +14,14 @@ class UtenteNetwork {
 
   UtenteNetwork(this.url);
 
-  Future<dynamic> login(String username, String password) async {
+  Future<Utente?> login(String username, String password) async {
     getMapping = "/login/"+username+"/"+password;
     print(url+requestMapping+getMapping);
     serverResponse = await get(Uri.parse(url+requestMapping+getMapping));
 
 
     if(serverResponse.statusCode == 200) {
-      userMap = jsonDecode(serverResponse.body);
+      userMap = jsonDecode(serverResponse.body) as Map<String, dynamic>;
       utente = Utente.fromJson(userMap);
       return utente;
     }
@@ -30,16 +30,19 @@ class UtenteNetwork {
     }
   }
 
-  Future<dynamic> signup(String username, String password, String nome, String cognome, String email) async {
+  Future<Utente?> registrazione(String username, String password, String nome, String cognome, String email) async {
     utente = Utente(100, username, nome, cognome, email, password, "randomSalt");
     String json = jsonEncode(utente);
     
     getMapping = "/create";
+    print(url+requestMapping+getMapping);
     serverResponse = await post(Uri.parse(url+requestMapping+getMapping), body: json);
+    print(serverResponse.statusCode);
     if(serverResponse.statusCode == 200) {
-      return true;
+
+      return utente;
     } else {
-      return false;
+      return null;
     }
   }
 
