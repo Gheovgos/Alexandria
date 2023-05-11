@@ -1,6 +1,9 @@
 package bibliografia.Dto;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class UtenteDto {
 
     private String nome;
@@ -16,7 +19,9 @@ public class UtenteDto {
     private String salt;
 
 
-    public UtenteDto(final String nome, final String cognome, final int ID, final String password_hashed, final String salt, final String username) {
+    @JsonCreator
+    public UtenteDto(@JsonProperty("nome") final String nome, @JsonProperty("cognome") final String cognome, @JsonProperty("user_ID") final int ID, @JsonProperty("password_hashed") final String password_hashed,
+                     @JsonProperty("salt") final String salt, @JsonProperty("username") final String username) {
         super();
         this.nome = nome;
         this.cognome = cognome;

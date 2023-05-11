@@ -1,10 +1,14 @@
 package bibliografia.Controller;
 
 import bibliografia.Model.Utente;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import bibliografia.Dto.UtenteDto;
 import bibliografia.Service.UtenteService;
@@ -21,7 +25,7 @@ public class UtenteController {
     @Autowired
     private final UtenteService utenteService;
 
-     private ModelMapper modelMapper = new ModelMapper();
+    private ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     public UtenteController(UtenteService utenteService)
@@ -29,8 +33,14 @@ public class UtenteController {
         this.utenteService = utenteService;
     }
 
-    @PostMapping("/create")
-    public void create(@RequestBody UtenteDto utenteDto) { utenteService.create(convertEntity(utenteDto));}
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public void create(@RequestBody UtenteDto utenteDto) {
+
+        Utente u = convertEntity(utenteDto);
+        utenteService.create(u);
+
+    }
 
     @PutMapping("/update")
     public void update(UtenteDto utenteDto)
@@ -103,21 +113,22 @@ public class UtenteController {
 
     public Utente convertEntity(UtenteDto utenteDto)
     {
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
-        Utente utente = new Utente();
-        utente = modelMapper.map(utenteDto, Utente.class);
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STANDARD);
+        Utente utente = modelMapper.map(utenteDto, Utente.class);
+
         return utente;
     }
 
     public UtenteDto convertDto(Utente utente)
     {
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
+        System.out.println("Sono qui in converter");
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         UtenteDto utenteDto = new UtenteDto();
         utenteDto = modelMapper.map(utente, UtenteDto.class);
-
         utenteDto.setCognome(utente.getCognome());
         utenteDto.setNome(utente.getNome());
         utenteDto.setUser_ID(utente.getUser_ID());
+        System.out.println("Esco dal converter");
 
         return utenteDto;
     }
