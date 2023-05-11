@@ -15,6 +15,9 @@ public interface UtenteRepository extends JpaRepository<Utente, Integer> {
     @Query(value = "SELECT DISTINCT * FROM utente WHERE user_id = :user_id", nativeQuery = true)
     Utente getUtenteById(@Param("user_id") int id_utente);
 
+    @Query(value = "SELECT * FROM utente WHERE username = ?1", nativeQuery = true)
+    Utente getByUsername(String username);
+
     @Query(value = "SELECT utente.* FROM utente NATURAL JOIN autore_riferimento WHERE id_riferimento = ?1", nativeQuery = true)
     List<Utente> getByRiferimentoId(String id_riferimento);
 
@@ -23,4 +26,5 @@ public interface UtenteRepository extends JpaRepository<Utente, Integer> {
 
     @Query(value = "SELECT * FROM utente WHERE username = :username AND password_hashed = :password_hashed", nativeQuery = true)
     Utente login(@Param("username") String username, @Param("password_hashed") String password_hashed);
+
  }
