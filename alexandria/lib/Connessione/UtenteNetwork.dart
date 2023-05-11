@@ -36,7 +36,17 @@ class UtenteNetwork {
     
     getMapping = "/create";
     print(url+requestMapping+getMapping);
-    serverResponse = await post(Uri.parse(url+requestMapping+getMapping), body: json);
+    print(json);
+    serverResponse = await post(Uri.parse(url+requestMapping+getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
+    }, body: jsonEncode(<String, dynamic> {
+      'user_ID': utente.user_ID,
+      'username': utente.username,
+      'nome': utente.nome,
+      'cognome': utente.cognome,
+      'email': utente.email,
+      'password': utente.password,
+      'salt': utente.salt,}),);
+
     print(serverResponse.statusCode);
     if(serverResponse.statusCode == 200) {
 
