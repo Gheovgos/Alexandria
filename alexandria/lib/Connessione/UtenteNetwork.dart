@@ -31,12 +31,11 @@ class UtenteNetwork {
   }
 
   Future<Utente?> registrazione(String username, String password, String nome, String cognome, String email) async {
-    utente = Utente(100, username, nome, cognome, email, password, "randomSalt");
+
+    utente = Utente(username, nome, cognome, email, password);
     String json = jsonEncode(utente);
     
     getMapping = "/create";
-    print(url+requestMapping+getMapping);
-    print(json);
     serverResponse = await post(Uri.parse(url+requestMapping+getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
     }, body: jsonEncode(<String, dynamic> {
       'user_ID': utente.user_ID,
@@ -44,7 +43,7 @@ class UtenteNetwork {
       'nome': utente.nome,
       'cognome': utente.cognome,
       'email': utente.email,
-      'password': utente.password,
+      'password_hashed': utente.password,
       'salt': utente.salt,}),);
 
     print(serverResponse.statusCode);

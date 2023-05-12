@@ -1,17 +1,25 @@
-
-
 import 'dart:convert';
+import 'dart:core';
+import 'dart:math';
+
 
 class Utente {
 
-    Utente(int user_ID, String username, String nome,  String cognome, String email, String password, String salt) {
-        this.user_ID = user_ID;
+    Utente(String username, String nome,  String cognome, String email, String password) {
+        var idRandom = Random();
+        this.user_ID = idRandom.nextInt(1000) + 30;
         this.username = username;
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
-        this.password = password;
-        this.salt = salt;
+        salt = generateRandomString();
+        this.password = calculateHash(password, salt);
+        print("password hashata: ");
+        print(this.password);
+        print("user_id");
+        print(this.user_ID);
+        print("Salt: ");
+        print(this.salt);
     }
 
     Utente.fromJson(Map<String, dynamic>  json)
@@ -42,6 +50,19 @@ class Utente {
         'password_hashed': password,
         'salt': salt,
         };
+    }
+
+    String calculateHash(String unhashedPassword, String salt) {
+        int hash = unhashedPassword.hashCode ^ salt.hashCode;
+        String password_hashed = hash.toString();
+
+        return password_hashed;
+    }
+
+    String generateRandomString() {
+        var len = Random();
+        var r = Random();
+        return String.fromCharCodes(List.generate(len.nextInt(20) + 5, (index) => r.nextInt(33) + 89));
     }
 
 }

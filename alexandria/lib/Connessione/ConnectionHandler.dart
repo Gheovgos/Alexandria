@@ -10,7 +10,7 @@ import 'RiferimentoNetwork.dart';
 import 'UtenteNetwork.dart';
 
 class NetworkHelper {
-  final String url = "http://192.168.147.93:8090";
+  final String url = "http://192.168.149.189:8090";
   late UtenteNetwork unet = UtenteNetwork(url);
   late CategoriaNetwork catnet = CategoriaNetwork(url);
   late RiferimentoNetwork rifnet = RiferimentoNetwork(url);
