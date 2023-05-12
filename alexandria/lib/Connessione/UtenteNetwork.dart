@@ -33,7 +33,7 @@ class UtenteNetwork {
   Future<Utente?> registrazione(String username, String password, String nome, String cognome, String email) async {
 
     utente = Utente(username, nome, cognome, email, password);
-    String json = jsonEncode(utente);
+    String json = jsonEncode(utente); //Linea di codice consigliato dalla documentazione ma, se messa nella post, non funziona. Linguaggio di merda
     
     getMapping = "/create";
     serverResponse = await post(Uri.parse(url+requestMapping+getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',

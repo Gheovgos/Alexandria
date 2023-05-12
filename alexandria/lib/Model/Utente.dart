@@ -14,12 +14,6 @@ class Utente {
         this.email = email;
         salt = generateRandomString();
         this.password = calculateHash(password, salt);
-        print("password hashata: ");
-        print(this.password);
-        print("user_id");
-        print(this.user_ID);
-        print("Salt: ");
-        print(this.salt);
     }
 
     Utente.fromJson(Map<String, dynamic>  json)
