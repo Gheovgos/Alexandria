@@ -69,4 +69,27 @@ class UtenteNetwork {
     }
   }
 
+  Future<List<Utente>?> findAll() async {
+    late List<Utente> utenti = [];
+    getMapping = "/create/findAll";
+    serverResponse = await get(Uri.parse(url+requestMapping+getMapping));
+
+    if(serverResponse.statusCode == 200) {
+      List<Map<String, dynamic>> userMap = jsonDecode(serverResponse.body) as List<Map<String, dynamic>>;
+      for(int i = 0; i < userMap.length; i++) utenti.add(Utente.fromJson(userMap[i]));
+      return utenti;
+    }
+    else {
+      return null;
+    }
+  }
+
+  Future<bool?> deleteUserFromId(int user_id) async {
+    getMapping = "/delete/"+user_id.toString();
+
+    serverResponse = await delete(Uri.parse(url+requestMapping+getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',}, );
+    if(serverResponse.statusCode == 200) return true;
+    else false;
+  }
+
 }

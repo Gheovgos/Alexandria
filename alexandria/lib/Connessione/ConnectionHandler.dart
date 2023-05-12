@@ -31,4 +31,13 @@ class NetworkHelper {
     return unet.getUtenteById(user_id);
   }
 
+  Future<List<Utente>?> findAll() async {
+    return unet.findAll();
+  }
+
+  Future<bool?> deleteUserFromId(int user_id) async {
+    return unet.deleteUserFromId(user_id);
+  }
+
+
 }
