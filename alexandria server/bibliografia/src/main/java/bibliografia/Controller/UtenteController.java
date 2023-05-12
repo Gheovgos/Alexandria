@@ -37,9 +37,17 @@ public class UtenteController {
     @ResponseBody
     public void create(@RequestBody UtenteDto utenteDto) {
 
-        Utente u = convertEntity(utenteDto);
-        utenteService.create(u);
-
+        Utente u = utenteService.getByUsername(utenteDto.getUsername());
+        if(u == null)
+        {
+            Utente ut = new Utente();
+            Integer hash = utenteDto.getPassword_hashed().hashCode() ^ utenteDto.getSalt().hashCode();
+            utenteDto.setPassword_hashed(hash.toString());
+            ut = convertEntity(utenteDto);
+            utenteService.create(ut);
+        }
+        else
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "ERRORE: username inserito già esistente!");
     }
 
     @PutMapping("/update")
@@ -80,7 +88,7 @@ public class UtenteController {
         String passwordTmp = new String();
         if(ut != null)
         {
-            Integer hash = password.hashCode() + ut.getSalt().hashCode();
+            Integer hash = password.hashCode() ^ ut.getSalt().hashCode();
             passwordTmp = hash.toString();
         }
         else
