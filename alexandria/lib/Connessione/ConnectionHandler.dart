@@ -26,4 +26,9 @@ class NetworkHelper {
   Future<Utente?> registrazione(String username, String password, String nome, String cognome, String email) async {
     return await unet.registrazione(username, password, nome, cognome, email);
   }
+
+  Future<Utente?> getUtenteById(int user_id) async {
+    return unet.getUtenteById(user_id);
+  }
+
 }

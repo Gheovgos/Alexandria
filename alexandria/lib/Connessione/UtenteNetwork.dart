@@ -55,4 +55,18 @@ class UtenteNetwork {
     }
   }
 
+  Future<Utente?> getUtenteById(int user_id) async {
+    getMapping = "/create/getUtenteById/"+user_id.toString();
+    serverResponse = await get(Uri.parse(url+requestMapping+getMapping));
+
+    if(serverResponse.statusCode == 200) {
+      userMap = jsonDecode(serverResponse.body) as Map<String, dynamic>;
+      utente = Utente.fromJson(userMap);
+      return utente;
+    }
+    else {
+      return null;
+    }
+  }
+
 }
