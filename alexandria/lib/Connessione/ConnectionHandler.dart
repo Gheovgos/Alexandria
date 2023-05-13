@@ -10,7 +10,7 @@ import 'RiferimentoNetwork.dart';
 import 'UtenteNetwork.dart';
 
 class NetworkHelper {
-  final String url = "http://192.168.30.93:8090";
+  final String url = "http://192.168.1.199:8090";
   late UtenteNetwork unet = UtenteNetwork(url);
   late CategoriaNetwork catnet = CategoriaNetwork(url);
   late RiferimentoNetwork rifnet = RiferimentoNetwork(url);
@@ -37,6 +37,10 @@ class NetworkHelper {
 
   Future<bool?> deleteUserFromId(int user_id) async {
     return unet.deleteUserFromId(user_id);
+  }
+
+  Future<bool?> updateUser(Utente newUtente) async {
+    return unet.updateUser(newUtente);
   }
 
 

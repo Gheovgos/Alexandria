@@ -18,6 +18,7 @@ class UtenteNetwork {
     getMapping = "/login/"+username+"/"+password;
     print(url+requestMapping+getMapping);
     serverResponse = await get(Uri.parse(url+requestMapping+getMapping));
+    print(serverResponse.statusCode);
 
 
     if(serverResponse.statusCode == 200) {
@@ -75,8 +76,12 @@ class UtenteNetwork {
     serverResponse = await get(Uri.parse(url+requestMapping+getMapping));
 
     if(serverResponse.statusCode == 200) {
-      List<Map<String, dynamic>> userMap = jsonDecode(serverResponse.body) as List<Map<String, dynamic>>;
-      for(int i = 0; i < userMap.length; i++) utenti.add(Utente.fromJson(userMap[i]));
+      List<dynamic> utentiJson = jsonDecode(serverResponse.body) as List<dynamic>;
+      for(var utenteJson in utentiJson) {
+        Utente u = Utente.fromJson(utenteJson as Map<String, dynamic>);
+        utenti.add(u);
+      }
+
       return utenti;
     }
     else {
@@ -90,6 +95,21 @@ class UtenteNetwork {
     serverResponse = await delete(Uri.parse(url+requestMapping+getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',}, );
     if(serverResponse.statusCode == 200) return true;
     else false;
+  }
+
+  Future<bool?> updateUser(Utente newUtente) async {
+    getMapping = "/update";
+
+    serverResponse = await put(Uri.parse(url+requestMapping+getMapping), headers: <String, String> { 'Content-Type': 'application/json; charset=UTF-8', },
+      body: jsonEncode(<String, dynamic> {
+        'user_ID': newUtente.user_ID,
+        'username': newUtente.username,
+        'nome': newUtente.nome,
+        'cognome': newUtente.cognome,
+        'password_hashed': newUtente.password,
+        'salt': newUtente.salt,}), );
+    if(serverResponse.statusCode == 200) return true;
+    else return false;
   }
 
 }
