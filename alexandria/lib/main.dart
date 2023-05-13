@@ -1,3 +1,4 @@
+import 'package:alexandria/Connessione/ConnectionHandler.dart';
 import 'package:alexandria/screens/animation_screen.dart';
 import 'package:alexandria/screens/create_categoria_screen.dart';
 import 'package:alexandria/screens/home_screen.dart';
@@ -13,8 +14,11 @@ import 'package:alexandria/screens/welcome_screen.dart';
 import 'package:alexandria/screens/write_riferimento_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'Model/Utente.dart';
+
 void main() {
-  //NetworkHelper conn = NetworkHelper();
+  NetworkHelper conn = NetworkHelper();
+  foo(conn);
   runApp(MaterialApp(
     theme: ThemeData(fontFamily: 'Josefin Sans'),
     title: 'Alexandria',
@@ -35,4 +39,11 @@ void main() {
       'view_categoria': (context) => const ViewCategoriaScreen()
     },
   ));
+
+}
+Future<void> foo(NetworkHelper conn) async {
+
+  Utente u = await conn.login("Flutter", "meglioJava") as Utente;
+  u.username = "Flatter";
+  print(await conn.updateUser(u));
 }

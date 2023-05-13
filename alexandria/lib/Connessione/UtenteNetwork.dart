@@ -97,4 +97,19 @@ class UtenteNetwork {
     else false;
   }
 
+  Future<bool?> updateUser(Utente newUtente) async {
+    getMapping = "/update";
+
+    serverResponse = await put(Uri.parse(url+requestMapping+getMapping), headers: <String, String> { 'Content-Type': 'application/json; charset=UTF-8', },
+      body: jsonEncode(<String, dynamic> {
+        'user_ID': newUtente.user_ID,
+        'username': newUtente.username,
+        'nome': newUtente.nome,
+        'cognome': newUtente.cognome,
+        'password_hashed': newUtente.password,
+        'salt': newUtente.salt,}), );
+    if(serverResponse.statusCode == 200) return true;
+    else return false;
+  }
+
 }

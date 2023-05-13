@@ -39,5 +39,9 @@ class NetworkHelper {
     return unet.deleteUserFromId(user_id);
   }
 
+  Future<bool?> updateUser(Utente newUtente) async {
+    return unet.updateUser(newUtente);
+  }
+
 
 }
