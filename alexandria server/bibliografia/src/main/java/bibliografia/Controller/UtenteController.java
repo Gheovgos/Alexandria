@@ -51,15 +51,16 @@ public class UtenteController {
     }
 
     @PutMapping("/update")
-    public void update(UtenteDto utenteDto)
+    @ResponseBody
+    public void update(@RequestBody UtenteDto utenteDto)
     {
         utenteService.update(convertEntity(utenteDto));
     }
 
-    @DeleteMapping("/delete")
-    public void delete(UtenteDto utenteDto)
+    @DeleteMapping("/delete/{utenteId}")
+    public void delete(@PathVariable int utenteId)
     {
-        utenteService.delete(convertEntity(utenteDto).getUser_ID());
+        utenteService.delete(utenteId);
     }
 
     @GetMapping("/create/findAll")
@@ -81,7 +82,7 @@ public class UtenteController {
         return utenteDto;
     }
 
-    @GetMapping("/login/{username}/{password}/{salt}")
+    @GetMapping("/login/{username}/{password}")
     public Optional<Utente> login(@PathVariable String username, @PathVariable String password)
     {
         Utente ut = utenteService.getByUsername(username);
@@ -129,14 +130,12 @@ public class UtenteController {
 
     public UtenteDto convertDto(Utente utente)
     {
-        System.out.println("Sono qui in converter");
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         UtenteDto utenteDto = new UtenteDto();
         utenteDto = modelMapper.map(utente, UtenteDto.class);
         utenteDto.setCognome(utente.getCognome());
         utenteDto.setNome(utente.getNome());
         utenteDto.setUser_ID(utente.getUser_ID());
-        System.out.println("Esco dal converter");
 
         return utenteDto;
     }

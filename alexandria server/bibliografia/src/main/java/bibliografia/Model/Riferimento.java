@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "riferimenti_biblio", schema = "public")
+@Table(name = "riferimenti_biblio")
 public class Riferimento {
 
     @Id
@@ -66,7 +66,6 @@ public class Riferimento {
     @ManyToMany(mappedBy = "riferimento_citante")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Riferimento> riferimento_citato = new ArrayList<Riferimento>();
-
 
     @ManyToMany
     @OnDelete(action = OnDeleteAction.CASCADE)

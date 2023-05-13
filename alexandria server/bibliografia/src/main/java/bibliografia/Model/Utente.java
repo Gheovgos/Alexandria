@@ -1,7 +1,6 @@
 package bibliografia.Model;
 //import bibliografia.Model.Riferimento;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
@@ -9,7 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.*;
 @Entity
-@Table(name = "utente", schema = "public")
+@Table(name = "utente")
 public class Utente {
 
     @Id
@@ -33,6 +32,9 @@ public class Utente {
     @Column(name = "salt")
     private String salt;
 
+    @Column(name = "email")
+    private String email;
+
     @ManyToMany
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Riferimento> riferimento = new ArrayList<>();
@@ -40,7 +42,7 @@ public class Utente {
     @JsonCreator
     public Utente(@JsonProperty("nome") final String nome, @JsonProperty("cognome") final String cognome, @JsonProperty("user_ID") final int ID,
                   @JsonProperty("password_hashed") final String password_hashed,
-                  @JsonProperty("salt") final String salt, @JsonProperty("username") final String username) {
+                  @JsonProperty("salt") final String salt, @JsonProperty("username") final String username, @JsonProperty final String email) {
         super();
         this.nome = nome;
         this.cognome = cognome;
@@ -48,6 +50,7 @@ public class Utente {
         this.password_hashed = password_hashed;
         this.salt = salt;
         this.username = username;
+        this.email = email;
        // this.categorie.add(categoria);
         //this.riferimenti = riferimenti;
     }
@@ -91,5 +94,9 @@ public class Utente {
     public void setUsername(String username) { this.username = username; }
 
     public void setRiferimento(List<Riferimento> riferimento) {this.riferimento = riferimento;}
+
+    public String getEmail() { return this.email; }
+
+    public void setEmail(String email) {this.email = email;}
 
 }

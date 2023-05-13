@@ -18,10 +18,11 @@ public class UtenteDto {
 
     private String salt;
 
+    private String email;
 
     @JsonCreator
     public UtenteDto(@JsonProperty("nome") final String nome, @JsonProperty("cognome") final String cognome, @JsonProperty("user_ID") final int ID, @JsonProperty("password_hashed") final String password_hashed,
-                     @JsonProperty("salt") final String salt, @JsonProperty("username") final String username) {
+                     @JsonProperty("salt") final String salt, @JsonProperty("username") final String username, @JsonProperty("email") String email) {
         super();
         this.nome = nome;
         this.cognome = cognome;
@@ -29,6 +30,7 @@ public class UtenteDto {
         this.password_hashed = password_hashed;
         this.username = username;
         this.salt = salt;
+        this.email = email;
     }
 
     public UtenteDto()
@@ -69,4 +71,9 @@ public class UtenteDto {
     public String getUsername() {return username;}
 
     public void setUsername(String username) {this.username = username;}
+
+    public String getEmail() { return this.email; }
+
+    public void setEmail(String email) {this.email = email;}
+
 }
