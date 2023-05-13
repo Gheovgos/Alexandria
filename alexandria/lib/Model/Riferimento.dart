@@ -1,8 +1,6 @@
 import 'dart:core';
 import 'tipo_enum.dart';
 
-import 'package:alexandria/Model/tipo_enum.dart';
-
 class Riferimento {
   late int id_riferimento;
   late String titolo_riferimento;

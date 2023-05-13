@@ -13,7 +13,7 @@ class Utente {
         this.cognome = cognome;
         this.email = email;
         salt = generateRandomString();
-        this.password = calculateHash(password, salt);
+        this.password = password;
     }
 
     Utente.fromJson(Map<String, dynamic>  json)

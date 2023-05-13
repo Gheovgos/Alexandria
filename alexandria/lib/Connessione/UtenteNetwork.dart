@@ -18,6 +18,7 @@ class UtenteNetwork {
     getMapping = "/login/"+username+"/"+password;
     print(url+requestMapping+getMapping);
     serverResponse = await get(Uri.parse(url+requestMapping+getMapping));
+    print(serverResponse.statusCode);
 
 
     if(serverResponse.statusCode == 200) {
@@ -75,8 +76,12 @@ class UtenteNetwork {
     serverResponse = await get(Uri.parse(url+requestMapping+getMapping));
 
     if(serverResponse.statusCode == 200) {
-      List<Map<String, dynamic>> userMap = jsonDecode(serverResponse.body) as List<Map<String, dynamic>>;
-      for(int i = 0; i < userMap.length; i++) utenti.add(Utente.fromJson(userMap[i]));
+      List<dynamic> utentiJson = jsonDecode(serverResponse.body) as List<dynamic>;
+      for(var utenteJson in utentiJson) {
+        Utente u = Utente.fromJson(utenteJson as Map<String, dynamic>);
+        utenti.add(u);
+      }
+
       return utenti;
     }
     else {
