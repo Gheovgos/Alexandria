@@ -56,19 +56,29 @@ public class Categoria {
         return descr_categoria;
     }
 
+    public void setDescr_categoria(String descr_categoria) {this.descr_categoria = descr_categoria;}
+
     public Utente getUser_id() {
         return user_id;
     }
 
-    public Categoria getGeneraliz() {
+    public void setUser_id(Utente user_id) {this.user_id = user_id;}
+
+    public Categoria getId_super_categoria() {
         return id_super_categoria;
     }
+
+    public void setId_super_categoria(Categoria id_super_categoria) {this.id_super_categoria = id_super_categoria;}
 
     public int getId_categoria() {
         return id_categoria;
     }
 
+    public void setId_categoria(int id_categoria) {this.id_categoria = id_categoria;}
+
     public List<Categoria> getId_sotto_categorie() {
         return id_sotto_categorie;
     }
+
+    public void setId_sotto_categorie(List<Categoria> id_sotto_categorie) {this.id_sotto_categorie = id_sotto_categorie;}
 }

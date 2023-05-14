@@ -21,7 +21,7 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
-    public Categoria getCategoriaById(String categoriaId)
+    public Categoria getCategoriaById(int categoriaId)
     {
         return categoriaRepository.getCategoriaById(categoriaId);
     }
