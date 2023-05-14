@@ -4,43 +4,47 @@ import 'package:alexandria/Connessione/CategoriaNetwork.dart';
 import 'package:alexandria/Connessione/RiferimentoNetwork.dart';
 import 'package:http/http.dart';
 
+import '../Model/Categoria.dart';
 import '../Model/Utente.dart';
+import '../Model/Riferimento.dart';
+import 'UtenteNetwork.dart';
 import 'CategoriaNetwork.dart';
 import 'RiferimentoNetwork.dart';
-import 'UtenteNetwork.dart';
 
 class NetworkHelper {
   final String url = "http://192.168.1.199:8090";
-  late UtenteNetwork unet = UtenteNetwork(url);
-  late CategoriaNetwork catnet = CategoriaNetwork(url);
-  late RiferimentoNetwork rifnet = RiferimentoNetwork(url);
-  late Response r;
-  late String request;
+  late UtenteNetwork _unet = UtenteNetwork(url);
+  late CategoriaNetwork _catnet = CategoriaNetwork(url);
+  late RiferimentoNetwork _rifnet = RiferimentoNetwork(url);
 
   NetworkHelper();
 
   Future<Utente?> login(String username, String password) async {
-    return unet.login(username, password);
+    return _unet.login(username, password);
   }
 
   Future<Utente?> registrazione(String username, String password, String nome, String cognome, String email) async {
-    return await unet.registrazione(username, password, nome, cognome, email);
+    return _unet.registrazione(username, password, nome, cognome, email);
   }
 
   Future<Utente?> getUtenteById(int user_id) async {
-    return unet.getUtenteById(user_id);
+    return _unet.getUtenteById(user_id);
   }
 
   Future<List<Utente>?> findAll() async {
-    return unet.findAll();
+    return _unet.findAll();
   }
 
   Future<bool?> deleteUserFromId(int user_id) async {
-    return unet.deleteUserFromId(user_id);
+    return _unet.deleteUserFromId(user_id);
   }
 
   Future<bool?> updateUser(Utente newUtente) async {
-    return unet.updateUser(newUtente);
+    return _unet.updateUser(newUtente);
+  }
+
+  Future<Categoria?> getCategoriaById(int categoriaID) async {
+    return _catnet.getCategoriaById(categoriaID);
   }
 
 

@@ -50,7 +50,7 @@ class UtenteNetwork {
     print(serverResponse.statusCode);
     if(serverResponse.statusCode == 200) {
 
-      return utente;
+      return login(utente.username, utente.password);
     } else {
       return null;
     }
