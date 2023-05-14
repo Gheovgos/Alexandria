@@ -25,4 +25,21 @@ class CategoriaNetwork {
     }
     else return null;
   }
+
+  Future<List<Categoria>?> findAll() async {
+    late List<Categoria> categorie = [];
+    _getMapping = "/get/findAll";
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse == 200) {
+      List<dynamic> categorieJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(var categoriaJson in categorieJson) {
+        Categoria c = Categoria.fromJson(categoriaJson as Map<String, dynamic>);
+        categorie.add(c);
+      }
+
+      return categorie;
+    }
+    else return null;
+  }
 }

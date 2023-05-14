@@ -31,7 +31,7 @@ class NetworkHelper {
     return _unet.getUtenteById(user_id);
   }
 
-  Future<List<Utente>?> findAll() async {
+  Future<List<Utente>?> findAllUsers() async {
     return _unet.findAll();
   }
 
@@ -45,6 +45,10 @@ class NetworkHelper {
 
   Future<Categoria?> getCategoriaById(int categoriaID) async {
     return _catnet.getCategoriaById(categoriaID);
+  }
+
+  Future<List<Categoria>?> findAllCategories() async {
+    return _catnet.findAll();
   }
 
 
