@@ -4,7 +4,7 @@ class Categoria {
   late int id_categoria;
   late String descr_categoria;
   late int user_id;
-  late dynamic id_sopra_categoria;
+  late int? id_sopra_categoria;
 
 
   Categoria.fromJson(Map<String, dynamic>  json)
