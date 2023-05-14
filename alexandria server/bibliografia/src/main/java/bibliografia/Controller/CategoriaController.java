@@ -40,7 +40,7 @@ public class CategoriaController {
 
 
     @GetMapping("/get/getCategoriaById/{categoriaId}")
-    public CategoriaDto getCategoriaById(@PathVariable String categoriaId)
+    public CategoriaDto getCategoriaById(@PathVariable int categoriaId)
     {
         Categoria categoria = categoriaService.getCategoriaById(categoriaId);
         CategoriaDto categoriaDto = convertDto(categoria);
@@ -111,7 +111,7 @@ public class CategoriaController {
         categoriaDto.setId_utente(categoria.getUser_id().getUser_ID());
         categoriaDto.setId_categoria(categoria.getId_categoria());
         categoriaDto.setNome(categoria.getDescr_categoria());
-        categoriaDto.setId_super_categoria(categoria.getGeneraliz());
+        categoriaDto.setId_super_categoria(categoria.getId_super_categoria());
 
         return categoriaDto;
     }
