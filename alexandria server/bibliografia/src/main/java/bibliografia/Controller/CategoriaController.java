@@ -108,7 +108,7 @@ public class CategoriaController {
         CategoriaDto categoriaDto = new CategoriaDto();
         categoriaDto = modelMapper.map(categoria, CategoriaDto.class);
 
-        categoriaDto.setId_utente(categoria.getUser_id().getUser_ID());
+        categoriaDto.setId_utente(categoria.getUser_id());
         categoriaDto.setId_categoria(categoria.getId_categoria());
         categoriaDto.setNome(categoria.getDescr_categoria());
         categoriaDto.setId_super_categoria(categoria.getId_super_categoria());

@@ -20,4 +20,6 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
 
     @Query(value = "SELECT MAX(id_categoria) FROM categoria", nativeQuery = true)
     Integer getNextId();
+
+
 }
