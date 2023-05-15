@@ -1,5 +1,6 @@
 package bibliografia.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "categoria", schema = "public")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Categoria {
 
     @Id
@@ -20,28 +22,33 @@ public class Categoria {
     @Column
     private String descr_categoria;
 
-    @ManyToOne
-    @JoinColumn(name = "user_ID")
-    private Utente user_id;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    @JsonIgnore
+    private Utente utente;
 
-    @ManyToOne
+    @Column(name = "user_id", insertable = false, updatable = false)
+    private int user_id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
     private Categoria id_super_categoria;
 
-    @OneToMany(mappedBy = "id_super_categoria")
+    @OneToMany(mappedBy = "id_super_categoria", fetch = FetchType.EAGER)
     @JsonBackReference
     private List<Categoria> id_sotto_categorie = new ArrayList<Categoria>();
 
-    public Categoria(final int id_categoria, final String descr_categoria, final Utente user_id, final Categoria generaliz, final Categoria sottoCategoria, final Riferimento riferimento) {
+    public Categoria(final int id_categoria, final String descr_categoria, final int user_id, final Categoria generaliz, final Categoria sottoCategoria, final Riferimento riferiment, final Utente utente) {
         super();
         this.id_categoria = id_categoria;
         this.descr_categoria = descr_categoria;
         this.user_id = user_id;
         this.id_super_categoria = generaliz;
+        this.utente = utente;
         this.id_sotto_categorie.add(sottoCategoria);
     }
 
-    public Categoria(final int id_categoria, final String descr_categoria, final Utente user_id) {
+    public Categoria(final int id_categoria, final String descr_categoria, final int user_id) {
         super();
         this.id_categoria = id_categoria;
         this.descr_categoria = descr_categoria;
@@ -58,11 +65,11 @@ public class Categoria {
 
     public void setDescr_categoria(String descr_categoria) {this.descr_categoria = descr_categoria;}
 
-    public Utente getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Utente user_id) {this.user_id = user_id;}
+    public void setUser_id(int user_id) {this.user_id = user_id;}
 
     public Categoria getId_super_categoria() {
         return id_super_categoria;
@@ -81,4 +88,8 @@ public class Categoria {
     }
 
     public void setId_sotto_categorie(List<Categoria> id_sotto_categorie) {this.id_sotto_categorie = id_sotto_categorie;}
+
+    public void setUtente(Utente utente) {this.utente = utente;}
+
+    public Utente getUtente() {return this.utente; }
 }
