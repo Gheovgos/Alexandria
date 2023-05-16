@@ -14,16 +14,14 @@ public class Categoria {
     @Column
     private int id_categoria;
 
-    @Column()
+    @Column
     private String descr_categoria;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JsonIdentityReference(alwaysAsId = true)
     @JsonIgnore
-    private Utente utente;
-
-    @Column(name = "user_id", insertable = false, updatable = false)
-    private int user_id;
+    private Utente user_id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIdentityReference(alwaysAsId = true)
@@ -34,21 +32,20 @@ public class Categoria {
     @JsonIgnore
     private List<Categoria> id_sotto_categorie = new ArrayList<Categoria>();
 
-    public Categoria(final int id_categoria, final String descr_categoria, final int user_id, final Categoria generaliz, final Categoria sottoCategoria, final Riferimento riferiment, final Utente utente) {
+    public Categoria(final int id_categoria, final String descr_categoria, final Categoria generaliz, final Categoria sottoCategoria, final Riferimento riferiment, final Integer user_id) {
         super();
         this.id_categoria = id_categoria;
         this.descr_categoria = descr_categoria;
-        this.user_id = user_id;
         this.super_categoria = generaliz;
-        this.utente = utente;
+        this.user_id = new Utente();
+        this.user_id.setUser_ID(user_id);
         this.id_sotto_categorie.add(sottoCategoria);
     }
 
-    public Categoria(final int id_categoria, final String descr_categoria, final int user_id) {
+    public Categoria(final int id_categoria, final String descr_categoria) {
         super();
         this.id_categoria = id_categoria;
         this.descr_categoria = descr_categoria;
-        this.user_id = user_id;
     }
 
     public Categoria()
@@ -60,12 +57,6 @@ public class Categoria {
     }
 
     public void setDescr_categoria(String descr_categoria) {this.descr_categoria = descr_categoria;}
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {this.user_id = user_id;}
 
     public void setSuper_categoria(Integer super_categoria) {
     }
@@ -86,7 +77,10 @@ public class Categoria {
 
     public void setId_sotto_categorie(List<Categoria> id_sotto_categorie) {this.id_sotto_categorie = id_sotto_categorie;}
 
-    public void setUtente(Utente utente) {this.utente = utente;}
+    public void setUser_id(Integer id) {
+        this.user_id = new Utente();
+        this.user_id.setUser_ID(id);
+    }
 
-    public Utente getUtente() {return this.utente; }
+    public Integer getUser_id() {return this.user_id.getUser_ID(); }
 }
