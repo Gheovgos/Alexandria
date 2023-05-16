@@ -1,8 +1,6 @@
 package bibliografia.Dto;
 
 
-import bibliografia.Model.Categoria;
-
 public class CategoriaDto {
 
     private int id_categoria;
@@ -11,9 +9,9 @@ public class CategoriaDto {
 
     private int id_utente;
 
-    private Categoria id_super_categoria;
+    private Integer id_super_categoria;
 
-    public CategoriaDto(final int id_categoria, final String nome, final int id_utente, final Categoria generaliz) {
+    public CategoriaDto(final int id_categoria, final String nome, final int id_utente, final Integer generaliz) {
         super();
         this.id_categoria = id_categoria;
         this.nome = nome;
@@ -40,7 +38,7 @@ public class CategoriaDto {
         return id_utente;
     }
 
-    public Categoria getSuper_Categoria() {
+    public Integer getSuper_Categoria() {
         return id_super_categoria;
     }
 
@@ -63,7 +61,7 @@ public class CategoriaDto {
         this.id_utente = id_utente;
     }
 
-    public void setId_super_categoria(Categoria id_super_categoria)
+    public void setId_super_categoria(Integer id_super_categoria)
     {
         this.id_super_categoria = id_super_categoria;
     }
