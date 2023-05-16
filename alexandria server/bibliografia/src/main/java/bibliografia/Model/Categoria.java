@@ -59,7 +59,8 @@ public class Categoria {
     public void setDescr_categoria(String descr_categoria) {this.descr_categoria = descr_categoria;}
 
     public void setSuper_categoria(Integer super_categoria) {
-    }
+        this.super_categoria = new Categoria();
+        this.super_categoria.setId_categoria(super_categoria);}
 
     public Categoria getSuper_categoria() {
         return super_categoria;

@@ -78,10 +78,10 @@ public class CategoriaController {
     }
 
 
-    @PutMapping("/update")
-    public void update(@RequestBody CategoriaDto categoriaDto)
+    @PutMapping("/update/{userID}")
+    public void update(@RequestBody CategoriaDto categoriaDto, @PathVariable Integer userID)
     {
-        Categoria categoria = convertEntity(categoriaDto);
+        Categoria categoria = convertEntity(categoriaDto, userID);
         categoriaService.update(categoria);
     }
 
