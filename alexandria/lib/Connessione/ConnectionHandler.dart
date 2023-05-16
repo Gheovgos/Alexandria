@@ -59,5 +59,9 @@ class NetworkHelper {
     return _catnet.creaCategoria(nome, user_id, superCategoria);
   }
 
+  Future<bool?> updateCategoria(Categoria newCategoria) async {
+    return _catnet.updateCategoria(newCategoria);
+  }
+
 
 }

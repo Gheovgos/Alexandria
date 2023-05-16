@@ -71,6 +71,21 @@ class CategoriaNetwork {
 
   }
 
+  Future<bool?> updateCategoria(Categoria newCategoria) async {
+    _getMapping = "/update/"+newCategoria.user_id.toString();
+
+    _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String> { 'Content-Type': 'application/json; charset=UTF-8', },
+      body: jsonEncode(<String, dynamic> {
+        'descr_categoria': newCategoria.nome,
+        'super_Categoria': newCategoria.super_Categoria,
+        'id_utente': newCategoria.user_id,
+        'id_categoria': newCategoria.id_categoria,}),);
+    if(_serverResponse.statusCode == 200) return true;
+    else return false;
+  }
+
+
+
   Future<int?> _getNextId() async {
     _getMapping = "/get/getNextId";
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
