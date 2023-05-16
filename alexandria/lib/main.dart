@@ -14,6 +14,7 @@ import 'package:alexandria/screens/welcome_screen.dart';
 import 'package:alexandria/screens/write_riferimento_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'Model/Categoria.dart';
 import 'Model/Utente.dart';
 
 void main() {
@@ -43,7 +44,12 @@ void main() {
 }
 Future<void> foo(NetworkHelper conn) async {
 
-  Utente u = await conn.login("Flutter", "meglioJava") as Utente;
-  u.username = "Flatter";
-  print(await conn.updateUser(u));
+  List<Categoria?> categorie = await conn.findAllCategories() as List<Categoria?>;
+  for(int i = 0; i < categorie.length; i++) {
+    print(categorie[i]?.id_categoria);
+    print(categorie[i]?.nome);
+    print(categorie[i]?.user_id);
+    print(categorie[i]?.super_Categoria);
+  }
+
 }
