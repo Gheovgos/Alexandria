@@ -63,5 +63,9 @@ class NetworkHelper {
     return _catnet.updateCategoria(newCategoria);
   }
 
+  Future<bool?> deleteCategoria(Categoria c) async {
+    return _catnet.deleteCategoriaById(c);
+  }
+
 
 }

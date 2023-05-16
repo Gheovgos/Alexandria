@@ -84,6 +84,19 @@ class CategoriaNetwork {
     else return false;
   }
 
+  Future<bool?> deleteCategoriaById(Categoria c) async {
+    _getMapping = "/delete";
+
+    _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String> { 'Content-Type': 'application/json; charset=UTF-8', },
+      body: jsonEncode(<String, dynamic> {
+        'descr_categoria': c.nome,
+        'super_Categoria': c.super_Categoria,
+        'id_utente': c.user_id,
+        'id_categoria': c.id_categoria,}),);
+    if(_serverResponse.statusCode == 200) return true;
+    else false;
+  }
+
 
 
   Future<int?> _getNextId() async {
