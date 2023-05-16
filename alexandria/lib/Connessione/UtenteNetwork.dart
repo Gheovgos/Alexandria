@@ -16,10 +16,7 @@ class UtenteNetwork {
 
   Future<Utente?> login(String username, String password) async {
     _getMapping = "/login/"+username+"/"+password;
-    print(url+_requestMapping+_getMapping);
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
-    print(_serverResponse.statusCode);
-
 
     if(_serverResponse.statusCode == 200) {
       _userMap = jsonDecode(_serverResponse.body) as Map<String, dynamic>;
@@ -32,8 +29,8 @@ class UtenteNetwork {
   }
 
   Future<Utente?> registrazione(String username, String password, String nome, String cognome, String email) async {
-
-    _utente = Utente(username, nome, cognome, email, password);
+    final int id = await _getNextId() as int;
+    _utente = Utente(id, username, nome, cognome, email, password);
     String json = jsonEncode(_utente); //Linea di codice consigliato dalla documentazione ma, se messa nella post, non funziona. Linguaggio di merda
     
     _getMapping = "/create";
@@ -47,7 +44,6 @@ class UtenteNetwork {
       'password_hashed': _utente.password,
       'salt': _utente.salt,}),);
 
-    print(_serverResponse.statusCode);
     if(_serverResponse.statusCode == 200) {
 
       return login(_utente.username, _utente.password);
@@ -110,6 +106,18 @@ class UtenteNetwork {
         'salt': newUtente.salt,}), );
     if(_serverResponse.statusCode == 200) return true;
     else return false;
+  }
+
+  Future<int?> _getNextId() async {
+    _getMapping = "/create/getNextId";
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      final id = int.parse(_serverResponse.body) + 1;
+
+      return id;
+    }
+    else return null;
   }
 
 }

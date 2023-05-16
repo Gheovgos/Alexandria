@@ -5,9 +5,8 @@ import 'dart:math';
 
 class Utente {
 
-    Utente(String username, String nome,  String cognome, String email, String password) {
-        var idRandom = Random();
-        this.user_ID = idRandom.nextInt(1000) + 30;
+    Utente(int user_id, String username, String nome,  String cognome, String email, String password) {
+        this.user_ID = user_id;
         this.username = username;
         this.nome = nome;
         this.cognome = cognome;

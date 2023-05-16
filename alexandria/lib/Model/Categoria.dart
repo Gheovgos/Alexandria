@@ -19,7 +19,7 @@ class Categoria {
 
   Categoria.fromJson(Map<String, dynamic> json)
       : id_categoria = json['id_categoria'] as int,
-        nome = json['nome'] as String,
+        nome = json['descr_categoria'] as String,
         user_id = json['id_utente'] as int,
         super_Categoria = json['super_Categoria'] as int?;
 
