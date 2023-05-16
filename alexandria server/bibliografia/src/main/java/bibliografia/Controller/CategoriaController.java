@@ -111,7 +111,7 @@ public class CategoriaController {
         categoriaDto.setId_utente(categoria.getUser_id());
         categoriaDto.setId_categoria(categoria.getId_categoria());
         categoriaDto.setNome(categoria.getDescr_categoria());
-        categoriaDto.setId_super_categoria(categoria.getId_super_categoria());
+        categoriaDto.setId_super_categoria(categoria.getId_categoria());
 
         return categoriaDto;
     }

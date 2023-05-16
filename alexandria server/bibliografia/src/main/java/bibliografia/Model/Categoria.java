@@ -1,11 +1,6 @@
 package bibliografia.Model;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +14,7 @@ public class Categoria {
     @Column
     private int id_categoria;
 
-    @Column
+    @Column()
     private String descr_categoria;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -31,11 +26,12 @@ public class Categoria {
     private int user_id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonManagedReference
-    private Categoria id_super_categoria;
+    @JsonIdentityReference(alwaysAsId = true)
+    @JsonIgnore
+    private Categoria super_categoria;
 
-    @OneToMany(mappedBy = "id_super_categoria", fetch = FetchType.EAGER)
-    @JsonBackReference
+    @OneToMany(mappedBy = "super_categoria", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Categoria> id_sotto_categorie = new ArrayList<Categoria>();
 
     public Categoria(final int id_categoria, final String descr_categoria, final int user_id, final Categoria generaliz, final Categoria sottoCategoria, final Riferimento riferiment, final Utente utente) {
@@ -43,7 +39,7 @@ public class Categoria {
         this.id_categoria = id_categoria;
         this.descr_categoria = descr_categoria;
         this.user_id = user_id;
-        this.id_super_categoria = generaliz;
+        this.super_categoria = generaliz;
         this.utente = utente;
         this.id_sotto_categorie.add(sottoCategoria);
     }
@@ -71,11 +67,12 @@ public class Categoria {
 
     public void setUser_id(int user_id) {this.user_id = user_id;}
 
-    public Categoria getId_super_categoria() {
-        return id_super_categoria;
+    public void setSuper_categoria(Integer super_categoria) {
     }
 
-    public void setId_super_categoria(Categoria id_super_categoria) {this.id_super_categoria = id_super_categoria;}
+    public Categoria getSuper_categoria() {
+        return super_categoria;
+    }
 
     public int getId_categoria() {
         return id_categoria;
