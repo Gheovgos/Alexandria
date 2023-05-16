@@ -18,7 +18,6 @@ class CategoriaNetwork {
 
     if(_serverResponse.statusCode == 200) {
       _categoriaMap = jsonDecode(_serverResponse.body) as Map<String, dynamic>;
-      print(_serverResponse.body);
       _categoria = Categoria.fromJson(_categoriaMap);
 
       return _categoria;
@@ -42,4 +41,18 @@ class CategoriaNetwork {
     }
     else return null;
   }
+
+  Future<Categoria?> getCategoriaByName(String nome) async {
+    _getMapping = "/get/getCategoriaByName/"+nome;
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      _categoriaMap = jsonDecode(_serverResponse.body) as Map<String, dynamic>;
+      _categoria = Categoria.fromJson(_categoriaMap);
+
+      return _categoria;
+    }
+    else return null;
+  }
+
 }
