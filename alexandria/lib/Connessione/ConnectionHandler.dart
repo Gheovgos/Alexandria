@@ -51,5 +51,9 @@ class NetworkHelper {
     return _catnet.findAll();
   }
 
+  Future<Categoria?> findCategoriaByName(String nome) async {
+    return _catnet.getCategoriaByName(nome);
+  }
+
 
 }
