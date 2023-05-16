@@ -5,24 +5,24 @@ public class CategoriaDto {
 
     private int id_categoria;
 
-    private String nome;
+    private String descr_categoria;
 
-    private int id_utente;
+    private Integer id_utente;
 
     private Integer id_super_categoria;
 
-    public CategoriaDto(final int id_categoria, final String nome, final int id_utente, final Integer generaliz) {
+    public CategoriaDto(final int id_categoria, final String descr_categoria, final int id_utente, final Integer generaliz) {
         super();
         this.id_categoria = id_categoria;
-        this.nome = nome;
+        this.descr_categoria = descr_categoria;
         this.id_utente = id_utente;
         this.id_super_categoria = generaliz;
     }
 
-    public CategoriaDto(final int id_categoria, final String nome, final int id_utente) {
+    public CategoriaDto(final int id_categoria, final String descr_categoria, final int id_utente) {
         super();
         this.id_categoria = id_categoria;
-        this.nome = nome;
+        this.descr_categoria = descr_categoria;
         this.id_utente = id_utente;
     }
 
@@ -30,11 +30,11 @@ public class CategoriaDto {
     {
 
     }
-    public String getNome() {
-        return nome;
+    public String getDescr_categoria() {
+        return descr_categoria;
     }
 
-    public int getId_utente() {
+    public Integer getId_utente() {
         return id_utente;
     }
 
@@ -51,12 +51,12 @@ public class CategoriaDto {
         this.id_categoria = id_categoria;
     }
 
-    public void setNome(String nome)
+    public void setDescr_categoria(String descr_categoria)
     {
-        this.nome = nome;
+        this.descr_categoria = descr_categoria;
     }
 
-    public void setId_utente(int id_utente)
+    public void setId_utente(Integer id_utente)
     {
         this.id_utente = id_utente;
     }

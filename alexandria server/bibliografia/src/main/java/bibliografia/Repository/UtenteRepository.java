@@ -21,7 +21,7 @@ public interface UtenteRepository extends JpaRepository<Utente, Integer> {
     @Query(value = "SELECT utente.* FROM utente NATURAL JOIN autore_riferimento WHERE id_riferimento = ?1", nativeQuery = true)
     List<Utente> getByRiferimentoId(String id_riferimento);
 
-    @Query(value = "SELECT MAX(id_utente) FROM utente", nativeQuery = true)
+    @Query(value = "SELECT MAX(user_id) FROM utente", nativeQuery = true)
     Integer getNextId();
 
     @Query(value = "SELECT * FROM utente WHERE username = :username AND password_hashed = :password_hashed", nativeQuery = true)

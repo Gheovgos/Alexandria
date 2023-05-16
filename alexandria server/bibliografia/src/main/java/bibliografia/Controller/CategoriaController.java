@@ -71,10 +71,10 @@ public class CategoriaController {
     }
 
 
-    @PostMapping("/create")
-    public void create(@RequestBody CategoriaDto categoriaDto)
+    @PostMapping("/create/{userID}")
+    public void create(@RequestBody CategoriaDto categoriaDto, @PathVariable Integer userID)
     {
-        categoriaService.create(convertEntity(categoriaDto));
+        categoriaService.create(convertEntity(categoriaDto, userID));
     }
 
 
@@ -95,22 +95,32 @@ public class CategoriaController {
 
     private Categoria convertEntity(CategoriaDto categoriaDto)
     {
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         Categoria categoria = new Categoria();
         categoria = modelMapper.map(categoriaDto, Categoria.class);
 
         return categoria;
     }
 
+    private Categoria convertEntity(CategoriaDto categoriaDto, Integer user_id)
+    {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        Categoria categoria = new Categoria();
+        categoria = modelMapper.map(categoriaDto, Categoria.class);
+        categoria.setUser_id(user_id);
+
+        return categoria;
+    }
+
     public CategoriaDto convertDto(Categoria categoria)
     {
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         CategoriaDto categoriaDto = new CategoriaDto();
         categoriaDto = modelMapper.map(categoria, CategoriaDto.class);
 
         categoriaDto.setId_utente(categoria.getUser_id());
         categoriaDto.setId_categoria(categoria.getId_categoria());
-        categoriaDto.setNome(categoria.getDescr_categoria());
+        categoriaDto.setDescr_categoria(categoria.getDescr_categoria());
         categoriaDto.setId_super_categoria(categoria.getId_categoria());
 
         return categoriaDto;
