@@ -55,5 +55,9 @@ class NetworkHelper {
     return _catnet.getCategoriaByName(nome);
   }
 
+  Future<Categoria?> createCategoria(String nome, int user_id, int? superCategoria) async {
+    return _catnet.creaCategoria(nome, user_id, superCategoria);
+  }
+
 
 }

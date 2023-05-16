@@ -55,4 +55,32 @@ class CategoriaNetwork {
     else return null;
   }
 
+  Future<Categoria?> creaCategoria(String nome, int user_id, int? superCategoria) async {
+    final int id = await _getNextId() as int;
+    _categoria = Categoria(id, nome, user_id, superCategoria);
+    _getMapping = "/create/"+user_id.toString();
+    _serverResponse = await post(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
+    }, body: jsonEncode(<String, dynamic> {
+      'descr_categoria': _categoria.nome,
+      'id_super_categoria': _categoria.super_Categoria,
+      'id_utente': _categoria.user_id,
+      'id_categoria': _categoria.id_categoria,}),);
+    if(_serverResponse.statusCode == 200) {
+      return _categoria;
+    } else return null;
+
+  }
+
+  Future<int?> _getNextId() async {
+    _getMapping = "/get/getNextId";
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      final id = int.parse(_serverResponse.body) + 1;
+
+      return id;
+    }
+    else return null;
+  }
+
 }
