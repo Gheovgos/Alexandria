@@ -48,7 +48,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/get/getCategoriaByRiferimento/{id_riferimento}")
-    public CategoriaDto getCategoriaByRiferimento(@PathVariable String id_riferimento)
+    public CategoriaDto getCategoriaByRiferimento(@PathVariable int id_riferimento)
     {
         Categoria categoria = categoriaService.getCategoriaByRiferimento(id_riferimento);
         CategoriaDto categoriaDto = convertDto(categoria);
@@ -121,7 +121,9 @@ public class CategoriaController {
         categoriaDto.setId_utente(categoria.getUser_id());
         categoriaDto.setId_categoria(categoria.getId_categoria());
         categoriaDto.setDescr_categoria(categoria.getDescr_categoria());
-        categoriaDto.setId_super_categoria(categoria.getSuper_categoria().getId_categoria());
+        if(categoria.getSuper_categoria() == null) categoriaDto.setId_super_categoria(null);
+
+        else categoriaDto.setId_super_categoria(categoria.getSuper_categoria().getId_categoria());
 
         return categoriaDto;
     }
