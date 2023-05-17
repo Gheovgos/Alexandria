@@ -4,8 +4,8 @@ import 'tipo_enum.dart';
 class Riferimento {
   late int id_riferimento;
   late String titolo_riferimento;
-  late DateTime? data_riferimento;
-  late tipo_enum tipo;
+  late DateTime data_riferimento;
+  late tipo_enum? tipo;
   late String? URL;
   late int DOI;
   late bool on_line;
@@ -21,9 +21,8 @@ class Riferimento {
   Riferimento.fromJson(Map<String, dynamic>  json)
       : id_riferimento = json['id_Rif'] as int,
         titolo_riferimento = json['titolo'] as String,
-        data_riferimento = json['dataCreazione'] as DateTime?,
-       // tipo = json['tipo'] as tipo_enum,
-        tipo = tipo_enum.Libro,
+        data_riferimento = DateTime.parse(json['dataCreazione'] as String),
+        tipo = convertStringToEnum(json['tipo'] as String),
         URL = json['url'] as String?,
         DOI = json['doi'] as int,
         on_line = json['digitale'] as bool,
