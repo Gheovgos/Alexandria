@@ -97,6 +97,19 @@ class CategoriaNetwork {
     else false;
   }
 
+  Future<Categoria?> getCategoriaByRiferimento(int id_riferimento) async {
+    _getMapping = "/get/getCategoriaByRiferimento/"+id_riferimento.toString();
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      _categoriaMap = jsonDecode(_serverResponse.body) as Map<String, dynamic>;
+      _categoria = Categoria.fromJson(_categoriaMap);
+
+      return _categoria;
+    }
+    else return null;
+  }
+
 
 
   Future<int?> _getNextId() async {
