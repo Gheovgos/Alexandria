@@ -39,10 +39,12 @@ public class RiferimentoController {
     }
 
     @GetMapping("get/getRiferimentoById/{riferimentoId}")
-    public RiferimentoDto getRiferimentoByID(@PathVariable String riferimentoId)
+    public RiferimentoDto getRiferimentoByID(@PathVariable int riferimentoId)
     {
         Riferimento riferimento = riferimentoService.getRiferimentoById(riferimentoId);
+        System.out.println("CIAO CHIARA: "+riferimento.getData_riferimento());
         RiferimentoDto riferimentoDto = convertDto(riferimento);
+        System.out.println("CIAO CHIARA: "+riferimentoDto.getDataCreazione());
         return riferimentoDto;
     }
 
@@ -152,7 +154,7 @@ public class RiferimentoController {
         riferimentoDto.setTipo(riferimentoDto.getTipo());
         riferimentoDto.setURL(riferimento.getUrl());
         riferimentoDto.setId_Rif(riferimentoDto.getId_Rif());
-        riferimentoDto.setTitolo(riferimento.getTitoloRiferimento());
+        riferimentoDto.setTitolo(riferimento.getTitolo_riferimento());
         //riferimentoDto.setDataCreazione(riferimento.getDataRiferimento());
 
         return riferimentoDto;

@@ -97,7 +97,7 @@ public class Riferimento {
 
     }
 
-    public String getTitoloRiferimento() {
+    public String getTitolo_riferimento() {
         return titolo_riferimento;
     }
 
@@ -240,4 +240,33 @@ public class Riferimento {
     public void setDescr_riferimento(final String descr_riferimento) {
         this.descr_riferimento = descr_riferimento;
     }
+
+    public String getEditore() {return this.editore;}
+
+    public void setEditore(String editore) {this.editore = editore;}
+
+    public String getIsbn() {return this.isbn;}
+
+    public void setIsbn(String isbn) {this.isbn = isbn;}
+
+    public String getIsnn() {return this.isnn;}
+
+    public void setIsnn(String isnn) {this.isnn = isnn;}
+
+    public String getLuogo() {return this.luogo; }
+
+    public void setLuogo(String luogo) {this.luogo = luogo;}
+
+    public Integer getPag_inizio() {return this.pag_inizio;}
+
+    public void setPag_inizio(Integer pag_inizio) {this.pag_inizio = pag_inizio;}
+
+    public Integer getPag_fine() {return this.pag_fine;}
+
+    public void setPag_fine(Integer pag_fine) {this.pag_fine = pag_fine;}
+
+    public Integer getEdizione() {return this.edizione;}
+
+    public void setEdizione(Integer edizione) {this.edizione = edizione;}
+
 }
