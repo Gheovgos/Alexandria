@@ -48,7 +48,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/get/getCategoriaByRiferimento/{id_riferimento}")
-    public CategoriaDto getCategoriaByRiferimento(@PathVariable String id_riferimento)
+    public CategoriaDto getCategoriaByRiferimento(@PathVariable int id_riferimento)
     {
         Categoria categoria = categoriaService.getCategoriaByRiferimento(id_riferimento);
         CategoriaDto categoriaDto = convertDto(categoria);
