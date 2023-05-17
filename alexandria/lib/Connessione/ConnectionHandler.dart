@@ -71,5 +71,9 @@ class NetworkHelper {
     return _catnet.deleteCategoriaById(c);
   }
 
+  Future<Riferimento?> getRiferimentoById(int rif_id) async {
+    return _rifnet.getRiferimentoById(rif_id);
+  }
+
 
 }

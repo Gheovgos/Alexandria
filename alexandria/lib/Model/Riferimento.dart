@@ -4,36 +4,37 @@ import 'tipo_enum.dart';
 class Riferimento {
   late int id_riferimento;
   late String titolo_riferimento;
-  late DateTime data_riferimento;
+  late DateTime? data_riferimento;
   late tipo_enum tipo;
-  late String URL;
+  late String? URL;
   late int DOI;
   late bool on_line;
   late String descr_riferimento;
-  late String editore;
-  late String isbn;
-  late String isnn;
-  late String luogo;
-  late int pag_inizio;
-  late int pag_fine;
-  late int edizione;
+  late String? editore;
+  late String? isbn;
+  late String? isnn;
+  late String? luogo;
+  late int? pag_inizio;
+  late int? pag_fine;
+  late int? edizione;
 
   Riferimento.fromJson(Map<String, dynamic>  json)
-      : id_riferimento = json['id_riferimento'] as int,
-        titolo_riferimento = json['titolo_riferimento'] as String,
-        data_riferimento = json['data_riferimento'] as DateTime,
-        tipo = json['tipo'] as tipo_enum,
-        URL = json['url'] as String,
+      : id_riferimento = json['id_Rif'] as int,
+        titolo_riferimento = json['titolo'] as String,
+        data_riferimento = json['dataCreazione'] as DateTime?,
+       // tipo = json['tipo'] as tipo_enum,
+        tipo = tipo_enum.Libro,
+        URL = json['url'] as String?,
         DOI = json['doi'] as int,
-        on_line = json['on_line'] as bool,
-        descr_riferimento = json['descr_riferimento'] as String,
-        editore = json['editore'] as String,
-        isbn = json['isbn'] as String,
-        isnn = json['isnn'] as String,
-        luogo = json['luogo'] as String,
-        pag_inizio = json['pag_inizio'] as int,
-        pag_fine = json['pag_fine'] as int,
-        edizione = json['edizione'] as int;
+        on_line = json['digitale'] as bool,
+        descr_riferimento = json['descrizione'] as String,
+        editore = json['editore'] as String?,
+        isbn = json['isbn'] as String?,
+        isnn = json['isnn'] as String?,
+        luogo = json['luogo'] as String?,
+        pag_inizio = json['pag_inizio'] as int?,
+        pag_fine = json['pag_fine'] as int?,
+        edizione = json['edizione'] as int?;
 
   Riferimento(int id_riferimento, String titolo_riferimento, DateTime data_riferimento, tipo_enum tipo,
       String URL, int DOI, bool on_line, String descr_riferimento, String editore, String isbn, String isnn,
