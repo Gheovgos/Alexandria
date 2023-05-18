@@ -24,7 +24,7 @@ public class RiferimentoService {
 
     public Riferimento getRiferimentoById(int riferimentoId) {return riferimentoRepository.getRiferimentoById(riferimentoId);}
 
-    public List<Riferimento> getRiferimentoByUserId(@PathVariable String user_id) {return riferimentoRepository.getRiferimentoByUserId(user_id);}
+    public List<Riferimento> getRiferimentoByUserId(@PathVariable int user_id) {return riferimentoRepository.getRiferimentoByUserId(user_id);}
 
     public Riferimento getRiferimentoByNome(@PathVariable String titolo_riferimento) {return riferimentoRepository.getRiferimentoByNome(titolo_riferimento);}
 

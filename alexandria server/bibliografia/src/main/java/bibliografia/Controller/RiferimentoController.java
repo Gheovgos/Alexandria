@@ -49,9 +49,9 @@ public class RiferimentoController {
     }
 
     @GetMapping("get/getRiferimentoByUserId/{user_id}")
-    public List<RiferimentoDto> getRiferimentoByUserId(@PathVariable String user_id)
+    public List<RiferimentoDto> getRiferimentoByUserId(@PathVariable int user_id)
     {
-        List<Riferimento> riferimenti = riferimentoService.getRiferimenti();
+        List<Riferimento> riferimenti = riferimentoService.getRiferimentoByUserId(user_id);
         List<RiferimentoDto> riferimentiDto = new ArrayList<>();
         for(Riferimento riferimento : riferimenti)
             riferimentiDto.add(convertDto(riferimento));
