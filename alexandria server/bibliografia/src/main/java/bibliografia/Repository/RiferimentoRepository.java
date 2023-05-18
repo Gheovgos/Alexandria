@@ -14,8 +14,8 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     @Query(value = "SELECT DISTINCT * FROM riferimenti_biblio WHERE id_riferimento = ?1", nativeQuery = true)
     Riferimento getRiferimentoById(int id_riferimento);
 
-    @Query(value = "SELECT riferimenti_biblio.* FROM riferimenti_biblio NATURAL JOIN autore_riferimento WHERE id_utente = ?1", nativeQuery = true)
-    List<Riferimento> getRiferimentoByUserId(String id_utente);
+    @Query(value = "SELECT riferimenti_biblio.* FROM riferimenti_biblio JOIN utente_riferimento ON riferimenti_biblio.id_riferimento = utente_riferimento.riferimento_id_riferimento WHERE utente_user_id = ?1", nativeQuery = true)
+    List<Riferimento> getRiferimentoByUserId(int id_utente);
 
     @Query(value = "SELECT * FROM riferimenti_biblio WHERE titolo_riferimento = ?1", nativeQuery = true)
     Riferimento getRiferimentoByNome(String titolo_riferimento);
