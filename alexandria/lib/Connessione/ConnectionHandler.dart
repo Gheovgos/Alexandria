@@ -12,7 +12,7 @@ import 'CategoriaNetwork.dart';
 import 'RiferimentoNetwork.dart';
 
 class NetworkHelper {
-  final String url = "http://192.168.43.141:8090";
+  final String url = "http://192.168.30.31:8090";
   late UtenteNetwork _unet = UtenteNetwork(url);
   late CategoriaNetwork _catnet = CategoriaNetwork(url);
   late RiferimentoNetwork _rifnet = RiferimentoNetwork(url);
@@ -73,6 +73,10 @@ class NetworkHelper {
 
   Future<Riferimento?> getRiferimentoById(int rif_id) async {
     return _rifnet.getRiferimentoById(rif_id);
+  }
+
+  Future<List<Riferimento>?> findAllRiferimenti() async {
+    return _rifnet.findAll();
   }
 
 
