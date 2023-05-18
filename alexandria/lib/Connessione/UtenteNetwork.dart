@@ -46,7 +46,7 @@ class UtenteNetwork {
 
     if(_serverResponse.statusCode == 200) {
 
-      return login(_utente.username, _utente.password);
+      return await login(_utente.username, _utente.password);
     } else {
       return null;
     }

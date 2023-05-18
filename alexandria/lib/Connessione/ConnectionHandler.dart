@@ -79,5 +79,9 @@ class NetworkHelper {
     return _rifnet.findAll();
   }
 
+  Future<List<Riferimento>?> getRiferimentoByUserId(int userID) async {
+    return _rifnet.getRiferimentoByUserId(userID);
+  }
+
 
 }
