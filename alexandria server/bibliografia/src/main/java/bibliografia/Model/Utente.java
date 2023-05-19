@@ -1,6 +1,7 @@
 package bibliografia.Model;
 //import bibliografia.Model.Riferimento;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
@@ -36,8 +37,9 @@ public class Utente {
     private String email;
 
     @ManyToMany
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<Riferimento> riferimento = new ArrayList<>();
+    @JoinColumn(name = "id_riferimento")
+    @JsonIgnore
+    private List<Riferimento> id_riferimento;
 
     @JsonCreator
     public Utente(@JsonProperty("nome") final String nome, @JsonProperty("cognome") final String cognome, @JsonProperty("user_ID") final int ID,
@@ -93,7 +95,7 @@ public class Utente {
 
     public void setUsername(String username) { this.username = username; }
 
-    public void setRiferimento(List<Riferimento> riferimento) {this.riferimento = riferimento;}
+    public void setId_riferimento(List<Riferimento> riferimento) {this.id_riferimento = riferimento;}
 
     public String getEmail() { return this.email; }
 
