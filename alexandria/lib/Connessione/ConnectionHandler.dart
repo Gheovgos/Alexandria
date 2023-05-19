@@ -13,7 +13,7 @@ import 'RiferimentoNetwork.dart';
 import '../Model/tipo_enum.dart';
 
 class NetworkHelper {
-  final String url = "http://192.168.30.31:8090";
+  final String url = "http://192.168.175.68:8090";
   late UtenteNetwork _unet = UtenteNetwork(url);
   late CategoriaNetwork _catnet = CategoriaNetwork(url);
   late RiferimentoNetwork _rifnet = RiferimentoNetwork(url);
