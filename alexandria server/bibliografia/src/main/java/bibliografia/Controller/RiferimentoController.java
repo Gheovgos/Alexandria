@@ -42,9 +42,7 @@ public class RiferimentoController {
     public RiferimentoDto getRiferimentoByID(@PathVariable int riferimentoId)
     {
         Riferimento riferimento = riferimentoService.getRiferimentoById(riferimentoId);
-        System.out.println("CIAO CHIARA: "+riferimento.getData_riferimento());
         RiferimentoDto riferimentoDto = convertDto(riferimento);
-        System.out.println("CIAO CHIARA: "+riferimentoDto.getDataCreazione());
         return riferimentoDto;
     }
 
@@ -115,6 +113,7 @@ public class RiferimentoController {
     @PostMapping("/create")
     public void create(@RequestBody RiferimentoDto riferimentoDto)
     {
+        System.out.println("Eccomi");
         Riferimento riferimento = convertEntity(riferimentoDto);
         riferimentoService.create(riferimento);
     }

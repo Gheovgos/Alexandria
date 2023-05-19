@@ -1,5 +1,6 @@
 package bibliografia.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -59,6 +60,11 @@ public class Riferimento {
 
     @Column
     private Integer edizione;
+
+    @ManyToMany
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private List<Utente> user_id;
 
     @ManyToMany
     private List<Categoria> categorie = new ArrayList<Categoria>();
