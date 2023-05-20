@@ -85,8 +85,8 @@ class NetworkHelper {
   }
 
   Future<Riferimento?> createRiferimento(String titolo_riferimento, DateTime data_riferimento, tipo_enum tipo, String? URL, int? DOI, bool on_line, String? descr_riferimento,
-      String? editore, String? isbn, String? isnn, String? luogo, int? pag_inizio, int? pag_fine, int? edizione) async {
-    return _rifnet.creaRiferimento(titolo_riferimento, data_riferimento, tipo, URL, DOI, on_line, descr_riferimento, editore, isbn, isnn, luogo, pag_inizio, pag_fine, edizione);
+      String? editore, String? isbn, String? isnn, String? luogo, int? pag_inizio, int? pag_fine, int? edizione, int userID) async {
+    return _rifnet.creaRiferimento(titolo_riferimento, data_riferimento, tipo, URL, DOI, on_line, descr_riferimento, editore, isbn, isnn, luogo, pag_inizio, pag_fine, edizione, userID);
   }
 
   Future<Riferimento?> getRiferimentoByNome(String titolo) async {
