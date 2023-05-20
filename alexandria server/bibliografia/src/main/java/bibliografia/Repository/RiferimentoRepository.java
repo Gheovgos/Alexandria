@@ -1,7 +1,9 @@
 package bibliografia.Repository;
 
 import bibliografia.Model.Riferimento;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -15,7 +17,7 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     @Query(value = "SELECT DISTINCT * FROM riferimenti_biblio WHERE id_riferimento = ?1", nativeQuery = true)
     Riferimento getRiferimentoById(int id_riferimento);
 
-    @Query(value = "SELECT riferimenti_biblio.* FROM riferimenti_biblio JOIN utente_id_riferimento ON riferimenti_biblio.id_riferimento = utente_id_riferimento.id_riferimento_id_riferimento WHERE utente_user_id = ?1", nativeQuery = true)
+    @Query(value = "SELECT riferimenti_biblio.* FROM riferimenti_biblio JOIN riferimenti_biblio_user_id ON riferimenti_biblio.id_riferimento = riferimenti_biblio_user_id.riferimento_id_riferimento WHERE utente_user_id = ?1", nativeQuery = true)
     List<Riferimento> getRiferimentoByUserId(int id_utente);
 
     @Query(value = "SELECT * FROM riferimenti_biblio WHERE titolo_riferimento = ?1", nativeQuery = true)
@@ -39,6 +41,9 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     @Query(value = "SELECT MAX(id_riferimento) FROM riferimenti_biblio", nativeQuery = true)
     Integer getNextId();
 
-    @Query(value = "INSERT INTO utente_id_riferimento VALUES (:utente_user_id, :id_riferimento_id_riferimento)", nativeQuery = true)
+    @Modifying
+    @Query(value = "INSERT INTO riferimenti_biblio_user_id VALUES (:utente_user_id, :id_riferimento_id_riferimento)", nativeQuery = true)
+    @Transactional
+
     void insertAutoreRiferimento(@Param("id_riferimento_id_riferimento") int id_riferimento_id_riferimento, @Param("utente_user_id") int utente_user_id);
 }
