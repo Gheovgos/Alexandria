@@ -3,6 +3,7 @@ package bibliografia.Repository;
 import bibliografia.Model.Riferimento;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     @Query(value = "SELECT DISTINCT * FROM riferimenti_biblio WHERE id_riferimento = ?1", nativeQuery = true)
     Riferimento getRiferimentoById(int id_riferimento);
 
-    @Query(value = "SELECT riferimenti_biblio.* FROM riferimenti_biblio JOIN utente_riferimento ON riferimenti_biblio.id_riferimento = utente_riferimento.id_riferimento_id_riferimento WHERE utente_user_id = ?1", nativeQuery = true)
+    @Query(value = "SELECT riferimenti_biblio.* FROM riferimenti_biblio JOIN utente_id_riferimento ON riferimenti_biblio.id_riferimento = utente_id_riferimento.id_riferimento_id_riferimento WHERE utente_user_id = ?1", nativeQuery = true)
     List<Riferimento> getRiferimentoByUserId(int id_utente);
 
     @Query(value = "SELECT * FROM riferimenti_biblio WHERE titolo_riferimento = ?1", nativeQuery = true)
@@ -35,6 +36,9 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio, associativa_riferimenti_categoria WHERE doi = ?1", nativeQuery = true)
     List<Riferimento> getByDOISearch(String doi);
 
-    @Query(value = "SELECT MAX(Id_riferimento) FROM riferimenti_biblio", nativeQuery = true)
+    @Query(value = "SELECT MAX(id_riferimento) FROM riferimenti_biblio", nativeQuery = true)
     Integer getNextId();
+
+    @Query(value = "INSERT INTO utente_id_riferimento VALUES (:utente_user_id, :id_riferimento_id_riferimento)", nativeQuery = true)
+    void insertAutoreRiferimento(@Param("id_riferimento_id_riferimento") int id_riferimento_id_riferimento, @Param("utente_user_id") int utente_user_id);
 }

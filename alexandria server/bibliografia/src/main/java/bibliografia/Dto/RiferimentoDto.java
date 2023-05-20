@@ -117,7 +117,7 @@ public class RiferimentoDto {
         return DOI;
     }
 
-    public void setDOI(final int dOI) {
+    public void setDOI(final Integer dOI) {
         DOI = dOI;
     }
 
