@@ -7,9 +7,9 @@ class Riferimento {
   late DateTime data_riferimento;
   late tipo_enum? tipo;
   late String? URL;
-  late int DOI;
+  late int? DOI;
   late bool on_line;
-  late String descr_riferimento;
+  late String? descr_riferimento;
   late String? editore;
   late String? isbn;
   late String? isnn;
@@ -24,9 +24,9 @@ class Riferimento {
         data_riferimento = DateTime.parse(json['dataCreazione'] as String),
         tipo = convertStringToEnum(json['tipo'] as String),
         URL = json['url'] as String?,
-        DOI = json['doi'] as int,
+        DOI = json['doi'] as int?,
         on_line = json['digitale'] as bool,
-        descr_riferimento = json['descrizione'] as String,
+        descr_riferimento = json['descrizione'] as String?,
         editore = json['editore'] as String?,
         isbn = json['isbn'] as String?,
         isnn = json['isnn'] as String?,
@@ -36,8 +36,8 @@ class Riferimento {
         edizione = json['edizione'] as int?;
 
   Riferimento(int id_riferimento, String titolo_riferimento, DateTime data_riferimento, tipo_enum tipo,
-      String URL, int DOI, bool on_line, String descr_riferimento, String editore, String isbn, String isnn,
-      String luogo, int pag_inizio, int pag_fine, int edizione) {
+      String? URL, int? DOI, bool on_line, String? descr_riferimento, String? editore, String? isbn, String? isnn,
+      String? luogo, int? pag_inizio, int? pag_fine, int? edizione) {
     this.id_riferimento = id_riferimento;
     this.titolo_riferimento = titolo_riferimento;
     this.data_riferimento = data_riferimento;

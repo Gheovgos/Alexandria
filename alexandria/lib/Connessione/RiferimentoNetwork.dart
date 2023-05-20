@@ -80,18 +80,18 @@ class RiferimentoNetwork {
 
   }
 
-  Future<Riferimento?> creaRiferimento(String titolo_riferimento, DateTime data_riferimento, tipo_enum tipo, String? URL, int DOI, bool on_line, String descr_riferimento,
+  Future<Riferimento?> creaRiferimento(String titolo_riferimento, DateTime data_riferimento, tipo_enum tipo, String? URL, int? DOI, bool on_line, String? descr_riferimento,
       String? editore, String? isbn, String? isnn, String? luogo, int? pag_inizio, int? pag_fine, int? edizione) async {
     _getMapping = "create";
 
-    print(DateUtils.dateOnly(data_riferimento).toString().substring(0, 10));
+
     _serverResponse = await post(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
     }, body: jsonEncode(<String, dynamic> {
       'id_Rif': 100,
       'titolo': titolo_riferimento,
       'dataCreazione': DateUtils.dateOnly(data_riferimento).toString().substring(0, 10),
-      'tipo': tipo.toString(),
-      'url': "www.springboot.org",
+      'tipo': tipo.toString().substring(10),
+      'url': URL                ,
       'doi': DOI,
       'digitale': on_line,
       'descrizione': descr_riferimento,
@@ -105,6 +105,10 @@ class RiferimentoNetwork {
     }),);
     print(_serverResponse.statusCode);
     print(url+_requestMapping+_getMapping);
+    print(DateUtils.dateOnly(data_riferimento).toString());
+    print(tipo.toString().substring(10));
+    print(DOI);
+
     if(_serverResponse.statusCode == 200) {
       return getRiferimentoByNome(titolo_riferimento);
     } else return null;
