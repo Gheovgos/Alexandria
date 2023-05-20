@@ -110,12 +110,12 @@ public class RiferimentoController {
         return riferimentiDto;
     }
 
-    @PostMapping("/create")
-    public void create(@RequestBody RiferimentoDto riferimentoDto)
+    @PostMapping("/create/{userID}")
+    @ResponseBody
+    public void create(@RequestBody RiferimentoDto riferimentoDto, @PathVariable int userID)
     {
-        System.out.println("Eccomi");
         Riferimento riferimento = convertEntity(riferimentoDto);
-        riferimentoService.create(riferimento);
+        riferimentoService.create(riferimento, userID);
     }
 
     @PutMapping("/update")

@@ -43,13 +43,16 @@ public class RiferimentoService {
         riferimentoRepository.save(riferimento);
     }
 
-    public void create(Riferimento riferimento)
+    public void create(Riferimento riferimento, int userID)
     {
-        riferimentoRepository.save(riferimento);
+        riferimentoRepository.save(riferimento).getIdRiferimento();
+        Integer rif_id = getRiferimentoByNome(riferimento.getTitolo_riferimento()).getIdRiferimento();
+        riferimentoRepository.insertAutoreRiferimento(rif_id, userID);
     }
 
     public void delete(Integer riferimentoId)
     {
         riferimentoRepository.deleteById(riferimentoId);
     }
+
 }
