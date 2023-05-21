@@ -124,6 +124,13 @@ public class RiferimentoController {
         riferimentoService.aggiungiCategoria(riferimento, categoriaID);
     }
 
+    @PostMapping("/create/aggiungiCitazione/{citazioneID}")
+    @ResponseBody
+    public void aggiungiCitazione(@RequestBody RiferimentoDto riferimentoDto, @PathVariable int citazioneID) {
+        Riferimento riferimento = convertEntity(riferimentoDto);
+        riferimentoService.aggiungiCitazione(riferimento, citazioneID);
+    }
+
 
     @PostMapping("/create/{userID}/{categoriaID}/{riferimentoCitatoID}")
     @ResponseBody
