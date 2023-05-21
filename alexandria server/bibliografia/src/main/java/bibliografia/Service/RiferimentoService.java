@@ -45,7 +45,8 @@ public class RiferimentoService {
 
     public void create(Riferimento riferimento, int userID)
     {
-        riferimentoRepository.save(riferimento).getIdRiferimento();
+        riferimentoRepository.save(riferimento);
+
         Integer rif_id = getRiferimentoByNome(riferimento.getTitolo_riferimento()).getIdRiferimento();
         riferimentoRepository.insertAutoreRiferimento(rif_id, userID);
     }
