@@ -127,12 +127,52 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
           AlexandriaRoundedButton(
             padding:
                 const EdgeInsets.only(left: 50, right: 50, top: 20, bottom: 20),
-            elevation: 2,
+            elevation: kButtonElevation,
             child: const Text(
               'Salva',
               style: TextStyle(fontSize: 16),
             ),
-            onPressed: () {},
+            onPressed: () {
+              showDialog<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    actionsAlignment: MainAxisAlignment.spaceAround,
+                    content: const SingleChildScrollView(
+                      child: Text('Categoria creata con successo!'),
+                    ),
+                    actions: [
+                      AlexandriaRoundedButton(
+                        elevation: kButtonElevation,
+                        padding: const EdgeInsets.only(
+                          left: 30,
+                          right: 30,
+                          top: 20,
+                          bottom: 20,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Indietro'),
+                      ),
+                      AlexandriaRoundedButton(
+                        elevation: kButtonElevation,
+                        padding: const EdgeInsets.only(
+                          left: 30,
+                          right: 30,
+                          top: 20,
+                          bottom: 20,
+                        ),
+                        onPressed: () {
+                          // TODO(peppe): view_categoria_screen(nuova categoria)
+                        },
+                        child: const Text('Visualizza'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
           ),
         ],
       ),
