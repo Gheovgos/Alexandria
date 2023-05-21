@@ -92,9 +92,14 @@ class NetworkHelper {
     return _rifnet.aggiungiAutore(riferimento, autoreID);
   }
 
+  Future<bool?> aggiungiCategoria(Riferimento riferimento, int categoriaID) async {
+    return _rifnet.aggiungiCategoria(riferimento, categoriaID);
+  }
+
   Future<Riferimento?> getRiferimentoByNome(String titolo) async {
     return _rifnet.getRiferimentoByNome(titolo);
   }
+
 
 
 }

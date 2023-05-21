@@ -144,6 +144,36 @@ class RiferimentoNetwork {
 
   }
 
+  Future<bool?> aggiungiCategoria(Riferimento r, int categoriaID) async {
+    Riferimento? riferimento = await getRiferimentoByNome(r.titolo_riferimento) as Riferimento?;
+    if(await r != null) {
+      _getMapping = "/create/aggiungiCategoria/"+categoriaID.toString();
+      _serverResponse = await post(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
+      }, body: jsonEncode(<String, dynamic> {
+        'id_Rif': riferimento?.id_riferimento,
+        'titolo': riferimento?.titolo_riferimento,
+        'dataCreazione': riferimento?.data_riferimento.toString().substring(0, 10),
+        'tipo': riferimento?.tipo.toString().substring(10),
+        'url': riferimento?.URL,
+        'doi': riferimento?.DOI,
+        'digitale': riferimento?.on_line,
+        'descrizione': riferimento?.descr_riferimento,
+        'editore': riferimento?.editore,
+        'isbn': riferimento?.isbn,
+        'isnn': riferimento?.isnn,
+        'luogo': riferimento?.luogo,
+        'pag_inizio': riferimento?.pag_inizio,
+        'pag_fine': riferimento?.pag_fine,
+        'edizione': riferimento?.edizione,
+      }),);
+
+      if(_serverResponse.statusCode == 200) {
+        return true;
+      } else return false;
+    } else return false;
+
+  }
+
   //Non c'è corrispondenza nel server Spring Boot. Da eliminare o aggiungere.
   Future<int?> _getNextId() async {
     _getMapping = "/getNextId";
