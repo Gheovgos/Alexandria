@@ -110,12 +110,19 @@ public class RiferimentoController {
         return riferimentiDto;
     }
 
-    @PostMapping("/create/{userID}")
+    @PostMapping("/create/aggiungiAutore/{autoreID}")
     @ResponseBody
-    public void create(@RequestBody RiferimentoDto riferimentoDto, @PathVariable int userID)
+    public void aggiungiAutore(@RequestBody RiferimentoDto riferimentoDto, @PathVariable int autoreID) {
+        Riferimento riferimento = convertEntity(riferimentoDto);
+        riferimentoService.aggiungiAutore(riferimento, autoreID);
+    }
+
+    @PostMapping("/create/{userID}/{categoriaID}/{riferimentoCitatoID}")
+    @ResponseBody
+    public void create(@RequestBody RiferimentoDto riferimentoDto, @PathVariable int userID, @PathVariable int categoriaID, @PathVariable Integer riferimentoCitatoID)
     {
         Riferimento riferimento = convertEntity(riferimentoDto);
-        riferimentoService.create(riferimento, userID);
+        riferimentoService.create(riferimento, userID, categoriaID, riferimentoCitatoID);
     }
 
     @PutMapping("/update")

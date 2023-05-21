@@ -43,12 +43,18 @@ public class RiferimentoService {
         riferimentoRepository.save(riferimento);
     }
 
-    public void create(Riferimento riferimento, int userID)
-    {
-        riferimentoRepository.save(riferimento);
+    public void aggiungiAutore(Riferimento riferimento, int autoreID) {
+        riferimentoRepository.insertAutoreRiferimento(riferimento.getIdRiferimento(), autoreID);
+    }
 
-        Integer rif_id = getRiferimentoByNome(riferimento.getTitolo_riferimento()).getIdRiferimento();
-        riferimentoRepository.insertAutoreRiferimento(rif_id, userID);
+    public void create(Riferimento riferimento, int userID, int categoriaID, Integer riferimentoCitatoID)
+    {
+        if(riferimentoRepository.save(riferimento) != null) {
+            Integer rif_id = getRiferimentoByNome(riferimento.getTitolo_riferimento()).getIdRiferimento();
+            riferimentoRepository.insertAutoreRiferimento(rif_id, userID);
+            riferimentoRepository.insertCategoriaRiferimento(rif_id, categoriaID);
+            if(riferimentoCitatoID != -1) riferimentoRepository.insertRiferimentoCitante(riferimentoCitatoID, rif_id);
+        }
     }
 
     public void delete(Integer riferimentoId)
