@@ -59,4 +59,9 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
 
     void insertRiferimentoCitante(@Param("riferimento_citato_id_riferimento") int riferimento_citato_id_riferimento, @Param("riferimento_citante_id_riferimento") int riferimento_citante_id_riferimento);
 
+    void updateAutore();
+
+    void updateCategoria();
+
+    void updateCitazione();
 }
