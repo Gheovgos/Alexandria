@@ -43,6 +43,10 @@ public class RiferimentoService {
         riferimentoRepository.save(riferimento);
     }
 
+    public void aggiungiAutore(Riferimento riferimento, int autoreID) {
+        riferimentoRepository.insertAutoreRiferimento(riferimento.getIdRiferimento(), autoreID);
+    }
+
     public void create(Riferimento riferimento, int userID, int categoriaID, Integer riferimentoCitatoID)
     {
         if(riferimentoRepository.save(riferimento) != null) {
