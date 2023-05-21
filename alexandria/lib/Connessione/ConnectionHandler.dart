@@ -96,6 +96,10 @@ class NetworkHelper {
     return _rifnet.aggiungiCategoria(riferimento, categoriaID);
   }
 
+  Future<bool?> aggiungiCitazione(Riferimento riferimento, int citanteID) async {
+    return _rifnet.aggiungiCitazione(riferimento, citanteID);
+  }
+
   Future<Riferimento?> getRiferimentoByNome(String titolo) async {
     return _rifnet.getRiferimentoByNome(titolo);
   }
