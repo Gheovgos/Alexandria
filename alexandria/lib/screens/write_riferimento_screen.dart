@@ -14,6 +14,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kAlexandriaGreen,
       bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 2),
       body: Column(
