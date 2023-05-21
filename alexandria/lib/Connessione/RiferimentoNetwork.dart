@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import '../Model/Categoria.dart';
 import '../Model/Riferimento.dart';
 import '../Model/tipo_enum.dart';
 
@@ -80,36 +81,40 @@ class RiferimentoNetwork {
 
   }
 
-  Future<Riferimento?> creaRiferimento(String titolo_riferimento, DateTime data_riferimento, tipo_enum tipo, String? URL, int? DOI, bool on_line, String? descr_riferimento,
-      String? editore, String? isbn, String? isnn, String? luogo, int? pag_inizio, int? pag_fine, int? edizione, int userID) async {
-    _getMapping = "/create/"+userID.toString();
+  Future<Riferimento?> creaRiferimento(Riferimento riferimento, Categoria categoria, int userID, Riferimento? rifCitanto) async {
+    if(rifCitanto == null) {
+      _getMapping = "/create/"+userID.toString()+"/"+categoria.id_categoria.toString()+"/-1";
+    } else _getMapping = "/create/"+userID.toString()+"/"+categoria.id_categoria.toString()+"/"+rifCitanto.id_riferimento.toString();
+
 
 
     _serverResponse = await post(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
     }, body: jsonEncode(<String, dynamic> {
-      'id_Rif': 1000,
-      'titolo': titolo_riferimento,
-      'dataCreazione': DateUtils.dateOnly(data_riferimento).toString().substring(0, 10),
-      'tipo': tipo.toString().substring(10),
-      'url': URL                ,
-      'doi': DOI,
-      'digitale': on_line,
-      'descrizione': descr_riferimento,
-      'editore': editore,
-      'isbn': isbn,
-      'isnn': isnn,
-      'luogo': luogo,
-      'pag_inizio': pag_inizio,
-      'pag_fine': pag_fine,
-      'edizione': edizione,
+      'id_Rif': 1000, //placeholder
+      'titolo': riferimento.titolo_riferimento,
+      'dataCreazione': DateUtils.dateOnly(riferimento.data_riferimento).toString().substring(0, 10),
+      'tipo': riferimento.tipo.toString().substring(10),
+      'url': riferimento.URL,
+      'doi': riferimento.DOI,
+      'digitale': riferimento.on_line,
+      'descrizione': riferimento.descr_riferimento,
+      'editore': riferimento.editore,
+      'isbn': riferimento.isbn,
+      'isnn': riferimento.isnn,
+      'luogo': riferimento.luogo,
+      'pag_inizio': riferimento.pag_inizio,
+      'pag_fine': riferimento.pag_fine,
+      'edizione': riferimento.edizione,
     }),);
 
+    print(_serverResponse.statusCode);
     if(_serverResponse.statusCode == 200) {
-      return await getRiferimentoByNome(titolo_riferimento);
+      return await getRiferimentoByNome(riferimento.titolo_riferimento);
     } else return null;
 
   }
 
+  //Non c'è corrispondenza nel server Spring Boot. Da eliminare o aggiungere.
   Future<int?> _getNextId() async {
     _getMapping = "/getNextId";
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
