@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class MiniInfoBox extends StatelessWidget {
-  const MiniInfoBox({required this.name, super.key, this.fontSize});
+  const MiniInfoBox(
+      {required this.name, super.key, this.fontSize, this.icon, this.onTap});
   final String name;
   final double? fontSize;
+  final IconData? icon;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +33,10 @@ class MiniInfoBox extends StatelessWidget {
                   name,
                   style: TextStyle(fontSize: fontSize ?? 15),
                 ),
-                const Icon(Icons.info_outline)
+                GestureDetector(
+                  onTap: onTap ?? () {},
+                  child: Icon(icon ?? Icons.info_outline),
+                )
               ],
             ),
           ),
