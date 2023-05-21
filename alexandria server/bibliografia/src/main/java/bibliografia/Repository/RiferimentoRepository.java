@@ -46,4 +46,17 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     @Transactional
 
     void insertAutoreRiferimento(@Param("id_riferimento_id_riferimento") int id_riferimento_id_riferimento, @Param("utente_user_id") int utente_user_id);
+
+    @Modifying
+    @Query(value = "INSERT INTO riferimenti_biblio_categorie VALUES (:riferimento_id_riferimento, :categorie_id_categoria)", nativeQuery = true)
+    @Transactional
+
+    void insertCategoriaRiferimento(@Param("riferimento_id_riferimento") int riferimento_id_riferimento, @Param("categorie_id_categoria") int categorie_id_categoria);
+
+    @Modifying
+    @Query(value = "INSERT INTO riferimenti_biblio_riferimento_citante VALUES (:riferimento_citato_id_riferimento, :riferimento_citante_id_riferimento)", nativeQuery = true)
+    @Transactional
+
+    void insertRiferimentoCitante(@Param("riferimento_citato_id_riferimento") int riferimento_citato_id_riferimento, @Param("riferimento_citante_id_riferimento") int riferimento_citante_id_riferimento);
+
 }
