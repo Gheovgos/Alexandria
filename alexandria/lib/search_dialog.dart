@@ -33,17 +33,17 @@ class SearchDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               AlexandriaRoundedButton(
-                elevation: 2,
+                elevation: kButtonElevation,
                 child: const Text('Articoli'),
                 onPressed: () {},
               ),
               AlexandriaRoundedButton(
-                elevation: 2,
+                elevation: kButtonElevation,
                 child: const Text('Libri'),
                 onPressed: () {},
               ),
               AlexandriaRoundedButton(
-                elevation: 2,
+                elevation: kButtonElevation,
                 child: const Text('Fascicoli'),
                 onPressed: () {},
               ),
@@ -53,12 +53,12 @@ class SearchDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               AlexandriaRoundedButton(
-                elevation: 2,
+                elevation: kButtonElevation,
                 child: const Text('Riviste'),
                 onPressed: () {},
               ),
               AlexandriaRoundedButton(
-                elevation: 2,
+                elevation: kButtonElevation,
                 child: const Text('Conferenze'),
                 onPressed: () {},
               ),
@@ -121,19 +121,19 @@ class SearchDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               AlexandriaRoundedButton(
-                elevation: 2,
+                elevation: kButtonElevation,
                 child: const Text('Titolo'),
                 onPressed: () {},
               ),
               AlexandriaRoundedButton(
-                elevation: 2,
+                elevation: kButtonElevation,
                 child: const Text('DOI'),
                 onPressed: () {},
               ),
             ],
           ),
           AlexandriaRoundedButton(
-            elevation: 2,
+            elevation: kButtonElevation,
             child: const Text('Autore'),
             onPressed: () {},
           ),
@@ -143,7 +143,7 @@ class SearchDialog extends StatelessWidget {
       actions: [
         AlexandriaRoundedButton(
           border: const CircleBorder(),
-          elevation: 2,
+          elevation: kButtonElevation,
           child: const Icon(
             Icons.arrow_back,
             size: 30,
@@ -155,7 +155,7 @@ class SearchDialog extends StatelessWidget {
           },
         ),
         AlexandriaRoundedButton(
-          elevation: 2,
+          elevation: kButtonElevation,
           child: const Icon(
             Icons.search,
             size: 50,

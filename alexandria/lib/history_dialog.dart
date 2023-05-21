@@ -89,7 +89,7 @@ class _HistoryDialogState extends State<HistoryDialog> {
       actions: [
         AlexandriaRoundedButton(
           border: const CircleBorder(),
-          elevation: 2,
+          elevation: kButtonElevation,
           child: const Icon(
             Icons.arrow_back,
             size: 40,

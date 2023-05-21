@@ -27,3 +27,4 @@ const InputDecoration kInputDecoration = InputDecoration(
 const List<Shadow> kTextElevation = [
   Shadow(offset: Offset(0, 2), blurRadius: 5, color: Colors.grey),
 ];
+const double kButtonElevation = 5;

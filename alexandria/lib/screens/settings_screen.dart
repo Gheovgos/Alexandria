@@ -218,7 +218,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 AlexandriaRoundedButton(
-                                  elevation: 1,
+                                  elevation: kButtonElevation,
                                   borderColor: Colors.grey,
                                   onPressed: () {},
                                   child: const Text(
@@ -230,7 +230,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   ),
                                 ),
                                 AlexandriaRoundedButton(
-                                  elevation: 1,
+                                  elevation: kButtonElevation,
                                   borderColor: Colors.grey,
                                   onPressed: () {},
                                   child: const Text(

@@ -209,7 +209,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                             Center(
                               child: AlexandriaRoundedButton(
-                                elevation: 1,
+                                elevation: kButtonElevation,
                                 borderColor: Colors.grey,
                                 onPressed: () {},
                                 child: const Text(

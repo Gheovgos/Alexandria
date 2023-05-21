@@ -63,7 +63,7 @@ class _NetErrorScreenState extends State<NetErrorScreen> {
             ),
           ),
           AlexandriaRoundedButton(
-            elevation: 2,
+            elevation: kButtonElevation,
             padding: const EdgeInsets.all(15),
             backgroundColor: Colors.white,
             child: Text(

@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     AlexandriaRoundedButton(
-                      elevation: 5,
+                      elevation: kButtonElevation,
                       child: Text(
                         'Registrati',
                         style: TextStyle(
@@ -111,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                     AlexandriaRoundedButton(
-                      elevation: 5,
+                      elevation: kButtonElevation,
                       child: Text(
                         'Accedi',
                         style: TextStyle(

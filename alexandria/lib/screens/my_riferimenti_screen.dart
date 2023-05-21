@@ -64,7 +64,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                       ),
                     ),
                     AlexandriaRoundedButton(
-                      elevation: 2,
+                      elevation: kButtonElevation,
                       child: const Icon(Icons.search),
                       onPressed: () {},
                     ),
@@ -75,7 +75,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                 ),
                 const Text('Ordina:'),
                 AlexandriaRoundedButton(
-                  elevation: 2,
+                  elevation: kButtonElevation,
                   onPressed: () {},
                   child: const Icon(Icons.filter_list_outlined),
                 ),
@@ -116,7 +116,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                   children: [
                     AlexandriaRoundedButton(
                       onPressed: () {},
-                      elevation: 2,
+                      elevation: kButtonElevation,
                       child: const Text(
                         'Modifica',
                         style: TextStyle(fontSize: 15),
@@ -124,7 +124,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                     ),
                     AlexandriaRoundedButton(
                       onPressed: () {},
-                      elevation: 2,
+                      elevation: kButtonElevation,
                       child: const Text(
                         'Cancella',
                         style: TextStyle(fontSize: 15),
@@ -134,7 +134,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                 ),
                 AlexandriaRoundedButton(
                   onPressed: () {},
-                  elevation: 2,
+                  elevation: kButtonElevation,
                   child: const Text(
                     'Visualizza',
                     style: TextStyle(fontSize: 15),

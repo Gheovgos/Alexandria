@@ -194,6 +194,7 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                     const SizedBox(),
                     const Text('Descrizione'),
                     AlexandriaRoundedButton(
+                      elevation: kButtonElevation,
                       child: const Icon(Icons.add),
                       onPressed: () {},
                     ),
