@@ -8,7 +8,7 @@ import '../Model/tipo_enum.dart';
 
 class RiferimentoNetwork {
   String url;
-  String _requestMapping = "/api/v1/riferimento";
+  final String _requestMapping = "/api/v1/riferimento";
   late String _getMapping;
   late Response _serverResponse;
   late Riferimento _riferimento;
@@ -112,6 +112,49 @@ class RiferimentoNetwork {
       return await getRiferimentoByNome(riferimento.titolo_riferimento);
     } else return null;
 
+  }
+
+  Future<Riferimento?> aggiornaRiferimento(Riferimento r, Categoria? nuovaCategoria, int? nuovoAutore, Riferimento? nuovaCitazone) async {
+    Riferimento? riferimento = await getRiferimentoById(r.id_riferimento) as Riferimento?;
+    if(riferimento == null) return null;
+
+    late String categoriaID;
+    late String autoreID;
+    late String citatoID;
+
+    if(nuovaCategoria == null) categoriaID = "-1";
+    else categoriaID = nuovaCategoria.id_categoria.toString();
+
+    if(nuovoAutore == null) autoreID = "-1";
+    else autoreID = nuovoAutore.toString();
+
+    if(nuovaCitazone == null) citatoID = "-1";
+    else citatoID = nuovaCitazone.id_riferimento.toString();
+
+    _getMapping = "/update/"+autoreID+"/"+categoriaID+"/"+citatoID;
+
+    _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
+    }, body: jsonEncode(<String, dynamic> {
+      'id_Rif': riferimento.id_riferimento,
+      'titolo': riferimento.titolo_riferimento,
+      'dataCreazione': riferimento.data_riferimento.toString().substring(0, 10),
+      'tipo': riferimento.tipo.toString().substring(10),
+      'url': riferimento.URL,
+      'doi': riferimento.DOI,
+      'digitale': riferimento.on_line,
+      'descrizione': riferimento.descr_riferimento,
+      'editore': riferimento.editore,
+      'isbn': riferimento.isbn,
+      'isnn': riferimento.isnn,
+      'luogo': riferimento.luogo,
+      'pag_inizio': riferimento.pag_inizio,
+      'pag_fine': riferimento.pag_fine,
+      'edizione': riferimento.edizione,
+    }),);
+
+    if(_serverResponse.statusCode == 200) {
+      return await getRiferimentoById(riferimento.id_riferimento);
+    } else return null;
   }
 
   Future<bool?> aggiungiAutore(Riferimento r, int autoreID) async {

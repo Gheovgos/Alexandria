@@ -104,6 +104,10 @@ class NetworkHelper {
     return _rifnet.getRiferimentoByNome(titolo);
   }
 
+  Future<Riferimento?> aggiornaRiferimento(Riferimento r, Categoria? nuovaCategoria, int? nuovoAutore, Riferimento? nuovaCitazone) async {
+    return _rifnet.aggiornaRiferimento(r, nuovaCategoria, nuovoAutore, nuovaCitazone);
+  }
+
 
 
 }
