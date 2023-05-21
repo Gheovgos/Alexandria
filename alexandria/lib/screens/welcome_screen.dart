@@ -1,10 +1,10 @@
+import 'package:alexandria/alexandria_container.dart';
+import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:flutter/material.dart';
-import '../alexandria_container.dart';
-import '../alexandria_rounded_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
+  const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   Image.asset(
                     'assets/alexandria_name_white.png',
-                    height: 170.0,
+                    height: 170,
                   ),
                   const SizedBox(
                     height: 40,
@@ -52,15 +52,16 @@ class WelcomeScreen extends StatelessWidget {
             ),
           ),
           AlexandriaRoundedButton(
-            elevation: 2.0,
-            padding: const EdgeInsets.all(15.0),
+            elevation: 2,
+            padding: const EdgeInsets.all(15),
             backgroundColor: Colors.white,
             child: Text(
-              "Unisciti",
+              'Unisciti',
               style: TextStyle(
-                  color: Colors.black.withOpacity(0.7),
-                  fontSize: 15,
-                  shadows: kTextElevation),
+                color: Colors.black.withOpacity(0.7),
+                fontSize: 15,
+                shadows: kTextElevation,
+              ),
             ),
             onPressed: () {
               Navigator.pushNamed(context, 'login');

@@ -1,12 +1,11 @@
 import 'package:alexandria/alexandria_navigation_bar.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
 
-import '../mini_info_box.dart';
-
 class MyRiferimentiScreen extends StatefulWidget {
-  const MyRiferimentiScreen({Key? key}) : super(key: key);
+  const MyRiferimentiScreen({super.key});
 
   @override
   State<MyRiferimentiScreen> createState() => _MyRiferimentiScreenState();
@@ -37,9 +36,11 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 const Text(
-                  "Riferimenti creati",
+                  'Riferimenti creati',
                   style: TextStyle(fontSize: 16),
                 ),
                 Row(
@@ -49,7 +50,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                       width: 250,
                       child: Material(
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(33.0)),
+                            const BorderRadius.all(Radius.circular(33)),
                         elevation: 5,
                         child: TextField(
                           style: const TextStyle(color: Colors.black),
@@ -57,7 +58,8 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                           textAlign: TextAlign.left,
                           onChanged: (value) {},
                           decoration: kInputDecoration.copyWith(
-                              hintText: 'Cerca riferimento...'),
+                            hintText: 'Cerca riferimento...',
+                          ),
                         ),
                       ),
                     ),
@@ -71,30 +73,34 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                const Text("Ordina:"),
+                const Text('Ordina:'),
                 AlexandriaRoundedButton(
                   elevation: 2,
                   onPressed: () {},
                   child: const Icon(Icons.filter_list_outlined),
                 ),
-                Container(
+                DecoratedBox(
                   decoration: BoxDecoration(
-                      color: kAlexandriaGreen,
-                      borderRadius: BorderRadius.circular(20)),
+                    color: kAlexandriaGreen,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 20, top: 10, right: 20, bottom: 15),
+                      left: 20,
+                      top: 10,
+                      right: 20,
+                      bottom: 15,
+                    ),
                     child: SizedBox(
                       height: 240,
                       width: 300,
                       child: ListView.builder(
-                        padding: const EdgeInsets.all(0),
-                        scrollDirection: Axis.vertical,
+                        padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         itemCount: 6,
                         itemBuilder: (BuildContext context, int index) {
                           return MiniInfoBox(
-                            name: "Riferimento $index",
+                            name: 'Riferimento $index',
                             fontSize: 15,
                           );
                         },
@@ -102,21 +108,27 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     AlexandriaRoundedButton(
                       onPressed: () {},
                       elevation: 2,
-                      child: const Text("Modifica",
-                          style: TextStyle(fontSize: 15)),
+                      child: const Text(
+                        'Modifica',
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
                     AlexandriaRoundedButton(
                       onPressed: () {},
                       elevation: 2,
-                      child: const Text("Cancella",
-                          style: TextStyle(fontSize: 15)),
+                      child: const Text(
+                        'Cancella',
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
                   ],
                 ),
@@ -124,12 +136,13 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                   onPressed: () {},
                   elevation: 2,
                   child: const Text(
-                    "Visualizza",
+                    'Visualizza',
                     style: TextStyle(fontSize: 15),
                   ),
+                ),
+                const SizedBox(
+                  height: 10,
                 )
-                ,
-                const SizedBox(height: 10,)
               ],
             ),
           ),
