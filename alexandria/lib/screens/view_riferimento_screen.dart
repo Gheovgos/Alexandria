@@ -17,7 +17,55 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
-        onPressed: () {},
+        onPressed: () {
+          showDialog<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                actionsAlignment: MainAxisAlignment.spaceAround,
+                content: SizedBox(
+                  height: 150,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text('Link associato:'),
+                      MiniInfoBox(name: 'https://urlname.domain/text',icon: Icons.copy,),
+                      Text('Desideri aprire il link?'),
+                    ],
+                  ),
+                ),
+                actions: [
+                  AlexandriaRoundedButton(
+                    elevation: kButtonElevation,
+                    padding: const EdgeInsets.only(
+                      left: 30,
+                      right: 30,
+                      top: 20,
+                      bottom: 20,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('No'),
+                  ),
+                  AlexandriaRoundedButton(
+                    elevation: kButtonElevation,
+                    padding: const EdgeInsets.only(
+                      left: 30,
+                      right: 30,
+                      top: 20,
+                      bottom: 20,
+                    ),
+                    onPressed: () {
+                      // TODO(peppe): apri link
+                    },
+                    child: const Text('Sì'),
+                  ),
+                ],
+              );
+            },
+          );
+        },
         child: const Icon(
           Icons.link,
           color: Colors.black,
