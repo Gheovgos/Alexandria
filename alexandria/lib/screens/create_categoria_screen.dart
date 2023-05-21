@@ -1,12 +1,11 @@
 import 'package:alexandria/alexandria_navigation_bar.dart';
+import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
 
-import '../alexandria_rounded_button.dart';
-import '../mini_info_box.dart';
-
 class CreateCategoriaScreen extends StatefulWidget {
-  const CreateCategoriaScreen({Key? key}) : super(key: key);
+  const CreateCategoriaScreen({super.key});
 
   @override
   State<CreateCategoriaScreen> createState() => _CreateCategoriaScreenState();
@@ -17,40 +16,46 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 3,),
+      bottomNavigationBar: const AlexandriaNavigationBar(
+        currentIndex: 3,
+      ),
       backgroundColor: kAlexandriaGreen,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(
             height: 50,
           ),
-          Container(
+          DecoratedBox(
             decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(50)),
-                color: Colors.white),
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+              color: Colors.white,
+            ),
             child: Column(
               children: [
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 const Text(
-                  "Nome Categoria",
+                  'Nome Categoria',
                   style: TextStyle(fontSize: 16),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15),
                   child: TextField(
-                      style: const TextStyle(color: Colors.black),
-                      keyboardType: TextInputType.emailAddress,
-                      textAlign: TextAlign.left,
-                      onChanged: (value) {},
-                      decoration: kInputDecoration.copyWith(
-                          hintText: 'Inserisci nome...')),
+                    style: const TextStyle(color: Colors.black),
+                    keyboardType: TextInputType.emailAddress,
+                    textAlign: TextAlign.left,
+                    onChanged: (value) {},
+                    decoration: kInputDecoration.copyWith(
+                      hintText: 'Inserisci nome...',
+                    ),
+                  ),
                 ),
                 const Text(
-                  "Sotto-Categoria",
+                  'Sotto-Categoria',
                   style: TextStyle(fontSize: 16),
                 ),
-                Container(
+                DecoratedBox(
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(50)),
                   ),
@@ -62,36 +67,43 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                         child: Container(
                           width: 320,
                           decoration: BoxDecoration(
-                              color: kAlexandriaGreen,
-                              borderRadius: BorderRadius.circular(20)),
+                            color: kAlexandriaGreen,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                left: 20, top: 15, right: 20, bottom: 15),
+                              left: 20,
+                              top: 15,
+                              right: 20,
+                              bottom: 15,
+                            ),
                             child: Column(
                               children: [
                                 Material(
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(33.0)),
+                                    Radius.circular(33),
+                                  ),
                                   elevation: 5,
                                   child: TextField(
-                                      style:
-                                          const TextStyle(color: Colors.black),
-                                      keyboardType: TextInputType.emailAddress,
-                                      textAlign: TextAlign.left,
-                                      onChanged: (value) {},
-                                      decoration: kInputDecoration.copyWith(
-                                          hintText: 'Cerca categoria...')),
+                                    style: const TextStyle(color: Colors.black),
+                                    keyboardType: TextInputType.emailAddress,
+                                    textAlign: TextAlign.left,
+                                    onChanged: (value) {},
+                                    decoration: kInputDecoration.copyWith(
+                                      hintText: 'Cerca categoria...',
+                                    ),
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 300,
                                   child: ListView.builder(
-                                    scrollDirection: Axis.vertical,
                                     shrinkWrap: true,
                                     itemCount: 10,
                                     itemBuilder:
                                         (BuildContext context, int index) {
                                       return MiniInfoBox(
-                                          name: "Categoria $index");
+                                        name: 'Categoria $index',
+                                      );
                                     },
                                   ),
                                 ),
@@ -103,19 +115,64 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 50,)
+                const SizedBox(
+                  height: 50,
+                )
               ],
             ),
           ),
-          const SizedBox(height: 30,),
+          const SizedBox(
+            height: 30,
+          ),
           AlexandriaRoundedButton(
-            padding: EdgeInsets.only(left: 50,right: 50,top: 20,bottom: 20),
-            elevation: 2,
+            padding:
+                const EdgeInsets.only(left: 50, right: 50, top: 20, bottom: 20),
+            elevation: kButtonElevation,
             child: const Text(
-              "Salva",
+              'Salva',
               style: TextStyle(fontSize: 16),
             ),
-            onPressed: () {},
+            onPressed: () {
+              showDialog<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    actionsAlignment: MainAxisAlignment.spaceAround,
+                    content: const SingleChildScrollView(
+                      child: Text('Categoria creata con successo!'),
+                    ),
+                    actions: [
+                      AlexandriaRoundedButton(
+                        elevation: kButtonElevation,
+                        padding: const EdgeInsets.only(
+                          left: 30,
+                          right: 30,
+                          top: 20,
+                          bottom: 20,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Indietro'),
+                      ),
+                      AlexandriaRoundedButton(
+                        elevation: kButtonElevation,
+                        padding: const EdgeInsets.only(
+                          left: 30,
+                          right: 30,
+                          top: 20,
+                          bottom: 20,
+                        ),
+                        onPressed: () {
+                          // TODO(peppe): view_categoria_screen(nuova categoria)
+                        },
+                        child: const Text('Visualizza'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
           ),
         ],
       ),

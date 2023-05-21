@@ -38,9 +38,12 @@ public class RiferimentoService {
 
     public Integer getNextId(){return riferimentoRepository.getNextId();}
 
-    public void update(Riferimento riferimento)
+    public void update(Riferimento riferimento, int autoreID, int categoriaID, int citatoID)
     {
         riferimentoRepository.save(riferimento);
+        if(autoreID != -1) riferimentoRepository.updateAutore();
+        if(categoriaID != -1) riferimentoRepository.updateCategoria();
+        if(citatoID != -1) riferimentoRepository.updateCitazione();
     }
 
     public void aggiungiAutore(Riferimento riferimento, int autoreID) {
@@ -49,6 +52,10 @@ public class RiferimentoService {
 
     public void aggiungiCategoria(Riferimento riferimento, int categoriaID) {
         riferimentoRepository.insertCategoriaRiferimento(riferimento.getIdRiferimento(), categoriaID);
+    }
+
+    public void aggiungiCitazione(Riferimento riferimento, int citanteID) {
+        riferimentoRepository.insertRiferimentoCitante(riferimento.getIdRiferimento(), citanteID);
     }
 
     public void create(Riferimento riferimento, int userID, int categoriaID, Integer riferimentoCitatoID)

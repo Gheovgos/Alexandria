@@ -1,12 +1,11 @@
 import 'package:alexandria/alexandria_navigation_bar.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
 
-import '../mini_info_box.dart';
-
 class ViewRiferimentoScreen extends StatefulWidget {
-  const ViewRiferimentoScreen({Key? key}) : super(key: key);
+  const ViewRiferimentoScreen({super.key});
 
   @override
   State<ViewRiferimentoScreen> createState() => _ViewRiferimentoScreenState();
@@ -18,8 +17,11 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
-        onPressed: () {  },
-        child: const Icon(Icons.link,color: Colors.black,),
+        onPressed: () {},
+        child: const Icon(
+          Icons.link,
+          color: Colors.black,
+        ),
       ),
       backgroundColor: kAlexandriaGreen,
       bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 1),
@@ -30,14 +32,15 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
               height: 30,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Container(
+                DecoratedBox(
                   decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(50),
-                          bottomRight: Radius.circular(50)),
-                      color: Colors.white),
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(50),
+                      bottomRight: Radius.circular(50),
+                    ),
+                    color: Colors.white,
+                  ),
                   child: SizedBox(
                     height: 100,
                     width: 350,
@@ -46,18 +49,18 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "Titolo Riferimento",
+                          'Titolo Riferimento',
                           style: TextStyle(fontSize: 24),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
                             Text(
-                              "Data: gg/mm/aaaa",
+                              'Data: gg/mm/aaaa',
                               style: TextStyle(fontSize: 16),
                             ),
                             Text(
-                              "Edizione: Num",
+                              'Edizione: Num',
                               style: TextStyle(fontSize: 16),
                             ),
                             SizedBox(
@@ -74,67 +77,96 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                 )
               ],
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Container(
               padding: const EdgeInsetsDirectional.only(
-                  start: 120, end: 120, top: 10, bottom: 10),
+                start: 120,
+                end: 120,
+                top: 10,
+                bottom: 10,
+              ),
               decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(50))),
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+              ),
               child: const Text(
-                "Luogo",
+                'Luogo',
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Container(
               padding: const EdgeInsetsDirectional.only(
-                  start: 50, end: 50, top: 10, bottom: 10),
+                start: 50,
+                end: 50,
+                top: 10,
+                bottom: 10,
+              ),
               decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(50))),
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+              ),
               child: Column(
                 children: const [
                   Text(
-                    "Tipo riferimento",
+                    'Tipo riferimento',
                   ),
-                  SizedBox(height: 10,),
-                  Text("da pagina XXX a pagina YYY")
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text('da pagina XXX a pagina YYY')
                 ],
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Container(
               padding: const EdgeInsetsDirectional.only(
-                  start: 20, end: 20, top: 10, bottom: 30),
+                start: 20,
+                end: 20,
+                top: 10,
+                bottom: 30,
+              ),
               decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(50))),
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+              ),
               child: Column(
                 children: [
                   const Text(
-                    "Autori",
+                    'Autori',
                     style: TextStyle(fontSize: 16),
                   ),
-                  const SizedBox(height: 10,),
-                  Container(
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  DecoratedBox(
                     decoration: BoxDecoration(
-                        color: kAlexandriaGreen,
-                        borderRadius: BorderRadius.circular(20)),
+                      color: kAlexandriaGreen,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.only(
-                          left: 10, top: 10, right: 10, bottom: 15),
+                        left: 10,
+                        top: 10,
+                        right: 10,
+                        bottom: 15,
+                      ),
                       child: SizedBox(
                         height: 150,
                         width: 250,
                         child: ListView.builder(
-                          padding: const EdgeInsets.all(0),
-                          scrollDirection: Axis.vertical,
+                          padding: EdgeInsets.zero,
                           shrinkWrap: true,
                           itemCount: 6,
                           itemBuilder: (BuildContext context, int index) {
                             return MiniInfoBox(
-                              name: "Autore $index",
+                              name: 'Autore $index',
                               fontSize: 15,
                             );
                           },
@@ -145,11 +177,14 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 20,),
-            Container(
+            const SizedBox(
+              height: 20,
+            ),
+            DecoratedBox(
               decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(50))),
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+              ),
               child: SizedBox(
                 width: 300,
                 child: Row(
@@ -157,44 +192,61 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                   children: [
                     const SizedBox(),
                     const SizedBox(),
-                    const Text("Descrizione"),
-                    AlexandriaRoundedButton(child: const Icon(Icons.add), onPressed: () {},),
+                    const Text('Descrizione'),
+                    AlexandriaRoundedButton(
+                      elevation: kButtonElevation,
+                      child: const Icon(Icons.add),
+                      onPressed: () {},
+                    ),
                   ],
                 ),
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Container(
               padding: const EdgeInsetsDirectional.only(
-                  start: 20, end: 20, top: 10, bottom: 30),
+                start: 20,
+                end: 20,
+                top: 10,
+                bottom: 30,
+              ),
               decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(50))),
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+              ),
               child: Column(
                 children: [
                   const Text(
-                    "Citazioni",
+                    'Citazioni',
                     style: TextStyle(fontSize: 16),
                   ),
-                  const SizedBox(height: 10,),
-                  Container(
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  DecoratedBox(
                     decoration: BoxDecoration(
-                        color: kAlexandriaGreen,
-                        borderRadius: BorderRadius.circular(20)),
+                      color: kAlexandriaGreen,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.only(
-                          left: 10, top: 10, right: 10, bottom: 15),
+                        left: 10,
+                        top: 10,
+                        right: 10,
+                        bottom: 15,
+                      ),
                       child: SizedBox(
                         height: 150,
                         width: 250,
                         child: ListView.builder(
-                          padding: const EdgeInsets.all(0),
-                          scrollDirection: Axis.vertical,
+                          padding: EdgeInsets.zero,
                           shrinkWrap: true,
                           itemCount: 6,
                           itemBuilder: (BuildContext context, int index) {
                             return MiniInfoBox(
-                              name: "Citazione $index",
+                              name: 'Citazione $index',
                               fontSize: 15,
                             );
                           },

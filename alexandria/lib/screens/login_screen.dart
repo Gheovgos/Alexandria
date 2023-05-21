@@ -1,11 +1,10 @@
+import 'package:alexandria/alexandria_container.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:flutter/material.dart';
 
-import '../alexandria_container.dart';
-
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -31,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Image.asset(
                     'assets/alexandria_name_white.png',
-                    height: 170.0,
+                    height: 170,
                   ),
                   const SizedBox(
                     height: 40,
@@ -45,21 +44,22 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               children: [
                 Material(
-                  borderRadius: const BorderRadius.all(Radius.circular(33.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(33)),
                   elevation: 5,
                   child: TextField(
-                      style: const TextStyle(color: Colors.black),
-                      keyboardType: TextInputType.emailAddress,
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {},
-                      decoration:
-                          kInputDecoration.copyWith(hintText: 'Username...')),
+                    style: const TextStyle(color: Colors.black),
+                    keyboardType: TextInputType.emailAddress,
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {},
+                    decoration:
+                        kInputDecoration.copyWith(hintText: 'Username...'),
+                  ),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Material(
-                  borderRadius: const BorderRadius.all(Radius.circular(33.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(33)),
                   elevation: 5,
                   child: TextField(
                     style: const TextStyle(color: Colors.black),
@@ -76,43 +76,48 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       children: [
                         Checkbox(
-                            value: rememberMe,
-                            onChanged: (value) {
-                              rememberMe = value!;
-                              setState(() {});
-                            }),
-                        const Text("Ricordami")
+                          value: rememberMe,
+                          onChanged: (value) {
+                            rememberMe = value!;
+                            setState(() {});
+                          },
+                        ),
+                        const Text('Ricordami')
                       ],
                     ),
                     TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Credenziali dimenticate?",
-                          style:
-                              TextStyle(decoration: TextDecoration.underline),
-                        ))
+                      onPressed: () {},
+                      child: const Text(
+                        'Credenziali dimenticate?',
+                        style: TextStyle(decoration: TextDecoration.underline),
+                      ),
+                    )
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     AlexandriaRoundedButton(
-                      elevation: 5,
+                      elevation: kButtonElevation,
                       child: Text(
-                        "Registrati",
+                        'Registrati',
                         style: TextStyle(
-                            fontSize: 15, color: Colors.black.withOpacity(0.7)),
+                          fontSize: 15,
+                          color: Colors.black.withOpacity(0.7),
+                        ),
                       ),
                       onPressed: () {
                         Navigator.pushNamed(context, 'register');
                       },
                     ),
                     AlexandriaRoundedButton(
-                      elevation: 5,
+                      elevation: kButtonElevation,
                       child: Text(
-                        "Accedi",
+                        'Accedi',
                         style: TextStyle(
-                            fontSize: 15, color: Colors.black.withOpacity(0.7)),
+                          fontSize: 15,
+                          color: Colors.black.withOpacity(0.7),
+                        ),
                       ),
                       onPressed: () {
                         //TODO: logica del login, per ora skippa alla home

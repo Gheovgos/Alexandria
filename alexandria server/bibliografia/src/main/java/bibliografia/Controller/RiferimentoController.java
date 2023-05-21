@@ -124,6 +124,13 @@ public class RiferimentoController {
         riferimentoService.aggiungiCategoria(riferimento, categoriaID);
     }
 
+    @PostMapping("/create/aggiungiCitazione/{citazioneID}")
+    @ResponseBody
+    public void aggiungiCitazione(@RequestBody RiferimentoDto riferimentoDto, @PathVariable int citazioneID) {
+        Riferimento riferimento = convertEntity(riferimentoDto);
+        riferimentoService.aggiungiCitazione(riferimento, citazioneID);
+    }
+
 
     @PostMapping("/create/{userID}/{categoriaID}/{riferimentoCitatoID}")
     @ResponseBody
@@ -133,11 +140,11 @@ public class RiferimentoController {
         riferimentoService.create(riferimento, userID, categoriaID, riferimentoCitatoID);
     }
 
-    @PutMapping("/update")
-    public void update(@RequestBody RiferimentoDto riferimentoDto)
+    @PutMapping("/update/{userID}/{categoriaID}/{riferimentoCitatoID}")
+    public void update(@RequestBody RiferimentoDto riferimentoDto, @PathVariable int userID, @PathVariable int categoriaID, @PathVariable int riferimentoCitatoID)
     {
         Riferimento riferimento = convertEntity(riferimentoDto);
-        riferimentoService.update(riferimento);
+        riferimentoService.update(riferimento, userID, categoriaID, riferimentoCitatoID);
     }
 
     @DeleteMapping("/delete")

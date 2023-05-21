@@ -1,10 +1,10 @@
+import 'package:alexandria/alexandria_navigation_bar.dart';
+import 'package:alexandria/constants.dart';
+import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
-import '../alexandria_navigation_bar.dart';
-import '../constants.dart';
-import '../mini_info_box.dart';
 
 class ViewCategoriaScreen extends StatefulWidget {
-  const ViewCategoriaScreen({Key? key}) : super(key: key);
+  const ViewCategoriaScreen({super.key});
 
   @override
   State<ViewCategoriaScreen> createState() => _ViewCategoriaScreenState();
@@ -22,17 +22,23 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
             height: 30,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.only(top: 20,bottom: 20,right: 75,left: 75),
+                padding: const EdgeInsets.only(
+                  top: 20,
+                  bottom: 20,
+                  right: 75,
+                  left: 75,
+                ),
                 decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(50),
-                        bottomRight: Radius.circular(50)),
-                    color: Colors.white),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(50),
+                    bottomRight: Radius.circular(50),
+                  ),
+                  color: Colors.white,
+                ),
                 child: const Text(
-                  "Nome categoria",
+                  'Nome categoria',
                   textAlign: TextAlign.start,
                   style: TextStyle(fontSize: 24),
                 ),
@@ -42,38 +48,51 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
               )
             ],
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           Container(
             padding: const EdgeInsetsDirectional.only(
-                start: 20, end: 20, top: 10, bottom: 30),
+              start: 20,
+              end: 20,
+              top: 10,
+              bottom: 30,
+            ),
             decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(50))),
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+            ),
             child: Column(
               children: [
                 const Text(
-                  "Riferimenti associati",
+                  'Riferimenti associati',
                   style: TextStyle(fontSize: 16),
                 ),
-                const SizedBox(height: 10,),
-                Container(
+                const SizedBox(
+                  height: 10,
+                ),
+                DecoratedBox(
                   decoration: BoxDecoration(
-                      color: kAlexandriaGreen,
-                      borderRadius: BorderRadius.circular(20)),
+                    color: kAlexandriaGreen,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 10, top: 10, right: 10, bottom: 15),
+                      left: 10,
+                      top: 10,
+                      right: 10,
+                      bottom: 15,
+                    ),
                     child: SizedBox(
                       height: 150,
                       width: 250,
                       child: ListView.builder(
-                        padding: const EdgeInsets.all(0),
-                        scrollDirection: Axis.vertical,
+                        padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         itemCount: 6,
                         itemBuilder: (BuildContext context, int index) {
                           return MiniInfoBox(
-                            name: "Riferimento $index",
+                            name: 'Riferimento $index',
                             fontSize: 15,
                           );
                         },
@@ -84,38 +103,51 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           Container(
             padding: const EdgeInsetsDirectional.only(
-                start: 20, end: 20, top: 10, bottom: 30),
+              start: 20,
+              end: 20,
+              top: 10,
+              bottom: 30,
+            ),
             decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(50))),
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+            ),
             child: Column(
               children: [
                 const Text(
-                  "Sopra-categorie",
+                  'Sopra-categorie',
                   style: TextStyle(fontSize: 16),
                 ),
-                const SizedBox(height: 10,),
-                Container(
+                const SizedBox(
+                  height: 10,
+                ),
+                DecoratedBox(
                   decoration: BoxDecoration(
-                      color: kAlexandriaGreen,
-                      borderRadius: BorderRadius.circular(20)),
+                    color: kAlexandriaGreen,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 10, top: 10, right: 10, bottom: 15),
+                      left: 10,
+                      top: 10,
+                      right: 10,
+                      bottom: 15,
+                    ),
                     child: SizedBox(
                       height: 150,
                       width: 250,
                       child: ListView.builder(
-                        padding: const EdgeInsets.all(0),
-                        scrollDirection: Axis.vertical,
+                        padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         itemCount: 6,
                         itemBuilder: (BuildContext context, int index) {
                           return MiniInfoBox(
-                            name: "Categoria $index",
+                            name: 'Categoria $index',
                             fontSize: 15,
                           );
                         },

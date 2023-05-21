@@ -1,8 +1,7 @@
 import 'package:alexandria/alexandria_rounded_button.dart';
+import 'package:alexandria/constants.dart';
 import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
-
-import 'constants.dart';
 
 class SearchDialog extends StatelessWidget {
   const SearchDialog({
@@ -13,37 +12,39 @@ class SearchDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30))),
+        borderRadius: BorderRadius.all(Radius.circular(30)),
+      ),
       scrollable: true,
       content: Column(
         children: [
           Material(
-            borderRadius: const BorderRadius.all(Radius.circular(33.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(33)),
             elevation: 5,
             child: TextField(
-                style: const TextStyle(color: Colors.black),
-                keyboardType: TextInputType.emailAddress,
-                textAlign: TextAlign.left,
-                onChanged: (value) {},
-                decoration:
-                    kInputDecoration.copyWith(hintText: 'Inserisci titolo...')),
+              style: const TextStyle(color: Colors.black),
+              keyboardType: TextInputType.emailAddress,
+              textAlign: TextAlign.left,
+              onChanged: (value) {},
+              decoration:
+                  kInputDecoration.copyWith(hintText: 'Inserisci titolo...'),
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               AlexandriaRoundedButton(
-                elevation: 2,
-                child: const Text("Articoli"),
+                elevation: kButtonElevation,
+                child: const Text('Articoli'),
                 onPressed: () {},
               ),
               AlexandriaRoundedButton(
-                elevation: 2,
-                child: const Text("Libri"),
+                elevation: kButtonElevation,
+                child: const Text('Libri'),
                 onPressed: () {},
               ),
               AlexandriaRoundedButton(
-                elevation: 2,
-                child: const Text("Fascicoli"),
+                elevation: kButtonElevation,
+                child: const Text('Fascicoli'),
                 onPressed: () {},
               ),
             ],
@@ -52,44 +53,50 @@ class SearchDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               AlexandriaRoundedButton(
-                elevation: 2,
-                child: const Text("Riviste"),
+                elevation: kButtonElevation,
+                child: const Text('Riviste'),
                 onPressed: () {},
               ),
               AlexandriaRoundedButton(
-                elevation: 2,
-                child: const Text("Conferenze"),
+                elevation: kButtonElevation,
+                child: const Text('Conferenze'),
                 onPressed: () {},
               ),
             ],
           ),
           const Text(
-            "Categorie",
+            'Categorie',
             style: TextStyle(fontSize: 16),
           ),
           Material(
             borderRadius: BorderRadius.circular(20),
             elevation: 2,
-            child: Container(
+            child: DecoratedBox(
               decoration: BoxDecoration(
-                  color: kAlexandriaGreen,
-                  borderRadius: BorderRadius.circular(20)),
+                color: kAlexandriaGreen,
+                borderRadius: BorderRadius.circular(20),
+              ),
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 20, top: 15, right: 20, bottom: 15),
+                  left: 20,
+                  top: 15,
+                  right: 20,
+                  bottom: 15,
+                ),
                 child: Column(
                   children: [
                     Material(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(33.0)),
+                      borderRadius: const BorderRadius.all(Radius.circular(33)),
                       elevation: 5,
                       child: TextField(
-                          style: const TextStyle(color: Colors.black),
-                          keyboardType: TextInputType.emailAddress,
-                          textAlign: TextAlign.left,
-                          onChanged: (value) {},
-                          decoration: kInputDecoration.copyWith(
-                              hintText: 'Cerca categoria...')),
+                        style: const TextStyle(color: Colors.black),
+                        keyboardType: TextInputType.emailAddress,
+                        textAlign: TextAlign.left,
+                        onChanged: (value) {},
+                        decoration: kInputDecoration.copyWith(
+                          hintText: 'Cerca categoria...',
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -98,11 +105,10 @@ class SearchDialog extends StatelessWidget {
                       height: 100,
                       width: 300,
                       child: ListView.builder(
-                        scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: 3,
                         itemBuilder: (BuildContext context, int index) {
-                          return MiniInfoBox(name: "Risultato $index");
+                          return MiniInfoBox(name: 'Risultato $index');
                         },
                       ),
                     ),
@@ -115,20 +121,20 @@ class SearchDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               AlexandriaRoundedButton(
-                elevation: 2,
-                child: const Text("Titolo"),
+                elevation: kButtonElevation,
+                child: const Text('Titolo'),
                 onPressed: () {},
               ),
               AlexandriaRoundedButton(
-                elevation: 2,
-                child: const Text("DOI"),
+                elevation: kButtonElevation,
+                child: const Text('DOI'),
                 onPressed: () {},
               ),
             ],
           ),
           AlexandriaRoundedButton(
-            elevation: 2,
-            child: const Text("Autore"),
+            elevation: kButtonElevation,
+            child: const Text('Autore'),
             onPressed: () {},
           ),
         ],
@@ -136,19 +142,20 @@ class SearchDialog extends StatelessWidget {
       actionsAlignment: MainAxisAlignment.spaceBetween,
       actions: [
         AlexandriaRoundedButton(
-            border: const CircleBorder(),
-            elevation: 2,
-            child: const Icon(
-              Icons.arrow_back,
-              size: 30,
-            ),
-            onPressed: () {
-              Navigator.pop(
-                context,
-              );
-            }),
+          border: const CircleBorder(),
+          elevation: kButtonElevation,
+          child: const Icon(
+            Icons.arrow_back,
+            size: 30,
+          ),
+          onPressed: () {
+            Navigator.pop(
+              context,
+            );
+          },
+        ),
         AlexandriaRoundedButton(
-          elevation: 2,
+          elevation: kButtonElevation,
           child: const Icon(
             Icons.search,
             size: 50,
@@ -159,7 +166,7 @@ class SearchDialog extends StatelessWidget {
         )
       ],
       title: const Text(
-        "Ricerca",
+        'Ricerca',
         textAlign: TextAlign.center,
         style: TextStyle(fontSize: 16),
       ),

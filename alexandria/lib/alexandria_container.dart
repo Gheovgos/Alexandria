@@ -2,9 +2,9 @@ import 'package:alexandria/constants.dart';
 import 'package:flutter/cupertino.dart';
 
 class AlexandriaContainer extends StatelessWidget {
-  AlexandriaContainer({super.key, this.width, this.child});
-  double? width;
-  Widget? child;
+  const AlexandriaContainer({super.key, this.width, this.child});
+  final double? width;
+  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,7 +12,7 @@ class AlexandriaContainer extends StatelessWidget {
       decoration: const BoxDecoration(
         color: kAlexandriaGreen,
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(120.0),
+          bottomLeft: Radius.circular(120),
         ),
       ),
       child: child,

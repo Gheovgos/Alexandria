@@ -1,11 +1,11 @@
+import 'package:alexandria/alexandria_navigation_bar.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/history_dialog.dart';
+import 'package:alexandria/search_dialog.dart';
 import 'package:flutter/material.dart';
-import '../alexandria_navigation_bar.dart';
-import '../search_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -15,24 +15,27 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 0,),
+      bottomNavigationBar: const AlexandriaNavigationBar(
+        currentIndex: 0,
+      ),
       backgroundColor: kAlexandriaGreen,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 120,
             width: double.infinity,
-            child: Container(
-              decoration: const BoxDecoration(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(70.0),
-                    bottomRight: Radius.circular(70.0)),
+                  bottomLeft: Radius.circular(70),
+                  bottomRight: Radius.circular(70),
+                ),
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
-                  "Benvenuto, Nome Cognome",
+                  'Benvenuto, Nome Cognome',
                   style: TextStyle(fontSize: 24, shadows: kTextElevation),
                 ),
               ),
@@ -43,13 +46,13 @@ class _HomeScreenState extends State<HomeScreen> {
               //TODO: pulsante Ricerca
               showDialog(
                 context: context,
-                builder: (BuildContext context) => SearchDialog(),
+                builder: (BuildContext context) => const SearchDialog(),
               );
             },
             child: SizedBox(
               height: 100,
               width: 300,
-              child: Container(
+              child: DecoratedBox(
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(
@@ -64,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       size: 40,
                     ),
                     Text(
-                      "Ricerca",
+                      'Ricerca',
                       style: TextStyle(fontSize: 20, shadows: kTextElevation),
                     ),
                   ],
@@ -77,13 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
               //TODO: pulsante Cronologia
               showDialog(
                 context: context,
-                builder: (BuildContext context) => HistoryDialog(),
+                builder: (BuildContext context) => const HistoryDialog(),
               );
             },
             child: SizedBox(
               height: 100,
               width: 300,
-              child: Container(
+              child: DecoratedBox(
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(
@@ -98,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       size: 40,
                     ),
                     Text(
-                      "Cronologia",
+                      'Cronologia',
                       style: TextStyle(fontSize: 20, shadows: kTextElevation),
                     ),
                   ],
