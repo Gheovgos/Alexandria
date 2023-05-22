@@ -41,9 +41,9 @@ public class RiferimentoService {
     public void update(Riferimento riferimento, int autoreID, int categoriaID, int citatoID)
     {
         riferimentoRepository.save(riferimento);
-        if(autoreID != -1) riferimentoRepository.updateAutore();
-        if(categoriaID != -1) riferimentoRepository.updateCategoria();
-        if(citatoID != -1) riferimentoRepository.updateCitazione();
+        if(autoreID != -1) riferimentoRepository.updateAutore(); //qui servono altri dati, ad esempio descrizione utente, ma viene fornito solo l'id
+        if(categoriaID != -1) riferimentoRepository.updateCategoria(riferimento.getIdRiferimento(), categoriaID);
+        if(citatoID != -1) riferimentoRepository.updateCitazione(riferimento.getIdRiferimento(), citatoID);
     }
 
     public void aggiungiAutore(Riferimento riferimento, int autoreID) {
