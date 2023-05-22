@@ -92,16 +92,65 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                       bottom: 15,
                     ),
                     child: SizedBox(
-                      height: 240,
+                      height: 350,
                       width: 300,
                       child: ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
-                        itemCount: 6,
+                        itemCount: 50,
                         itemBuilder: (BuildContext context, int index) {
-                          return MiniInfoBox(
-                            name: 'Riferimento $index',
-                            fontSize: 15,
+                          return InkWell(
+                            onTap: () {
+                              showDialog<void>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    actionsAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    content: const Text(
+                                      'Nome riferimento',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    actions: [
+                                      AlexandriaRoundedButton(
+                                        elevation: kButtonElevation,
+                                        padding: const EdgeInsets.all(
+                                          20,
+                                        ),
+                                        onPressed: () {
+                                          // TODO(peppe): apri write_riferimento
+                                        },
+                                        child: const Text('Modifica'),
+                                      ),
+                                      AlexandriaRoundedButton(
+                                        elevation: kButtonElevation,
+                                        padding: const EdgeInsets.all(
+                                          20,
+                                        ),
+                                        onPressed: () {
+                                          // TODO(peppe): apri view_riferimento
+                                        },
+                                        child: const Text('Visualizza'),
+                                      ),
+                                      AlexandriaRoundedButton(
+                                        elevation: kButtonElevation,
+                                        padding: const EdgeInsets.all(
+                                          20,
+                                        ),
+                                        onPressed: () {
+                                          // TODO(peppe): chiedi conferma
+                                        },
+                                        child: const Text('Elimina'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            child: MiniInfoBox(
+                              name: 'Riferimento $index',
+                              fontSize: 15,
+                            ),
                           );
                         },
                       ),
@@ -109,39 +158,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    AlexandriaRoundedButton(
-                      onPressed: () {},
-                      elevation: kButtonElevation,
-                      child: const Text(
-                        'Modifica',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                    AlexandriaRoundedButton(
-                      onPressed: () {},
-                      elevation: kButtonElevation,
-                      child: const Text(
-                        'Cancella',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                  ],
-                ),
-                AlexandriaRoundedButton(
-                  onPressed: () {},
-                  elevation: kButtonElevation,
-                  child: const Text(
-                    'Visualizza',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
+                  height: 30,
                 )
               ],
             ),
