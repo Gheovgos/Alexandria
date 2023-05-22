@@ -10,6 +10,14 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  late String nome;
+  late String cognome;
+  late String email;
+  late String username;
+  late String password;
+  late String confermaPassword;
+  bool mostraPassword = false;
+  bool mostraConfermaPassword = false;
   bool rememberMe = false;
   @override
   Widget build(BuildContext context) {
@@ -65,7 +73,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.emailAddress,
                                     textAlign: TextAlign.left,
-                                    onChanged: (value) {},
+                                    onChanged: (value) {
+                                      nome = value;
+                                    },
                                     decoration: kInputDecoration,
                                   ),
                                 )
@@ -84,7 +94,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.name,
                                     textAlign: TextAlign.left,
-                                    onChanged: (value) {},
+                                    onChanged: (value) {
+                                      cognome = value;
+                                    },
                                     decoration: kInputDecoration,
                                   ),
                                 )
@@ -101,7 +113,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   elevation: 5,
                                   child: TextField(
                                     keyboardType: TextInputType.emailAddress,
-                                    onChanged: (value) {},
+                                    onChanged: (value) {
+                                      email = value;
+                                    },
                                     decoration: kInputDecoration,
                                   ),
                                 )
@@ -120,7 +134,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.name,
                                     textAlign: TextAlign.left,
-                                    onChanged: (value) {},
+                                    onChanged: (value) {
+                                      username = value;
+                                    },
                                     decoration: kInputDecoration,
                                   ),
                                 )
@@ -139,20 +155,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         ),
                                         elevation: 5,
                                         child: TextField(
-                                          obscureText: true,
+                                          obscureText: !mostraPassword,
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
                                           keyboardType:
                                               TextInputType.emailAddress,
                                           textAlign: TextAlign.left,
-                                          onChanged: (value) {},
+                                          onChanged: (value) {
+                                            password = value;
+                                          },
                                           decoration: kInputDecoration,
                                         ),
                                       ),
                                     ),
                                     IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          mostraPassword = !mostraPassword;
+                                        });
+                                      },
                                       icon: const Icon(Icons.remove_red_eye),
                                     )
                                   ],
@@ -172,20 +194,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         ),
                                         elevation: 5,
                                         child: TextField(
-                                          obscureText: true,
+                                          obscureText: !mostraConfermaPassword,
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
                                           keyboardType:
                                               TextInputType.emailAddress,
                                           textAlign: TextAlign.left,
-                                          onChanged: (value) {},
+                                          onChanged: (value) {
+                                            confermaPassword = value;
+                                          },
                                           decoration: kInputDecoration,
                                         ),
                                       ),
                                     ),
                                     IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          mostraConfermaPassword =
+                                              !mostraConfermaPassword;
+                                        });
+                                      },
                                       icon: const Icon(Icons.remove_red_eye),
                                     )
                                   ],
@@ -210,12 +239,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Center(
                               child: AlexandriaRoundedButton(
                                 elevation: kButtonElevation,
-                                borderColor: Colors.grey,
                                 onPressed: () {},
                                 child: const Text(
                                   'Registrati',
                                   style: TextStyle(
-                                    color: Colors.grey,
                                     fontSize: 16,
                                   ),
                                 ),
