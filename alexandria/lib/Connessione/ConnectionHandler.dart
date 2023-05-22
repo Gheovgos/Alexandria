@@ -112,6 +112,13 @@ class NetworkHelper {
     return _rifnet.getByRiferimentoAssociato(riferimento);
   }
 
+  Future<List<Riferimento>?> getRiferimentoByAutore(String autore) async {
+    return _rifnet.getRiferimentoByAutore(autore);
+  }
+
+  Future<List<Riferimento>?> getRiferimentoByDOI(int DOI) async {
+    return _rifnet.getRiferimentoByDOI(DOI);
+  }
 
 
 }
