@@ -61,9 +61,9 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     void insertRiferimentoCitante(@Param("riferimento_citato_id_riferimento") int riferimento_citato_id_riferimento, @Param("riferimento_citante_id_riferimento") int riferimento_citante_id_riferimento);
 
     @Modifying
-    @Query(value = "UPDATE autore_riferimento SET id_utente = :id_utente, descr_utente = :descr_utente, id_riferimento :id_riferimento, ordine = :ordine", nativeQuery = true)
+    @Query(value = "UPDATE autore_riferimento SET id_utente = :id_utente, id_riferimento :id_riferimento", nativeQuery = true)
     @Transactional
-    void updateAutore(@Param("id_utente") Integer id_utente, @Param("descr_utente") String descr_utente, @Param("id_riferimento") Integer id_riferimento, @Param("ordine") String ordine);
+    void updateAutore(@Param("id_utente") Integer id_utente, @Param("id_riferimento") Integer id_riferimento);
 
 
     @Modifying
