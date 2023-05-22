@@ -72,6 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextField(
                     style: const TextStyle(color: Colors.black),
                     keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
                     textAlign: TextAlign.center,
                     onChanged: (value) {
                       password = value;
