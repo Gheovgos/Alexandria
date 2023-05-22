@@ -1,5 +1,7 @@
+import 'package:alexandria/Connessione/ConnectionHandler.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -239,7 +241,80 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Center(
                               child: AlexandriaRoundedButton(
                                 elevation: kButtonElevation,
-                                onPressed: () {},
+                                onPressed: () async {
+                                  if (confermaPassword == password &&
+                                      password != '' &&
+                                      nome != '' &&
+                                      cognome != '' &&
+                                      email != '' &&
+                                      username != '') {
+                                    if (kReleaseMode) {
+                                      final a = NetworkHelper();
+                                      final user = await a.registrazione(
+                                        username,
+                                        password,
+                                        nome,
+                                        cognome,
+                                        email,
+                                      );
+                                      if (user == null) {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              actionsAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              title: const Text('Errore!'),
+                                              content: SizedBox(
+                                                height: 150,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: const [
+                                                    Text(
+                                                      'Utente già esistente!',
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      } else {
+                                        Navigator.pushNamed(
+                                          context,
+                                          'home',
+                                          arguments: user,
+                                        );
+                                      }
+                                    }
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          actionsAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          title: const Text('Errore!'),
+                                          content: SizedBox(
+                                            height: 150,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: const [
+                                                Text(
+                                                  'Non tutti i campi sono stati riempiti!',
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }
+                                },
                                 child: const Text(
                                   'Registrati',
                                   style: TextStyle(
