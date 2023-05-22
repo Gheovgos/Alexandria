@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -137,29 +136,33 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       onPressed: () async {
-                        if (!kDebugMode) {
+                        if (kReleaseMode) {
                           final a = NetworkHelper();
                           final user = await a.login(username, password);
-                          if(user == null)
-                            {
-                              showDialog(context: context, builder: (BuildContext context) {
+                          if (user == null) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
                                 return AlertDialog(
-                                  actionsAlignment: MainAxisAlignment.spaceAround,
+                                  actionsAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   title: const Text('Errore!'),
                                   content: SizedBox(
                                     height: 150,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: const [
                                         Text('Credenziali errate!'),
                                       ],
                                     ),
                                   ),
                                 );
-                              },);
-                            }
-                          else {
-                            Navigator.pushNamed(context, 'home', arguments: user);
+                              },
+                            );
+                          } else {
+                            Navigator.pushNamed(context, 'home',
+                                arguments: user);
                           }
                         }
                         Navigator.pushNamed(context, 'home');
