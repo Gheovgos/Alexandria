@@ -81,6 +81,26 @@ class RiferimentoNetwork {
 
   }
 
+  Future<List<Riferimento>?> getByRiferimentoAssociato(Riferimento riferimento) async {
+    late List<Riferimento> riferimenti = [];
+    _getMapping = "/get/getByRiferimento/"+riferimento.id_riferimento.toString();
+
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      List<dynamic> riferimentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(var riferimentoJson in riferimentiJson) {
+        Riferimento f = Riferimento.fromJson(riferimentoJson as Map<String, dynamic>);
+        riferimenti.add(f);
+      }
+
+      return riferimenti;
+    }
+    else return null;
+
+
+  }
+
   Future<Riferimento?> creaRiferimento(Riferimento riferimento, Categoria categoria, int userID, Riferimento? rifCitanto) async {
     if(rifCitanto == null) {
       _getMapping = "/create/"+userID.toString()+"/"+categoria.id_categoria.toString()+"/-1";
