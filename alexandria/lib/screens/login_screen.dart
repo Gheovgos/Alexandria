@@ -2,6 +2,7 @@ import 'package:alexandria/alexandria_container.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -86,7 +87,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        launchUrl(
+                          Uri.parse(
+                            'mailto:alexandria.help@gmail.com?subject=<Recupero credenziali>',
+                          ),
+                        );
+                      },
                       child: const Text(
                         'Credenziali dimenticate?',
                         style: TextStyle(decoration: TextDecoration.underline),
@@ -120,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       onPressed: () {
-                        //TODO: logica del login, per ora skippa alla home
+                        // TODO(peppe): logica del login, per ora skippa alla home
                         Navigator.pushNamed(context, 'home');
                       },
                     ),
