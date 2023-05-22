@@ -14,19 +14,21 @@ class AlexandriaNavigationBar extends StatelessWidget {
       currentIndex: currentIndex,
       type: BottomNavigationBarType.fixed,
       onTap: (index) {
-        switch (index) {
-          case 0:
-            Navigator.pushNamed(context, 'home');
-            break;
-          case 1:
-            Navigator.pushNamed(context, 'my_riferimenti');
-            break;
-          case 3:
-            Navigator.pushNamed(context, 'create_categoria');
-            break;
-          case 4:
-            Navigator.pushNamed(context, 'settings');
-            break;
+        if (index != currentIndex) {
+          switch (index) {
+            case 0:
+              Navigator.popAndPushNamed(context, 'home');
+              break;
+            case 1:
+              Navigator.popAndPushNamed(context, 'my_riferimenti');
+              break;
+            case 3:
+              Navigator.popAndPushNamed(context, 'create_categoria');
+              break;
+            case 4:
+              Navigator.popAndPushNamed(context, 'settings');
+              break;
+          }
         }
       },
       items: const [
