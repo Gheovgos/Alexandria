@@ -99,9 +99,9 @@ class RiferimentoNetwork {
     else return null;
   }
 
-  Future<List<Riferimento>?> getRiferimentoByAutore(String autore) async {
+  Future<List<Riferimento>?> getRiferimentoByAutore(String nome, String cognome) async {
     late List<Riferimento> riferimenti = [];
-    _getMapping = "/get/getByAutoreSearch/"+autore;
+    _getMapping = "/get/getByAutoreSearch/"+nome+"/"+cognome;
 
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 

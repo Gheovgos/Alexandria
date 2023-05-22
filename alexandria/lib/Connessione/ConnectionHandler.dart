@@ -13,7 +13,7 @@ import 'RiferimentoNetwork.dart';
 import '../Model/tipo_enum.dart';
 
 class NetworkHelper {
-  final String url = "http://172.20.10.6:8090";
+  final String url = "http://192.168.43.141:8090";
   late UtenteNetwork _unet = UtenteNetwork(url);
   late CategoriaNetwork _catnet = CategoriaNetwork(url);
   late RiferimentoNetwork _rifnet = RiferimentoNetwork(url);
@@ -112,8 +112,8 @@ class NetworkHelper {
     return _rifnet.getByRiferimentoAssociato(riferimento);
   }
 
-  Future<List<Riferimento>?> getRiferimentoByAutore(String autore) async {
-    return _rifnet.getRiferimentoByAutore(autore);
+  Future<List<Riferimento>?> getRiferimentoByAutore(String nome, String cognome) async {
+    return _rifnet.getRiferimentoByAutore(nome, cognome);
   }
 
   Future<List<Riferimento>?> getRiferimentoByDOI(int DOI) async {
