@@ -31,13 +31,12 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio, associativa_riferimenti_categoria WHERE titolo_riferimento LIKE ?1", nativeQuery = true)
     List<Riferimento> getByTitoloSearch(String titolo_riferimento);
 
-    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio, associativa_riferimenti_categoria , " +
-            "autore_riferimento,utente WHERE autore_riferimento.id_riferimento = riferimenti_biblio.id_riferimento AND autore_riferimento.id_utente = utente.id_utente AND (nome_utente LIKE ?1 OR cognome_utente LIKE ?1",
+    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio, riferimenti_biblio_user_id, utente WHERE riferimenti_biblio_user_id.riferimento_id_riferimento = riferimenti_biblio.id_riferimento AND riferimenti_biblio_user_id.utente_user_id = utente.user_id AND (nome LIKE %:nome% OR cognome LIKE %:cognome%)",
     nativeQuery = true)
-    List<Riferimento> getByAutoreSearch(String testo);
+    List<Riferimento> getByAutoreSearch(@Param("nome") String nome, @Param("cognome") String cognome);
 
-    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio, associativa_riferimenti_categoria WHERE doi = ?1", nativeQuery = true)
-    List<Riferimento> getByDOISearch(String doi);
+    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio WHERE doi = ?1", nativeQuery = true)
+    List<Riferimento> getByDOISearch(int doi);
 
     @Query(value = "SELECT MAX(id_riferimento) FROM riferimenti_biblio", nativeQuery = true)
     Integer getNextId();

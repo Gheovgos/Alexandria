@@ -88,10 +88,10 @@ public class RiferimentoController {
         return riferimentiDto;
     }
 
-    @GetMapping("get/getByAutoreSearch/{testo}")
-    public List<RiferimentoDto> getByAutoreSearch(@PathVariable String testo)
+    @GetMapping("get/getByAutoreSearch/{nome}/{cognome}")
+    public List<RiferimentoDto> getByAutoreSearch(@PathVariable String nome, @PathVariable String cognome)
     {
-        List<Riferimento> riferimenti = riferimentoService.getByAutoreSearch(testo);
+        List<Riferimento> riferimenti = riferimentoService.getByAutoreSearch(nome, cognome);
         List<RiferimentoDto> riferimentiDto = new ArrayList<>();
         for(Riferimento riferimento : riferimenti)
             riferimentiDto.add(convertDto(riferimento));
@@ -100,7 +100,7 @@ public class RiferimentoController {
     }
 
     @GetMapping("get/getByDOISearch/{doi}")
-    public List<RiferimentoDto> getByDOISearch(@PathVariable String doi)
+    public List<RiferimentoDto> getByDOISearch(@PathVariable int doi)
     {
         List<Riferimento> riferimenti = riferimentoService.getByDOISearch(doi);
         List<RiferimentoDto> riferimentiDto = new ArrayList<>();

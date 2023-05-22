@@ -32,18 +32,18 @@ public class RiferimentoService {
 
     public List<Riferimento> getByTitoloSearch(@PathVariable String titolo_riferimento) {return riferimentoRepository.getByTitoloSearch(titolo_riferimento);}
 
-    public List<Riferimento> getByAutoreSearch(@PathVariable String testo) {return riferimentoRepository.getByAutoreSearch(testo);}
+    public List<Riferimento> getByAutoreSearch(@PathVariable String nome, String cognome) {return riferimentoRepository.getByAutoreSearch(nome, cognome);}
 
-    public List<Riferimento> getByDOISearch(@PathVariable String doi) {return riferimentoRepository.getByDOISearch(doi);}
+    public List<Riferimento> getByDOISearch(@PathVariable int doi) {return riferimentoRepository.getByDOISearch(doi);}
 
     public Integer getNextId(){return riferimentoRepository.getNextId();}
 
     public void update(Riferimento riferimento, int autoreID, int categoriaID, int citatoID)
     {
         riferimentoRepository.save(riferimento);
-        if(autoreID != -1) riferimentoRepository.updateAutore(autoreID, riferimento.getIdRiferimento());
-        if(categoriaID != -1) riferimentoRepository.updateCategoria(riferimento.getIdRiferimento(), categoriaID);
-        if(citatoID != -1) riferimentoRepository.updateCitazione(riferimento.getIdRiferimento(), citatoID);
+       // if(autoreID != -1) riferimentoRepository.updateAutore();
+       // if(categoriaID != -1) riferimentoRepository.updateCategoria();
+       //  if(citatoID != -1) riferimentoRepository.updateCitazione();
     }
 
     public void aggiungiAutore(Riferimento riferimento, int autoreID) {
