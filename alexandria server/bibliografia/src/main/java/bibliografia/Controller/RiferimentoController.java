@@ -65,10 +65,10 @@ public class RiferimentoController {
         return riferimentoDto;
     }
 
-    @GetMapping("get/getByRiferimento/{riferimento_associato}")
-    public List<RiferimentoDto> getByRiferimento(@PathVariable String riferimento_associato)
+    @GetMapping("get/getByRiferimento/{riferimento_citante}")
+    public List<RiferimentoDto> getByRiferimento(@PathVariable int riferimento_citante)
     {
-        List<Riferimento> riferimenti = riferimentoService.getByRiferimento(riferimento_associato);
+        List<Riferimento> riferimenti = riferimentoService.getByRiferimento(riferimento_citante);
         List<RiferimentoDto> riferimentiDto = new ArrayList<>();
         for(Riferimento riferimento : riferimenti)
             riferimentiDto.add(convertDto(riferimento));
