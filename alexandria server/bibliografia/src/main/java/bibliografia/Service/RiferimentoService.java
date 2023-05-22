@@ -38,12 +38,21 @@ public class RiferimentoService {
 
     public Integer getNextId(){return riferimentoRepository.getNextId();}
 
-    public void update(Riferimento riferimento, int autoreID, int categoriaID, int citatoID)
+    public void update(Riferimento riferimento)
     {
         riferimentoRepository.save(riferimento);
-       // if(autoreID != -1) riferimentoRepository.updateAutore();
-       // if(categoriaID != -1) riferimentoRepository.updateCategoria();
-       //  if(citatoID != -1) riferimentoRepository.updateCitazione();
+    }
+
+    public void updateAutore(int riferimentoID, int oldAutore, int newAutore) {
+        riferimentoRepository.updateAutore(riferimentoID, oldAutore, newAutore);
+    }
+
+    public void updateCategoria(int riferimentoID, int oldCategoria, int newCategoria) {
+        riferimentoRepository.updateCategoria(riferimentoID, oldCategoria, newCategoria);
+    }
+
+    public void updateCitazione(int riferimentoID, int oldCitato, int newCitato) {
+        riferimentoRepository.updateCitazione(riferimentoID, oldCitato, newCitato);
     }
 
     public void aggiungiAutore(Riferimento riferimento, int autoreID) {

@@ -103,8 +103,6 @@ public class RiferimentoDto {
         this.digitale = digitale;
     }
 
-
-
     public int getId_Rif() {
         return id_Rif;
     }

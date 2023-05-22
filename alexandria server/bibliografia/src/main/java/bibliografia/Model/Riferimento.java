@@ -38,7 +38,7 @@ public class Riferimento {
     private boolean on_line;
 
     @Column
-    private String descr_riferimento;
+    private String descrizione;
 
     @Column
     private String editore;
@@ -88,7 +88,7 @@ public class Riferimento {
         this.tipo = tipo;
         this.URL = URL;
         this.on_line = on_line;
-        this.descr_riferimento = descr_riferimento;
+        this.descrizione = descr_riferimento;
         this.edizione = edizione;
         this.pag_fine = pag_fine;
         this.pag_inizio = pag_inizio;
@@ -142,87 +142,7 @@ public class Riferimento {
     public void setOn_line(final Boolean on_line) {
         this.on_line = on_line;
     }
-/*
-    public List<Categoria> getCategorie() {
-        return categorie;
-    }
 
-    public void setCategorie(final List<Categoria> categorie) {
-        this.categorie = categorie;
-    }
-
-    public List<Integer> getAutori() {
-        return autore;
-    }
-
-    public void setAutori(final List<Integer> autore) {
-        this.autore = autore;
-    }
-
-    public List<Riferimento> getCitazioni() {
-        return cited;
-    }
-
-    public void setCitazioni(final List<Riferimento> citazioni) {
-        this.cited = citazioni;
-    }
-
-    public String citazioniToString() {
-        final StringBuilder a = new StringBuilder();
-        for (int i = 0; i < cited.size(); i++) {
-            a.append(cited.get(i).titolo);
-            if (i != cited.size() - 1)
-                a.append(",");
-        }
-        return a.toString();
-    }
-
-    public String citazioniToString(final int ID) {
-        final StringBuilder a = new StringBuilder();
-        for (int i = 0; i < cited.size(); i++) {
-            final List<Utente> tempList = cited.get(i).autori;
-            if (tempList != null) {
-                for (int j = 0; j < tempList.size(); j++) {
-                    if (ID == tempList.get(i).getUser_ID()) {
-                        a.append(cited.get(i).titolo);
-                        if (i != cited.size() - 1)
-                            a.append(",");
-                        j = tempList.size();
-                    }
-                }
-            }
-        }
-        return a.toString();
-    }
-
-    public String autoriToString() {
-        final StringBuilder a = new StringBuilder();
-        for (int i = 0; i < autori.size(); i++) {
-            a.append(autori.get(i).nominativoCompletoToString());
-            if (i != autori.size() - 1)
-                a.append(",");
-        }
-        return a.toString();
-    }
-
-    public String categorieToString() {
-        final StringBuilder a = new StringBuilder();
-        for (int i = 0; i < categorie.size(); i++) {
-            a.append(categorie.get(i).getNome()).append(" ");
-            if (i != categorie.size() - 1)
-                a.append(",");
-        }
-        return a.toString();
-    }
-
-    public List<Riferimento> getCitedIn() {
-        return citedIn;
-    }
-
-    public void setCitedIn(final List<Riferimento> citedIn) {
-        this.citedIn = citedIn;
-    }
-*/
     public int getIdRiferimento() {
         return id_riferimento;
     }
@@ -239,12 +159,12 @@ public class Riferimento {
         DOI = dOI;
     }
 
-    public String getDescr_riferimento() {
-        return descr_riferimento;
+    public String getDescrizione() {
+        return descrizione;
     }
 
-    public void setDescr_riferimento(final String descr_riferimento) {
-        this.descr_riferimento = descr_riferimento;
+    public void setDescrizione(final String descrizione) {
+        this.descrizione = descrizione;
     }
 
     public String getEditore() {return this.editore;}

@@ -140,11 +140,27 @@ public class RiferimentoController {
         riferimentoService.create(riferimento, userID, categoriaID, riferimentoCitatoID);
     }
 
-    @PutMapping("/update/{userID}/{categoriaID}/{riferimentoCitatoID}")
-    public void update(@RequestBody RiferimentoDto riferimentoDto, @PathVariable int userID, @PathVariable int categoriaID, @PathVariable int riferimentoCitatoID)
+    @PutMapping("/update")
+    public void update(@RequestBody RiferimentoDto riferimentoDto)
     {
         Riferimento riferimento = convertEntity(riferimentoDto);
-        riferimentoService.update(riferimento, userID, categoriaID, riferimentoCitatoID);
+        System.out.println(riferimento.getPag_fine()+" "+riferimentoDto.getPag_fine());
+        riferimentoService.update(riferimento);
+    }
+
+    @PutMapping("/update/riferimentoAutore/{idRiferimento}/{oldAutore}/{newAutore}")
+    public void updateAutore(@PathVariable int idRiferimento, @PathVariable int oldAutore, @PathVariable int newAutore) {
+        riferimentoService.updateAutore(idRiferimento, oldAutore, newAutore);
+    }
+
+    @PutMapping("/update/riferimentoCategoria/{idRiferimento}/{oldCategoria}/{newCategoria}")
+    public void updateCategoria(@PathVariable int idRiferimento, @PathVariable int oldCategoria, @PathVariable int newCategoria) {
+        riferimentoService.updateCategoria(idRiferimento, oldCategoria, newCategoria);
+    }
+
+    @PutMapping("/update/riferimentoCitazione/{idRiferimento}/{oldCitato}/{newCitato}")
+    public void updateCitazione(@PathVariable int idRiferimento, @PathVariable int oldCitato, @PathVariable int newCitato) {
+        riferimentoService.updateCitazione(idRiferimento, oldCitato, newCitato);
     }
 
     @DeleteMapping("/delete")
@@ -169,7 +185,7 @@ public class RiferimentoController {
         RiferimentoDto riferimentoDto = new RiferimentoDto();
         riferimentoDto = modelMapper.map(riferimento, RiferimentoDto.class);
 
-        riferimentoDto.setDescrizione(riferimento.getDescr_riferimento());
+        riferimentoDto.setDescrizione(riferimento.getDescrizione());
         riferimentoDto.setDigitale(riferimento.getOnline());
         riferimentoDto.setDOI(riferimento.getDoi());
         riferimentoDto.setTipo(riferimentoDto.getTipo());
