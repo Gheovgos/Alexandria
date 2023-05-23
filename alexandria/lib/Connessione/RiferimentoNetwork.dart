@@ -169,24 +169,11 @@ class RiferimentoNetwork {
 
   }
 
-  Future<Riferimento?> aggiornaRiferimento(Riferimento r, Categoria? nuovaCategoria, int? nuovoAutore, Riferimento? nuovaCitazone) async {
+  Future<bool?> aggiornaRiferimento(Riferimento r) async {
     Riferimento? riferimento = await getRiferimentoById(r.id_riferimento) as Riferimento?;
     if(riferimento == null) return null;
 
-    late String categoriaID;
-    late String autoreID;
-    late String citatoID;
-
-    if(nuovaCategoria == null) categoriaID = "-1";
-    else categoriaID = nuovaCategoria.id_categoria.toString();
-
-    if(nuovoAutore == null) autoreID = "-1";
-    else autoreID = nuovoAutore.toString();
-
-    if(nuovaCitazone == null) citatoID = "-1";
-    else citatoID = nuovaCitazone.id_riferimento.toString();
-
-    _getMapping = "/update/"+autoreID+"/"+categoriaID+"/"+citatoID;
+    _getMapping = "/update";
 
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
     }, body: jsonEncode(<String, dynamic> {
@@ -208,9 +195,37 @@ class RiferimentoNetwork {
     }),);
 
     if(_serverResponse.statusCode == 200) {
-      return await getRiferimentoById(riferimento.id_riferimento);
-    } else return null;
+      return true;
+    } else return false;
   }
+
+  Future<bool?> aggiornaRiferimentoAutore(Riferimento riferimento, int oldAutoreID, int newAutoreID) async {
+    _getMapping = "/update/riferimentoAutore/"+riferimento.id_riferimento.toString()+"/"+oldAutoreID.toString()+"/"+newAutoreID.toString();
+    _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      return true;
+    } else return false;
+  }
+
+  Future<bool?> aggiornaRiferimentoCategoria(Riferimento riferimento, int oldCategoriaID, int newCategoriaID) async {
+    _getMapping = "/update/riferimentoAutore/"+riferimento.id_riferimento.toString()+"/"+oldCategoriaID.toString()+"/"+newCategoriaID.toString();
+    _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      return true;
+    } else return false;
+  }
+
+  Future<bool?> aggiornaRiferimentoCitazione(Riferimento riferimento, int oldCitatoID, int newCitatoID) async {
+    _getMapping = "/update/riferimentoAutore/"+riferimento.id_riferimento.toString()+"/"+oldCitatoID.toString()+"/"+newCitatoID.toString();
+    _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      return true;
+    } else return false;
+  }
+
 
   Future<bool?> aggiungiAutore(Riferimento r, int autoreID) async {
     Riferimento? riferimento = await getRiferimentoByNome(r.titolo_riferimento) as Riferimento?;
