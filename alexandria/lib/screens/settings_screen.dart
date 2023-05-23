@@ -1,6 +1,7 @@
 import 'package:alexandria/alexandria_navigation_bar.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -73,7 +74,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     keyboardType: TextInputType.emailAddress,
                                     textAlign: TextAlign.left,
                                     onChanged: (value) {},
-                                    decoration: kInputDecoration,
+                                    decoration: kInputDecoration.copyWith(
+                                      hintText: currentUser.nome,
+                                    ),
                                   ),
                                 )
                               ],
@@ -92,7 +95,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     keyboardType: TextInputType.name,
                                     textAlign: TextAlign.left,
                                     onChanged: (value) {},
-                                    decoration: kInputDecoration,
+                                    decoration: kInputDecoration.copyWith(
+                                      hintText: currentUser.cognome,
+                                    ),
                                   ),
                                 )
                               ],
@@ -109,7 +114,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   child: TextField(
                                     keyboardType: TextInputType.emailAddress,
                                     onChanged: (value) {},
-                                    decoration: kInputDecoration,
+                                    decoration: kInputDecoration.copyWith(
+                                      hintText: currentUser.email,
+                                    ),
                                   ),
                                 )
                               ],
