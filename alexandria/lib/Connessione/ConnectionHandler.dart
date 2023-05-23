@@ -108,6 +108,18 @@ class NetworkHelper {
     return _rifnet.aggiornaRiferimento(r);
   }
 
+  Future<bool?> aggiornaRiferimentoAutore(Riferimento riferimento, int oldAutoreID, int newAutoreID) async {
+    return _rifnet.aggiornaRiferimentoAutore(riferimento, oldAutoreID, newAutoreID);
+  }
+
+  Future<bool?> aggiornaRiferimentoCategoria(Riferimento riferimento, int oldCategoriaID, int newCategoriaID) async {
+    return _rifnet.aggiornaRiferimentoCategoria(riferimento, oldCategoriaID, newCategoriaID);
+  }
+
+  Future<bool?> aggiornaRiferimentoCitazione(Riferimento riferimento, int oldCitatoID, int newCitatoID) async {
+    return _rifnet.aggiornaRiferimentoCitazione(riferimento, oldCitatoID, newCitatoID);
+  }
+
   Future<List<Riferimento>?> getByRiferimentoAssociato(Riferimento riferimento) async {
     return _rifnet.getByRiferimentoAssociato(riferimento);
   }
