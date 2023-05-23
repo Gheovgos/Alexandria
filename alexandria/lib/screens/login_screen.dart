@@ -141,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           final a = NetworkHelper();
                           final user = await a.login(username, password);
                           if (user == null) {
-                            showDialog(
+                            showDialog<void>(
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
