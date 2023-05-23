@@ -137,7 +137,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     keyboardType: TextInputType.name,
                                     textAlign: TextAlign.left,
                                     onChanged: (value) {},
-                                    decoration: kInputDecoration,
+                                    decoration: kInputDecoration.copyWith(
+                                      hintText: currentUser.username,
+                                    ),
                                   ),
                                 )
                               ],
