@@ -151,7 +151,7 @@ class RiferimentoNetwork {
       'tipo': riferimento.tipo.toString().substring(10),
       'url': riferimento.URL,
       'doi': riferimento.DOI,
-      'digitale': riferimento.on_line,
+      'on_line': riferimento.on_line,
       'descrizione': riferimento.descr_riferimento,
       'editore': riferimento.editore,
       'isbn': riferimento.isbn,
@@ -169,10 +169,7 @@ class RiferimentoNetwork {
 
   }
 
-  Future<bool?> aggiornaRiferimento(Riferimento r) async {
-    Riferimento? riferimento = await getRiferimentoById(r.id_riferimento) as Riferimento?;
-    if(riferimento == null) return null;
-
+  Future<bool?> aggiornaRiferimento(Riferimento riferimento) async {
     _getMapping = "/update";
 
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
@@ -183,7 +180,7 @@ class RiferimentoNetwork {
       'tipo': riferimento.tipo.toString().substring(10),
       'url': riferimento.URL,
       'doi': riferimento.DOI,
-      'digitale': riferimento.on_line,
+      'on_line': riferimento.on_line,
       'descrizione': riferimento.descr_riferimento,
       'editore': riferimento.editore,
       'isbn': riferimento.isbn,
@@ -239,7 +236,7 @@ class RiferimentoNetwork {
           'tipo': riferimento?.tipo.toString().substring(10),
           'url': riferimento?.URL,
           'doi': riferimento?.DOI,
-          'digitale': riferimento?.on_line,
+          'on_line': riferimento?.on_line,
           'descrizione': riferimento?.descr_riferimento,
           'editore': riferimento?.editore,
           'isbn': riferimento?.isbn,
@@ -269,7 +266,7 @@ class RiferimentoNetwork {
         'tipo': riferimento?.tipo.toString().substring(10),
         'url': riferimento?.URL,
         'doi': riferimento?.DOI,
-        'digitale': riferimento?.on_line,
+        'on_line': riferimento?.on_line,
         'descrizione': riferimento?.descr_riferimento,
         'editore': riferimento?.editore,
         'isbn': riferimento?.isbn,
@@ -299,7 +296,7 @@ class RiferimentoNetwork {
         'tipo': riferimento?.tipo.toString().substring(10),
         'url': riferimento?.URL,
         'doi': riferimento?.DOI,
-        'digitale': riferimento?.on_line,
+        'on_line': riferimento?.on_line,
         'descrizione': riferimento?.descr_riferimento,
         'editore': riferimento?.editore,
         'isbn': riferimento?.isbn,
@@ -315,20 +312,6 @@ class RiferimentoNetwork {
       } else return false;
     } else return false;
 
-  }
-
-
-  //Non c'è corrispondenza nel server Spring Boot. Da eliminare o aggiungere.
-  Future<int?> _getNextId() async {
-    _getMapping = "/getNextId";
-    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
-
-    if(_serverResponse.statusCode == 200) {
-      final id = int.parse(_serverResponse.body) + 1;
-
-      return id;
-    }
-    else return null;
   }
 
 }
