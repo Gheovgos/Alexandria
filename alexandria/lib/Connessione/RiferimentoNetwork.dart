@@ -198,8 +198,7 @@ class RiferimentoNetwork {
 
   Future<bool?> aggiornaRiferimentoAutore(Riferimento riferimento, int oldAutoreID, int newAutoreID) async {
     _getMapping = "/update/riferimentoAutore/"+riferimento.id_riferimento.toString()+"/"+oldAutoreID.toString()+"/"+newAutoreID.toString();
-    _serverResponse = await put(Uri.parse(url+_reques
-        tMapping+_getMapping));
+    _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
       return true;
