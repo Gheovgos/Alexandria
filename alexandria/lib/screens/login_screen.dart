@@ -1,7 +1,10 @@
+import 'package:alexandria/Connessione/ConnectionHandler.dart';
 import 'package:alexandria/alexandria_container.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,6 +14,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late String username;
+  late String password;
   bool rememberMe = false;
   @override
   Widget build(BuildContext context) {
@@ -50,7 +55,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: const TextStyle(color: Colors.black),
                     keyboardType: TextInputType.emailAddress,
                     textAlign: TextAlign.center,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      username = value;
+                    },
                     decoration:
                         kInputDecoration.copyWith(hintText: 'Username...'),
                   ),
@@ -64,8 +71,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextField(
                     style: const TextStyle(color: Colors.black),
                     keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
                     textAlign: TextAlign.center,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      password = value;
+                    },
                     decoration:
                         kInputDecoration.copyWith(hintText: 'Password...'),
                   ),
@@ -86,7 +96,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        launchUrl(
+                          Uri.parse(
+                            'mailto:alexandria.help@gmail.com?subject=<Recupero credenziali>',
+                          ),
+                        );
+                      },
                       child: const Text(
                         'Credenziali dimenticate?',
                         style: TextStyle(decoration: TextDecoration.underline),
@@ -119,8 +135,36 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.black.withOpacity(0.7),
                         ),
                       ),
-                      onPressed: () {
-                        //TODO: logica del login, per ora skippa alla home
+                      onPressed: () async {
+                        if (kReleaseMode) {
+                          final a = NetworkHelper();
+                          final user = await a.login(username, password);
+                          if (user == null) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  actionsAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  title: const Text('Errore!'),
+                                  content: SizedBox(
+                                    height: 150,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: const [
+                                        Text('Credenziali errate!'),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          } else {
+                            Navigator.pushNamed(context, 'home',
+                                arguments: user);
+                          }
+                        }
                         Navigator.pushNamed(context, 'home');
                       },
                     ),

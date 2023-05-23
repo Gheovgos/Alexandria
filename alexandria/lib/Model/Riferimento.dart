@@ -25,7 +25,7 @@ class Riferimento {
         tipo = convertStringToEnum(json['tipo'] as String),
         URL = json['url'] as String?,
         DOI = json['doi'] as int?,
-        on_line = json['digitale'] as bool,
+        on_line = json['on_line'] as bool,
         descr_riferimento = json['descrizione'] as String?,
         editore = json['editore'] as String?,
         isbn = json['isbn'] as String?,
