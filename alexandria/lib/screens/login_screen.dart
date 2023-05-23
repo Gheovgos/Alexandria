@@ -2,6 +2,7 @@ import 'package:alexandria/Connessione/ConnectionHandler.dart';
 import 'package:alexandria/alexandria_container.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -161,8 +162,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                             );
                           } else {
-                            Navigator.pushNamed(context, 'home',
-                                arguments: user);
+                            currentUser = user;
+                            Navigator.pushNamed(context, 'home');
                           }
                         }
                         Navigator.pushNamed(context, 'home');
