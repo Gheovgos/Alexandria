@@ -12,6 +12,8 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  bool mostraPassword = false;
+  bool mostraConfermaPassword = false;
   bool rememberMe = false;
   @override
   Widget build(BuildContext context) {
@@ -153,7 +155,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         ),
                                         elevation: 5,
                                         child: TextField(
-                                          obscureText: true,
+                                          obscureText: !mostraPassword,
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
@@ -166,7 +168,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       ),
                                     ),
                                     IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          mostraPassword = !mostraPassword;
+                                        });
+                                      },
                                       icon: const Icon(Icons.remove_red_eye),
                                     )
                                   ],
@@ -186,7 +192,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         ),
                                         elevation: 5,
                                         child: TextField(
-                                          obscureText: true,
+                                          obscureText: !mostraConfermaPassword,
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
@@ -199,7 +205,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       ),
                                     ),
                                     IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          mostraConfermaPassword =
+                                              !mostraConfermaPassword;
+                                        });
+                                      },
                                       icon: const Icon(Icons.remove_red_eye),
                                     )
                                   ],
