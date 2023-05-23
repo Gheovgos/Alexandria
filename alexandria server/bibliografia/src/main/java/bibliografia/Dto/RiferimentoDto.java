@@ -18,7 +18,7 @@ public class RiferimentoDto {
 
     private Integer DOI;
 
-    private Boolean digitale;
+    private Boolean on_line;
 
     private String descrizione;
 
@@ -47,7 +47,7 @@ public class RiferimentoDto {
         this.DOI = DOI;
         this.tipo = tipo;
         this.URL = URL;
-        this.digitale = digitale;
+        this.on_line = digitale;
         this.descrizione = descrizione;
         this.editore = editore;
         this.isbn = isbn;
@@ -95,12 +95,12 @@ public class RiferimentoDto {
         this.URL = URL;
     }
 
-    public Boolean getDigitale() {
-        return digitale;
+    public Boolean getOn_line() {
+        return on_line;
     }
 
-    public void setDigitale(final Boolean digitale) {
-        this.digitale = digitale;
+    public void setOn_line(final Boolean on_line) {
+        this.on_line = on_line;
     }
 
     public int getId_Rif() {
@@ -149,7 +149,7 @@ public class RiferimentoDto {
 
     public Integer getPag_fine() {return this.pag_fine;}
 
-    public void setPag_fine() {this.pag_fine = pag_fine;}
+    public void setPag_fine(Integer pag_fine) {this.pag_fine = pag_fine;}
 
     public Integer getEdizione() {return this.edizione;}
 
