@@ -12,6 +12,12 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  late String nome;
+  late String cognome;
+  late String email;
+  late String username;
+  late String password;
+  late String confermaPassword;
   bool mostraPassword = false;
   bool mostraConfermaPassword = false;
   bool rememberMe = false;
@@ -75,7 +81,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.emailAddress,
                                     textAlign: TextAlign.left,
-                                    onChanged: (value) {},
+                                    onChanged: (value) {
+                                      nome = value;
+                                    },
                                     decoration: kInputDecoration.copyWith(
                                       hintText: currentUser.nome,
                                     ),
@@ -96,7 +104,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.name,
                                     textAlign: TextAlign.left,
-                                    onChanged: (value) {},
+                                    onChanged: (value) {
+                                      cognome = value;
+                                    },
                                     decoration: kInputDecoration.copyWith(
                                       hintText: currentUser.cognome,
                                     ),
@@ -115,7 +125,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   elevation: 5,
                                   child: TextField(
                                     keyboardType: TextInputType.emailAddress,
-                                    onChanged: (value) {},
+                                    onChanged: (value) {
+                                      email = value;
+                                    },
                                     decoration: kInputDecoration.copyWith(
                                       hintText: currentUser.email,
                                     ),
@@ -136,7 +148,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.name,
                                     textAlign: TextAlign.left,
-                                    onChanged: (value) {},
+                                    onChanged: (value) {
+                                      username = value;
+                                    },
                                     decoration: kInputDecoration.copyWith(
                                       hintText: currentUser.username,
                                     ),
@@ -164,7 +178,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           keyboardType:
                                               TextInputType.emailAddress,
                                           textAlign: TextAlign.left,
-                                          onChanged: (value) {},
+                                          onChanged: (value) {
+                                            password = value;
+                                          },
                                           decoration: kInputDecoration,
                                         ),
                                       ),
@@ -201,7 +217,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           keyboardType:
                                               TextInputType.emailAddress,
                                           textAlign: TextAlign.left,
-                                          onChanged: (value) {},
+                                          onChanged: (value) {
+                                            confermaPassword = value;
+                                          },
                                           decoration: kInputDecoration,
                                         ),
                                       ),
@@ -252,7 +270,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 AlexandriaRoundedButton(
                                   elevation: kButtonElevation,
                                   borderColor: Colors.grey,
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    if (confermaPassword == password &&
+                                        password != '' &&
+                                        nome != '' &&
+                                        cognome != '' &&
+                                        email != '' &&
+                                        username != '') {
+                                      currentUser.nome = nome;
+                                      currentUser.cognome = cognome;
+                                      currentUser.email = email;
+                                      currentUser.password = password;
+                                      networkHelper.updateUser(currentUser);
+                                      // TODO(peppe): finire qui, mostrare dialog
+                                    }
+                                  },
                                   child: const Text(
                                     'Salva',
                                     style: TextStyle(
