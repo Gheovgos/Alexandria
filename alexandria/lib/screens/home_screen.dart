@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
           GestureDetector(
             onTap: () {
               //TODO: pulsante Ricerca
-              showDialog(
+              showDialog<void>(
                 context: context,
                 builder: (BuildContext context) => const SearchDialog(),
               );
