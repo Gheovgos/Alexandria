@@ -60,19 +60,19 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     void insertRiferimentoCitante(@Param("riferimento_citato_id_riferimento") int riferimento_citato_id_riferimento, @Param("riferimento_citante_id_riferimento") int riferimento_citante_id_riferimento);
 
     @Modifying
-    @Query(value = "UPDATE riferimenti_biblio_user_id SET utente_user_id = :newAutore WHERE riferimento_id_riferimento :id_riferimento AND utente_user_id = :oldAutore", nativeQuery = true)
+    @Query(value = "UPDATE riferimenti_biblio_user_id SET utente_user_id = :newAutore WHERE riferimento_id_riferimento = :id_riferimento AND utente_user_id = :oldAutore ;", nativeQuery = true)
     @Transactional
     void updateAutore(@Param("id_riferimento") int id_riferimento, @Param("oldAutore") int oldAutore, @Param("newAutore") int newAutore);
 
 
     @Modifying
-    @Query(value = "UPDATE riferimenti_biblio_categorie SET categorie_id_categoria = :newCategoria WHERE riferimento_id_riferimento = :id_riferimento AND categorie_id_categoria = :oldCategoria", nativeQuery = true)
+    @Query(value = "UPDATE riferimenti_biblio_categorie SET categorie_id_categoria = :newCategoria WHERE riferimento_id_riferimento = :id_riferimento AND categorie_id_categoria = :oldCategoria ;", nativeQuery = true)
     @Transactional
     void updateCategoria(@Param("id_riferimento") int id_riferimento, @Param("oldCategoria") int oldCategoria, @Param("newCategoria") int newCategoria);
 
 
     @Modifying
-    @Query(value = "UPDATE riferimenti_biblio_riferimento_citante SET riferimento_citato_id_riferimento = :newCitato WHERE riferimento_citante_id_riferimento = :id_riferimento AND riferimento_citato_id_riferimento = :oldCitato ", nativeQuery = true)
+    @Query(value = "UPDATE riferimenti_biblio_riferimento_citante SET riferimento_citato_id_riferimento = :newCitato WHERE riferimento_citante_id_riferimento = :id_riferimento AND riferimento_citato_id_riferimento = :oldCitato ;", nativeQuery = true)
     @Transactional
     void updateCitazione(@Param("id_riferimento") int id_riferimento, @Param("oldCitato") int oldCitato, @Param("newCitato") int newCitato);
 }
