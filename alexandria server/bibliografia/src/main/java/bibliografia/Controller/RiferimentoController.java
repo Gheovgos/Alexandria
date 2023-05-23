@@ -143,6 +143,7 @@ public class RiferimentoController {
     @PutMapping("/update")
     public void update(@RequestBody RiferimentoDto riferimentoDto)
     {
+
         Riferimento riferimento = convertEntity(riferimentoDto);
         System.out.println(riferimento.getPag_fine()+" "+riferimentoDto.getPag_fine());
         riferimentoService.update(riferimento);
@@ -186,13 +187,14 @@ public class RiferimentoController {
         riferimentoDto = modelMapper.map(riferimento, RiferimentoDto.class);
 
         riferimentoDto.setDescrizione(riferimento.getDescrizione());
-        riferimentoDto.setDigitale(riferimento.getOnline());
+        riferimentoDto.setOn_line(riferimento.getOnline());
         riferimentoDto.setDOI(riferimento.getDoi());
         riferimentoDto.setTipo(riferimentoDto.getTipo());
         riferimentoDto.setURL(riferimento.getUrl());
         riferimentoDto.setId_Rif(riferimentoDto.getId_Rif());
         riferimentoDto.setTitolo(riferimento.getTitolo_riferimento());
-        //riferimentoDto.setDataCreazione(riferimento.getDataRiferimento());
+        riferimentoDto.setDataCreazione(riferimento.getData_riferimento());
+        riferimentoDto.setPag_fine(riferimento.getPag_fine());
 
         return riferimentoDto;
     }
