@@ -138,8 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       onPressed: () async {
                         if (kReleaseMode) {
-                          final a = NetworkHelper();
-                          final user = await a.login(username, password);
+                          final user = await networkHelper.login(username, password);
                           if (user == null) {
                             showDialog<void>(
                               context: context,

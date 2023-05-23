@@ -250,8 +250,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       email != '' &&
                                       username != '') {
                                     if (kReleaseMode) {
-                                      final a = NetworkHelper();
-                                      final user = await a.registrazione(
+                                      final user =
+                                          await networkHelper.registrazione(
                                         username,
                                         password,
                                         nome,
