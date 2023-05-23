@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Center(
                 child: Text(
-                  'Benvenuto, ${currentUser?.nome} ${currentUser?.cognome}',
+                  'Benvenuto, ${currentUser.nome} ${currentUser.cognome}',
                   style: const TextStyle(fontSize: 24, shadows: kTextElevation),
                 ),
               ),
