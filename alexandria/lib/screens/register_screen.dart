@@ -1,6 +1,7 @@
 import 'package:alexandria/Connessione/ConnectionHandler.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -258,7 +259,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         email,
                                       );
                                       if (user == null) {
-                                        showDialog(
+                                        showDialog<void>(
                                           context: context,
                                           builder: (BuildContext context) {
                                             return AlertDialog(
@@ -282,10 +283,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           },
                                         );
                                       } else {
+                                        currentUser = user;
                                         Navigator.pushNamed(
                                           context,
                                           'home',
-                                          arguments: user,
                                         );
                                       }
                                     }
