@@ -28,8 +28,8 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     nativeQuery = true)
     List<Riferimento> getByRiferimento(int riferimento_associato);
 
-    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio, associativa_riferimenti_categoria WHERE titolo_riferimento LIKE ?1", nativeQuery = true)
-    List<Riferimento> getByTitoloSearch(String titolo_riferimento);
+    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio WHERE descrizione LIKE %:descr%", nativeQuery = true)
+    List<Riferimento> getByDescrizione(@Param("descr") String descr);
 
     @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio, riferimenti_biblio_user_id, utente WHERE riferimenti_biblio_user_id.riferimento_id_riferimento = riferimenti_biblio.id_riferimento AND riferimenti_biblio_user_id.utente_user_id = utente.user_id AND (nome LIKE %:nome% OR cognome LIKE %:cognome%)",
     nativeQuery = true)
