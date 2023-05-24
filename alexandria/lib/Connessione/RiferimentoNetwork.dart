@@ -155,6 +155,25 @@ class RiferimentoNetwork {
     else return riferimenti;
   }
 
+  Future<List<Riferimento>> getByTipo(tipo_enum tipo) async {
+    late List<Riferimento> riferimenti = [];
+
+    _getMapping = "/get/getByTipo/"+tipo.toString().substring(10);
+
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      List<dynamic> riferimentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(var riferimentoJson in riferimentiJson) {
+        Riferimento f = Riferimento.fromJson(riferimentoJson as Map<String, dynamic>);
+        riferimenti.add(f);
+      }
+
+      return riferimenti;
+    }
+    else return riferimenti;
+  }
+
   Future<Riferimento?> creaRiferimento(Riferimento riferimento, Categoria categoria, int userID, Riferimento? rifCitanto) async {
     if(rifCitanto == null) {
       _getMapping = "/create/"+userID.toString()+"/"+categoria.id_categoria.toString()+"/-1";

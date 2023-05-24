@@ -136,6 +136,10 @@ class NetworkHelper {
     return _rifnet.getByDescrizione(descrizione);
   }
 
+  Future<List<Riferimento>> getByTipo(tipo_enum tipo) async {
+    return _rifnet.getByTipo(tipo);
+  }
+
   Future<bool> deleteRiferimento(Riferimento r) async {
     return _rifnet.deleteRiferimento(r);
   }
