@@ -75,4 +75,19 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     @Query(value = "UPDATE riferimenti_biblio_riferimento_citante SET riferimento_citato_id_riferimento = :newCitato WHERE riferimento_citante_id_riferimento = :id_riferimento AND riferimento_citato_id_riferimento = :oldCitato ;", nativeQuery = true)
     @Transactional
     void updateCitazione(@Param("id_riferimento") int id_riferimento, @Param("oldCitato") int oldCitato, @Param("newCitato") int newCitato);
+
+    @Modifying
+    @Query(value = "DELETE FROM riferimenti_biblio_user_id WHERE riferimento_id_riferimento = :id_riferimento AND utente_user_id = :userID", nativeQuery = true)
+    @Transactional
+    void deleteAutore(@Param("id_riferimento") int id_riferimento, @Param("userID") int userID);
+
+    @Modifying
+    @Query(value = "DELETE FROM riferimenti_biblio_categorie WHERE riferimento_id_riferimento = :id_riferimento AND categorie_id_categoria = :categoriaID", nativeQuery = true)
+    @Transactional
+    void deleteCategoria(@Param("id_riferimento") int id_riferimento, @Param("categoriaID") int categoriaID);
+
+    @Modifying
+    @Query(value = "DELETE FROM riferimenti_biblio_riferimento_citante WHERE riferimento_citante_id_riferimento = :id_riferimento AND riferimento_citante_id_riferimento = :citanteID", nativeQuery = true)
+    @Transactional
+    void deleteRiferimentoCitazione(@Param("id_riferimento") int id_riferimento, @Param("citanteID") int citanteID);
 }

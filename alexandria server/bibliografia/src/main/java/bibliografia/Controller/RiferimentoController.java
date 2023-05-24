@@ -145,7 +145,6 @@ public class RiferimentoController {
     {
 
         Riferimento riferimento = convertEntity(riferimentoDto);
-        System.out.println(riferimento.getPag_fine()+" "+riferimentoDto.getPag_fine());
         riferimentoService.update(riferimento);
     }
 
@@ -164,12 +163,30 @@ public class RiferimentoController {
         riferimentoService.updateCitazione(idRiferimento, oldCitato, newCitato);
     }
 
-    @DeleteMapping("/delete")
-    public void delete(@RequestBody RiferimentoDto riferimentoDto)
+    @DeleteMapping("/delete/{idRiferimento}")
+    public void delete(@PathVariable int idRiferimento)
     {
-        Riferimento riferimento = convertEntity(riferimentoDto);
-        riferimentoService.delete(riferimento.getIdRiferimento());
+        riferimentoService.delete(idRiferimento);
     }
+
+    @DeleteMapping("/delete/riferimentoAutore/{idRiferimento}/{autoreID}")
+    public void deleteRiferimentoAutore(@PathVariable int idRiferimento, @PathVariable int autoreID)
+    {
+        riferimentoService.deleteRiferimentoAutore(idRiferimento, autoreID);
+    }
+
+    @DeleteMapping("/delete/riferimentoCategoria/{idRiferimento}/{categoriaID}")
+    public void deleteRiferimentoCategoria(@PathVariable int idRiferimento, @PathVariable int categoriaID)
+    {
+        riferimentoService.deleteRifeirmentoCategoria(idRiferimento, categoriaID);
+    }
+
+    @DeleteMapping("/delete/riferimentoCitazione/{idRiferimento}/{citazioneID}")
+    public void deleteRiferimentoCitazione(@PathVariable int idRiferimento, @PathVariable int citazioneID)
+    {
+        riferimentoService.deleteRiferimentoCitazione(idRiferimento, citazioneID);
+    }
+
 
     public Riferimento convertEntity(RiferimentoDto riferimentoDto)
     {
