@@ -30,7 +30,7 @@ public class RiferimentoService {
 
     public List<Riferimento> getByRiferimento(@PathVariable int riferimento_associato) {return riferimentoRepository.getByRiferimento(riferimento_associato);}
 
-    public List<Riferimento> getByTitoloSearch(@PathVariable String titolo_riferimento) {return riferimentoRepository.getByTitoloSearch(titolo_riferimento);}
+    public List<Riferimento> getByDescrizione(@PathVariable String descrizione) {return riferimentoRepository.getByDescrizione(descrizione);}
 
     public List<Riferimento> getByAutoreSearch(@PathVariable String nome, String cognome) {return riferimentoRepository.getByAutoreSearch(nome, cognome);}
 

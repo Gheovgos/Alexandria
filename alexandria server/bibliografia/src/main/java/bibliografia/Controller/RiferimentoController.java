@@ -77,10 +77,10 @@ public class RiferimentoController {
     }
 
 
-    @GetMapping("get/getByTitoloSearch/{titolo_riferimento}")
-    public List<RiferimentoDto> getByTitoloSearch(@PathVariable String titolo_riferimento)
+    @GetMapping("get/getByDescrizione/{descrizione}")
+    public List<RiferimentoDto> getByTitoloSearch(@PathVariable String descrizione)
     {
-        List<Riferimento> riferimenti = riferimentoService.getByTitoloSearch(titolo_riferimento);
+        List<Riferimento> riferimenti = riferimentoService.getByDescrizione(descrizione);
         List<RiferimentoDto> riferimentiDto = new ArrayList<>();
         for(Riferimento riferimento : riferimenti)
             riferimentiDto.add(convertDto(riferimento));
