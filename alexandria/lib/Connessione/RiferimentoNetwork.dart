@@ -206,7 +206,7 @@ class RiferimentoNetwork {
   }
 
   Future<bool?> aggiornaRiferimentoCategoria(Riferimento riferimento, int oldCategoriaID, int newCategoriaID) async {
-    _getMapping = "/update/riferimentoAutore/"+riferimento.id_riferimento.toString()+"/"+oldCategoriaID.toString()+"/"+newCategoriaID.toString();
+    _getMapping = "/update/riferimentoCategoria/"+riferimento.id_riferimento.toString()+"/"+oldCategoriaID.toString()+"/"+newCategoriaID.toString();
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
@@ -215,7 +215,7 @@ class RiferimentoNetwork {
   }
 
   Future<bool?> aggiornaRiferimentoCitazione(Riferimento riferimento, int oldCitatoID, int newCitatoID) async {
-    _getMapping = "/update/riferimentoAutore/"+riferimento.id_riferimento.toString()+"/"+oldCitatoID.toString()+"/"+newCitatoID.toString();
+    _getMapping = "/update/riferimentoCitazione/"+riferimento.id_riferimento.toString()+"/"+oldCitatoID.toString()+"/"+newCitatoID.toString();
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
