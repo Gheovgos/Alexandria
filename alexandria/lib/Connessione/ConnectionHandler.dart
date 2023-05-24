@@ -132,5 +132,9 @@ class NetworkHelper {
     return _rifnet.getRiferimentoByDOI(DOI);
   }
 
+  Future<bool> deleteRiferimento(Riferimento r) async {
+    return _rifnet.deleteRiferimento(r);
+  }
+
 
 }

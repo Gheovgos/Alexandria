@@ -314,4 +314,13 @@ class RiferimentoNetwork {
 
   }
 
+  Future<bool> deleteRiferimento(Riferimento r) async {
+    _getMapping = "/delete/"+r.id_riferimento.toString();
+
+    _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) return true;
+    else return false;
+  }
+
 }
