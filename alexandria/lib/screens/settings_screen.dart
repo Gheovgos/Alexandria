@@ -257,19 +257,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               children: [
                                 AlexandriaRoundedButton(
                                   elevation: kButtonElevation,
-                                  borderColor: Colors.grey,
                                   onPressed: () {},
                                   child: const Text(
                                     'Logout',
                                     style: TextStyle(
-                                      color: Colors.grey,
                                       fontSize: 16,
                                     ),
                                   ),
                                 ),
                                 AlexandriaRoundedButton(
                                   elevation: kButtonElevation,
-                                  borderColor: Colors.grey,
                                   onPressed: () async {
                                     if (confermaPassword == password &&
                                         password != '' &&
@@ -288,7 +285,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   child: const Text(
                                     'Salva',
                                     style: TextStyle(
-                                      color: Colors.grey,
                                       fontSize: 16,
                                     ),
                                   ),
