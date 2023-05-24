@@ -82,4 +82,16 @@ public class RiferimentoService {
         riferimentoRepository.deleteById(riferimentoId);
     }
 
+    public void deleteRiferimentoAutore(int riferimentoID, int autoreID) {
+        riferimentoRepository.deleteAutore(riferimentoID, autoreID);
+    }
+
+    public void deleteRifeirmentoCategoria(int riferimentoID, int categoriaID) {
+        riferimentoRepository.deleteCategoria(riferimentoID, categoriaID);
+    }
+
+    public void deleteRiferimentoCitazione(int riferimentoID, int citazioneID) {
+        riferimentoRepository.deleteRiferimentoCitazione(riferimentoID, citazioneID);
+    }
+
 }
