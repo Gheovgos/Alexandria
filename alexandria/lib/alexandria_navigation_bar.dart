@@ -18,16 +18,14 @@ class AlexandriaNavigationBar extends StatelessWidget {
           switch (index) {
             case 0:
               Navigator.popAndPushNamed(context, 'home');
-              break;
             case 1:
               Navigator.popAndPushNamed(context, 'my_riferimenti');
-              break;
+            case 2:
+              Navigator.popAndPushNamed(context, 'write_riferimento');
             case 3:
               Navigator.popAndPushNamed(context, 'create_categoria');
-              break;
             case 4:
               Navigator.popAndPushNamed(context, 'settings');
-              break;
           }
         }
       },
