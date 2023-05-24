@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -37,6 +38,9 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
 
     @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio WHERE doi = ?1", nativeQuery = true)
     List<Riferimento> getByDOISearch(int doi);
+
+    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio WHERE cast(tipo as varchar) = :tipo", nativeQuery = true)
+    List<Riferimento> getByTipo(@Param("tipo") String tipo);
 
     @Query(value = "SELECT MAX(id_riferimento) FROM riferimenti_biblio", nativeQuery = true)
     Integer getNextId();

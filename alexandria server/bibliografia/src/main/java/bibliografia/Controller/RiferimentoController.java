@@ -65,6 +65,17 @@ public class RiferimentoController {
         return riferimentoDto;
     }
 
+    @GetMapping("get/getByTipo/{tipo}")
+    public List<RiferimentoDto> getByTipo(@PathVariable String tipo)
+    {
+        List<Riferimento> riferimenti = riferimentoService.getByTipo(tipo);
+        List<RiferimentoDto> riferimentiDto = new ArrayList<>();
+        for(Riferimento riferimento : riferimenti)
+            riferimentiDto.add(convertDto(riferimento));
+
+        return riferimentiDto;
+    }
+
     @GetMapping("get/getByRiferimento/{riferimento_citante}")
     public List<RiferimentoDto> getByRiferimento(@PathVariable int riferimento_citante)
     {
@@ -78,7 +89,7 @@ public class RiferimentoController {
 
 
     @GetMapping("get/getByDescrizione/{descrizione}")
-    public List<RiferimentoDto> getByTitoloSearch(@PathVariable String descrizione)
+    public List<RiferimentoDto> getByDescrizione(@PathVariable String descrizione)
     {
         List<Riferimento> riferimenti = riferimentoService.getByDescrizione(descrizione);
         List<RiferimentoDto> riferimentiDto = new ArrayList<>();
