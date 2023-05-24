@@ -37,6 +37,7 @@ public class RiferimentoService {
     public List<Riferimento> getByTipo(@PathVariable String tipo) {return riferimentoRepository.getByTipo(tipo);}
     public List<Riferimento> getByDOISearch(@PathVariable int doi) {return riferimentoRepository.getByDOISearch(doi);}
 
+    public List<Riferimento> getCitazioniByUserId(@PathVariable int userID) { return riferimentoRepository.getCitazioniByUserId(userID);}
     public Integer getNextId(){return riferimentoRepository.getNextId();}
 
     public void update(Riferimento riferimento)

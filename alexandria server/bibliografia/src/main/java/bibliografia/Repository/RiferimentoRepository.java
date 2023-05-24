@@ -42,6 +42,9 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio WHERE cast(tipo as varchar) = :tipo", nativeQuery = true)
     List<Riferimento> getByTipo(@Param("tipo") String tipo);
 
+    @Query(value = "SELECT rb.* FROM riferimenti_biblio AS rb JOIN riferimenti_biblio_riferimento_citante AS rbc ON rb.id_riferimento = rbc.riferimento_citante_id_riferimento JOIN riferimenti_biblio_user_id AS rbui ON rb.id_riferimento = rbui.riferimento_id_riferimento WHERE rbui.utente_user_id = :userID ", nativeQuery = true)
+    List<Riferimento> getCitazioniByUserId(@Param("userID") int userID);
+
     @Query(value = "SELECT MAX(id_riferimento) FROM riferimenti_biblio", nativeQuery = true)
     Integer getNextId();
 
