@@ -136,6 +136,10 @@ class NetworkHelper {
     return _rifnet.getByDescrizione(descrizione);
   }
 
+  Future<List<Riferimento>> getCitazioniByUserId(int userID) async {
+    return _rifnet.getCitazioniByUserId(userID);
+  }
+
   Future<List<Riferimento>> getByTipo(tipo_enum tipo) async {
     return _rifnet.getByTipo(tipo);
   }

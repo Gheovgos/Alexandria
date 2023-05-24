@@ -155,6 +155,25 @@ class RiferimentoNetwork {
     else return riferimenti;
   }
 
+  Future<List<Riferimento>> getCitazioniByUserId(int userID) async {
+    late List<Riferimento> riferimenti = [];
+
+    _getMapping = "/get/getCitazioniByUserId/"+userID.toString();
+
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      List<dynamic> riferimentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(var riferimentoJson in riferimentiJson) {
+        Riferimento f = Riferimento.fromJson(riferimentoJson as Map<String, dynamic>);
+        riferimenti.add(f);
+      }
+
+      return riferimenti;
+    }
+    else return riferimenti;
+  }
+
   Future<List<Riferimento>> getByTipo(tipo_enum tipo) async {
     late List<Riferimento> riferimenti = [];
 
