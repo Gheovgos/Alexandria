@@ -323,4 +323,32 @@ class RiferimentoNetwork {
     else return false;
   }
 
+  Future<bool> deleteRiferimentoAutore(Riferimento r, int autoreID) async {
+    _getMapping = "/delete/riferimentoAutore/"+r.id_riferimento.toString()+"/"+autoreID.toString();
+
+    _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) return true;
+    else return false;
+  }
+
+  Future<bool> deleteRiferimentoCategoria(Riferimento r, int categoriaID) async {
+    _getMapping = "/delete/riferimentoCategoria/"+r.id_riferimento.toString()+"/"+categoriaID.toString();
+
+    _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) return true;
+    else return false;
+  }
+
+  Future<bool> deleteRiferimentoCitazione(Riferimento r, int citazioneID) async {
+    _getMapping = "/delete/riferimentoCitazione/"+r.id_riferimento.toString()+"/"+citazioneID.toString();
+
+    _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) return true;
+    else return false;
+  }
+
+
 }

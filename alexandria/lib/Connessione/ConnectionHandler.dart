@@ -136,5 +136,17 @@ class NetworkHelper {
     return _rifnet.deleteRiferimento(r);
   }
 
+  Future<bool> deleteRiferimentoAutore(Riferimento r, int autoreID) async {
+    return _rifnet.deleteRiferimentoAutore(r, autoreID);
+  }
+
+  Future<bool> deleteRiferimentoCategoria(Riferimento r, int categoriaID) async {
+    return _rifnet.deleteRiferimentoCategoria(r, categoriaID);
+  }
+
+  Future<bool> deleteRiferimentoCitazione(Riferimento r, int citazioneID) async {
+    return _rifnet.deleteRiferimentoCitazione(r, citazioneID);
+  }
+
 
 }
