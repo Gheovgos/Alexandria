@@ -2,6 +2,7 @@ import 'package:alexandria/Connessione/ConnectionHandler.dart';
 import 'package:alexandria/alexandria_container.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -137,10 +138,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       onPressed: () async {
                         if (kReleaseMode) {
-                          final a = NetworkHelper();
-                          final user = await a.login(username, password);
+                          final user = await networkHelper.login(username, password);
                           if (user == null) {
-                            showDialog(
+                            showDialog<void>(
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
@@ -161,8 +161,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                             );
                           } else {
-                            Navigator.pushNamed(context, 'home',
-                                arguments: user);
+                            currentUser = user;
+                            Navigator.pushNamed(context, 'home');
                           }
                         }
                         Navigator.pushNamed(context, 'home');

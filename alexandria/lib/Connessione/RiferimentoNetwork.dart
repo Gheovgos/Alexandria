@@ -206,7 +206,7 @@ class RiferimentoNetwork {
   }
 
   Future<bool?> aggiornaRiferimentoCategoria(Riferimento riferimento, int oldCategoriaID, int newCategoriaID) async {
-    _getMapping = "/update/riferimentoAutore/"+riferimento.id_riferimento.toString()+"/"+oldCategoriaID.toString()+"/"+newCategoriaID.toString();
+    _getMapping = "/update/riferimentoCategoria/"+riferimento.id_riferimento.toString()+"/"+oldCategoriaID.toString()+"/"+newCategoriaID.toString();
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
@@ -215,7 +215,7 @@ class RiferimentoNetwork {
   }
 
   Future<bool?> aggiornaRiferimentoCitazione(Riferimento riferimento, int oldCitatoID, int newCitatoID) async {
-    _getMapping = "/update/riferimentoAutore/"+riferimento.id_riferimento.toString()+"/"+oldCitatoID.toString()+"/"+newCitatoID.toString();
+    _getMapping = "/update/riferimentoCitazione/"+riferimento.id_riferimento.toString()+"/"+oldCitatoID.toString()+"/"+newCitatoID.toString();
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
@@ -313,5 +313,42 @@ class RiferimentoNetwork {
     } else return false;
 
   }
+
+  Future<bool> deleteRiferimento(Riferimento r) async {
+    _getMapping = "/delete/"+r.id_riferimento.toString();
+
+    _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) return true;
+    else return false;
+  }
+
+  Future<bool> deleteRiferimentoAutore(Riferimento r, int autoreID) async {
+    _getMapping = "/delete/riferimentoAutore/"+r.id_riferimento.toString()+"/"+autoreID.toString();
+
+    _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) return true;
+    else return false;
+  }
+
+  Future<bool> deleteRiferimentoCategoria(Riferimento r, int categoriaID) async {
+    _getMapping = "/delete/riferimentoCategoria/"+r.id_riferimento.toString()+"/"+categoriaID.toString();
+
+    _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) return true;
+    else return false;
+  }
+
+  Future<bool> deleteRiferimentoCitazione(Riferimento r, int citazioneID) async {
+    _getMapping = "/delete/riferimentoCitazione/"+r.id_riferimento.toString()+"/"+citazioneID.toString();
+
+    _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) return true;
+    else return false;
+  }
+
 
 }

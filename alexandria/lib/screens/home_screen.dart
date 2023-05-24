@@ -1,5 +1,6 @@
 import 'package:alexandria/alexandria_navigation_bar.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:alexandria/history_dialog.dart';
 import 'package:alexandria/search_dialog.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const SizedBox(
+          SizedBox(
             height: 120,
             width: double.infinity,
             child: DecoratedBox(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(70),
@@ -35,25 +36,25 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Center(
                 child: Text(
-                  'Benvenuto, Nome Cognome',
-                  style: TextStyle(fontSize: 24, shadows: kTextElevation),
+                  'Benvenuto, ${currentUser.nome} ${currentUser.cognome}',
+                  style: const TextStyle(fontSize: 24, shadows: kTextElevation),
                 ),
               ),
             ),
           ),
           GestureDetector(
             onTap: () {
-              //TODO: pulsante Ricerca
-              showDialog(
+              // TODO(peppe): pulsante Ricerca
+              showDialog<void>(
                 context: context,
                 builder: (BuildContext context) => const SearchDialog(),
               );
             },
-            child: SizedBox(
+            child: const SizedBox(
               height: 100,
               width: 300,
               child: DecoratedBox(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Icon(
                       Icons.search,
                       size: 40,
@@ -77,17 +78,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           GestureDetector(
             onTap: () {
-              //TODO: pulsante Cronologia
-              showDialog(
+              // TODO(peppe): pulsante Cronologia
+              showDialog<void>(
                 context: context,
                 builder: (BuildContext context) => const HistoryDialog(),
               );
             },
-            child: SizedBox(
+            child: const SizedBox(
               height: 100,
               width: 300,
               child: DecoratedBox(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(
                     Radius.circular(50),
@@ -95,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Icon(
                       Icons.arrow_upward_outlined,
                       size: 40,

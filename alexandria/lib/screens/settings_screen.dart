@@ -1,6 +1,7 @@
 import 'package:alexandria/alexandria_navigation_bar.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -11,6 +12,14 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  late String nome;
+  late String cognome;
+  late String email;
+  late String username;
+  late String password;
+  late String confermaPassword;
+  bool mostraPassword = false;
+  bool mostraConfermaPassword = false;
   bool rememberMe = false;
   @override
   Widget build(BuildContext context) {
@@ -72,8 +81,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.emailAddress,
                                     textAlign: TextAlign.left,
-                                    onChanged: (value) {},
-                                    decoration: kInputDecoration,
+                                    onChanged: (value) {
+                                      nome = value;
+                                    },
+                                    decoration: kInputDecoration.copyWith(
+                                      hintText: currentUser.nome,
+                                    ),
                                   ),
                                 )
                               ],
@@ -91,8 +104,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.name,
                                     textAlign: TextAlign.left,
-                                    onChanged: (value) {},
-                                    decoration: kInputDecoration,
+                                    onChanged: (value) {
+                                      cognome = value;
+                                    },
+                                    decoration: kInputDecoration.copyWith(
+                                      hintText: currentUser.cognome,
+                                    ),
                                   ),
                                 )
                               ],
@@ -108,8 +125,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   elevation: 5,
                                   child: TextField(
                                     keyboardType: TextInputType.emailAddress,
-                                    onChanged: (value) {},
-                                    decoration: kInputDecoration,
+                                    onChanged: (value) {
+                                      email = value;
+                                    },
+                                    decoration: kInputDecoration.copyWith(
+                                      hintText: currentUser.email,
+                                    ),
                                   ),
                                 )
                               ],
@@ -127,8 +148,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.name,
                                     textAlign: TextAlign.left,
-                                    onChanged: (value) {},
-                                    decoration: kInputDecoration,
+                                    onChanged: (value) {
+                                      username = value;
+                                    },
+                                    decoration: kInputDecoration.copyWith(
+                                      hintText: currentUser.username,
+                                    ),
                                   ),
                                 )
                               ],
@@ -146,20 +171,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         ),
                                         elevation: 5,
                                         child: TextField(
-                                          obscureText: true,
+                                          obscureText: !mostraPassword,
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
                                           keyboardType:
                                               TextInputType.emailAddress,
                                           textAlign: TextAlign.left,
-                                          onChanged: (value) {},
+                                          onChanged: (value) {
+                                            password = value;
+                                          },
                                           decoration: kInputDecoration,
                                         ),
                                       ),
                                     ),
                                     IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          mostraPassword = !mostraPassword;
+                                        });
+                                      },
                                       icon: const Icon(Icons.remove_red_eye),
                                     )
                                   ],
@@ -179,20 +210,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         ),
                                         elevation: 5,
                                         child: TextField(
-                                          obscureText: true,
+                                          obscureText: !mostraConfermaPassword,
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
                                           keyboardType:
                                               TextInputType.emailAddress,
                                           textAlign: TextAlign.left,
-                                          onChanged: (value) {},
+                                          onChanged: (value) {
+                                            confermaPassword = value;
+                                          },
                                           decoration: kInputDecoration,
                                         ),
                                       ),
                                     ),
                                     IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          mostraConfermaPassword =
+                                              !mostraConfermaPassword;
+                                        });
+                                      },
                                       icon: const Icon(Icons.remove_red_eye),
                                     )
                                   ],
@@ -232,7 +270,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 AlexandriaRoundedButton(
                                   elevation: kButtonElevation,
                                   borderColor: Colors.grey,
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    if (confermaPassword == password &&
+                                        password != '' &&
+                                        nome != '' &&
+                                        cognome != '' &&
+                                        email != '' &&
+                                        username != '') {
+                                      currentUser.nome = nome;
+                                      currentUser.cognome = cognome;
+                                      currentUser.email = email;
+                                      currentUser.password = password;
+                                      networkHelper.updateUser(currentUser);
+                                      // TODO(peppe): finire qui, mostrare dialog
+                                    }
+                                  },
                                   child: const Text(
                                     'Salva',
                                     style: TextStyle(

@@ -13,7 +13,7 @@ import 'RiferimentoNetwork.dart';
 import '../Model/tipo_enum.dart';
 
 class NetworkHelper {
-  final String url = "http://192.168.1.199:8090";
+  final String url = "http://192.168.183.93:8090";
   late UtenteNetwork _unet = UtenteNetwork(url);
   late CategoriaNetwork _catnet = CategoriaNetwork(url);
   late RiferimentoNetwork _rifnet = RiferimentoNetwork(url);
@@ -108,6 +108,18 @@ class NetworkHelper {
     return _rifnet.aggiornaRiferimento(r);
   }
 
+  Future<bool?> aggiornaRiferimentoAutore(Riferimento riferimento, int oldAutoreID, int newAutoreID) async {
+    return _rifnet.aggiornaRiferimentoAutore(riferimento, oldAutoreID, newAutoreID);
+  }
+
+  Future<bool?> aggiornaRiferimentoCategoria(Riferimento riferimento, int oldCategoriaID, int newCategoriaID) async {
+    return _rifnet.aggiornaRiferimentoCategoria(riferimento, oldCategoriaID, newCategoriaID);
+  }
+
+  Future<bool?> aggiornaRiferimentoCitazione(Riferimento riferimento, int oldCitatoID, int newCitatoID) async {
+    return _rifnet.aggiornaRiferimentoCitazione(riferimento, oldCitatoID, newCitatoID);
+  }
+
   Future<List<Riferimento>?> getByRiferimentoAssociato(Riferimento riferimento) async {
     return _rifnet.getByRiferimentoAssociato(riferimento);
   }
@@ -118,6 +130,22 @@ class NetworkHelper {
 
   Future<List<Riferimento>?> getRiferimentoByDOI(int DOI) async {
     return _rifnet.getRiferimentoByDOI(DOI);
+  }
+
+  Future<bool> deleteRiferimento(Riferimento r) async {
+    return _rifnet.deleteRiferimento(r);
+  }
+
+  Future<bool> deleteRiferimentoAutore(Riferimento r, int autoreID) async {
+    return _rifnet.deleteRiferimentoAutore(r, autoreID);
+  }
+
+  Future<bool> deleteRiferimentoCategoria(Riferimento r, int categoriaID) async {
+    return _rifnet.deleteRiferimentoCategoria(r, categoriaID);
+  }
+
+  Future<bool> deleteRiferimentoCitazione(Riferimento r, int citazioneID) async {
+    return _rifnet.deleteRiferimentoCitazione(r, citazioneID);
   }
 
 
