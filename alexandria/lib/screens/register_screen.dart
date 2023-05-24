@@ -291,7 +291,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       }
                                     }
                                   } else {
-                                    showDialog(
+                                    showDialog<void>(
                                       context: context,
                                       builder: (BuildContext context) {
                                         return AlertDialog(
