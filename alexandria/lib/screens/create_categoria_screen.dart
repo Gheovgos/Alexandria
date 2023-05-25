@@ -94,9 +94,11 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                     ),
                                   ),
                                 ),
+                                const SizedBox(height: 10,),
                                 SizedBox(
                                   height: 300,
                                   child: ListView.builder(
+                                    padding: EdgeInsets.zero,
                                     shrinkWrap: true,
                                     itemCount: 10,
                                     itemBuilder:
