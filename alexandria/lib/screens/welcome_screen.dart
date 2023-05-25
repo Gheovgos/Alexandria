@@ -1,10 +1,52 @@
+import 'dart:async';
 import 'package:alexandria/alexandria_container.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:flutter/material.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
+
+  @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  late Future<bool> hasConnection;
+  @override
+  void initState() {
+    super.initState();
+    connectionCheck();
+  }
+
+  Future<void> connectionCheck() async {
+    hasConnection = networkHelper.hasConnection();
+  }
+
+  Future<void> showError() async {
+    unawaited(
+      showDialog<void>(
+        barrierDismissible: false,
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: const Text('Controllando la connessione...'),
+            content: Container(
+              padding: const EdgeInsets.all(50),
+              height: 225,
+              child: const CircularProgressIndicator(),
+            ),
+          );
+        },
+      ),
+    );
+    final awaitedHasConnection = await hasConnection;
+    Navigator.pushNamed(
+      context,
+      awaitedHasConnection ? 'login' : 'neterror',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +97,7 @@ class WelcomeScreen extends StatelessWidget {
             elevation: kButtonElevation,
             padding: const EdgeInsets.all(15),
             backgroundColor: Colors.white,
+            onPressed: showError,
             child: Text(
               'Unisciti',
               style: TextStyle(
@@ -63,9 +106,6 @@ class WelcomeScreen extends StatelessWidget {
                 shadows: kTextElevation,
               ),
             ),
-            onPressed: () {
-              Navigator.pushNamed(context, 'login');
-            },
           ),
           const Hero(
             tag: 2,
