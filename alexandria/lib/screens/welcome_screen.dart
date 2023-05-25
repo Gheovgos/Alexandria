@@ -34,7 +34,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             title: const Text('Controllando la connessione...'),
             content: Container(
               padding: const EdgeInsets.all(50),
-              height: 225,
+              height: 250,
               child: const CircularProgressIndicator(),
             ),
           );
