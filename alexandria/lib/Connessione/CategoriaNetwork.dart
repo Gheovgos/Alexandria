@@ -71,7 +71,7 @@ class CategoriaNetwork {
 
   }
 
-  Future<bool?> updateCategoria(Categoria newCategoria) async {
+  Future<bool> updateCategoria(Categoria newCategoria) async {
     _getMapping = "/update/"+newCategoria.user_id.toString();
 
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String> { 'Content-Type': 'application/json; charset=UTF-8', },
@@ -84,7 +84,7 @@ class CategoriaNetwork {
     else return false;
   }
 
-  Future<bool?> deleteCategoriaById(Categoria c) async {
+  Future<bool> deleteCategoriaById(Categoria c) async {
     _getMapping = "/delete";
 
     _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String> { 'Content-Type': 'application/json; charset=UTF-8', },
@@ -94,7 +94,7 @@ class CategoriaNetwork {
         'id_utente': c.user_id,
         'id_categoria': c.id_categoria,}),);
     if(_serverResponse.statusCode == 200) return true;
-    else false;
+    else return false;
   }
 
   Future<Categoria?> getCategoriaByRiferimento(int id_riferimento) async {

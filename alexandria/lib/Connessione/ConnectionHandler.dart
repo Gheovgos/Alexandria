@@ -36,11 +36,11 @@ class NetworkHelper {
     return _unet.findAll();
   }
 
-  Future<bool?> deleteUserFromId(int user_id) async {
+  Future<bool> deleteUserFromId(int user_id) async {
     return _unet.deleteUserFromId(user_id);
   }
 
-  Future<bool?> updateUser(Utente newUtente) async {
+  Future<bool> updateUser(Utente newUtente) async {
     return _unet.updateUser(newUtente);
   }
 
@@ -64,11 +64,11 @@ class NetworkHelper {
     return _catnet.creaCategoria(nome, user_id, superCategoria);
   }
 
-  Future<bool?> updateCategoria(Categoria newCategoria) async {
+  Future<bool> updateCategoria(Categoria newCategoria) async {
     return _catnet.updateCategoria(newCategoria);
   }
 
-  Future<bool?> deleteCategoria(Categoria c) async {
+  Future<bool> deleteCategoria(Categoria c) async {
     return _catnet.deleteCategoriaById(c);
   }
 
@@ -88,15 +88,15 @@ class NetworkHelper {
     return _rifnet.creaRiferimento(riferimento, categoria, userID, rifCitanto);
   }
 
-  Future<bool?> aggiungiAutore(Riferimento riferimento, int autoreID) async {
+  Future<bool> aggiungiAutore(Riferimento riferimento, int autoreID) async {
     return _rifnet.aggiungiAutore(riferimento, autoreID);
   }
 
-  Future<bool?> aggiungiCategoria(Riferimento riferimento, int categoriaID) async {
+  Future<bool> aggiungiCategoria(Riferimento riferimento, int categoriaID) async {
     return _rifnet.aggiungiCategoria(riferimento, categoriaID);
   }
 
-  Future<bool?> aggiungiCitazione(Riferimento riferimento, int citanteID) async {
+  Future<bool> aggiungiCitazione(Riferimento riferimento, int citanteID) async {
     return _rifnet.aggiungiCitazione(riferimento, citanteID);
   }
 
@@ -104,19 +104,19 @@ class NetworkHelper {
     return _rifnet.getRiferimentoByNome(titolo);
   }
 
-  Future<bool?> aggiornaRiferimento(Riferimento r) async {
+  Future<bool> aggiornaRiferimento(Riferimento r) async {
     return _rifnet.aggiornaRiferimento(r);
   }
 
-  Future<bool?> aggiornaRiferimentoAutore(Riferimento riferimento, int oldAutoreID, int newAutoreID) async {
+  Future<bool> aggiornaRiferimentoAutore(Riferimento riferimento, int oldAutoreID, int newAutoreID) async {
     return _rifnet.aggiornaRiferimentoAutore(riferimento, oldAutoreID, newAutoreID);
   }
 
-  Future<bool?> aggiornaRiferimentoCategoria(Riferimento riferimento, int oldCategoriaID, int newCategoriaID) async {
+  Future<bool> aggiornaRiferimentoCategoria(Riferimento riferimento, int oldCategoriaID, int newCategoriaID) async {
     return _rifnet.aggiornaRiferimentoCategoria(riferimento, oldCategoriaID, newCategoriaID);
   }
 
-  Future<bool?> aggiornaRiferimentoCitazione(Riferimento riferimento, int oldCitatoID, int newCitatoID) async {
+  Future<bool> aggiornaRiferimentoCitazione(Riferimento riferimento, int oldCitatoID, int newCitatoID) async {
     return _rifnet.aggiornaRiferimentoCitazione(riferimento, oldCitatoID, newCitatoID);
   }
 

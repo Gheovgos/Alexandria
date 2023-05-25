@@ -85,15 +85,15 @@ class UtenteNetwork {
     }
   }
 
-  Future<bool?> deleteUserFromId(int user_id) async {
+  Future<bool> deleteUserFromId(int user_id) async {
     _getMapping = "/delete/"+user_id.toString();
 
     _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',}, );
     if(_serverResponse.statusCode == 200) return true;
-    else false;
+    else return false;
   }
 
-  Future<bool?> updateUser(Utente newUtente) async {
+  Future<bool> updateUser(Utente newUtente) async {
     _getMapping = "/update";
 
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String> { 'Content-Type': 'application/json; charset=UTF-8', },
