@@ -1,16 +1,11 @@
-import 'dart:convert';
-
 import 'package:alexandria/Connessione/CategoriaNetwork.dart';
 import 'package:alexandria/Connessione/RiferimentoNetwork.dart';
-import 'package:http/http.dart';
-
-import '../Model/Categoria.dart';
-import '../Model/Utente.dart';
-import '../Model/Riferimento.dart';
-import 'UtenteNetwork.dart';
-import 'CategoriaNetwork.dart';
-import 'RiferimentoNetwork.dart';
-import '../Model/tipo_enum.dart';
+import 'package:alexandria/Connessione/UtenteNetwork.dart';
+import 'package:alexandria/Model/Categoria.dart';
+import 'package:alexandria/Model/Riferimento.dart';
+import 'package:alexandria/Model/Utente.dart';
+import 'package:alexandria/Model/tipo_enum.dart';
+import 'package:flutter/foundation.dart';
 
 class NetworkHelper {
   final String url = "http://192.168.43.141:8090";
@@ -28,7 +23,11 @@ class NetworkHelper {
     return _unet.registrazione(username, password, nome, cognome, email);
   }
   Future<bool> hasConnection() async {
-    return await getUtenteById(0) == null;
+    if(!kReleaseMode) {
+      return true;
+    } else {
+      return await getUtenteById(0) == null;
+    }
   }
   Future<Utente?> getUtenteById(int user_id) async {
     return _unet.getUtenteById(user_id);
