@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:alexandria/Model/Categoria.dart';
 import 'package:alexandria/alexandria_navigation_bar.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
@@ -14,6 +15,34 @@ class CreateCategoriaScreen extends StatefulWidget {
 }
 
 class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
+  Future<Categoria?> tryCreateCategoria() async {
+    unawaited(
+      showDialog<void>(
+        barrierDismissible: false,
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: const Text('Creazione categoria...'),
+            content: Container(
+              padding: const EdgeInsets.all(50),
+              height: 250,
+              child: const CircularProgressIndicator(),
+            ),
+          );
+        },
+      ),
+    );
+    final newCategoria = await networkHelper.createCategoria(
+      nomeCategoria,
+      currentUser.user_ID,
+      sopraCategoria,
+    );
+    Navigator.pop(context);
+    return newCategoria;
+  }
+
+  late String nomeCategoria;
+  int? sopraCategoria;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +76,9 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                     style: const TextStyle(color: Colors.black),
                     keyboardType: TextInputType.emailAddress,
                     textAlign: TextAlign.left,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      nomeCategoria = value;
+                    },
                     decoration: kInputDecoration.copyWith(
                       hintText: 'Inserisci nome...',
                     ),
@@ -119,6 +150,18 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                             return MiniInfoBox(
                                               name: snapshot.data![index].nome,
                                               fontSize: 15,
+                                              onTap: () {
+                                                sopraCategoria = snapshot
+                                                    .data?[index].id_categoria;
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Selezionata "${snapshot.data![index].nome}" come sopra-categoria!',
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             );
                                           },
                                         );
@@ -151,46 +194,52 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
               'Salva',
               style: TextStyle(fontSize: 16),
             ),
-            onPressed: () {
-              showDialog<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    actionsAlignment: MainAxisAlignment.spaceAround,
-                    content: const SingleChildScrollView(
-                      child: Text('Categoria creata con successo!'),
-                    ),
-                    actions: [
-                      AlexandriaRoundedButton(
-                        elevation: kButtonElevation,
-                        padding: const EdgeInsets.only(
-                          left: 30,
-                          right: 30,
-                          top: 20,
-                          bottom: 20,
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Indietro'),
+            onPressed: () async {
+              final newCategoria = await tryCreateCategoria();
+              if (newCategoria != null) {
+                await showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      actionsAlignment: MainAxisAlignment.spaceAround,
+                      content: const SingleChildScrollView(
+                        child: Text('Categoria creata con successo!'),
                       ),
-                      AlexandriaRoundedButton(
-                        elevation: kButtonElevation,
-                        padding: const EdgeInsets.only(
-                          left: 30,
-                          right: 30,
-                          top: 20,
-                          bottom: 20,
+                      actions: [
+                        AlexandriaRoundedButton(
+                          elevation: kButtonElevation,
+                          padding: const EdgeInsets.only(
+                            left: 30,
+                            right: 30,
+                            top: 20,
+                            bottom: 20,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Indietro'),
                         ),
-                        onPressed: () {
-                          // TODO(peppe): view_categoria_screen(nuova categoria)
-                        },
-                        child: const Text('Visualizza'),
-                      ),
-                    ],
-                  );
-                },
-              );
+                        AlexandriaRoundedButton(
+                          elevation: kButtonElevation,
+                          padding: const EdgeInsets.only(
+                            left: 30,
+                            right: 30,
+                            top: 20,
+                            bottom: 20,
+                          ),
+                          onPressed: () {
+                            // TODO(peppe): view_categoria_screen(nuova categoria)
+                          },
+                          child: const Text('Visualizza'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              } else {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(const SnackBar(content: Text('Errore!')));
+              }
             },
           ),
         ],
