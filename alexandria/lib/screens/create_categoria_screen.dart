@@ -162,6 +162,14 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                                   ),
                                                 );
                                               },
+                                              onTapIcon: () {
+                                                Navigator.pushNamed(
+                                                  context,
+                                                  'view_categoria',
+                                                  arguments:
+                                                      snapshot.data![index],
+                                                );
+                                              },
                                             );
                                           },
                                         );
