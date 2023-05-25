@@ -24,7 +24,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     hasConnection = networkHelper.hasConnection();
   }
 
-  Future<void> showError() async {
+  Future<void> tryToConnect() async {
     unawaited(
       showDialog<void>(
         barrierDismissible: false,
@@ -97,7 +97,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             elevation: kButtonElevation,
             padding: const EdgeInsets.all(15),
             backgroundColor: Colors.white,
-            onPressed: showError,
+            onPressed: tryToConnect,
             child: Text(
               'Unisciti',
               style: TextStyle(
