@@ -27,7 +27,9 @@ class NetworkHelper {
   Future<Utente?> registrazione(String username, String password, String nome, String cognome, String email) async {
     return _unet.registrazione(username, password, nome, cognome, email);
   }
-
+  Future<bool> hasConnection() async {
+    return await getUtenteById(0) == null;
+  }
   Future<Utente?> getUtenteById(int user_id) async {
     return _unet.getUtenteById(user_id);
   }
