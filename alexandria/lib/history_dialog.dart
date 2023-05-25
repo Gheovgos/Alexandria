@@ -52,7 +52,9 @@ class _HistoryDialogState extends State<HistoryDialog> {
                         return const Center(child: CircularProgressIndicator());
                       } else {
                         return ListView.builder(
-                          itemCount: 5,
+                          itemCount: snapshot.data!.length < 5
+                              ? snapshot.data?.length
+                              : 5,
                           itemBuilder: (BuildContext context, int index) {
                             return MiniInfoBox(
                               name:
@@ -90,8 +92,8 @@ class _HistoryDialogState extends State<HistoryDialog> {
                   height: 200,
                   width: 300,
                   child: FutureBuilder(
-                    future: networkHelper // TODO(peppe): citazioni!!!
-                        .getRiferimentoByUserId(currentUser.user_ID),
+                    future: networkHelper
+                        .getCitazioniByUserId(currentUser.user_ID),
                     builder: (
                       context,
                       AsyncSnapshot<List<Riferimento>?> snapshot,
@@ -100,10 +102,11 @@ class _HistoryDialogState extends State<HistoryDialog> {
                         return const Center(child: CircularProgressIndicator());
                       } else {
                         return ListView.builder(
-                          itemCount: 5,
-                          scrollDirection: Axis.horizontal,
+                          itemCount: snapshot.data!.length < 5
+                              ? snapshot.data?.length
+                              : 5,
                           itemBuilder: (BuildContext context, int index) {
-                            return Text(
+                            return MiniInfoBox(name:
                               '${snapshot.data?[index].titolo_riferimento}',
                             );
                           },
