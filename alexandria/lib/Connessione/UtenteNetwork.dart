@@ -102,6 +102,7 @@ class UtenteNetwork {
         'username': newUtente.username,
         'nome': newUtente.nome,
         'cognome': newUtente.cognome,
+        'email': newUtente.email,
         'password_hashed': newUtente.password,
         'salt': newUtente.salt,}), );
     if(_serverResponse.statusCode == 200) return true;

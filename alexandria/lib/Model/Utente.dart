@@ -5,7 +5,7 @@ import 'dart:math';
 
 class Utente {
 
-    Utente(int user_id, String username, String nome,  String cognome, String email, String password) {
+    Utente(int user_id, String username, String nome,  String cognome, String? email, String password) {
         this.user_ID = user_id;
         this.username = username;
         this.nome = nome;
@@ -21,14 +21,15 @@ class Utente {
             cognome = json['cognome'] as String,
             username = json['username'] as String,
             password = json['password_hashed'] as String,
-            salt = json['salt'] as String;
+            salt = json['salt'] as String,
+            email = json['email'] as String?;
 
 
     late int user_ID;
     late String username;
     late String nome;
     late String cognome;
-    late String email;
+    late String? email;
     late String password;
     late String salt;
 
