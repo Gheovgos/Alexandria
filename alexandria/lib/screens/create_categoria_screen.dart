@@ -1,6 +1,8 @@
+import 'package:alexandria/Model/Categoria.dart';
 import 'package:alexandria/alexandria_navigation_bar.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
 
@@ -94,18 +96,33 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 10,),
+                                const SizedBox(
+                                  height: 10,
+                                ),
                                 SizedBox(
                                   height: 300,
-                                  child: ListView.builder(
-                                    padding: EdgeInsets.zero,
-                                    shrinkWrap: true,
-                                    itemCount: 10,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return MiniInfoBox(
-                                        name: 'Categoria $index',
-                                      );
+                                  child: FutureBuilder(
+                                    future: networkHelper.findAllCategories(),
+                                    builder: (
+                                      context,
+                                      AsyncSnapshot<List<Categoria>?> snapshot,
+                                    ) {
+                                      if (!snapshot.hasData) {
+                                        return const Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      } else {
+                                        return ListView.builder(
+                                          itemCount: snapshot.data?.length,
+                                          itemBuilder:
+                                              (BuildContext build, int index) {
+                                            return MiniInfoBox(
+                                              name: snapshot.data![index].nome,
+                                              fontSize: 15,
+                                            );
+                                          },
+                                        );
+                                      }
                                     },
                                   ),
                                 ),
