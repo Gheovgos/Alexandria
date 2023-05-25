@@ -110,7 +110,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                           } else {
                             return ListView.builder(
                               itemCount: snapshot.data?.length,
-                              scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext build, int index) {
                                 return InkWell(
                                   onTap: () {
