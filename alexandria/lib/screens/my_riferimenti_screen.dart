@@ -15,6 +15,12 @@ class MyRiferimentiScreen extends StatefulWidget {
 
 class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
   @override
+  void initState() {
+    super.initState();
+    myRiferimenti ??= networkHelper.getRiferimentoByUserId(currentUser.user_ID);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -97,8 +103,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                       height: 350,
                       width: 300,
                       child: FutureBuilder(
-                        future: networkHelper
-                            .getRiferimentoByUserId(currentUser.user_ID),
+                        future: myRiferimenti,
                         builder: (
                           context,
                           AsyncSnapshot<List<Riferimento>?> snapshot,
@@ -109,6 +114,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                             );
                           } else {
                             return ListView.builder(
+                              padding: EdgeInsets.zero,
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext build, int index) {
                                 return InkWell(
