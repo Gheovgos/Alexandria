@@ -20,6 +20,12 @@ class _SearchDialogState extends State<SearchDialog> {
   List<tipo_enum> tipi = [];
   ScrollController scrollController = ScrollController();
   @override
+  void initState() {
+    super.initState();
+    allCategories ??= networkHelper.findAllCategories();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: const RoundedRectangleBorder(
@@ -203,7 +209,7 @@ class _SearchDialogState extends State<SearchDialog> {
             size: 50,
           ),
           onPressed: () {
-            //TODO: prendi i dati, fai la ricerca e vai a search_result_screen
+            // TODO(peppe): fai la ricerca e result_screen
           },
         )
       ],
