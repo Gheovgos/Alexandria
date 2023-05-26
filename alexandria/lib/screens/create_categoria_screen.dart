@@ -40,15 +40,16 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
     Navigator.pop(context);
     return newCategoria;
   }
+
   late Future<List<Categoria>?> allCategories;
   late String nomeCategoria;
   int? sopraCategoria;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     allCategories = networkHelper.findAllCategories();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -155,11 +156,17 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                           itemBuilder:
                                               (BuildContext build, int index) {
                                             return MiniInfoBox(
+                                              backgroundColor: sopraCategoria ==
+                                                      snapshot.data![index]
+                                                          .id_categoria
+                                                  ? Colors.grey
+                                                  : Colors.white,
                                               name: snapshot.data![index].nome,
                                               fontSize: 15,
                                               onTap: () {
                                                 sopraCategoria = snapshot
                                                     .data?[index].id_categoria;
+                                                setState(() {});
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
                                                   SnackBar(
@@ -214,8 +221,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
 
               if (newCategoria != null) {
                 (await allCategories)!.add(newCategoria);
-                setState(() {
-                });
+                setState(() {});
                 await showDialog<void>(
                   context: context,
                   builder: (BuildContext context) {
