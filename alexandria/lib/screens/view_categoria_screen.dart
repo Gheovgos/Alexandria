@@ -92,8 +92,7 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                       width: 250,
                       child: FutureBuilder(
                         future: networkHelper
-                            .getRiferimentoByUserId(categoria.user_id),
-                        // TODO(peppe): DA CAMBIARE!!
+                            .getRiferimentoByCategoria(categoria.user_id),
                         builder: (
                           BuildContext context,
                           AsyncSnapshot<List<Riferimento>?> snapshot,
@@ -106,7 +105,7 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                             return ListView.builder(
                               padding: EdgeInsets.zero,
                               shrinkWrap: true,
-                              itemCount: 6,
+                              itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return MiniInfoBox(
                                   name:
