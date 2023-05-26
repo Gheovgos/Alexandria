@@ -48,7 +48,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
   @override
   void initState() {
     super.initState();
-    allCategories = networkHelper.findAllCategories();
+    allCategories ??= networkHelper.findAllCategories();
   }
 
   @override
