@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:alexandria/Model/Riferimento.dart';
 import 'package:alexandria/alexandria_navigation_bar.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
@@ -22,6 +21,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
     myRiferimenti ??= networkHelper.getRiferimentoByUserId(currentUser.user_ID);
   }
 
+  bool sortedAscending = false;
   String? filtroRiferimenti;
   ScrollController scrollController = ScrollController();
   @override
@@ -96,7 +96,21 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                 const Text('Ordina:'),
                 AlexandriaRoundedButton(
                   elevation: kButtonElevation,
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (!sortedAscending) {
+                      (await myRiferimenti)?.sort((a, b) {
+                        return a.titolo_riferimento
+                            .compareTo(b.titolo_riferimento);
+                      });
+                    } else {
+                      (await myRiferimenti)?.sort((a, b) {
+                        return b.titolo_riferimento
+                            .compareTo(a.titolo_riferimento);
+                      });
+                    }
+                    sortedAscending = !sortedAscending;
+                    setState(() {});
+                  },
                   child: const Icon(Icons.filter_list_outlined),
                 ),
                 DecoratedBox(
