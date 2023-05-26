@@ -91,7 +91,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                   ),
                 ),
                 const Text(
-                  'Sotto-Categoria',
+                  'Sopra-Categoria',
                   style: TextStyle(fontSize: 16),
                 ),
                 DecoratedBox(
