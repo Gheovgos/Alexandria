@@ -1,3 +1,4 @@
+import 'package:alexandria/constants.dart';
 import 'package:flutter/material.dart';
 
 class MiniInfoBox extends StatelessWidget {
@@ -19,7 +20,7 @@ class MiniInfoBox extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 5),
       child: Material(
-        elevation: 5,
+        elevation: kButtonElevation,
         borderRadius: const BorderRadiusDirectional.all(Radius.circular(20)),
         child: DecoratedBox(
           decoration: const BoxDecoration(
