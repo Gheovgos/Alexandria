@@ -1,5 +1,8 @@
+import 'package:alexandria/Model/Categoria.dart';
+import 'package:alexandria/Model/Riferimento.dart';
 import 'package:alexandria/alexandria_navigation_bar.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +16,7 @@ class ViewCategoriaScreen extends StatefulWidget {
 class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
   @override
   Widget build(BuildContext context) {
+    final categoria = ModalRoute.of(context)!.settings.arguments as Categoria?;
     return Scaffold(
       backgroundColor: kAlexandriaGreen,
       bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 3),
@@ -37,10 +41,10 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                   ),
                   color: Colors.white,
                 ),
-                child: const Text(
-                  'Nome categoria',
+                child: Text(
+                  categoria!.nome,
                   textAlign: TextAlign.start,
-                  style: TextStyle(fontSize: 24),
+                  style: const TextStyle(fontSize: 24),
                 ),
               ),
               const SizedBox(
@@ -86,15 +90,32 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                     child: SizedBox(
                       height: 150,
                       width: 250,
-                      child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        itemCount: 6,
-                        itemBuilder: (BuildContext context, int index) {
-                          return MiniInfoBox(
-                            name: 'Riferimento $index',
-                            fontSize: 15,
-                          );
+                      child: FutureBuilder(
+                        future: networkHelper
+                            .getRiferimentoByUserId(categoria.user_id),
+                        // TODO(peppe): DA CAMBIARE!!
+                        builder: (
+                          BuildContext context,
+                          AsyncSnapshot<List<Riferimento>?> snapshot,
+                        ) {
+                          if (!snapshot.hasData) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else {
+                            return ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              itemCount: 6,
+                              itemBuilder: (BuildContext context, int index) {
+                                return MiniInfoBox(
+                                  name:
+                                      snapshot.data![index].titolo_riferimento,
+                                  fontSize: 15,
+                                );
+                              },
+                            );
+                          }
                         },
                       ),
                     ),

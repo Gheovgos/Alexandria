@@ -1,13 +1,22 @@
+import 'package:alexandria/Model/Categoria.dart';
+import 'package:alexandria/Model/tipo_enum.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
 
-class SearchDialog extends StatelessWidget {
-  const SearchDialog({
-    super.key,
-  });
+class SearchDialog extends StatefulWidget {
+  const SearchDialog({super.key});
 
+  @override
+  State<SearchDialog> createState() => _SearchDialogState();
+}
+
+class _SearchDialogState extends State<SearchDialog> {
+  String filtro = 'titolo';
+  List<Categoria> categorie = [];
+  List<tipo_enum> tipi = [];
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -26,7 +35,7 @@ class SearchDialog extends StatelessWidget {
               textAlign: TextAlign.left,
               onChanged: (value) {},
               decoration:
-                  kInputDecoration.copyWith(hintText: 'Inserisci titolo...'),
+              kInputDecoration.copyWith(hintText: 'Inserisci titolo...'),
             ),
           ),
           Row(
@@ -104,11 +113,28 @@ class SearchDialog extends StatelessWidget {
                     SizedBox(
                       height: 100,
                       width: 300,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 3,
-                        itemBuilder: (BuildContext context, int index) {
-                          return MiniInfoBox(name: 'Risultato $index');
+                      child: FutureBuilder(
+                        future: networkHelper.findAllCategories(),
+                        builder: (
+                            context,
+                            AsyncSnapshot<List<Categoria>?> snapshot,
+                            ) {
+                          if (!snapshot.hasData) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else {
+                            return ListView.builder(
+                              itemCount: snapshot.data?.length,
+                              itemBuilder: (BuildContext build, int index) {
+                                return MiniInfoBox(
+                                  name: snapshot
+                                      .data![index].nome,
+                                  fontSize: 15,
+                                );
+                              },
+                            );
+                          }
                         },
                       ),
                     ),

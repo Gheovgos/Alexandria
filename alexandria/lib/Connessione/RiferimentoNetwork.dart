@@ -118,6 +118,25 @@ class RiferimentoNetwork {
 
   }
 
+  Future<List<Riferimento>?> getRiferimentoByCategoria(int categoriaID) async {
+    late List<Riferimento> riferimenti = [];
+    _getMapping = "/get/getByCategoria/"+categoriaID.toString();
+
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      List<dynamic> riferimentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(var riferimentoJson in riferimentiJson) {
+        Riferimento f = Riferimento.fromJson(riferimentoJson as Map<String, dynamic>);
+        riferimenti.add(f);
+      }
+
+      return riferimenti;
+    }
+    else return null;
+
+  }
+
   Future<List<Riferimento>?> getRiferimentoByDOI(int DOI) async {
     late List<Riferimento> riferimenti = [];
     _getMapping = "/get/getByDOISearch/"+DOI.toString();
@@ -226,7 +245,7 @@ class RiferimentoNetwork {
 
   }
 
-  Future<bool?> aggiornaRiferimento(Riferimento riferimento) async {
+  Future<bool> aggiornaRiferimento(Riferimento riferimento) async {
     _getMapping = "/update";
 
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
@@ -253,7 +272,7 @@ class RiferimentoNetwork {
     } else return false;
   }
 
-  Future<bool?> aggiornaRiferimentoAutore(Riferimento riferimento, int oldAutoreID, int newAutoreID) async {
+  Future<bool> aggiornaRiferimentoAutore(Riferimento riferimento, int oldAutoreID, int newAutoreID) async {
     _getMapping = "/update/riferimentoAutore/"+riferimento.id_riferimento.toString()+"/"+oldAutoreID.toString()+"/"+newAutoreID.toString();
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping));
 
@@ -262,7 +281,7 @@ class RiferimentoNetwork {
     } else return false;
   }
 
-  Future<bool?> aggiornaRiferimentoCategoria(Riferimento riferimento, int oldCategoriaID, int newCategoriaID) async {
+  Future<bool> aggiornaRiferimentoCategoria(Riferimento riferimento, int oldCategoriaID, int newCategoriaID) async {
     _getMapping = "/update/riferimentoCategoria/"+riferimento.id_riferimento.toString()+"/"+oldCategoriaID.toString()+"/"+newCategoriaID.toString();
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping));
 
@@ -271,7 +290,7 @@ class RiferimentoNetwork {
     } else return false;
   }
 
-  Future<bool?> aggiornaRiferimentoCitazione(Riferimento riferimento, int oldCitatoID, int newCitatoID) async {
+  Future<bool> aggiornaRiferimentoCitazione(Riferimento riferimento, int oldCitatoID, int newCitatoID) async {
     _getMapping = "/update/riferimentoCitazione/"+riferimento.id_riferimento.toString()+"/"+oldCitatoID.toString()+"/"+newCitatoID.toString();
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping));
 
@@ -281,7 +300,7 @@ class RiferimentoNetwork {
   }
 
 
-  Future<bool?> aggiungiAutore(Riferimento r, int autoreID) async {
+  Future<bool> aggiungiAutore(Riferimento r, int autoreID) async {
     Riferimento? riferimento = await getRiferimentoByNome(r.titolo_riferimento) as Riferimento?;
       if(await riferimento != null) {
         _getMapping = "/create/aggiungiAutore/"+autoreID.toString();
@@ -311,7 +330,7 @@ class RiferimentoNetwork {
 
   }
 
-  Future<bool?> aggiungiCategoria(Riferimento r, int categoriaID) async {
+  Future<bool> aggiungiCategoria(Riferimento r, int categoriaID) async {
     Riferimento? riferimento = await getRiferimentoByNome(r.titolo_riferimento) as Riferimento?;
     if(await riferimento != null) {
       _getMapping = "/create/aggiungiCategoria/"+categoriaID.toString();
@@ -341,7 +360,7 @@ class RiferimentoNetwork {
 
   }
 
-  Future<bool?> aggiungiCitazione(Riferimento citato, int citanteID) async {
+  Future<bool> aggiungiCitazione(Riferimento citato, int citanteID) async {
     Riferimento? riferimento = await getRiferimentoByNome(citato.titolo_riferimento) as Riferimento?;
     if(await _riferimento != null) {
       _getMapping = "/create/aggiungiCitazione/"+citanteID.toString();
