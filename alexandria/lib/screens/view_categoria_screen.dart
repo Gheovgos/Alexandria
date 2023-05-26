@@ -161,15 +161,30 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                     child: SizedBox(
                       height: 150,
                       width: 250,
-                      child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        itemCount: 6,
-                        itemBuilder: (BuildContext context, int index) {
-                          return MiniInfoBox(
-                            name: 'Categoria $index',
-                            fontSize: 15,
-                          );
+                      child: FutureBuilder(
+                        future: networkHelper
+                            .getSopraCategorie(categoria.id_categoria),
+                        builder: (
+                          BuildContext context,
+                          AsyncSnapshot<List<Categoria>?> snapshot,
+                        ) {
+                          if (!snapshot.hasData) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else {
+                            return ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              itemCount: snapshot.data?.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return MiniInfoBox(
+                                  name: snapshot.data![index].nome,
+                                  fontSize: 15,
+                                );
+                              },
+                            );
+                          }
                         },
                       ),
                     ),
