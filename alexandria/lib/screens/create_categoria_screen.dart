@@ -236,7 +236,6 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
           AlexandriaRoundedButton(
             padding:
                 const EdgeInsets.only(left: 50, right: 50, top: 20, bottom: 20),
-            elevation: kButtonElevation,
             child: const Text(
               'Salva',
               style: TextStyle(fontSize: 16),
@@ -257,7 +256,6 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                       ),
                       actions: [
                         AlexandriaRoundedButton(
-                          elevation: kButtonElevation,
                           padding: const EdgeInsets.only(
                             left: 30,
                             right: 30,
@@ -270,7 +268,6 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                           child: const Text('Indietro'),
                         ),
                         AlexandriaRoundedButton(
-                          elevation: kButtonElevation,
                           padding: const EdgeInsets.only(
                             left: 30,
                             right: 30,

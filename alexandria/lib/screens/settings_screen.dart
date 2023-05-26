@@ -256,7 +256,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 AlexandriaRoundedButton(
-                                  elevation: kButtonElevation,
                                   onPressed: () {},
                                   child: const Text(
                                     'Logout',
@@ -266,7 +265,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   ),
                                 ),
                                 AlexandriaRoundedButton(
-                                  elevation: kButtonElevation,
                                   onPressed: () async {
                                     if (confermaPassword == password &&
                                         password != '' &&

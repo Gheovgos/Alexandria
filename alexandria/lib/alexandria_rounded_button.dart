@@ -1,3 +1,4 @@
+import 'package:alexandria/constants.dart';
 import 'package:flutter/material.dart';
 
 class AlexandriaRoundedButton extends StatelessWidget {
@@ -7,13 +8,11 @@ class AlexandriaRoundedButton extends StatelessWidget {
     this.onPressed,
     this.backgroundColor,
     this.padding,
-    this.elevation,
     this.borderColor,
     this.border,
   });
   final OutlinedBorder? border;
   final Color? borderColor;
-  final double? elevation;
   final Color? backgroundColor;
   final void Function()? onPressed;
   final Widget child;
@@ -25,7 +24,7 @@ class AlexandriaRoundedButton extends StatelessWidget {
         foregroundColor: Colors.black,
         padding: padding,
         backgroundColor: backgroundColor ?? Colors.white,
-        elevation: elevation,
+        elevation: kButtonElevation,
         shape: border ??
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         side: BorderSide(color: borderColor ?? Colors.white),

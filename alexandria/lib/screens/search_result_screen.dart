@@ -92,7 +92,6 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                     height: 10,
                   ),
                   AlexandriaRoundedButton(
-                    elevation: kButtonElevation,
                     onPressed: () {},
                     child: const Icon(Icons.filter_list_outlined),
                   ),

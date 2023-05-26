@@ -50,17 +50,14 @@ class _SearchDialogState extends State<SearchDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               AlexandriaRoundedButton(
-                elevation: kButtonElevation,
                 child: const Text('Articoli'),
                 onPressed: () {},
               ),
               AlexandriaRoundedButton(
-                elevation: kButtonElevation,
                 child: const Text('Libri'),
                 onPressed: () {},
               ),
               AlexandriaRoundedButton(
-                elevation: kButtonElevation,
                 child: const Text('Fascicoli'),
                 onPressed: () {},
               ),
@@ -70,12 +67,10 @@ class _SearchDialogState extends State<SearchDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               AlexandriaRoundedButton(
-                elevation: kButtonElevation,
                 child: const Text('Riviste'),
                 onPressed: () {},
               ),
               AlexandriaRoundedButton(
-                elevation: kButtonElevation,
                 child: const Text('Conferenze'),
                 onPressed: () {},
               ),
@@ -169,19 +164,16 @@ class _SearchDialogState extends State<SearchDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               AlexandriaRoundedButton(
-                elevation: kButtonElevation,
                 child: const Text('Titolo'),
                 onPressed: () {},
               ),
               AlexandriaRoundedButton(
-                elevation: kButtonElevation,
                 child: const Text('DOI'),
                 onPressed: () {},
               ),
             ],
           ),
           AlexandriaRoundedButton(
-            elevation: kButtonElevation,
             child: const Text('Autore'),
             onPressed: () {},
           ),
@@ -191,7 +183,6 @@ class _SearchDialogState extends State<SearchDialog> {
       actions: [
         AlexandriaRoundedButton(
           border: const CircleBorder(),
-          elevation: kButtonElevation,
           child: const Icon(
             Icons.arrow_back,
             size: 30,
@@ -203,7 +194,6 @@ class _SearchDialogState extends State<SearchDialog> {
           },
         ),
         AlexandriaRoundedButton(
-          elevation: kButtonElevation,
           child: const Icon(
             Icons.search,
             size: 50,

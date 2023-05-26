@@ -94,7 +94,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
           ),
           AlexandriaRoundedButton(
-            elevation: kButtonElevation,
             padding: const EdgeInsets.all(15),
             backgroundColor: Colors.white,
             onPressed: tryToConnect,

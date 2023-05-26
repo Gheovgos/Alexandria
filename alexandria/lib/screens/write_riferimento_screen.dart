@@ -50,8 +50,8 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                   onTap: () {
                     // TODO(peppe): aggiungi date picker
                   },
-                  child: Row(
-                    children: const [Text('Data'), Icon(Icons.calendar_month)],
+                  child: const Row(
+                    children: [Text('Data'), Icon(Icons.calendar_month)],
                   ),
                 ),
                 onPressed: () {},
@@ -119,17 +119,14 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                   children: [
                     AlexandriaRoundedButton(
                       onPressed: () {},
-                      elevation: 5,
                       child: const Text('Articoli'),
                     ),
                     AlexandriaRoundedButton(
                       onPressed: () {},
-                      elevation: 5,
                       child: const Text('Libri'),
                     ),
                     AlexandriaRoundedButton(
                       onPressed: () {},
-                      elevation: 5,
                       child: const Text('Fascicoli'),
                     ),
                   ],
@@ -139,12 +136,10 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                   children: [
                     AlexandriaRoundedButton(
                       onPressed: () {},
-                      elevation: 5,
                       child: const Text('Riviste'),
                     ),
                     AlexandriaRoundedButton(
                       onPressed: () {},
-                      elevation: 5,
                       child: const Text('Conferenze'),
                     ),
                   ],
@@ -325,9 +320,12 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                 ),
                 AlexandriaRoundedButton(
                   padding: const EdgeInsets.only(
-                      left: 50, right: 50, top: 30, bottom: 30,),
+                    left: 50,
+                    right: 50,
+                    top: 30,
+                    bottom: 30,
+                  ),
                   onPressed: () {},
-                  elevation: 5,
                   child: const Text(
                     'Conferma',
                     style: TextStyle(fontSize: 20),

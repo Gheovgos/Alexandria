@@ -84,7 +84,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                       ),
                     ),
                     AlexandriaRoundedButton(
-                      elevation: kButtonElevation,
                       child: const Icon(Icons.search),
                       onPressed: () {},
                     ),
@@ -95,7 +94,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                 ),
                 const Text('Ordina:'),
                 AlexandriaRoundedButton(
-                  elevation: kButtonElevation,
                   onPressed: () async {
                     if (!sortedAscending) {
                       (await myRiferimenti)?.sort((a, b) {
@@ -201,7 +199,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
           ),
           actions: [
             AlexandriaRoundedButton(
-              elevation: kButtonElevation,
               padding: const EdgeInsets.all(
                 20,
               ),
@@ -211,7 +208,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
               child: const Text('Modifica'),
             ),
             AlexandriaRoundedButton(
-              elevation: kButtonElevation,
               padding: const EdgeInsets.all(
                 20,
               ),
@@ -225,7 +221,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
               child: const Text('Visualizza'),
             ),
             AlexandriaRoundedButton(
-              elevation: kButtonElevation,
               padding: const EdgeInsets.all(
                 20,
               ),
@@ -257,7 +252,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
           actionsAlignment: MainAxisAlignment.spaceEvenly,
           actions: [
             AlexandriaRoundedButton(
-              elevation: kButtonElevation,
               padding: const EdgeInsets.all(
                 20,
               ),
@@ -271,7 +265,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
               ),
             ),
             AlexandriaRoundedButton(
-              elevation: kButtonElevation,
               padding: const EdgeInsets.all(
                 20,
               ),

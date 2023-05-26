@@ -47,7 +47,6 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                       ),
                       actions: [
                         AlexandriaRoundedButton(
-                          elevation: kButtonElevation,
                           padding: const EdgeInsets.only(
                             left: 30,
                             right: 30,
@@ -60,7 +59,6 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                           child: const Text('No'),
                         ),
                         AlexandriaRoundedButton(
-                          elevation: kButtonElevation,
                           padding: const EdgeInsets.only(
                             left: 30,
                             right: 30,
@@ -278,86 +276,87 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                     const SizedBox(),
                     const Text('Descrizione'),
                     AlexandriaRoundedButton(
-                      elevation: kButtonElevation,
                       child: const Icon(Icons.add),
                       onPressed: () {
                         showDialog<void>(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(30))),
-                                title: const Text(
-                                  'Descrizione',
-                                  textAlign: TextAlign.center,
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30)),
+                              ),
+                              title: const Text(
+                                'Descrizione',
+                                textAlign: TextAlign.center,
+                              ),
+                              content: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    SizedBox(
+                                      height: 300,
+                                      width: 300,
+                                      child: Container(
+                                        padding: const EdgeInsets.all(15),
+                                        margin: const EdgeInsets.all(5),
+                                        decoration: const BoxDecoration(
+                                          color: kInfoBoxColor,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          riferimento.descr_riferimento!,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      margin: const EdgeInsets.all(5),
+                                      decoration: const BoxDecoration(
+                                        color: kInfoBoxColor,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(30),
+                                        ),
+                                      ),
+                                      child: Text(
+                                        'ISNN: ${riferimento.isnn ?? ''}',
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      margin: const EdgeInsets.all(5),
+                                      decoration: const BoxDecoration(
+                                        color: kInfoBoxColor,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(30),
+                                        ),
+                                      ),
+                                      child: Text(
+                                        'ISBN: ${riferimento.isbn ?? ''}',
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.all(10),
+                                      margin: const EdgeInsets.all(5),
+                                      decoration: const BoxDecoration(
+                                        color: kInfoBoxColor,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(30),
+                                        ),
+                                      ),
+                                      child: Text(
+                                        'DOI: ${riferimento.DOI ?? ''}',
+                                      ),
+                                    )
+                                  ],
                                 ),
-                                content: SingleChildScrollView(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      SizedBox(
-                                        height: 300,
-                                        width: 300,
-                                        child: Container(
-                                          padding: const EdgeInsets.all(15),
-                                          margin: const EdgeInsets.all(5),
-                                          decoration: const BoxDecoration(
-                                            color: kInfoBoxColor,
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(30),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            riferimento.descr_riferimento!,
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.all(10),
-                                        margin: const EdgeInsets.all(5),
-                                        decoration: const BoxDecoration(
-                                          color: kInfoBoxColor,
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(30),
-                                          ),
-                                        ),
-                                        child: Text(
-                                          'ISNN: ${riferimento.isnn ?? ''}',
-                                        ),
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.all(10),
-                                        margin: const EdgeInsets.all(5),
-                                        decoration: const BoxDecoration(
-                                          color: kInfoBoxColor,
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(30),
-                                          ),
-                                        ),
-                                        child: Text(
-                                          'ISBN: ${riferimento.isbn ?? ''}',
-                                        ),
-                                      ),
-                                      Container(
-                                        padding: const EdgeInsets.all(10),
-                                        margin: const EdgeInsets.all(5),
-                                        decoration: const BoxDecoration(
-                                          color: kInfoBoxColor,
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(30),
-                                          ),
-                                        ),
-                                        child: Text(
-                                          'DOI: ${riferimento.DOI ?? ''}',
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              );
-                            });
+                              ),
+                            );
+                          },
+                        );
                       },
                     ),
                   ],
