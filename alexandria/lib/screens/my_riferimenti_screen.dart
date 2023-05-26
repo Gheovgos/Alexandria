@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:alexandria/Model/Riferimento.dart';
 import 'package:alexandria/alexandria_navigation_bar.dart';
 import 'package:alexandria/alexandria_rounded_button.dart';
@@ -135,56 +137,10 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                                     )) {
                                   return InkWell(
                                     onTap: () {
-                                      showDialog<void>(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            actionsAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            content: Text(
-                                              snapshot.data![index]
-                                                  .titolo_riferimento,
-                                              textAlign: TextAlign.center,
-                                            ),
-                                            actions: [
-                                              AlexandriaRoundedButton(
-                                                elevation: kButtonElevation,
-                                                padding: const EdgeInsets.all(
-                                                  20,
-                                                ),
-                                                onPressed: () {
-                                                  // TODO(peppe): apri write_riferimento
-                                                },
-                                                child: const Text('Modifica'),
-                                              ),
-                                              AlexandriaRoundedButton(
-                                                elevation: kButtonElevation,
-                                                padding: const EdgeInsets.all(
-                                                  20,
-                                                ),
-                                                onPressed: () {
-                                                  Navigator.pushNamed(
-                                                    context,
-                                                    'view_riferimento',
-                                                    arguments:
-                                                        snapshot.data![index],
-                                                  );
-                                                },
-                                                child: const Text('Visualizza'),
-                                              ),
-                                              AlexandriaRoundedButton(
-                                                elevation: kButtonElevation,
-                                                padding: const EdgeInsets.all(
-                                                  20,
-                                                ),
-                                                onPressed: () {
-                                                  // TODO(peppe): chiedi conferma
-                                                },
-                                                child: const Text('Elimina'),
-                                              ),
-                                            ],
-                                          );
-                                        },
+                                      cliccaRiferimentoDialog(
+                                        context,
+                                        snapshot,
+                                        index,
                                       );
                                     },
                                     child: MiniInfoBox(
@@ -212,6 +168,116 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> cliccaRiferimentoDialog(
+    BuildContext context,
+    AsyncSnapshot<List<Riferimento>?> snapshot,
+    int index,
+  ) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actionsAlignment: MainAxisAlignment.spaceEvenly,
+          content: Text(
+            snapshot.data![index].titolo_riferimento,
+            textAlign: TextAlign.center,
+          ),
+          actions: [
+            AlexandriaRoundedButton(
+              elevation: kButtonElevation,
+              padding: const EdgeInsets.all(
+                20,
+              ),
+              onPressed: () {
+                // TODO(peppe): apri write_riferimento
+              },
+              child: const Text('Modifica'),
+            ),
+            AlexandriaRoundedButton(
+              elevation: kButtonElevation,
+              padding: const EdgeInsets.all(
+                20,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  'view_riferimento',
+                  arguments: snapshot.data![index],
+                );
+              },
+              child: const Text('Visualizza'),
+            ),
+            AlexandriaRoundedButton(
+              elevation: kButtonElevation,
+              padding: const EdgeInsets.all(
+                20,
+              ),
+              onPressed: () {
+                confermaEliminaRiferimentoDialog(
+                  context,
+                  snapshot.data![index],
+                );
+              },
+              child: const Text('Elimina'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> confermaEliminaRiferimentoDialog(
+    BuildContext context,
+    Riferimento r,
+  ) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Sei sicuro?',
+          ),
+          actionsAlignment: MainAxisAlignment.spaceEvenly,
+          actions: [
+            AlexandriaRoundedButton(
+              elevation: kButtonElevation,
+              padding: const EdgeInsets.all(
+                20,
+              ),
+              onPressed: () {
+                Navigator.pop(
+                  context,
+                );
+              },
+              child: const Text(
+                'Annulla',
+              ),
+            ),
+            AlexandriaRoundedButton(
+              elevation: kButtonElevation,
+              padding: const EdgeInsets.all(
+                20,
+              ),
+              onPressed: () async {
+                if ((await myRiferimenti)!.remove(r)) {
+                  unawaited(
+                    networkHelper.deleteRiferimento(
+                      r,
+                    ),
+                  );
+                  setState(() {});
+                }
+              },
+              child: const Text(
+                'Conferma',
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
