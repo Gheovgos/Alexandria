@@ -40,9 +40,15 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
     Navigator.pop(context);
     return newCategoria;
   }
-
+  late Future<List<Categoria>?> allCategories;
   late String nomeCategoria;
   int? sopraCategoria;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    allCategories = networkHelper.findAllCategories();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,7 +139,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                 SizedBox(
                                   height: 300,
                                   child: FutureBuilder(
-                                    future: networkHelper.findAllCategories(),
+                                    future: allCategories,
                                     builder: (
                                       context,
                                       AsyncSnapshot<List<Categoria>?> snapshot,
@@ -204,7 +210,11 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
             ),
             onPressed: () async {
               final newCategoria = await tryCreateCategoria();
+
               if (newCategoria != null) {
+                (await allCategories)!.add(newCategoria);
+                setState(() {
+                });
                 await showDialog<void>(
                   context: context,
                   builder: (BuildContext context) {
