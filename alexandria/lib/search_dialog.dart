@@ -105,9 +105,11 @@ class _SearchDialogState extends State<SearchDialog> {
                         textAlign: TextAlign.left,
                         onChanged: (value) {
                           filtroCategoria = value;
-                          scrollController.animateTo(0,
-                              duration: const Duration(microseconds: 1),
-                              curve: Curves.linear);
+                          scrollController.animateTo(
+                            0,
+                            duration: const Duration(microseconds: 1),
+                            curve: Curves.linear,
+                          );
                           setState(() {});
                         },
                         decoration: kInputDecoration.copyWith(
