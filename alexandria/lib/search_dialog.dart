@@ -14,9 +14,11 @@ class SearchDialog extends StatefulWidget {
 }
 
 class _SearchDialogState extends State<SearchDialog> {
+  String? filtroCategoria;
   String filtro = 'titolo';
   List<Categoria> categorie = [];
   List<tipo_enum> tipi = [];
+  ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -35,7 +37,7 @@ class _SearchDialogState extends State<SearchDialog> {
               textAlign: TextAlign.left,
               onChanged: (value) {},
               decoration:
-              kInputDecoration.copyWith(hintText: 'Inserisci titolo...'),
+                  kInputDecoration.copyWith(hintText: 'Inserisci titolo...'),
             ),
           ),
           Row(
@@ -101,7 +103,13 @@ class _SearchDialogState extends State<SearchDialog> {
                         style: const TextStyle(color: Colors.black),
                         keyboardType: TextInputType.emailAddress,
                         textAlign: TextAlign.left,
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          filtroCategoria = value;
+                          scrollController.animateTo(0,
+                              duration: const Duration(microseconds: 1),
+                              curve: Curves.linear);
+                          setState(() {});
+                        },
                         decoration: kInputDecoration.copyWith(
                           hintText: 'Cerca categoria...',
                         ),
@@ -114,24 +122,30 @@ class _SearchDialogState extends State<SearchDialog> {
                       height: 100,
                       width: 300,
                       child: FutureBuilder(
-                        future: networkHelper.findAllCategories(),
+                        future: allCategories,
                         builder: (
-                            context,
-                            AsyncSnapshot<List<Categoria>?> snapshot,
-                            ) {
+                          context,
+                          AsyncSnapshot<List<Categoria>?> snapshot,
+                        ) {
                           if (!snapshot.hasData) {
                             return const Center(
                               child: CircularProgressIndicator(),
                             );
                           } else {
                             return ListView.builder(
+                              controller: scrollController,
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext build, int index) {
-                                return MiniInfoBox(
-                                  name: snapshot
-                                      .data![index].nome,
-                                  fontSize: 15,
-                                );
+                                if (filtroCategoria == null ||
+                                    snapshot.data![index].nome
+                                        .contains(RegExp(filtroCategoria!))) {
+                                  return MiniInfoBox(
+                                    name: snapshot.data![index].nome,
+                                    fontSize: 15,
+                                  );
+                                } else {
+                                  return null;
+                                }
                               },
                             );
                           }
