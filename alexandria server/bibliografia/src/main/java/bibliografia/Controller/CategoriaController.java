@@ -55,6 +55,16 @@ public class CategoriaController {
         return categoriaDto;
     }
 
+    @GetMapping("/get/getSopraCategorie/{categoriaID}")
+    public List<CategoriaDto> getSopraCategorie(@PathVariable int categoriaID) {
+        List<Categoria> categorie = categoriaService.getSopraCategorie(categoriaID);
+        List<CategoriaDto> categorieDto = new ArrayList<>();
+        for(Categoria categoria : categorie)
+            categorieDto.add(convertDto(categoria));
+
+        return categorieDto;
+    }
+
     @GetMapping("/get/getCategoriaByName/{name}")
     public CategoriaDto getCategoriaByName(@PathVariable String name)
     {

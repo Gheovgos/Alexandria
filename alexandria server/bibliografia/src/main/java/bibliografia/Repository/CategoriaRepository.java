@@ -3,7 +3,11 @@ package bibliografia.Repository;
 import bibliografia.Model.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.List;
 
 @Repository
 
@@ -18,6 +22,9 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
 
     @Query(value = "SELECT DISTINCT * FROM categoria WHERE descr_categoria = ?1", nativeQuery = true)
     Categoria getCategoriaByName(String descr_categoria);
+
+    @Query(value = "SELECT super_cat(:categoriaID)", nativeQuery = true)
+    List<Categoria> getSopraCategorie(@Param("categoriaID") int categoriaID);
 
     @Query(value = "SELECT MAX(id_categoria) FROM categoria", nativeQuery = true)
     Integer getNextId();
