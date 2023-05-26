@@ -163,7 +163,12 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                                                   20,
                                                 ),
                                                 onPressed: () {
-                                                  // TODO(peppe): apri view_riferimento
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    'view_riferimento',
+                                                    arguments:
+                                                        snapshot.data![index],
+                                                  );
                                                 },
                                                 child: const Text('Visualizza'),
                                               ),
