@@ -253,7 +253,11 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                             bottom: 20,
                           ),
                           onPressed: () {
-                            // TODO(peppe): view_categoria_screen(nuova categoria)
+                            Navigator.pushNamed(
+                              context,
+                              'view_categoria',
+                              arguments: newCategoria,
+                            );
                           },
                           child: const Text('Visualizza'),
                         ),
