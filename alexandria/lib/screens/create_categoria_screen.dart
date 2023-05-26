@@ -150,6 +150,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                         );
                                       } else {
                                         return ListView.builder(
+                                          padding: EdgeInsets.zero,
                                           itemCount: snapshot.data?.length,
                                           itemBuilder:
                                               (BuildContext build, int index) {
