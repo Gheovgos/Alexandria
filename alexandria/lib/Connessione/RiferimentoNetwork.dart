@@ -118,6 +118,25 @@ class RiferimentoNetwork {
 
   }
 
+  Future<List<Riferimento>?> getRiferimentoByCategoria(int categoriaID) async {
+    late List<Riferimento> riferimenti = [];
+    _getMapping = "/get/getByCategoria/"+categoriaID.toString();
+
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      List<dynamic> riferimentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(var riferimentoJson in riferimentiJson) {
+        Riferimento f = Riferimento.fromJson(riferimentoJson as Map<String, dynamic>);
+        riferimenti.add(f);
+      }
+
+      return riferimenti;
+    }
+    else return null;
+
+  }
+
   Future<List<Riferimento>?> getRiferimentoByDOI(int DOI) async {
     late List<Riferimento> riferimenti = [];
     _getMapping = "/get/getByDOISearch/"+DOI.toString();

@@ -8,7 +8,7 @@ import 'package:alexandria/Model/tipo_enum.dart';
 import 'package:flutter/foundation.dart';
 
 class NetworkHelper {
-  final String url = "http://192.168.43.141:8090";
+  final String url = "http://192.168.1.199:8090";
   late UtenteNetwork _unet = UtenteNetwork(url);
   late CategoriaNetwork _catnet = CategoriaNetwork(url);
   late RiferimentoNetwork _rifnet = RiferimentoNetwork(url);
@@ -26,9 +26,10 @@ class NetworkHelper {
     if(!kReleaseMode) {
       return true;
     } else {
-      return await getUtenteById(0) == null;
+      return await getUtenteById(1) == null;
     }
   }
+
   Future<Utente?> getUtenteById(int user_id) async {
     return _unet.getUtenteById(user_id);
   }
@@ -83,6 +84,11 @@ class NetworkHelper {
 
   Future<List<Riferimento>?> getRiferimentoByUserId(int userID) async {
     return _rifnet.getRiferimentoByUserId(userID);
+  }
+
+  Future<List<Riferimento>?> getRiferimentoByCategoria(int categoriaID) async {
+
+    return _rifnet.getRiferimentoByCategoria(categoriaID);
   }
 
   Future<Riferimento?> createRiferimento(Riferimento riferimento, Categoria categoria, int userID, Riferimento? rifCitanto) async {
