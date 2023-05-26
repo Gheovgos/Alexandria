@@ -435,7 +435,9 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
           ],
         ),
       ),
