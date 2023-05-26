@@ -20,6 +20,8 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
     myRiferimenti ??= networkHelper.getRiferimentoByUserId(currentUser.user_ID);
   }
 
+  String? filtroRiferimenti;
+  ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +66,15 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                           style: const TextStyle(color: Colors.black),
                           keyboardType: TextInputType.emailAddress,
                           textAlign: TextAlign.left,
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            filtroRiferimenti = value;
+                            scrollController.animateTo(
+                              0,
+                              duration: const Duration(microseconds: 1),
+                              curve: Curves.linear,
+                            );
+                            setState(() {});
+                          },
                           decoration: kInputDecoration.copyWith(
                             hintText: 'Cerca riferimento...',
                           ),
@@ -114,64 +124,73 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                             );
                           } else {
                             return ListView.builder(
+                              controller: scrollController,
                               padding: EdgeInsets.zero,
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext build, int index) {
-                                return InkWell(
-                                  onTap: () {
-                                    showDialog<void>(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          actionsAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          content: Text(
-                                            snapshot.data![index]
-                                                .titolo_riferimento,
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          actions: [
-                                            AlexandriaRoundedButton(
-                                              elevation: kButtonElevation,
-                                              padding: const EdgeInsets.all(
-                                                20,
-                                              ),
-                                              onPressed: () {
-                                                // TODO(peppe): apri write_riferimento
-                                              },
-                                              child: const Text('Modifica'),
+                                if (filtroRiferimenti == null ||
+                                    snapshot.data![index].titolo_riferimento
+                                        .contains(
+                                      RegExp(filtroRiferimenti!),
+                                    )) {
+                                  return InkWell(
+                                    onTap: () {
+                                      showDialog<void>(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            actionsAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            content: Text(
+                                              snapshot.data![index]
+                                                  .titolo_riferimento,
+                                              textAlign: TextAlign.center,
                                             ),
-                                            AlexandriaRoundedButton(
-                                              elevation: kButtonElevation,
-                                              padding: const EdgeInsets.all(
-                                                20,
+                                            actions: [
+                                              AlexandriaRoundedButton(
+                                                elevation: kButtonElevation,
+                                                padding: const EdgeInsets.all(
+                                                  20,
+                                                ),
+                                                onPressed: () {
+                                                  // TODO(peppe): apri write_riferimento
+                                                },
+                                                child: const Text('Modifica'),
                                               ),
-                                              onPressed: () {
-                                                // TODO(peppe): apri view_riferimento
-                                              },
-                                              child: const Text('Visualizza'),
-                                            ),
-                                            AlexandriaRoundedButton(
-                                              elevation: kButtonElevation,
-                                              padding: const EdgeInsets.all(
-                                                20,
+                                              AlexandriaRoundedButton(
+                                                elevation: kButtonElevation,
+                                                padding: const EdgeInsets.all(
+                                                  20,
+                                                ),
+                                                onPressed: () {
+                                                  // TODO(peppe): apri view_riferimento
+                                                },
+                                                child: const Text('Visualizza'),
                                               ),
-                                              onPressed: () {
-                                                // TODO(peppe): chiedi conferma
-                                              },
-                                              child: const Text('Elimina'),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  },
-                                  child: MiniInfoBox(
-                                    name: snapshot
-                                        .data![index].titolo_riferimento,
-                                    fontSize: 15,
-                                  ),
-                                );
+                                              AlexandriaRoundedButton(
+                                                elevation: kButtonElevation,
+                                                padding: const EdgeInsets.all(
+                                                  20,
+                                                ),
+                                                onPressed: () {
+                                                  // TODO(peppe): chiedi conferma
+                                                },
+                                                child: const Text('Elimina'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: MiniInfoBox(
+                                      name: snapshot
+                                          .data![index].titolo_riferimento,
+                                      fontSize: 15,
+                                    ),
+                                  );
+                                } else {
+                                  return null;
+                                }
                               },
                             );
                           }
