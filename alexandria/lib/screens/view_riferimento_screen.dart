@@ -22,67 +22,69 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
     final riferimento =
         ModalRoute.of(context)!.settings.arguments as Riferimento?;
     return Scaffold(
-      floatingActionButton: riferimento!.on_line? FloatingActionButton(
-        backgroundColor: Colors.white,
-        onPressed: () {
-          showDialog<void>(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                actionsAlignment: MainAxisAlignment.spaceAround,
-                content: SizedBox(
-                  height: 150,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('Link associato:'),
-                      MiniInfoBox(
-                        name: riferimento.URL!,
-                        icon: Icons.copy,
+      floatingActionButton: riferimento!.on_line
+          ? FloatingActionButton(
+              backgroundColor: Colors.white,
+              onPressed: () {
+                showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      actionsAlignment: MainAxisAlignment.spaceAround,
+                      content: SizedBox(
+                        height: 150,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Link associato:'),
+                            MiniInfoBox(
+                              name: riferimento.URL!,
+                              icon: Icons.copy,
+                            ),
+                            const Text('Desideri aprire il link?'),
+                          ],
+                        ),
                       ),
-                      const Text('Desideri aprire il link?'),
-                    ],
-                  ),
-                ),
-                actions: [
-                  AlexandriaRoundedButton(
-                    elevation: kButtonElevation,
-                    padding: const EdgeInsets.only(
-                      left: 30,
-                      right: 30,
-                      top: 20,
-                      bottom: 20,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('No'),
-                  ),
-                  AlexandriaRoundedButton(
-                    elevation: kButtonElevation,
-                    padding: const EdgeInsets.only(
-                      left: 30,
-                      right: 30,
-                      top: 20,
-                      bottom: 20,
-                    ),
-                    onPressed: () {
-                      launchUrl(
-                        Uri.parse(riferimento.URL!),
-                      );
-                    },
-                    child: const Text('Sì'),
-                  ),
-                ],
-              );
-            },
-          );
-        },
-        child: const Icon(
-          Icons.link,
-          color: Colors.black,
-        ),
-      ) : null,
+                      actions: [
+                        AlexandriaRoundedButton(
+                          elevation: kButtonElevation,
+                          padding: const EdgeInsets.only(
+                            left: 30,
+                            right: 30,
+                            top: 20,
+                            bottom: 20,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('No'),
+                        ),
+                        AlexandriaRoundedButton(
+                          elevation: kButtonElevation,
+                          padding: const EdgeInsets.only(
+                            left: 30,
+                            right: 30,
+                            top: 20,
+                            bottom: 20,
+                          ),
+                          onPressed: () {
+                            launchUrl(
+                              Uri.parse(riferimento.URL!),
+                            );
+                          },
+                          child: const Text('Sì'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: const Icon(
+                Icons.link,
+                color: Colors.black,
+              ),
+            )
+          : null,
       backgroundColor: kAlexandriaGreen,
       bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 1),
       body: SingleChildScrollView(
@@ -278,7 +280,85 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                     AlexandriaRoundedButton(
                       elevation: kButtonElevation,
                       child: const Icon(Icons.add),
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog<void>(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(30))),
+                                title: const Text(
+                                  'Descrizione',
+                                  textAlign: TextAlign.center,
+                                ),
+                                content: SingleChildScrollView(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      SizedBox(
+                                        height: 300,
+                                        width: 300,
+                                        child: Container(
+                                          padding: const EdgeInsets.all(15),
+                                          margin: const EdgeInsets.all(5),
+                                          decoration: const BoxDecoration(
+                                            color: kInfoBoxColor,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(30),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            riferimento.descr_riferimento!,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(10),
+                                        margin: const EdgeInsets.all(5),
+                                        decoration: const BoxDecoration(
+                                          color: kInfoBoxColor,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          'ISNN: ${riferimento.isnn ?? ''}',
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(10),
+                                        margin: const EdgeInsets.all(5),
+                                        decoration: const BoxDecoration(
+                                          color: kInfoBoxColor,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          'ISBN: ${riferimento.isbn ?? ''}',
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(10),
+                                        margin: const EdgeInsets.all(5),
+                                        decoration: const BoxDecoration(
+                                          color: kInfoBoxColor,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          'DOI: ${riferimento.DOI ?? ''}',
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            });
+                      },
                     ),
                   ],
                 ),
