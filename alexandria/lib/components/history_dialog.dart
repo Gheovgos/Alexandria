@@ -1,8 +1,8 @@
 import 'package:alexandria/Model/Riferimento.dart';
-import 'package:alexandria/alexandria_rounded_button.dart';
+import 'package:alexandria/components/alexandria_rounded_button.dart';
+import 'package:alexandria/components/mini_info_box.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
-import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
 
 class HistoryDialog extends StatefulWidget {
