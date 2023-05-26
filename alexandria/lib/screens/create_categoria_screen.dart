@@ -15,6 +15,8 @@ class CreateCategoriaScreen extends StatefulWidget {
 }
 
 class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
+  String? filtroCategoria;
+  ScrollController scrollController = ScrollController();
   Future<Categoria?> tryCreateCategoria() async {
     unawaited(
       showDialog<void>(
@@ -127,7 +129,16 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.emailAddress,
                                     textAlign: TextAlign.left,
-                                    onChanged: (value) {},
+                                    onChanged: (value) {
+                                      filtroCategoria = value;
+                                      scrollController.animateTo(
+                                        0,
+                                        duration:
+                                            const Duration(microseconds: 1),
+                                        curve: Curves.linear,
+                                      );
+                                      setState(() {});
+                                    },
                                     decoration: kInputDecoration.copyWith(
                                       hintText: 'Cerca categoria...',
                                     ),
@@ -150,40 +161,55 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                         );
                                       } else {
                                         return ListView.builder(
+                                          controller: scrollController,
                                           padding: EdgeInsets.zero,
                                           itemCount: snapshot.data?.length,
                                           itemBuilder:
                                               (BuildContext build, int index) {
-                                            return MiniInfoBox(
-                                              backgroundColor: sopraCategoria ==
-                                                      snapshot.data![index]
-                                                          .id_categoria
-                                                  ? Colors.grey
-                                                  : Colors.white,
-                                              name: snapshot.data![index].nome,
-                                              fontSize: 15,
-                                              onTap: () {
-                                                sopraCategoria = snapshot
-                                                    .data?[index].id_categoria;
-                                                setState(() {});
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'Selezionata "${snapshot.data![index].nome}" come sopra-categoria!',
-                                                    ),
+                                            if (filtroCategoria == null ||
+                                                snapshot.data![index].nome
+                                                    .contains(
+                                                  RegExp(
+                                                    filtroCategoria!,
                                                   ),
-                                                );
-                                              },
-                                              onTapIcon: () {
-                                                Navigator.pushNamed(
-                                                  context,
-                                                  'view_categoria',
-                                                  arguments:
-                                                      snapshot.data![index],
-                                                );
-                                              },
-                                            );
+                                                )) {
+                                              return MiniInfoBox(
+                                                backgroundColor:
+                                                    sopraCategoria ==
+                                                            snapshot
+                                                                .data![index]
+                                                                .id_categoria
+                                                        ? Colors.grey
+                                                        : Colors.white,
+                                                name:
+                                                    snapshot.data![index].nome,
+                                                fontSize: 15,
+                                                onTap: () {
+                                                  sopraCategoria = snapshot
+                                                      .data?[index]
+                                                      .id_categoria;
+                                                  setState(() {});
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Selezionata "${snapshot.data![index].nome}" come sopra-categoria!',
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                onTapIcon: () {
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    'view_categoria',
+                                                    arguments:
+                                                        snapshot.data![index],
+                                                  );
+                                                },
+                                              );
+                                            } else {
+                                              return null;
+                                            }
                                           },
                                         );
                                       }
