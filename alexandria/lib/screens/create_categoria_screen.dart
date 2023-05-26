@@ -41,7 +41,6 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
     return newCategoria;
   }
 
-  late Future<List<Categoria>?> allCategories;
   late String nomeCategoria;
   int? sopraCategoria;
   @override
