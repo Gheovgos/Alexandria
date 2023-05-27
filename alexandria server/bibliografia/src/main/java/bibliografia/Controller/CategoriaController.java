@@ -57,10 +57,12 @@ public class CategoriaController {
 
     @GetMapping("/get/getSopraCategorie/{categoriaID}")
     public List<CategoriaDto> getSopraCategorie(@PathVariable int categoriaID) {
-        List<Categoria> categorie = categoriaService.getSopraCategorie(categoriaID);
+        List<Integer> id = categoriaService.getSopraCategorie(categoriaID);
         List<CategoriaDto> categorieDto = new ArrayList<>();
-        for(Categoria categoria : categorie)
-            categorieDto.add(convertDto(categoria));
+
+        for(Integer currentID : id) {
+            categorieDto.add(convertDto(categoriaService.getCategoriaById(currentID)));
+        }
 
         return categorieDto;
     }
