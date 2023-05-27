@@ -67,6 +67,18 @@ public class CategoriaController {
         return categorieDto;
     }
 
+    @GetMapping("/get/getSottoCategorie/{categoriaID}")
+    public List<CategoriaDto> getSottoCategorie(@PathVariable int categoriaID) {
+        List<Integer> id = categoriaService.getSottoCategorie(categoriaID);
+        List<CategoriaDto> categorieDto = new ArrayList<>();
+
+        for(Integer currentID : id) {
+            categorieDto.add(convertDto(categoriaService.getCategoriaById(currentID)));
+        }
+
+        return categorieDto;
+    }
+
     @GetMapping("/get/getCategoriaByName/{name}")
     public CategoriaDto getCategoriaByName(@PathVariable String name)
     {

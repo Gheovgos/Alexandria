@@ -47,5 +47,8 @@ public class CategoriaService {
 
     public List<Integer> getSopraCategorie(int categoria) { return categoriaRepository.getSopraCategorie(categoria);}
 
+    public List<Integer> getSottoCategorie(int categoria) { return categoriaRepository.getSottoCategorie(categoria);}
+
+
     public Integer getNextId() {return categoriaRepository.getNextId();}
 }
