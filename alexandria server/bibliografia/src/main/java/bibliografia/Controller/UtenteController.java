@@ -103,10 +103,10 @@ public class UtenteController {
         }
     }
 
-    @GetMapping("/create/getByRiferimentoId/{id_riferimento}")
-    public List<UtenteDto> getByRiferimentoId(@PathVariable String id_riferimento)
+    @GetMapping("/create/getAutoriByRiferimento/{id_riferimento}")
+    public List<UtenteDto> getByRiferimentoId(@PathVariable int id_riferimento)
     {
-        List<Utente> utenti = utenteService.getByRiferimentoId(id_riferimento);
+        List<Utente> utenti = utenteService.getAutoriByRiferimento(id_riferimento);
         List<UtenteDto> utentiDto = new ArrayList<>();
         for(Utente utente : utenti)
             utentiDto.add(convertDto(utente));

@@ -18,8 +18,8 @@ public interface UtenteRepository extends JpaRepository<Utente, Integer> {
     @Query(value = "SELECT * FROM utente WHERE username = ?1", nativeQuery = true)
     Utente getByUsername(String username);
 
-    @Query(value = "SELECT utente.* FROM utente NATURAL JOIN autore_riferimento WHERE id_riferimento = ?1", nativeQuery = true)
-    List<Utente> getByRiferimentoId(String id_riferimento);
+    @Query(value = "SELECT utente.* FROM utente, riferimenti_biblio_user_id WHERE utente.user_id = riferimenti_biblio_user_id.utente_user_id AND riferimenti_biblio_user_id.riferimento_id_riferimento = :riferimentoID", nativeQuery = true)
+    List<Utente> getAutoriByRiferimento(@Param("riferimentoID") int riferimentoID);
 
     @Query(value = "SELECT MAX(user_id) FROM utente", nativeQuery = true)
     Integer getNextId();
