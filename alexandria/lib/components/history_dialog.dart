@@ -1,8 +1,8 @@
 import 'package:alexandria/Model/Riferimento.dart';
-import 'package:alexandria/alexandria_rounded_button.dart';
+import 'package:alexandria/components/alexandria_rounded_button.dart';
+import 'package:alexandria/components/mini_info_box.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
-import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
 
 class HistoryDialog extends StatefulWidget {
@@ -92,8 +92,8 @@ class _HistoryDialogState extends State<HistoryDialog> {
                   height: 200,
                   width: 300,
                   child: FutureBuilder(
-                    future: networkHelper
-                        .getCitazioniByUserId(currentUser.user_ID),
+                    future:
+                        networkHelper.getCitazioniByUserId(currentUser.user_ID),
                     builder: (
                       context,
                       AsyncSnapshot<List<Riferimento>?> snapshot,
@@ -106,8 +106,9 @@ class _HistoryDialogState extends State<HistoryDialog> {
                               ? snapshot.data?.length
                               : 5,
                           itemBuilder: (BuildContext context, int index) {
-                            return MiniInfoBox(name:
-                              '${snapshot.data?[index].titolo_riferimento}',
+                            return MiniInfoBox(
+                              name:
+                                  '${snapshot.data?[index].titolo_riferimento}',
                             );
                           },
                         );
@@ -124,7 +125,6 @@ class _HistoryDialogState extends State<HistoryDialog> {
       actions: [
         AlexandriaRoundedButton(
           border: const CircleBorder(),
-          elevation: kButtonElevation,
           child: const Icon(
             Icons.arrow_back,
             size: 40,

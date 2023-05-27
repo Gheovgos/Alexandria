@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:alexandria/Model/Categoria.dart';
-import 'package:alexandria/alexandria_navigation_bar.dart';
-import 'package:alexandria/alexandria_rounded_button.dart';
+import 'package:alexandria/components/alexandria_navigation_bar.dart';
+import 'package:alexandria/components/alexandria_rounded_button.dart';
+import 'package:alexandria/components/mini_info_box.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
-import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
 
 class CreateCategoriaScreen extends StatefulWidget {
@@ -15,6 +15,8 @@ class CreateCategoriaScreen extends StatefulWidget {
 }
 
 class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
+  String? filtroCategoria;
+  ScrollController scrollController = ScrollController();
   Future<Categoria?> tryCreateCategoria() async {
     unawaited(
       showDialog<void>(
@@ -43,6 +45,12 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
 
   late String nomeCategoria;
   int? sopraCategoria;
+  @override
+  void initState() {
+    super.initState();
+    allCategories ??= networkHelper.findAllCategories();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +93,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                   ),
                 ),
                 const Text(
-                  'Sotto-Categoria',
+                  'Sopra-Categoria',
                   style: TextStyle(fontSize: 16),
                 ),
                 DecoratedBox(
@@ -121,7 +129,16 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.emailAddress,
                                     textAlign: TextAlign.left,
-                                    onChanged: (value) {},
+                                    onChanged: (value) {
+                                      filtroCategoria = value;
+                                      scrollController.animateTo(
+                                        0,
+                                        duration:
+                                            const Duration(microseconds: 1),
+                                        curve: Curves.linear,
+                                      );
+                                      setState(() {});
+                                    },
                                     decoration: kInputDecoration.copyWith(
                                       hintText: 'Cerca categoria...',
                                     ),
@@ -133,7 +150,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                 SizedBox(
                                   height: 300,
                                   child: FutureBuilder(
-                                    future: networkHelper.findAllCategories(),
+                                    future: allCategories,
                                     builder: (
                                       context,
                                       AsyncSnapshot<List<Categoria>?> snapshot,
@@ -144,33 +161,55 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                         );
                                       } else {
                                         return ListView.builder(
+                                          controller: scrollController,
+                                          padding: EdgeInsets.zero,
                                           itemCount: snapshot.data?.length,
                                           itemBuilder:
                                               (BuildContext build, int index) {
-                                            return MiniInfoBox(
-                                              name: snapshot.data![index].nome,
-                                              fontSize: 15,
-                                              onTap: () {
-                                                sopraCategoria = snapshot
-                                                    .data?[index].id_categoria;
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'Selezionata "${snapshot.data![index].nome}" come sopra-categoria!',
-                                                    ),
+                                            if (filtroCategoria == null ||
+                                                snapshot.data![index].nome
+                                                    .contains(
+                                                  RegExp(
+                                                    filtroCategoria!,
                                                   ),
-                                                );
-                                              },
-                                              onTapIcon: () {
-                                                Navigator.pushNamed(
-                                                  context,
-                                                  'view_categoria',
-                                                  arguments:
-                                                      snapshot.data![index],
-                                                );
-                                              },
-                                            );
+                                                )) {
+                                              return MiniInfoBox(
+                                                backgroundColor:
+                                                    sopraCategoria ==
+                                                            snapshot
+                                                                .data![index]
+                                                                .id_categoria
+                                                        ? Colors.grey
+                                                        : Colors.white,
+                                                name:
+                                                    snapshot.data![index].nome,
+                                                fontSize: 15,
+                                                onTap: () {
+                                                  sopraCategoria = snapshot
+                                                      .data?[index]
+                                                      .id_categoria;
+                                                  setState(() {});
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'Selezionata "${snapshot.data![index].nome}" come sopra-categoria!',
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                onTapIcon: () {
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    'view_categoria',
+                                                    arguments:
+                                                        snapshot.data![index],
+                                                  );
+                                                },
+                                              );
+                                            } else {
+                                              return null;
+                                            }
                                           },
                                         );
                                       }
@@ -197,14 +236,16 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
           AlexandriaRoundedButton(
             padding:
                 const EdgeInsets.only(left: 50, right: 50, top: 20, bottom: 20),
-            elevation: kButtonElevation,
             child: const Text(
               'Salva',
               style: TextStyle(fontSize: 16),
             ),
             onPressed: () async {
               final newCategoria = await tryCreateCategoria();
+
               if (newCategoria != null) {
+                (await allCategories)!.add(newCategoria);
+                setState(() {});
                 await showDialog<void>(
                   context: context,
                   builder: (BuildContext context) {
@@ -215,7 +256,6 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                       ),
                       actions: [
                         AlexandriaRoundedButton(
-                          elevation: kButtonElevation,
                           padding: const EdgeInsets.only(
                             left: 30,
                             right: 30,
@@ -228,7 +268,6 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                           child: const Text('Indietro'),
                         ),
                         AlexandriaRoundedButton(
-                          elevation: kButtonElevation,
                           padding: const EdgeInsets.only(
                             left: 30,
                             right: 30,
@@ -236,7 +275,11 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                             bottom: 20,
                           ),
                           onPressed: () {
-                            // TODO(peppe): view_categoria_screen(nuova categoria)
+                            Navigator.pushNamed(
+                              context,
+                              'view_categoria',
+                              arguments: newCategoria,
+                            );
                           },
                           child: const Text('Visualizza'),
                         ),

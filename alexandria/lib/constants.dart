@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Color kAlexandriaGreen = Color(0xFF37C534);
+const Color kInfoBoxColor = Color(0xFFF9ECEC);
 const InputDecoration kInputDecoration = InputDecoration(
   hintStyle: TextStyle(
     fontSize: 15,

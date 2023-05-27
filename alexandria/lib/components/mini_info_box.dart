@@ -1,3 +1,4 @@
+import 'package:alexandria/constants.dart';
 import 'package:flutter/material.dart';
 
 class MiniInfoBox extends StatelessWidget {
@@ -8,23 +9,26 @@ class MiniInfoBox extends StatelessWidget {
     this.icon,
     this.onTap,
     this.onTapIcon,
+    this.backgroundColor,
   });
   final String name;
   final double? fontSize;
   final IconData? icon;
   final void Function()? onTap;
   final void Function()? onTapIcon;
+  final Color? backgroundColor;
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 5),
       child: Material(
-        elevation: 5,
+        elevation: kButtonElevation,
         borderRadius: const BorderRadiusDirectional.all(Radius.circular(20)),
         child: DecoratedBox(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadiusDirectional.all(Radius.circular(20)),
+          decoration: BoxDecoration(
+            color: backgroundColor ?? Colors.white,
+            borderRadius:
+                const BorderRadiusDirectional.all(Radius.circular(20)),
           ),
           child: Padding(
             padding: const EdgeInsetsDirectional.only(

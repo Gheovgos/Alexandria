@@ -1,5 +1,5 @@
-import 'package:alexandria/alexandria_navigation_bar.dart';
-import 'package:alexandria/alexandria_rounded_button.dart';
+import 'package:alexandria/components/alexandria_navigation_bar.dart';
+import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
 import 'package:flutter/material.dart';
@@ -256,7 +256,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 AlexandriaRoundedButton(
-                                  elevation: kButtonElevation,
                                   onPressed: () {},
                                   child: const Text(
                                     'Logout',
@@ -266,7 +265,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   ),
                                 ),
                                 AlexandriaRoundedButton(
-                                  elevation: kButtonElevation,
                                   onPressed: () async {
                                     if (confermaPassword == password &&
                                         password != '' &&

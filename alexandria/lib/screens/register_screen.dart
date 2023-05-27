@@ -1,5 +1,4 @@
-import 'package:alexandria/Connessione/ConnectionHandler.dart';
-import 'package:alexandria/alexandria_rounded_button.dart';
+import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
 import 'package:flutter/foundation.dart';
@@ -241,7 +240,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                             Center(
                               child: AlexandriaRoundedButton(
-                                elevation: kButtonElevation,
                                 onPressed: () async {
                                   if (confermaPassword == password &&
                                       password != '' &&
@@ -262,17 +260,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         showDialog<void>(
                                           context: context,
                                           builder: (BuildContext context) {
-                                            return AlertDialog(
+                                            return const AlertDialog(
                                               actionsAlignment:
                                                   MainAxisAlignment.spaceAround,
-                                              title: const Text('Errore!'),
+                                              title: Text('Errore!'),
                                               content: SizedBox(
                                                 height: 150,
                                                 child: Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
-                                                  children: const [
+                                                  children: [
                                                     Text(
                                                       'Utente già esistente!',
                                                     ),
@@ -294,17 +292,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     showDialog<void>(
                                       context: context,
                                       builder: (BuildContext context) {
-                                        return AlertDialog(
+                                        return const AlertDialog(
                                           actionsAlignment:
                                               MainAxisAlignment.spaceAround,
-                                          title: const Text('Errore!'),
+                                          title: Text('Errore!'),
                                           content: SizedBox(
                                             height: 150,
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
-                                              children: const [
+                                              children: [
                                                 Text(
                                                   'Non tutti i campi sono stati riempiti!',
                                                 ),

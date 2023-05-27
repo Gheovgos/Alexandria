@@ -1,7 +1,7 @@
-import 'package:alexandria/alexandria_navigation_bar.dart';
-import 'package:alexandria/alexandria_rounded_button.dart';
+import 'package:alexandria/components/alexandria_navigation_bar.dart';
+import 'package:alexandria/components/alexandria_rounded_button.dart';
+import 'package:alexandria/components/mini_info_box.dart';
 import 'package:alexandria/constants.dart';
-import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
 
 class SearchResultScreen extends StatefulWidget {
@@ -92,7 +92,6 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                     height: 10,
                   ),
                   AlexandriaRoundedButton(
-                    elevation: kButtonElevation,
                     onPressed: () {},
                     child: const Icon(Icons.filter_list_outlined),
                   ),

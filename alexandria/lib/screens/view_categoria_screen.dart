@@ -1,9 +1,9 @@
 import 'package:alexandria/Model/Categoria.dart';
 import 'package:alexandria/Model/Riferimento.dart';
-import 'package:alexandria/alexandria_navigation_bar.dart';
+import 'package:alexandria/components/alexandria_navigation_bar.dart';
+import 'package:alexandria/components/mini_info_box.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
-import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
 
 class ViewCategoriaScreen extends StatefulWidget {
@@ -92,8 +92,7 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                       width: 250,
                       child: FutureBuilder(
                         future: networkHelper
-                            .getRiferimentoByUserId(categoria.user_id),
-                        // TODO(peppe): DA CAMBIARE!!
+                            .getRiferimentoByCategoria(categoria.user_id),
                         builder: (
                           BuildContext context,
                           AsyncSnapshot<List<Riferimento>?> snapshot,
@@ -106,7 +105,7 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                             return ListView.builder(
                               padding: EdgeInsets.zero,
                               shrinkWrap: true,
-                              itemCount: 6,
+                              itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return MiniInfoBox(
                                   name:
@@ -162,15 +161,30 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                     child: SizedBox(
                       height: 150,
                       width: 250,
-                      child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        itemCount: 6,
-                        itemBuilder: (BuildContext context, int index) {
-                          return MiniInfoBox(
-                            name: 'Categoria $index',
-                            fontSize: 15,
-                          );
+                      child: FutureBuilder(
+                        future: networkHelper
+                            .getSopraCategorie(categoria.id_categoria),
+                        builder: (
+                          BuildContext context,
+                          AsyncSnapshot<List<Categoria>?> snapshot,
+                        ) {
+                          if (!snapshot.hasData) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else {
+                            return ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              itemCount: snapshot.data?.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return MiniInfoBox(
+                                  name: snapshot.data![index].nome,
+                                  fontSize: 15,
+                                );
+                              },
+                            );
+                          }
                         },
                       ),
                     ),

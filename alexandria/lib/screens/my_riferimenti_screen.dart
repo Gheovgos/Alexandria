@@ -1,9 +1,10 @@
+import 'dart:async';
 import 'package:alexandria/Model/Riferimento.dart';
-import 'package:alexandria/alexandria_navigation_bar.dart';
-import 'package:alexandria/alexandria_rounded_button.dart';
+import 'package:alexandria/components/alexandria_navigation_bar.dart';
+import 'package:alexandria/components/alexandria_rounded_button.dart';
+import 'package:alexandria/components/mini_info_box.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
-import 'package:alexandria/mini_info_box.dart';
 import 'package:flutter/material.dart';
 
 class MyRiferimentiScreen extends StatefulWidget {
@@ -14,6 +15,15 @@ class MyRiferimentiScreen extends StatefulWidget {
 }
 
 class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
+  @override
+  void initState() {
+    super.initState();
+    myRiferimenti ??= networkHelper.getRiferimentoByUserId(currentUser.user_ID);
+  }
+
+  bool sortedAscending = false;
+  String? filtroRiferimenti;
+  ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +68,15 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                           style: const TextStyle(color: Colors.black),
                           keyboardType: TextInputType.emailAddress,
                           textAlign: TextAlign.left,
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            filtroRiferimenti = value;
+                            scrollController.animateTo(
+                              0,
+                              duration: const Duration(microseconds: 1),
+                              curve: Curves.linear,
+                            );
+                            setState(() {});
+                          },
                           decoration: kInputDecoration.copyWith(
                             hintText: 'Cerca riferimento...',
                           ),
@@ -66,7 +84,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                       ),
                     ),
                     AlexandriaRoundedButton(
-                      elevation: kButtonElevation,
                       child: const Icon(Icons.search),
                       onPressed: () {},
                     ),
@@ -77,8 +94,21 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                 ),
                 const Text('Ordina:'),
                 AlexandriaRoundedButton(
-                  elevation: kButtonElevation,
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (!sortedAscending) {
+                      (await myRiferimenti)?.sort((a, b) {
+                        return a.titolo_riferimento
+                            .compareTo(b.titolo_riferimento);
+                      });
+                    } else {
+                      (await myRiferimenti)?.sort((a, b) {
+                        return b.titolo_riferimento
+                            .compareTo(a.titolo_riferimento);
+                      });
+                    }
+                    sortedAscending = !sortedAscending;
+                    setState(() {});
+                  },
                   child: const Icon(Icons.filter_list_outlined),
                 ),
                 DecoratedBox(
@@ -97,8 +127,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                       height: 350,
                       width: 300,
                       child: FutureBuilder(
-                        future: networkHelper
-                            .getRiferimentoByUserId(currentUser.user_ID),
+                        future: myRiferimenti,
                         builder: (
                           context,
                           AsyncSnapshot<List<Riferimento>?> snapshot,
@@ -109,63 +138,32 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                             );
                           } else {
                             return ListView.builder(
+                              controller: scrollController,
+                              padding: EdgeInsets.zero,
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext build, int index) {
-                                return InkWell(
-                                  onTap: () {
-                                    showDialog<void>(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          actionsAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          content: Text(
-                                            snapshot.data![index]
-                                                .titolo_riferimento,
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          actions: [
-                                            AlexandriaRoundedButton(
-                                              elevation: kButtonElevation,
-                                              padding: const EdgeInsets.all(
-                                                20,
-                                              ),
-                                              onPressed: () {
-                                                // TODO(peppe): apri write_riferimento
-                                              },
-                                              child: const Text('Modifica'),
-                                            ),
-                                            AlexandriaRoundedButton(
-                                              elevation: kButtonElevation,
-                                              padding: const EdgeInsets.all(
-                                                20,
-                                              ),
-                                              onPressed: () {
-                                                // TODO(peppe): apri view_riferimento
-                                              },
-                                              child: const Text('Visualizza'),
-                                            ),
-                                            AlexandriaRoundedButton(
-                                              elevation: kButtonElevation,
-                                              padding: const EdgeInsets.all(
-                                                20,
-                                              ),
-                                              onPressed: () {
-                                                // TODO(peppe): chiedi conferma
-                                              },
-                                              child: const Text('Elimina'),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  },
-                                  child: MiniInfoBox(
-                                    name: snapshot
-                                        .data![index].titolo_riferimento,
-                                    fontSize: 15,
-                                  ),
-                                );
+                                if (filtroRiferimenti == null ||
+                                    snapshot.data![index].titolo_riferimento
+                                        .contains(
+                                      RegExp(filtroRiferimenti!),
+                                    )) {
+                                  return InkWell(
+                                    onTap: () {
+                                      cliccaRiferimentoDialog(
+                                        context,
+                                        snapshot,
+                                        index,
+                                      );
+                                    },
+                                    child: MiniInfoBox(
+                                      name: snapshot
+                                          .data![index].titolo_riferimento,
+                                      fontSize: 15,
+                                    ),
+                                  );
+                                } else {
+                                  return null;
+                                }
                               },
                             );
                           }
@@ -182,6 +180,111 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> cliccaRiferimentoDialog(
+    BuildContext context,
+    AsyncSnapshot<List<Riferimento>?> snapshot,
+    int index,
+  ) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actionsAlignment: MainAxisAlignment.spaceEvenly,
+          content: Text(
+            snapshot.data![index].titolo_riferimento,
+            textAlign: TextAlign.center,
+          ),
+          actions: [
+            AlexandriaRoundedButton(
+              padding: const EdgeInsets.all(
+                20,
+              ),
+              onPressed: () {
+                // TODO(peppe): apri write_riferimento
+              },
+              child: const Text('Modifica'),
+            ),
+            AlexandriaRoundedButton(
+              padding: const EdgeInsets.all(
+                20,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  'view_riferimento',
+                  arguments: snapshot.data![index],
+                );
+              },
+              child: const Text('Visualizza'),
+            ),
+            AlexandriaRoundedButton(
+              padding: const EdgeInsets.all(
+                20,
+              ),
+              onPressed: () {
+                confermaEliminaRiferimentoDialog(
+                  context,
+                  snapshot.data![index],
+                );
+              },
+              child: const Text('Elimina'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> confermaEliminaRiferimentoDialog(
+    BuildContext context,
+    Riferimento r,
+  ) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            'Sei sicuro?',
+          ),
+          actionsAlignment: MainAxisAlignment.spaceEvenly,
+          actions: [
+            AlexandriaRoundedButton(
+              padding: const EdgeInsets.all(
+                20,
+              ),
+              onPressed: () {
+                Navigator.pop(
+                  context,
+                );
+              },
+              child: const Text(
+                'Annulla',
+              ),
+            ),
+            AlexandriaRoundedButton(
+              padding: const EdgeInsets.all(
+                20,
+              ),
+              onPressed: () async {
+                if ((await myRiferimenti)!.remove(r)) {
+                  unawaited(
+                    networkHelper.deleteRiferimento(
+                      r,
+                    ),
+                  );
+                  setState(() {});
+                }
+              },
+              child: const Text(
+                'Conferma',
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

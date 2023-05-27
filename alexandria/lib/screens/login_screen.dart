@@ -1,6 +1,5 @@
-import 'package:alexandria/Connessione/ConnectionHandler.dart';
-import 'package:alexandria/alexandria_container.dart';
-import 'package:alexandria/alexandria_rounded_button.dart';
+import 'package:alexandria/components/alexandria_container.dart';
+import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
 import 'package:flutter/foundation.dart';
@@ -115,7 +114,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     AlexandriaRoundedButton(
-                      elevation: kButtonElevation,
                       child: Text(
                         'Registrati',
                         style: TextStyle(
@@ -128,7 +126,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                     AlexandriaRoundedButton(
-                      elevation: kButtonElevation,
                       child: Text(
                         'Accedi',
                         style: TextStyle(
@@ -138,21 +135,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       onPressed: () async {
                         if (kReleaseMode) {
-                          final user = await networkHelper.login(username, password);
+                          final user =
+                              await networkHelper.login(username, password);
                           if (user == null) {
                             showDialog<void>(
                               context: context,
                               builder: (BuildContext context) {
-                                return AlertDialog(
+                                return const AlertDialog(
                                   actionsAlignment:
                                       MainAxisAlignment.spaceAround,
-                                  title: const Text('Errore!'),
+                                  title: Text('Errore!'),
                                   content: SizedBox(
                                     height: 150,
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
-                                      children: const [
+                                      children: [
                                         Text('Credenziali errate!'),
                                       ],
                                     ),

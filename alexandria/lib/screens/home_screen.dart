@@ -1,8 +1,8 @@
-import 'package:alexandria/alexandria_navigation_bar.dart';
+import 'package:alexandria/components/alexandria_navigation_bar.dart';
+import 'package:alexandria/components/history_dialog.dart';
+import 'package:alexandria/components/search_dialog.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
-import 'package:alexandria/history_dialog.dart';
-import 'package:alexandria/search_dialog.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
