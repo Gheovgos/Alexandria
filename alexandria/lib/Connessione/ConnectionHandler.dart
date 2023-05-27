@@ -38,6 +38,10 @@ class NetworkHelper {
     return _unet.findAll();
   }
 
+  Future<List<Utente>?> getAutoriByRiferimento(int riferimentoID) async {
+    return _unet.getAutoriByRiferimento(riferimentoID);
+  }
+
   Future<bool> deleteUserFromId(int user_id) async {
     return _unet.deleteUserFromId(user_id);
   }
