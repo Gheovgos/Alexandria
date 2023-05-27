@@ -24,7 +24,7 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
     Categoria getCategoriaByName(String descr_categoria);
 
     @Query(value = "SELECT super_cat(:categoriaID)", nativeQuery = true)
-    List<Categoria> getSopraCategorie(@Param("categoriaID") int categoriaID);
+    List<Integer> getSopraCategorie(@Param("categoriaID") int categoriaID);
 
     @Query(value = "SELECT MAX(id_categoria) FROM categoria", nativeQuery = true)
     Integer getNextId();
