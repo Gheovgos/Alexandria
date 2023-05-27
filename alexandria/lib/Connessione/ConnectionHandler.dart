@@ -135,8 +135,12 @@ class NetworkHelper {
     return _rifnet.aggiornaRiferimentoCitazione(riferimento, oldCitatoID, newCitatoID);
   }
 
-  Future<List<Riferimento>?> getByRiferimentoAssociato(Riferimento riferimento) async {
-    return _rifnet.getByRiferimentoAssociato(riferimento);
+  Future<List<Riferimento>?> getRiferimentiCitati(Riferimento riferimento) async {
+    return _rifnet.getRiferimentiCitati(riferimento);
+  }
+
+  Future<List<Riferimento>?> getRiferimentiCitanti(Riferimento riferimento) async {
+    return _rifnet.getRiferimentiCitanti(riferimento);
   }
 
   Future<List<Riferimento>?> getRiferimentoByAutore(String nome, String cognome) async {

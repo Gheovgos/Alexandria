@@ -81,9 +81,33 @@ class RiferimentoNetwork {
 
   }
 
-  Future<List<Riferimento>?> getByRiferimentoAssociato(Riferimento riferimento) async {
+
+  //Dato un riferimento, vengono restituiti tutti i riferimenti che tale riferimento cita.
+
+  Future<List<Riferimento>?> getRiferimentiCitati(Riferimento riferimento) async {
     late List<Riferimento> riferimenti = [];
     _getMapping = "/get/getByRiferimento/"+riferimento.id_riferimento.toString();
+
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      List<dynamic> riferimentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(var riferimentoJson in riferimentiJson) {
+        Riferimento f = Riferimento.fromJson(riferimentoJson as Map<String, dynamic>);
+        riferimenti.add(f);
+      }
+
+      return riferimenti;
+    }
+    else return null;
+  }
+
+
+  //Dato un riferimento, vengono restituiti tutti i riferimenti che citano tale riferimento
+
+  Future<List<Riferimento>?> getRiferimentiCitanti(Riferimento riferimento) async {
+    late List<Riferimento> riferimenti = [];
+    _getMapping = "/get/getRiferimentiCitanti/"+riferimento.id_riferimento.toString();
 
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
