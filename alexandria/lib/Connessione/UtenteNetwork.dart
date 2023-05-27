@@ -85,6 +85,25 @@ class UtenteNetwork {
     }
   }
 
+  Future<List<Utente>?> getAutoriByRiferimento(int riferimentoID) async {
+    late List<Utente> utenti = [];
+    _getMapping = "/create/getAutoriByRiferimento/"+riferimentoID.toString();
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      List<dynamic> utentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(var utenteJson in utentiJson) {
+        Utente u = Utente.fromJson(utenteJson as Map<String, dynamic>);
+        utenti.add(u);
+      }
+
+      return utenti;
+    }
+    else {
+      return null;
+    }
+  }
+
   Future<bool> deleteUserFromId(int user_id) async {
     _getMapping = "/delete/"+user_id.toString();
 
