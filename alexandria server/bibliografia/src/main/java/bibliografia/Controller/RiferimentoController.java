@@ -98,6 +98,17 @@ public class RiferimentoController {
         return riferimentiDto;
     }
 
+    @GetMapping("get/getRiferimentiCitanti/{riferimento_citato}")
+    public List<RiferimentoDto> getRiferimentoCitante(@PathVariable int riferimento_citato)
+    {
+        List<Riferimento> riferimenti = riferimentoService.getRiferimentoCitanti(riferimento_citato);
+        List<RiferimentoDto> riferimentiDto = new ArrayList<>();
+        for(Riferimento riferimento : riferimenti)
+            riferimentiDto.add(convertDto(riferimento));
+
+        return riferimentiDto;
+    }
+
     @GetMapping("get/getByCategoria/{categoriaID}")
     public List<RiferimentoDto> getByCategoria(@PathVariable int categoriaID)
     {

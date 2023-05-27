@@ -29,6 +29,11 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     nativeQuery = true)
     List<Riferimento> getByRiferimento(int riferimento_associato);
 
+    @Query(value = "SELECT riferimenti_biblio.* \n" +
+            "FROM riferimenti_biblio JOIN riferimenti_biblio_riferimento_citante ON riferimenti_biblio.id_riferimento = riferimenti_biblio_riferimento_citante.riferimento_citante_id_riferimento WHERE riferimenti_biblio_riferimento_citante.riferimento_citato_id_riferimento = ?1",
+            nativeQuery = true)
+    List<Riferimento> getRiferimentoCitanti(int riferimento_associato);
+
     @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio JOIN riferimenti_biblio_categorie ON riferimenti_biblio.id_riferimento = riferimenti_biblio_categorie.riferimento_id_riferimento  WHERE riferimenti_biblio_categorie.categorie_id_categoria = :categoriaID", nativeQuery = true)
     List<Riferimento> getByCategoria(@Param("categoriaID") int categoriaID);
 
