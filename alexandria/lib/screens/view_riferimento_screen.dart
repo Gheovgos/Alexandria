@@ -228,7 +228,9 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                         height: 150,
                         width: 250,
                         child: FutureBuilder(
-                          future: networkHelper.findAllUsers(),
+                          future: networkHelper.getAutoriByRiferimento(
+                            riferimento.id_riferimento,
+                          ),
                           // TODO(peppe): QUERY SBAGLIATA!
                           builder: (
                             context,
@@ -402,9 +404,8 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                         height: 150,
                         width: 250,
                         child: FutureBuilder(
-                          future: networkHelper
-                              .getByRiferimentoAssociato(riferimento),
-                          // TODO(peppe): QUERY SBAGLIATA!
+                          future:
+                              networkHelper.getRiferimentiCitati(riferimento),
                           builder: (
                             context,
                             AsyncSnapshot<List<Riferimento>?> snapshot,
