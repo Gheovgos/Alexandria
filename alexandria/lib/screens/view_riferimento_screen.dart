@@ -231,7 +231,6 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                           future: networkHelper.getAutoriByRiferimento(
                             riferimento.id_riferimento,
                           ),
-                          // TODO(peppe): QUERY SBAGLIATA!
                           builder: (
                             context,
                             AsyncSnapshot<List<Utente>?> snapshot,
