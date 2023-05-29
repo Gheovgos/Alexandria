@@ -256,9 +256,12 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 style: const TextStyle(color: Colors.black),
                                 keyboardType: TextInputType.emailAddress,
                                 textAlign: TextAlign.left,
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  riferimento!.editore = value;
+                                },
                                 decoration: kInputDecoration.copyWith(
-                                  hintText: 'Inserisci testo...',
+                                  hintText: riferimento!.editore ??
+                                      'Inserisci testo...',
                                 ),
                               ),
                             )
@@ -285,9 +288,12 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 style: const TextStyle(color: Colors.black),
                                 keyboardType: TextInputType.emailAddress,
                                 textAlign: TextAlign.left,
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  riferimento!.luogo = value;
+                                },
                                 decoration: kInputDecoration.copyWith(
-                                  hintText: 'Inserisci testo...',
+                                  hintText: riferimento!.luogo ??
+                                      'Inserisci testo...',
                                 ),
                               ),
                             )
@@ -322,9 +328,12 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 style: const TextStyle(color: Colors.black),
                                 keyboardType: TextInputType.emailAddress,
                                 textAlign: TextAlign.left,
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  riferimento!.isnn = value;
+                                },
                                 decoration: kInputDecoration.copyWith(
-                                  hintText: 'Inserisci testo...',
+                                  hintText:
+                                      riferimento!.isnn ?? 'Inserisci testo...',
                                 ),
                               ),
                             )
@@ -351,9 +360,12 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 style: const TextStyle(color: Colors.black),
                                 keyboardType: TextInputType.emailAddress,
                                 textAlign: TextAlign.left,
-                                onChanged: (value) {},
+                                onChanged: (value) {
+                                  riferimento!.isbn = value;
+                                },
                                 decoration: kInputDecoration.copyWith(
-                                  hintText: 'Inserisci testo...',
+                                  hintText:
+                                      riferimento!.isbn ?? 'Inserisci testo...',
                                 ),
                               ),
                             )
