@@ -147,7 +147,7 @@ class _SearchDialogState extends State<SearchDialog> {
                                     fontSize: 15,
                                   );
                                 } else {
-                                  return null;
+                                  return const SizedBox();
                                 }
                               },
                             );

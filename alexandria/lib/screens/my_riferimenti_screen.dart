@@ -158,7 +158,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                                     ),
                                   );
                                 } else {
-                                  return null;
+                                  return const SizedBox();
                                 }
                               },
                             );

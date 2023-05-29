@@ -208,7 +208,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                                 },
                                               );
                                             } else {
-                                              return null;
+                                              return const SizedBox();
                                             }
                                           },
                                         );
