@@ -41,6 +41,7 @@ class Riferimento {
     id_riferimento = 0;
     titolo_riferimento = '';
     data_riferimento = DateTime.now();
+    tipo = tipo_enum.Articolo;
   }
   late int id_riferimento;
   late String titolo_riferimento;
