@@ -18,7 +18,6 @@ class _SearchDialogState extends State<SearchDialog> {
   String filtro = 'titolo';
   List<Categoria> categorie = [];
   List<tipo_enum> tipi = [tipo_enum.Articolo];
-  ScrollController scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
@@ -63,27 +62,23 @@ class _SearchDialogState extends State<SearchDialog> {
                   } else {
                     tipi.add(tipo_enum.Articolo);
                   }
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
               ),
               AlexandriaRoundedButton(
-                backgroundColor: tipi.contains(tipo_enum.Libro)
-                    ? Colors.grey
-                    : Colors.white,
-                borderColor: tipi.contains(tipo_enum.Libro)
-                    ? Colors.grey
-                    : Colors.white,
+                backgroundColor:
+                    tipi.contains(tipo_enum.Libro) ? Colors.grey : Colors.white,
+                borderColor:
+                    tipi.contains(tipo_enum.Libro) ? Colors.grey : Colors.white,
                 child: const Text('Libri'),
-                onPressed: () {if (tipi.contains(tipo_enum.Libro)) {
-                  tipi.remove(tipo_enum.Libro);
-                } else {
-                  tipi.add(tipo_enum.Libro);
-                }
-                setState(() {
-
-                });},
+                onPressed: () {
+                  if (tipi.contains(tipo_enum.Libro)) {
+                    tipi.remove(tipo_enum.Libro);
+                  } else {
+                    tipi.add(tipo_enum.Libro);
+                  }
+                  setState(() {});
+                },
               ),
               AlexandriaRoundedButton(
                 backgroundColor: tipi.contains(tipo_enum.Fascicolo)
@@ -93,14 +88,14 @@ class _SearchDialogState extends State<SearchDialog> {
                     ? Colors.grey
                     : Colors.white,
                 child: const Text('Fascicoli'),
-                onPressed: () {if (tipi.contains(tipo_enum.Fascicolo)) {
-                  tipi.remove(tipo_enum.Fascicolo);
-                } else {
-                  tipi.add(tipo_enum.Fascicolo);
-                }
-                setState(() {
-
-                });},
+                onPressed: () {
+                  if (tipi.contains(tipo_enum.Fascicolo)) {
+                    tipi.remove(tipo_enum.Fascicolo);
+                  } else {
+                    tipi.add(tipo_enum.Fascicolo);
+                  }
+                  setState(() {});
+                },
               ),
             ],
           ),
@@ -115,14 +110,14 @@ class _SearchDialogState extends State<SearchDialog> {
                     ? Colors.grey
                     : Colors.white,
                 child: const Text('Riviste'),
-                onPressed: () {if (tipi.contains(tipo_enum.Rivista)) {
-                  tipi.remove(tipo_enum.Rivista);
-                } else {
-                  tipi.add(tipo_enum.Rivista);
-                }
-                setState(() {
-
-                });},
+                onPressed: () {
+                  if (tipi.contains(tipo_enum.Rivista)) {
+                    tipi.remove(tipo_enum.Rivista);
+                  } else {
+                    tipi.add(tipo_enum.Rivista);
+                  }
+                  setState(() {});
+                },
               ),
               AlexandriaRoundedButton(
                 backgroundColor: tipi.contains(tipo_enum.Conferenza)
@@ -132,14 +127,14 @@ class _SearchDialogState extends State<SearchDialog> {
                     ? Colors.grey
                     : Colors.white,
                 child: const Text('Conferenze'),
-                onPressed: () {if (tipi.contains(tipo_enum.Conferenza)) {
-                  tipi.remove(tipo_enum.Conferenza);
-                } else {
-                  tipi.add(tipo_enum.Conferenza);
-                }
-                setState(() {
-
-                });},
+                onPressed: () {
+                  if (tipi.contains(tipo_enum.Conferenza)) {
+                    tipi.remove(tipo_enum.Conferenza);
+                  } else {
+                    tipi.add(tipo_enum.Conferenza);
+                  }
+                  setState(() {});
+                },
               ),
             ],
           ),
@@ -173,11 +168,6 @@ class _SearchDialogState extends State<SearchDialog> {
                         textAlign: TextAlign.left,
                         onChanged: (value) {
                           filtroCategoria = value;
-                          scrollController.animateTo(
-                            0,
-                            duration: const Duration(microseconds: 1),
-                            curve: Curves.linear,
-                          );
                           setState(() {});
                         },
                         decoration: kInputDecoration.copyWith(
@@ -203,7 +193,6 @@ class _SearchDialogState extends State<SearchDialog> {
                             );
                           } else {
                             return ListView.builder(
-                              controller: scrollController,
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext build, int index) {
                                 if (filtroCategoria == null ||

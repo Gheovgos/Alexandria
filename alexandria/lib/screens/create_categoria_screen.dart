@@ -16,7 +16,6 @@ class CreateCategoriaScreen extends StatefulWidget {
 
 class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
   String? filtroCategoria;
-  ScrollController scrollController = ScrollController();
   Future<Categoria?> tryCreateCategoria() async {
     unawaited(
       showDialog<void>(
@@ -131,12 +130,6 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                     textAlign: TextAlign.left,
                                     onChanged: (value) {
                                       filtroCategoria = value;
-                                      scrollController.animateTo(
-                                        0,
-                                        duration:
-                                            const Duration(microseconds: 1),
-                                        curve: Curves.linear,
-                                      );
                                       setState(() {});
                                     },
                                     decoration: kInputDecoration.copyWith(
@@ -161,7 +154,6 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                         );
                                       } else {
                                         return ListView.builder(
-                                          controller: scrollController,
                                           padding: EdgeInsets.zero,
                                           itemCount: snapshot.data?.length,
                                           itemBuilder:

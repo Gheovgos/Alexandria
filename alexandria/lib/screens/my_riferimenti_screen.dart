@@ -23,7 +23,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
 
   bool sortedAscending = false;
   String? filtroRiferimenti;
-  ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,11 +69,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                           textAlign: TextAlign.left,
                           onChanged: (value) {
                             filtroRiferimenti = value;
-                            scrollController.animateTo(
-                              0,
-                              duration: const Duration(microseconds: 1),
-                              curve: Curves.linear,
-                            );
                             setState(() {});
                           },
                           decoration: kInputDecoration.copyWith(
@@ -134,7 +128,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                             );
                           } else {
                             return ListView.builder(
-                              controller: scrollController,
                               padding: EdgeInsets.zero,
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext build, int index) {
