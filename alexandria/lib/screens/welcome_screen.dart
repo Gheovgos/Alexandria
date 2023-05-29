@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:alexandria/components/alexandria_container.dart';
+import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
@@ -30,7 +31,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         barrierDismissible: false,
         context: context,
         builder: (_) {
-          return AlertDialog(
+          return AlexandriaDialog(
             title: const Text('Controllando la connessione...'),
             content: Container(
               padding: const EdgeInsets.all(50),

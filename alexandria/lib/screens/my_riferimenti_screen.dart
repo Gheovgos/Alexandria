@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:alexandria/Model/Riferimento.dart';
+import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_navigation_bar.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/components/mini_info_box.dart';
@@ -234,11 +235,10 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
+        return AlexandriaDialog(
           title: const Text(
             'Sei sicuro?',
           ),
-          actionsAlignment: MainAxisAlignment.spaceEvenly,
           actions: [
             AlexandriaRoundedButton(
               padding: const EdgeInsets.all(

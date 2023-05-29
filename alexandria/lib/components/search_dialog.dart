@@ -1,5 +1,6 @@
 import 'package:alexandria/Model/Categoria.dart';
 import 'package:alexandria/Model/tipo_enum.dart';
+import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/components/mini_info_box.dart';
 import 'package:alexandria/constants.dart';
@@ -26,11 +27,7 @@ class _SearchDialogState extends State<SearchDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(30)),
-      ),
-      scrollable: true,
+    return AlexandriaDialog(
       content: Column(
         children: [
           Material(
@@ -264,7 +261,6 @@ class _SearchDialogState extends State<SearchDialog> {
           ),
         ],
       ),
-      actionsAlignment: MainAxisAlignment.spaceBetween,
       actions: [
         AlexandriaRoundedButton(
           border: const CircleBorder(),

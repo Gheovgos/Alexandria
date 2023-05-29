@@ -1,3 +1,4 @@
+import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
@@ -260,9 +261,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         showDialog<void>(
                                           context: context,
                                           builder: (BuildContext context) {
-                                            return const AlertDialog(
-                                              actionsAlignment:
-                                                  MainAxisAlignment.spaceAround,
+                                            return const AlexandriaDialog(
                                               title: Text('Errore!'),
                                               content: SizedBox(
                                                 height: 150,
@@ -292,9 +291,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     showDialog<void>(
                                       context: context,
                                       builder: (BuildContext context) {
-                                        return const AlertDialog(
-                                          actionsAlignment:
-                                              MainAxisAlignment.spaceAround,
+                                        return const AlexandriaDialog(
                                           title: Text('Errore!'),
                                           content: SizedBox(
                                             height: 150,

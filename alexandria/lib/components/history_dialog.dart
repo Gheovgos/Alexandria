@@ -1,4 +1,5 @@
 import 'package:alexandria/Model/Riferimento.dart';
+import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/components/mini_info_box.dart';
 import 'package:alexandria/constants.dart';
@@ -15,11 +16,7 @@ class HistoryDialog extends StatefulWidget {
 class _HistoryDialogState extends State<HistoryDialog> {
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(30)),
-      ),
-      scrollable: true,
+    return AlexandriaDialog(
       content: Column(
         children: [
           const Text('Ultimi riferimenti inseriti:'),
@@ -121,7 +118,6 @@ class _HistoryDialogState extends State<HistoryDialog> {
           ),
         ],
       ),
-      actionsAlignment: MainAxisAlignment.start,
       actions: [
         AlexandriaRoundedButton(
           border: const CircleBorder(),

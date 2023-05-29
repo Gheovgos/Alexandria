@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:alexandria/Model/Categoria.dart';
+import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_navigation_bar.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/components/mini_info_box.dart';
@@ -22,7 +23,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
         barrierDismissible: false,
         context: context,
         builder: (_) {
-          return AlertDialog(
+          return AlexandriaDialog(
             title: const Text('Creazione categoria...'),
             content: Container(
               padding: const EdgeInsets.all(50),
@@ -127,7 +128,8 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                     ),
                                     elevation: 5,
                                     child: TextField(
-                                      style: const TextStyle(color: Colors.black),
+                                      style:
+                                          const TextStyle(color: Colors.black),
                                       keyboardType: TextInputType.emailAddress,
                                       textAlign: TextAlign.left,
                                       onChanged: (value) {
@@ -148,7 +150,8 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                       future: allCategories,
                                       builder: (
                                         context,
-                                        AsyncSnapshot<List<Categoria>?> snapshot,
+                                        AsyncSnapshot<List<Categoria>?>
+                                            snapshot,
                                       ) {
                                         if (!snapshot.hasData) {
                                           return const Center(
@@ -158,8 +161,10 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,
                                             itemCount: snapshot.data?.length,
-                                            itemBuilder:
-                                                (BuildContext build, int index) {
+                                            itemBuilder: (
+                                              BuildContext build,
+                                              int index,
+                                            ) {
                                               if (filtroCategoria == null ||
                                                   snapshot.data![index].nome
                                                       .contains(
@@ -175,16 +180,17 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                                                   .id_categoria
                                                           ? Colors.grey
                                                           : Colors.white,
-                                                  name:
-                                                      snapshot.data![index].nome,
+                                                  name: snapshot
+                                                      .data![index].nome,
                                                   fontSize: 15,
                                                   onTap: () {
                                                     sopraCategoria = snapshot
                                                         .data?[index]
                                                         .id_categoria;
                                                     setState(() {});
-                                                    ScaffoldMessenger.of(context)
-                                                        .showSnackBar(
+                                                    ScaffoldMessenger.of(
+                                                      context,
+                                                    ).showSnackBar(
                                                       SnackBar(
                                                         content: Text(
                                                           'Selezionata "${snapshot.data![index].nome}" come sopra-categoria!',
@@ -244,8 +250,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                 await showDialog<void>(
                   context: context,
                   builder: (BuildContext context) {
-                    return AlertDialog(
-                      actionsAlignment: MainAxisAlignment.spaceAround,
+                    return AlexandriaDialog(
                       content: const SingleChildScrollView(
                         child: Text('Categoria creata con successo!'),
                       ),

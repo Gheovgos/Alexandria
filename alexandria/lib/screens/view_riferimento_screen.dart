@@ -1,6 +1,7 @@
 import 'package:alexandria/Model/Riferimento.dart';
 import 'package:alexandria/Model/Utente.dart';
 import 'package:alexandria/Model/tipo_enum.dart';
+import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_navigation_bar.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/components/mini_info_box.dart';
@@ -29,8 +30,7 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                 showDialog<void>(
                   context: context,
                   builder: (BuildContext context) {
-                    return AlertDialog(
-                      actionsAlignment: MainAxisAlignment.spaceAround,
+                    return AlexandriaDialog(
                       content: SizedBox(
                         height: 150,
                         child: Column(
@@ -282,11 +282,7 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                         showDialog<void>(
                           context: context,
                           builder: (context) {
-                            return AlertDialog(
-                              shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(30)),
-                              ),
+                            return AlexandriaDialog(
                               title: const Text(
                                 'Descrizione',
                                 textAlign: TextAlign.center,
