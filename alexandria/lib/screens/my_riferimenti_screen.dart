@@ -34,7 +34,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
       body: Column(
         children: [
           const SizedBox(
-            height: 25,
+            height: 50,
           ),
           Container(
             decoration: const BoxDecoration(
@@ -114,7 +114,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                       bottom: 15,
                     ),
                     child: SizedBox(
-                      height: 350,
+                      height: 450,
                       width: 300,
                       child: FutureBuilder(
                         future: myRiferimenti,
