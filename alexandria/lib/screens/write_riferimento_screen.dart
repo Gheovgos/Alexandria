@@ -13,11 +13,18 @@ class WriteRiferimentoScreen extends StatefulWidget {
 }
 
 class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
+  late bool isCreate;
   Riferimento? riferimento;
   @override
   Widget build(BuildContext context) {
     riferimento ??= ModalRoute.of(context)!.settings.arguments as Riferimento?;
-    riferimento ??= Riferimento.empty();
+    if (riferimento == null) {
+      riferimento ??= Riferimento.empty();
+      isCreate = true;
+    } else {
+      isCreate = false;
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: kAlexandriaGreen,
