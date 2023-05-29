@@ -1,5 +1,6 @@
 import 'package:alexandria/Model/Riferimento.dart';
 import 'package:alexandria/Model/tipo_enum.dart';
+import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_navigation_bar.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
@@ -225,7 +226,72 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                         const Text('Link...'),
                         AlexandriaRoundedButton(
                           child: const Icon(Icons.edit_note_outlined),
-                          onPressed: () {},
+                          onPressed: () {
+                            var tempURL = '';
+                            showDialog<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlexandriaDialog(
+                                  title: const Text(
+                                      'Inserisci il link del riferimento.\n'
+                                      'Se non presente, lasciare vuoto.'),
+                                  actions: [
+                                    AlexandriaRoundedButton(
+                                      padding: const EdgeInsets.only(
+                                        left: 40,
+                                        right: 40,
+                                        top: 20,
+                                        bottom: 20,
+                                      ),
+                                      child: const Text(
+                                        'Indietro',
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    AlexandriaRoundedButton(
+                                      padding: const EdgeInsets.only(
+                                        left: 40,
+                                        right: 40,
+                                        top: 20,
+                                        bottom: 20,
+                                      ),
+                                      child: const Text(
+                                        'Salva',
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                      onPressed: () {
+                                        riferimento!.URL = tempURL;
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                  content: Material(
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(33),
+                                    ),
+                                    elevation: 5,
+                                    child: TextField(
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                      keyboardType: TextInputType.url,
+                                      textAlign: TextAlign.left,
+                                      onChanged: (value) {
+                                        tempURL = value;
+                                      },
+                                      decoration: kInputDecoration.copyWith(
+                                        hintText: riferimento!.URL ??
+                                            'Inserisci URL...',
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
                         ),
                       ],
                     ),
