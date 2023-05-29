@@ -59,7 +59,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
             ],
           ),
           Container(
-            width: 370,
+            margin: const EdgeInsets.all(10),
             decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(
