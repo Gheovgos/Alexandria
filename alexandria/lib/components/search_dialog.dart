@@ -43,7 +43,7 @@ class _SearchDialogState extends State<SearchDialog> {
               textAlign: TextAlign.left,
               onChanged: (value) {},
               decoration:
-                  kInputDecoration.copyWith(hintText: 'Inserisci titolo...'),
+                  kInputDecoration.copyWith(hintText: 'Inserisci $filtro...'),
             ),
           ),
           Row(
@@ -164,18 +164,39 @@ class _SearchDialogState extends State<SearchDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               AlexandriaRoundedButton(
+                backgroundColor: filtro == 'titolo'?Colors.grey: Colors.white,
+                borderColor: filtro == 'titolo'?Colors.grey: Colors.white,
                 child: const Text('Titolo'),
-                onPressed: () {},
+                onPressed: () {
+                  filtro = 'titolo';
+                  setState(() {
+
+                  });
+                },
               ),
               AlexandriaRoundedButton(
+                backgroundColor: filtro == 'DOI'?Colors.grey: Colors.white,
+                borderColor: filtro == 'DOI'?Colors.grey: Colors.white,
                 child: const Text('DOI'),
-                onPressed: () {},
+                onPressed: () {
+                  filtro = 'DOI';
+                  setState(() {
+
+                  });
+                },
               ),
             ],
           ),
           AlexandriaRoundedButton(
+            backgroundColor: filtro == 'autore'?Colors.grey: Colors.white,
+            borderColor: filtro == 'autore'?Colors.grey: Colors.white,
+            onPressed: () {
+              filtro = 'autore';
+              setState(() {
+
+              });
+            },
             child: const Text('Autore'),
-            onPressed: () {},
           ),
         ],
       ),
