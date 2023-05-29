@@ -256,7 +256,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 AlexandriaRoundedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
                                   child: const Text(
                                     'Logout',
                                     style: TextStyle(
