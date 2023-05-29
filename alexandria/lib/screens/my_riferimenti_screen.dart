@@ -83,10 +83,6 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                         ),
                       ),
                     ),
-                    AlexandriaRoundedButton(
-                      child: const Icon(Icons.search),
-                      onPressed: () {},
-                    ),
                   ],
                 ),
                 const SizedBox(
