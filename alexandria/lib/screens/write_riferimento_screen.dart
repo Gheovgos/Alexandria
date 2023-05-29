@@ -1,3 +1,5 @@
+import 'package:alexandria/Model/Riferimento.dart';
+import 'package:alexandria/Model/tipo_enum.dart';
 import 'package:alexandria/components/alexandria_navigation_bar.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
@@ -11,8 +13,28 @@ class WriteRiferimentoScreen extends StatefulWidget {
 }
 
 class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
+  Riferimento? riferimento;
   @override
   Widget build(BuildContext context) {
+    var riferimento =
+        ModalRoute.of(context)!.settings.arguments as Riferimento?;
+    riferimento ??= Riferimento(
+      0,
+      '',
+      DateTime.now(),
+      tipo_enum.Articolo,
+      null,
+      null,
+      false,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+    );
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: kAlexandriaGreen,
@@ -20,7 +42,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
       body: Column(
         children: [
           const SizedBox(
-            height: 40,
+            height: 50,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -84,9 +106,13 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                           style: const TextStyle(color: Colors.black),
                           keyboardType: TextInputType.emailAddress,
                           textAlign: TextAlign.left,
-                          onChanged: (value) {},
+                          onChanged: (value) {
+                            riferimento!.titolo_riferimento = value;
+                          },
                           decoration: kInputDecoration.copyWith(
-                            hintText: 'Inserisci testo...',
+                            hintText: riferimento.titolo_riferimento == ''
+                                ? 'Inserisci testo...'
+                                : riferimento.titolo_riferimento,
                           ),
                         ),
                       ),
