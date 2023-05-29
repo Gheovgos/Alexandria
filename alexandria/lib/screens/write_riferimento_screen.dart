@@ -205,7 +205,306 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                         const Text('Descrizione...'),
                         AlexandriaRoundedButton(
                           child: const Icon(Icons.edit_note_outlined),
-                          onPressed: () {},
+                          onPressed: () {
+                            var descrizione = '';
+                            int? DOI;
+                            int? edizione;
+                            int? pagInizio;
+                            int? pagFine;
+                            showDialog<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlexandriaDialog(
+                                  content: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(30),
+                                            topLeft: Radius.circular(30),
+                                            bottomLeft: Radius.circular(30),
+                                          ),
+                                          color: kInfoBoxColor,
+                                        ),
+                                        child: const Text('Descrizione'),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Material(
+                                        elevation: 2,
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(30),
+                                        ),
+                                        child: Material(
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
+                                          elevation: 5,
+                                          child: TextField(
+                                            minLines: 6,
+                                            maxLines: 7,
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            textAlign: TextAlign.left,
+                                            onChanged: (value) {
+                                              descrizione = value;
+                                            },
+                                            decoration:
+                                                kInputDecoration.copyWith(
+                                              hintText: riferimento!
+                                                      .descr_riferimento ??
+                                                  'Inserisci testo...',
+                                              fillColor: kInfoBoxColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(30),
+                                            topLeft: Radius.circular(30),
+                                            bottomLeft: Radius.circular(30),
+                                          ),
+                                          color: kInfoBoxColor,
+                                        ),
+                                        child: const Text('DOI'),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Material(
+                                        elevation: 2,
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(30),
+                                        ),
+                                        child: Material(
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
+                                          elevation: 5,
+                                          child: TextField(
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.left,
+                                            onChanged: (value) {
+                                              DOI = int.parse(value);
+                                            },
+                                            decoration:
+                                                kInputDecoration.copyWith(
+                                              hintText: riferimento!.DOI == null
+                                                  ? 'Inserisci testo...'
+                                                  : riferimento!.DOI.toString(),
+                                              fillColor: kInfoBoxColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(30),
+                                            topLeft: Radius.circular(30),
+                                            bottomLeft: Radius.circular(30),
+                                          ),
+                                          color: kInfoBoxColor,
+                                        ),
+                                        child: const Text('Edizione'),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Material(
+                                        elevation: 2,
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(30),
+                                        ),
+                                        child: Material(
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
+                                          elevation: 5,
+                                          child: TextField(
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.left,
+                                            onChanged: (value) {
+                                              edizione = int.parse(value);
+                                            },
+                                            decoration:
+                                                kInputDecoration.copyWith(
+                                              hintText:
+                                                  riferimento!.edizione == null
+                                                      ? 'Inserisci testo...'
+                                                      : riferimento!.edizione
+                                                          .toString(),
+                                              fillColor: kInfoBoxColor,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(30),
+                                            topLeft: Radius.circular(30),
+                                            bottomLeft: Radius.circular(30),
+                                          ),
+                                          color: kInfoBoxColor,
+                                        ),
+                                        child: const Text('Pagine'),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Material(
+                                            elevation: 2,
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                              Radius.circular(30),
+                                            ),
+                                            child: Material(
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                Radius.circular(30),
+                                              ),
+                                              elevation: 5,
+                                              child: TextField(
+                                                style: const TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                textAlign: TextAlign.left,
+                                                onChanged: (value) {
+                                                  pagInizio = int.parse(value);
+                                                },
+                                                decoration:
+                                                    kInputDecoration.copyWith(
+                                                  hintText: riferimento!
+                                                              .pag_inizio ==
+                                                          null
+                                                      ? 'Pagina inizio...'
+                                                      : riferimento!.pag_inizio
+                                                          .toString(),
+                                                  fillColor: kInfoBoxColor,
+                                                  constraints:
+                                                      const BoxConstraints
+                                                          .tightFor(
+                                                    width: 140,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Material(
+                                            elevation: 2,
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                              Radius.circular(30),
+                                            ),
+                                            child: Material(
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                Radius.circular(30),
+                                              ),
+                                              elevation: 5,
+                                              child: TextField(
+                                                style: const TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                textAlign: TextAlign.left,
+                                                onChanged: (value) {
+                                                  pagFine = int.parse(value);
+                                                },
+                                                decoration:
+                                                    kInputDecoration.copyWith(
+                                                  hintText: riferimento!
+                                                              .pag_fine ==
+                                                          null
+                                                      ? 'Pagina fine...'
+                                                      : riferimento!.pag_fine
+                                                          .toString(),
+                                                  fillColor: kInfoBoxColor,
+                                                  constraints:
+                                                      const BoxConstraints
+                                                          .tightFor(width: 140),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  actions: [
+                                    AlexandriaRoundedButton(
+                                      padding: const EdgeInsets.only(
+                                        left: 40,
+                                        right: 40,
+                                        top: 20,
+                                        bottom: 20,
+                                      ),
+                                      child: const Text(
+                                        'Indietro',
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    AlexandriaRoundedButton(
+                                      padding: const EdgeInsets.only(
+                                        left: 40,
+                                        right: 40,
+                                        top: 20,
+                                        bottom: 20,
+                                      ),
+                                      child: const Text(
+                                        'Salva',
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                      onPressed: () {
+                                        riferimento!.descr_riferimento =
+                                            descrizione;
+                                        riferimento!.DOI = DOI;
+                                        riferimento!.edizione = edizione;
+                                        riferimento!.pag_inizio = pagInizio;
+                                        riferimento!.pag_fine = pagFine;
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
                         ),
                       ],
                     ),
