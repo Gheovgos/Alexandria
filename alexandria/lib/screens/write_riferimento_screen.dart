@@ -16,25 +16,8 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
   Riferimento? riferimento;
   @override
   Widget build(BuildContext context) {
-    var riferimento =
-        ModalRoute.of(context)!.settings.arguments as Riferimento?;
-    riferimento ??= Riferimento(
-      0,
-      '',
-      DateTime.now(),
-      tipo_enum.Articolo,
-      null,
-      null,
-      false,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-    );
+    riferimento ??= ModalRoute.of(context)!.settings.arguments as Riferimento?;
+    riferimento ??= Riferimento.empty();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: kAlexandriaGreen,
@@ -72,7 +55,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                   onTap: () async {
                     riferimento!.data_riferimento = (await showDatePicker(
                       context: context,
-                      initialDate: riferimento.data_riferimento,
+                      initialDate: riferimento!.data_riferimento,
                       firstDate: DateTime(1500),
                       lastDate: DateTime.now(),
                     ))!;
@@ -115,9 +98,9 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                             riferimento!.titolo_riferimento = value;
                           },
                           decoration: kInputDecoration.copyWith(
-                            hintText: riferimento.titolo_riferimento == ''
+                            hintText: riferimento!.titolo_riferimento == ''
                                 ? 'Inserisci testo...'
-                                : riferimento.titolo_riferimento,
+                                : riferimento!.titolo_riferimento,
                           ),
                         ),
                       ),
@@ -149,15 +132,33 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AlexandriaRoundedButton(
-                      onPressed: () {},
+                      onPressed: riferimento!.tipo != tipo_enum.Articolo
+                          ? () {
+                              setState(() {
+                                riferimento?.tipo = tipo_enum.Articolo;
+                              });
+                            }
+                          : null,
                       child: const Text('Articoli'),
                     ),
                     AlexandriaRoundedButton(
-                      onPressed: () {},
+                      onPressed: riferimento!.tipo != tipo_enum.Libro
+                          ? () {
+                              setState(() {
+                                riferimento?.tipo = tipo_enum.Libro;
+                              });
+                            }
+                          : null,
                       child: const Text('Libri'),
                     ),
                     AlexandriaRoundedButton(
-                      onPressed: () {},
+                      onPressed: riferimento!.tipo != tipo_enum.Fascicolo
+                          ? () {
+                              setState(() {
+                                riferimento!.tipo = tipo_enum.Fascicolo;
+                              });
+                            }
+                          : null,
                       child: const Text('Fascicoli'),
                     ),
                   ],
@@ -166,11 +167,23 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AlexandriaRoundedButton(
-                      onPressed: () {},
+                      onPressed: riferimento!.tipo != tipo_enum.Rivista
+                          ? () {
+                              setState(() {
+                                riferimento!.tipo = tipo_enum.Rivista;
+                              });
+                            }
+                          : null,
                       child: const Text('Riviste'),
                     ),
                     AlexandriaRoundedButton(
-                      onPressed: () {},
+                      onPressed: riferimento!.tipo != tipo_enum.Conferenza
+                          ? () {
+                              setState(() {
+                                riferimento!.tipo = tipo_enum.Conferenza;
+                              });
+                            }
+                          : null,
                       child: const Text('Conferenze'),
                     ),
                   ],
