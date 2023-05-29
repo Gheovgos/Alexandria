@@ -63,163 +63,166 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
           const SizedBox(
             height: 50,
           ),
-          DecoratedBox(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(50)),
-              color: Colors.white,
-            ),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'Nome Categoria',
-                  style: TextStyle(fontSize: 16),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: TextField(
-                    style: const TextStyle(color: Colors.black),
-                    keyboardType: TextInputType.emailAddress,
-                    textAlign: TextAlign.left,
-                    onChanged: (value) {
-                      nomeCategoria = value;
-                    },
-                    decoration: kInputDecoration.copyWith(
-                      hintText: 'Inserisci nome...',
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: DecoratedBox(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+                color: Colors.white,
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    'Nome Categoria',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: TextField(
+                      style: const TextStyle(color: Colors.black),
+                      keyboardType: TextInputType.emailAddress,
+                      textAlign: TextAlign.left,
+                      onChanged: (value) {
+                        nomeCategoria = value;
+                      },
+                      decoration: kInputDecoration.copyWith(
+                        hintText: 'Inserisci nome...',
+                      ),
                     ),
                   ),
-                ),
-                const Text(
-                  'Sopra-Categoria',
-                  style: TextStyle(fontSize: 16),
-                ),
-                DecoratedBox(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                  const Text(
+                    'Sopra-Categoria',
+                    style: TextStyle(fontSize: 16),
                   ),
-                  child: Column(
-                    children: [
-                      Material(
-                        borderRadius: BorderRadius.circular(20),
-                        elevation: 2,
-                        child: Container(
-                          width: 320,
-                          decoration: BoxDecoration(
-                            color: kAlexandriaGreen,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 20,
-                              top: 15,
-                              right: 20,
-                              bottom: 15,
+                  DecoratedBox(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
+                    ),
+                    child: Column(
+                      children: [
+                        Material(
+                          borderRadius: BorderRadius.circular(20),
+                          elevation: 2,
+                          child: Container(
+                            width: 320,
+                            decoration: BoxDecoration(
+                              color: kAlexandriaGreen,
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            child: Column(
-                              children: [
-                                Material(
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(33),
-                                  ),
-                                  elevation: 5,
-                                  child: TextField(
-                                    style: const TextStyle(color: Colors.black),
-                                    keyboardType: TextInputType.emailAddress,
-                                    textAlign: TextAlign.left,
-                                    onChanged: (value) {
-                                      filtroCategoria = value;
-                                      setState(() {});
-                                    },
-                                    decoration: kInputDecoration.copyWith(
-                                      hintText: 'Cerca categoria...',
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                left: 20,
+                                top: 15,
+                                right: 20,
+                                bottom: 15,
+                              ),
+                              child: Column(
+                                children: [
+                                  Material(
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(33),
+                                    ),
+                                    elevation: 5,
+                                    child: TextField(
+                                      style: const TextStyle(color: Colors.black),
+                                      keyboardType: TextInputType.emailAddress,
+                                      textAlign: TextAlign.left,
+                                      onChanged: (value) {
+                                        filtroCategoria = value;
+                                        setState(() {});
+                                      },
+                                      decoration: kInputDecoration.copyWith(
+                                        hintText: 'Cerca categoria...',
+                                      ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                SizedBox(
-                                  height: 300,
-                                  child: FutureBuilder(
-                                    future: allCategories,
-                                    builder: (
-                                      context,
-                                      AsyncSnapshot<List<Categoria>?> snapshot,
-                                    ) {
-                                      if (!snapshot.hasData) {
-                                        return const Center(
-                                          child: CircularProgressIndicator(),
-                                        );
-                                      } else {
-                                        return ListView.builder(
-                                          padding: EdgeInsets.zero,
-                                          itemCount: snapshot.data?.length,
-                                          itemBuilder:
-                                              (BuildContext build, int index) {
-                                            if (filtroCategoria == null ||
-                                                snapshot.data![index].nome
-                                                    .contains(
-                                                  RegExp(
-                                                    filtroCategoria!,
-                                                  ),
-                                                )) {
-                                              return MiniInfoBox(
-                                                backgroundColor:
-                                                    sopraCategoria ==
-                                                            snapshot
-                                                                .data![index]
-                                                                .id_categoria
-                                                        ? Colors.grey
-                                                        : Colors.white,
-                                                name:
-                                                    snapshot.data![index].nome,
-                                                fontSize: 15,
-                                                onTap: () {
-                                                  sopraCategoria = snapshot
-                                                      .data?[index]
-                                                      .id_categoria;
-                                                  setState(() {});
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        'Selezionata "${snapshot.data![index].nome}" come sopra-categoria!',
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                                onTapIcon: () {
-                                                  Navigator.pushNamed(
-                                                    context,
-                                                    'view_categoria',
-                                                    arguments:
-                                                        snapshot.data![index],
-                                                  );
-                                                },
-                                              );
-                                            } else {
-                                              return const SizedBox();
-                                            }
-                                          },
-                                        );
-                                      }
-                                    },
+                                  const SizedBox(
+                                    height: 10,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(
+                                    height: 350,
+                                    child: FutureBuilder(
+                                      future: allCategories,
+                                      builder: (
+                                        context,
+                                        AsyncSnapshot<List<Categoria>?> snapshot,
+                                      ) {
+                                        if (!snapshot.hasData) {
+                                          return const Center(
+                                            child: CircularProgressIndicator(),
+                                          );
+                                        } else {
+                                          return ListView.builder(
+                                            padding: EdgeInsets.zero,
+                                            itemCount: snapshot.data?.length,
+                                            itemBuilder:
+                                                (BuildContext build, int index) {
+                                              if (filtroCategoria == null ||
+                                                  snapshot.data![index].nome
+                                                      .contains(
+                                                    RegExp(
+                                                      filtroCategoria!,
+                                                    ),
+                                                  )) {
+                                                return MiniInfoBox(
+                                                  backgroundColor:
+                                                      sopraCategoria ==
+                                                              snapshot
+                                                                  .data![index]
+                                                                  .id_categoria
+                                                          ? Colors.grey
+                                                          : Colors.white,
+                                                  name:
+                                                      snapshot.data![index].nome,
+                                                  fontSize: 15,
+                                                  onTap: () {
+                                                    sopraCategoria = snapshot
+                                                        .data?[index]
+                                                        .id_categoria;
+                                                    setState(() {});
+                                                    ScaffoldMessenger.of(context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Selezionata "${snapshot.data![index].nome}" come sopra-categoria!',
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                  onTapIcon: () {
+                                                    Navigator.pushNamed(
+                                                      context,
+                                                      'view_categoria',
+                                                      arguments:
+                                                          snapshot.data![index],
+                                                    );
+                                                  },
+                                                );
+                                              } else {
+                                                return const SizedBox();
+                                              }
+                                            },
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 50,
-                )
-              ],
+                  const SizedBox(
+                    height: 50,
+                  )
+                ],
+              ),
             ),
           ),
           const SizedBox(
