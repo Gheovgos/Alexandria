@@ -46,16 +46,16 @@ class Riferimento {
   late int id_riferimento;
   late String titolo_riferimento;
   late DateTime data_riferimento;
-  late tipo_enum? tipo;
-  late String? URL;
-  late int? DOI;
+  tipo_enum? tipo;
+  String? URL;
+  int? DOI;
   late bool on_line;
-  late String? descr_riferimento;
-  late String? editore;
-  late String? isbn;
-  late String? isnn;
-  late String? luogo;
-  late int? pag_inizio;
-  late int? pag_fine;
-  late int? edizione;
+  String? descr_riferimento;
+  String? editore;
+  String? isbn;
+  String? isnn;
+  String? luogo;
+  int? pag_inizio;
+  int? pag_fine;
+  int? edizione;
 }
