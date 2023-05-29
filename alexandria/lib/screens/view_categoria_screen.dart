@@ -41,10 +41,13 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                   ),
                   color: Colors.white,
                 ),
-                child: Text(
-                  categoria!.nome,
-                  textAlign: TextAlign.start,
-                  style: const TextStyle(fontSize: 24),
+                child: SizedBox(
+                  width: 250,
+                  child: Text(
+                    categoria!.nome,
+                    textAlign: TextAlign.start,
+                    style: const TextStyle(fontSize: 24),
+                  ),
                 ),
               ),
               const SizedBox(
