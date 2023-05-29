@@ -17,7 +17,7 @@ class _SearchDialogState extends State<SearchDialog> {
   String? filtroCategoria;
   String filtro = 'titolo';
   List<Categoria> categorie = [];
-  List<tipo_enum> tipi = [];
+  List<tipo_enum> tipi = [tipo_enum.Articolo];
   ScrollController scrollController = ScrollController();
   @override
   void initState() {
@@ -50,16 +50,57 @@ class _SearchDialogState extends State<SearchDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               AlexandriaRoundedButton(
+                backgroundColor: tipi.contains(tipo_enum.Articolo)
+                    ? Colors.grey
+                    : Colors.white,
+                borderColor: tipi.contains(tipo_enum.Articolo)
+                    ? Colors.grey
+                    : Colors.white,
                 child: const Text('Articoli'),
-                onPressed: () {},
+                onPressed: () {
+                  if (tipi.contains(tipo_enum.Articolo)) {
+                    tipi.remove(tipo_enum.Articolo);
+                  } else {
+                    tipi.add(tipo_enum.Articolo);
+                  }
+                  setState(() {
+
+                  });
+                },
               ),
               AlexandriaRoundedButton(
+                backgroundColor: tipi.contains(tipo_enum.Libro)
+                    ? Colors.grey
+                    : Colors.white,
+                borderColor: tipi.contains(tipo_enum.Libro)
+                    ? Colors.grey
+                    : Colors.white,
                 child: const Text('Libri'),
-                onPressed: () {},
+                onPressed: () {if (tipi.contains(tipo_enum.Libro)) {
+                  tipi.remove(tipo_enum.Libro);
+                } else {
+                  tipi.add(tipo_enum.Libro);
+                }
+                setState(() {
+
+                });},
               ),
               AlexandriaRoundedButton(
+                backgroundColor: tipi.contains(tipo_enum.Fascicolo)
+                    ? Colors.grey
+                    : Colors.white,
+                borderColor: tipi.contains(tipo_enum.Fascicolo)
+                    ? Colors.grey
+                    : Colors.white,
                 child: const Text('Fascicoli'),
-                onPressed: () {},
+                onPressed: () {if (tipi.contains(tipo_enum.Fascicolo)) {
+                  tipi.remove(tipo_enum.Fascicolo);
+                } else {
+                  tipi.add(tipo_enum.Fascicolo);
+                }
+                setState(() {
+
+                });},
               ),
             ],
           ),
@@ -67,12 +108,38 @@ class _SearchDialogState extends State<SearchDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               AlexandriaRoundedButton(
+                backgroundColor: tipi.contains(tipo_enum.Rivista)
+                    ? Colors.grey
+                    : Colors.white,
+                borderColor: tipi.contains(tipo_enum.Rivista)
+                    ? Colors.grey
+                    : Colors.white,
                 child: const Text('Riviste'),
-                onPressed: () {},
+                onPressed: () {if (tipi.contains(tipo_enum.Rivista)) {
+                  tipi.remove(tipo_enum.Rivista);
+                } else {
+                  tipi.add(tipo_enum.Rivista);
+                }
+                setState(() {
+
+                });},
               ),
               AlexandriaRoundedButton(
+                backgroundColor: tipi.contains(tipo_enum.Conferenza)
+                    ? Colors.grey
+                    : Colors.white,
+                borderColor: tipi.contains(tipo_enum.Conferenza)
+                    ? Colors.grey
+                    : Colors.white,
                 child: const Text('Conferenze'),
-                onPressed: () {},
+                onPressed: () {if (tipi.contains(tipo_enum.Conferenza)) {
+                  tipi.remove(tipo_enum.Conferenza);
+                } else {
+                  tipi.add(tipo_enum.Conferenza);
+                }
+                setState(() {
+
+                });},
               ),
             ],
           ),
@@ -164,37 +231,32 @@ class _SearchDialogState extends State<SearchDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               AlexandriaRoundedButton(
-                backgroundColor: filtro == 'titolo'?Colors.grey: Colors.white,
-                borderColor: filtro == 'titolo'?Colors.grey: Colors.white,
+                backgroundColor:
+                    filtro == 'titolo' ? Colors.grey : Colors.white,
+                borderColor: filtro == 'titolo' ? Colors.grey : Colors.white,
                 child: const Text('Titolo'),
                 onPressed: () {
                   filtro = 'titolo';
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
               ),
               AlexandriaRoundedButton(
-                backgroundColor: filtro == 'DOI'?Colors.grey: Colors.white,
-                borderColor: filtro == 'DOI'?Colors.grey: Colors.white,
+                backgroundColor: filtro == 'DOI' ? Colors.grey : Colors.white,
+                borderColor: filtro == 'DOI' ? Colors.grey : Colors.white,
                 child: const Text('DOI'),
                 onPressed: () {
                   filtro = 'DOI';
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
               ),
             ],
           ),
           AlexandriaRoundedButton(
-            backgroundColor: filtro == 'autore'?Colors.grey: Colors.white,
-            borderColor: filtro == 'autore'?Colors.grey: Colors.white,
+            backgroundColor: filtro == 'autore' ? Colors.grey : Colors.white,
+            borderColor: filtro == 'autore' ? Colors.grey : Colors.white,
             onPressed: () {
               filtro = 'autore';
-              setState(() {
-
-              });
+              setState(() {});
             },
             child: const Text('Autore'),
           ),
