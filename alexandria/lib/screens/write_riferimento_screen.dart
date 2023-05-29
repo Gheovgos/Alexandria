@@ -69,8 +69,13 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
               ),
               AlexandriaRoundedButton(
                 child: GestureDetector(
-                  onTap: () {
-                    // TODO(peppe): aggiungi date picker
+                  onTap: () async {
+                    riferimento!.data_riferimento = (await showDatePicker(
+                      context: context,
+                      initialDate: riferimento.data_riferimento,
+                      firstDate: DateTime(1500),
+                      lastDate: DateTime.now(),
+                    ))!;
                   },
                   child: const Row(
                     children: [Text('Data'), Icon(Icons.calendar_month)],
