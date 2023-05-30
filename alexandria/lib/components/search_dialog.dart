@@ -301,12 +301,14 @@ class _SearchDialogState extends State<SearchDialog> {
                       AsyncSnapshot<List<Riferimento>?> snapshot,
                     ) {
                       if (snapshot.hasData) {
-                        Navigator.popAndPushNamed(
-                          context,
-                          'results',
-                          arguments: Ricerca(testo, snapshot.data),
-                        );
-                        return const Text('Apro la pagina...');
+                        Future.delayed(const Duration(milliseconds: 100), () {
+                          Navigator.popAndPushNamed(
+                            context,
+                            'results',
+                            arguments: Ricerca(testo, snapshot.data),
+                          );
+                        });
+                        return const Center(child: Text('Apro la pagina...'));
                       } else {
                         return const Center(child: CircularProgressIndicator());
                       }
