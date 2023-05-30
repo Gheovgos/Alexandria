@@ -27,10 +27,12 @@ class _AnimationScreenState extends State<AnimationScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Stack(
+            alignment: Alignment.center,
+            fit: StackFit.passthrough,
             children: [
-              Center(
-                child: Hero(
-                  tag: 1,
+              Hero(
+                tag: 1,
+                child: Center(
                   child: SizedBox(
                     height: 300,
                     child: Column(
@@ -42,10 +44,11 @@ class _AnimationScreenState extends State<AnimationScreen> {
                 ),
               ),
               const SizedBox(
-                height: 245,
+                height: 250,
                 child: EllipticText(
                   perimiterAlignment: EllipticText_PerimiterAlignment.bottom,
                   centreAlignment: EllipticText_CentreAlignment.bottomSideAway,
+                  debugStrokeWidth: 1,
                   text: 'ALEXANDRIA',
                   style: TextStyle(
                     color: kAlexandriaGreen,

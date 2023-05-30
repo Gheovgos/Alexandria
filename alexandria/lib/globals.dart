@@ -15,3 +15,4 @@ final NetworkHelper networkHelper = NetworkHelper();
 Future<List<Categoria>?>? allCategories;
 Future<List<Riferimento>?>? myRiferimenti;
 Future<List<Riferimento>?>? allRiferimenti;
+Future<List<Utente>?>? allUtenti;
