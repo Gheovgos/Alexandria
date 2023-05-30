@@ -982,6 +982,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                         AlexandriaRoundedButton(
                           child: const Icon(Icons.edit_note_outlined),
                           onPressed: () {
+                            String? filtroUtente;
                             showDialog<void>(
                               context: context,
                               builder: (BuildContext context) {
@@ -1003,47 +1004,82 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                             right: 20,
                                             bottom: 15,
                                           ),
-                                          child: SizedBox(
-                                            height: 450,
-                                            width: 300,
-                                            child: FutureBuilder(
-                                              future: allUtenti,
-                                              builder: (
-                                                context,
-                                                AsyncSnapshot<List<Utente>?> snapshot,
-                                              ) {
-                                                if (!snapshot.hasData) {
-                                                  return const Center(
-                                                    child: CircularProgressIndicator(),
-                                                  );
-                                                } else {
-                                                  return ListView.builder(
-                                                    padding: EdgeInsets.zero,
-                                                    itemCount: snapshot.data?.length,
-                                                    itemBuilder: (
-                                                      BuildContext build,
-                                                      int index,
-                                                    ) {
-                                                      final u = snapshot.data?[index];
-                                                      return MiniInfoBox(
-                                                        backgroundColor:
-                                                            autori.contains(u) ? Colors.grey : Colors.white,
-                                                        name: snapshot.data![index].nome,
-                                                        fontSize: 15,
-                                                        onTap: () {
-                                                          if (autori.contains(u)) {
-                                                            autori.remove(u);
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                width: 250,
+                                                child: Material(
+                                                  borderRadius: const BorderRadius.all(Radius.circular(33)),
+                                                  elevation: 5,
+                                                  child: TextField(
+                                                    style: const TextStyle(color: Colors.black),
+                                                    keyboardType: TextInputType.text,
+                                                    textAlign: TextAlign.left,
+                                                    onChanged: (value) {
+                                                      filtroUtente = value;
+                                                      setState(() {});
+                                                    },
+                                                    decoration: kInputDecoration.copyWith(
+                                                      hintText: 'Cerca riferimento...',
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              SizedBox(
+                                                height: 450,
+                                                width: 300,
+                                                child: FutureBuilder(
+                                                  future: allUtenti,
+                                                  builder: (
+                                                    context,
+                                                    AsyncSnapshot<List<Utente>?> snapshot,
+                                                  ) {
+                                                    if (!snapshot.hasData) {
+                                                      return const Center(
+                                                        child: CircularProgressIndicator(),
+                                                      );
+                                                    } else {
+                                                      return ListView.builder(
+                                                        padding: EdgeInsets.zero,
+                                                        itemCount: snapshot.data?.length,
+                                                        itemBuilder: (
+                                                          BuildContext build,
+                                                          int index,
+                                                        ) {
+                                                          final u = snapshot.data?[index];
+                                                          if (filtroUtente == null ||
+                                                              u!.nome.contains(
+                                                                RegExp(filtroUtente!),
+                                                              ) ||
+                                                              u.cognome.contains(RegExp(filtroUtente!)) ||
+                                                              (u.nome + u.cognome).contains(RegExp(filtroUtente!))) {
+                                                            return MiniInfoBox(
+                                                              backgroundColor:
+                                                                  autori.contains(u) ? Colors.grey : Colors.white,
+                                                              name: u!.nome + u.cognome,
+                                                              fontSize: 15,
+                                                              onTap: () {
+                                                                if (autori.contains(u)) {
+                                                                  autori.remove(u);
+                                                                } else {
+                                                                  autori.add(u);
+                                                                }
+                                                                setState(() {});
+                                                              },
+                                                            );
                                                           } else {
-                                                            autori.add(u!);
+                                                            return Container();
                                                           }
-                                                          setState(() {});
                                                         },
                                                       );
-                                                    },
-                                                  );
-                                                }
-                                              },
-                                            ),
+                                                    }
+                                                  },
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
