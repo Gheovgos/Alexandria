@@ -321,7 +321,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                       setState(() {});
                                                     },
                                                     decoration: kInputDecoration.copyWith(
-                                                      hintText: 'Cerca categoria...',
+                                                      hintText: 'Cerca riferimento...',
                                                     ),
                                                   ),
                                                 ),
