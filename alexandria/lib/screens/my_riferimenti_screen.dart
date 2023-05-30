@@ -33,6 +33,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
         currentIndex: 1,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(
             height: 50,
@@ -55,30 +56,25 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                   'Riferimenti creati',
                   style: TextStyle(fontSize: 16),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 250,
-                      child: Material(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(33)),
-                        elevation: 5,
-                        child: TextField(
-                          style: const TextStyle(color: Colors.black),
-                          keyboardType: TextInputType.emailAddress,
-                          textAlign: TextAlign.left,
-                          onChanged: (value) {
-                            filtroRiferimenti = value;
-                            setState(() {});
-                          },
-                          decoration: kInputDecoration.copyWith(
-                            hintText: 'Cerca riferimento...',
-                          ),
-                        ),
+                SizedBox(
+                  width: 250,
+                  child: Material(
+                    borderRadius:
+                        const BorderRadius.all(Radius.circular(33)),
+                    elevation: 5,
+                    child: TextField(
+                      style: const TextStyle(color: Colors.black),
+                      keyboardType: TextInputType.emailAddress,
+                      textAlign: TextAlign.left,
+                      onChanged: (value) {
+                        filtroRiferimenti = value;
+                        setState(() {});
+                      },
+                      decoration: kInputDecoration.copyWith(
+                        hintText: 'Cerca riferimento...',
                       ),
                     ),
-                  ],
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
