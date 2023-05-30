@@ -15,6 +15,7 @@ class SearchResultScreen extends StatefulWidget {
 class _SearchResultScreenState extends State<SearchResultScreen> {
   @override
   Widget build(BuildContext context) {
+    var sortedAscending = false;
     final ricerca = ModalRoute.of(context)!.settings.arguments as Ricerca?;
     return Scaffold(
       bottomNavigationBar: const AlexandriaNavigationBar(
@@ -94,7 +95,21 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                     height: 10,
                   ),
                   AlexandriaRoundedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (!sortedAscending) {
+                        ricerca?.data?.sort((a, b) {
+                          return a.titolo_riferimento
+                              .compareTo(b.titolo_riferimento);
+                        });
+                      } else {
+                        ricerca?.data?.sort((a, b) {
+                          return b.titolo_riferimento
+                              .compareTo(a.titolo_riferimento);
+                        });
+                      }
+                      sortedAscending = !sortedAscending;
+                      setState(() {});
+                    },
                     child: const Icon(Icons.filter_list_outlined),
                   ),
                   const SizedBox(
