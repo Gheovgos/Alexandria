@@ -62,7 +62,7 @@ class NetworkHelper {
     return _catnet.getCategoriaByName(nome);
   }
 
-  Future<Categoria?> getCategoriaByRiferimento(int id_riferimento) async {
+  Future<List<Categoria>> getCategoriaByRiferimento(int id_riferimento) async {
     return _catnet.getCategoriaByRiferimento(id_riferimento);
   }
 
