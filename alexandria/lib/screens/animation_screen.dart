@@ -48,7 +48,6 @@ class _AnimationScreenState extends State<AnimationScreen> {
                 child: EllipticText(
                   perimiterAlignment: EllipticText_PerimiterAlignment.bottom,
                   centreAlignment: EllipticText_CentreAlignment.bottomSideAway,
-                  debugStrokeWidth: 1,
                   text: 'ALEXANDRIA',
                   style: TextStyle(
                     color: kAlexandriaGreen,
