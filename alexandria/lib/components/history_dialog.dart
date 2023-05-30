@@ -56,6 +56,13 @@ class _HistoryDialogState extends State<HistoryDialog> {
                             return MiniInfoBox(
                               name:
                                   '${snapshot.data?[index].titolo_riferimento}',
+                              onTapIcon: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  'view_riferimento',
+                                  arguments: snapshot.data![index],
+                                );
+                              },
                             );
                           },
                         );
@@ -106,6 +113,13 @@ class _HistoryDialogState extends State<HistoryDialog> {
                             return MiniInfoBox(
                               name:
                                   '${snapshot.data?[index].titolo_riferimento}',
+                              onTapIcon: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  'view_riferimento',
+                                  arguments: snapshot.data![index],
+                                );
+                              },
                             );
                           },
                         );
