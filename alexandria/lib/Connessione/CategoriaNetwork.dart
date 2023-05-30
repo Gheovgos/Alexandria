@@ -133,17 +133,21 @@ class CategoriaNetwork {
     else return false;
   }
 
-  Future<Categoria?> getCategoriaByRiferimento(int id_riferimento) async {
+  Future<List<Categoria>> getCategoriaByRiferimento(int id_riferimento) async {
+    late List<Categoria> categorie = [];
     _getMapping = "/get/getCategoriaByRiferimento/"+id_riferimento.toString();
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
-      _categoriaMap = jsonDecode(_serverResponse.body) as Map<String, dynamic>;
-      _categoria = Categoria.fromJson(_categoriaMap);
+      List<dynamic> riferimentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(var riferimentoJson in riferimentiJson) {
+        Categoria f = Categoria.fromJson(riferimentoJson as Map<String, dynamic>);
+        categorie.add(f);
+      }
 
-      return _categoria;
     }
-    else return null;
+    return categorie;
+
   }
 
 
