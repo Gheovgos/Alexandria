@@ -1,3 +1,4 @@
+import 'package:alexandria/Model/Categoria.dart';
 import 'package:alexandria/Model/Riferimento.dart';
 import 'package:alexandria/Model/tipo_enum.dart';
 import 'package:alexandria/components/alexandria_dialog.dart';
@@ -19,10 +20,12 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
   late bool isCreate;
   Riferimento? riferimento;
   List<Riferimento> citazioni = [];
+  List<Categoria> categorie = [];
   @override
   void initState() {
     super.initState();
     allRiferimenti ??= networkHelper.findAllRiferimenti();
+    allCategories ??= networkHelper.findAllCategories();
   }
 
   @override
@@ -120,6 +123,118 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       ),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  color: Colors.white,
+                  width: 300,
+                  child: Material(
+                    elevation: 2,
+                    borderRadius: const BorderRadius.all(Radius.circular(30)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Text('Categoria...'),
+                        AlexandriaRoundedButton(
+                          child: const Icon(Icons.edit_note_outlined),
+                          onPressed: () {
+                            showDialog<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder: (
+                                      BuildContext builder,
+                                      StateSetter setState,
+                                      ) {
+                                    return AlexandriaDialog(
+                                      content: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: kAlexandriaGreen,
+                                          borderRadius:
+                                          BorderRadius.circular(20),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 20,
+                                            top: 10,
+                                            right: 20,
+                                            bottom: 15,
+                                          ),
+                                          child: SizedBox(
+                                            height: 450,
+                                            width: 300,
+                                            child: FutureBuilder(
+                                              future: allCategories,
+                                              builder: (
+                                                  context,
+                                                  AsyncSnapshot<
+                                                      List<Categoria>?>
+                                                  snapshot,
+                                                  ) {
+                                                if (!snapshot.hasData) {
+                                                  return const Center(
+                                                    child:
+                                                    CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    itemCount:
+                                                    snapshot.data?.length,
+                                                    itemBuilder: (
+                                                        BuildContext build,
+                                                        int index,
+                                                        ) {
+                                                      final c =
+                                                      snapshot.data?[index];
+                                                      return MiniInfoBox(
+                                                        backgroundColor:
+                                                        categorie
+                                                            .contains(c)
+                                                            ? Colors.grey
+                                                            : Colors.white,
+                                                        name: snapshot
+                                                            .data![index]
+                                                            .nome,
+                                                        fontSize: 15,
+                                                        onTap: () {
+                                                          if (citazioni
+                                                              .contains(c)) {
+                                                            categorie.remove(c);
+                                                          } else {
+                                                            categorie.add(c!);
+                                                          }
+                                                          setState(() {});
+                                                        },
+                                                        onTapIcon: () {
+                                                          Navigator
+                                                              .popAndPushNamed(
+                                                            context,
+                                                            'view_categoria',
+                                                            arguments: c,
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  );
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
