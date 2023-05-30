@@ -17,7 +17,7 @@ class SearchDialog extends StatefulWidget {
 class _SearchDialogState extends State<SearchDialog> {
   String? filtroCategoria;
   String filtro = 'titolo';
-  List<Categoria> categorie = [];
+  Categoria? categoria;
   List<tipo_enum> tipi = [tipo_enum.Articolo];
   @override
   void initState() {
@@ -196,18 +196,15 @@ class _SearchDialogState extends State<SearchDialog> {
                                     snapshot.data![index].nome
                                         .contains(RegExp(filtroCategoria!))) {
                                   return MiniInfoBox(
-                                    backgroundColor: categorie
-                                            .contains(snapshot.data![index])
-                                        ? Colors.grey
-                                        : Colors.white,
+                                    backgroundColor:
+                                        categoria == snapshot.data![index]
+                                            ? Colors.grey
+                                            : Colors.white,
                                     name: snapshot.data![index].nome,
                                     fontSize: 15,
                                     onTap: () {
-                                      if (categorie
-                                          .contains(snapshot.data![index])) {
-                                        categorie.remove(snapshot.data![index]);
-                                      } else {
-                                        categorie.add(snapshot.data![index]);
+                                      if (categoria != snapshot.data![index]) {
+                                        categoria = snapshot.data![index];
                                       }
                                       setState(() {});
                                     },
