@@ -1,5 +1,6 @@
 import 'package:alexandria/Model/Categoria.dart';
 import 'package:alexandria/Model/Riferimento.dart';
+import 'package:alexandria/Model/Utente.dart';
 import 'package:alexandria/Model/tipo_enum.dart';
 import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_navigation_bar.dart';
@@ -21,11 +22,13 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
   Riferimento? riferimento;
   List<Riferimento> citazioni = [];
   List<Categoria> categorie = [];
+  List<Utente> autori = [];
   @override
   void initState() {
     super.initState();
     allRiferimenti ??= networkHelper.findAllRiferimenti();
     allCategories ??= networkHelper.findAllCategories();
+    allUtenti ??= networkHelper.findAllUsers();
   }
 
   @override
@@ -145,15 +148,15 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                               builder: (BuildContext context) {
                                 return StatefulBuilder(
                                   builder: (
-                                      BuildContext builder,
-                                      StateSetter setState,
-                                      ) {
+                                    BuildContext builder,
+                                    StateSetter setState,
+                                  ) {
                                     return AlexandriaDialog(
                                       content: DecoratedBox(
                                         decoration: BoxDecoration(
                                           color: kAlexandriaGreen,
                                           borderRadius:
-                                          BorderRadius.circular(20),
+                                              BorderRadius.circular(20),
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.only(
@@ -168,39 +171,37 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                             child: FutureBuilder(
                                               future: allCategories,
                                               builder: (
-                                                  context,
-                                                  AsyncSnapshot<
-                                                      List<Categoria>?>
-                                                  snapshot,
-                                                  ) {
+                                                context,
+                                                AsyncSnapshot<List<Categoria>?>
+                                                    snapshot,
+                                              ) {
                                                 if (!snapshot.hasData) {
                                                   return const Center(
                                                     child:
-                                                    CircularProgressIndicator(),
+                                                        CircularProgressIndicator(),
                                                   );
                                                 } else {
                                                   return ListView.builder(
                                                     padding: EdgeInsets.zero,
                                                     itemCount:
-                                                    snapshot.data?.length,
+                                                        snapshot.data?.length,
                                                     itemBuilder: (
-                                                        BuildContext build,
-                                                        int index,
-                                                        ) {
+                                                      BuildContext build,
+                                                      int index,
+                                                    ) {
                                                       final c =
-                                                      snapshot.data?[index];
+                                                          snapshot.data?[index];
                                                       return MiniInfoBox(
                                                         backgroundColor:
-                                                        categorie
-                                                            .contains(c)
-                                                            ? Colors.grey
-                                                            : Colors.white,
+                                                            categorie
+                                                                    .contains(c)
+                                                                ? Colors.grey
+                                                                : Colors.white,
                                                         name: snapshot
-                                                            .data![index]
-                                                            .nome,
+                                                            .data![index].nome,
                                                         fontSize: 15,
                                                         onTap: () {
-                                                          if (citazioni
+                                                          if (categorie
                                                               .contains(c)) {
                                                             categorie.remove(c);
                                                           } else {
@@ -956,7 +957,108 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 60,
+                  height: 10,
+                ),
+                Container(
+                  color: Colors.white,
+                  width: 300,
+                  child: Material(
+                    elevation: 2,
+                    borderRadius: const BorderRadius.all(Radius.circular(30)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Text('Autori...'),
+                        AlexandriaRoundedButton(
+                          child: const Icon(Icons.edit_note_outlined),
+                          onPressed: () {
+                            showDialog<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder: (
+                                    BuildContext builder,
+                                    StateSetter setState,
+                                  ) {
+                                    return AlexandriaDialog(
+                                      content: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: kAlexandriaGreen,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 20,
+                                            top: 10,
+                                            right: 20,
+                                            bottom: 15,
+                                          ),
+                                          child: SizedBox(
+                                            height: 450,
+                                            width: 300,
+                                            child: FutureBuilder(
+                                              future: allUtenti,
+                                              builder: (
+                                                context,
+                                                AsyncSnapshot<List<Utente>?>
+                                                    snapshot,
+                                              ) {
+                                                if (!snapshot.hasData) {
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    itemCount:
+                                                        snapshot.data?.length,
+                                                    itemBuilder: (
+                                                      BuildContext build,
+                                                      int index,
+                                                    ) {
+                                                      final u =
+                                                          snapshot.data?[index];
+                                                      return MiniInfoBox(
+                                                        backgroundColor:
+                                                            autori.contains(u)
+                                                                ? Colors.grey
+                                                                : Colors.white,
+                                                        name: snapshot
+                                                            .data![index].nome,
+                                                        fontSize: 15,
+                                                        onTap: () {
+                                                          if (autori
+                                                              .contains(u)) {
+                                                            autori.remove(u);
+                                                          } else {
+                                                            autori.add(u!);
+                                                          }
+                                                          setState(() {});
+                                                        },
+                                                      );
+                                                    },
+                                                  );
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
                 ),
                 AlexandriaRoundedButton(
                   padding: const EdgeInsets.only(
