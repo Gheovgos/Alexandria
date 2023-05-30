@@ -40,9 +40,9 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio WHERE descrizione LIKE %:descr%", nativeQuery = true)
     List<Riferimento> getByDescrizione(@Param("descr") String descr);
 
-    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio, riferimenti_biblio_user_id, utente WHERE riferimenti_biblio_user_id.riferimento_id_riferimento = riferimenti_biblio.id_riferimento AND riferimenti_biblio_user_id.utente_user_id = utente.user_id AND (nome LIKE %:nome% OR cognome LIKE %:cognome%)",
+    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio, riferimenti_biblio_user_id, utente WHERE riferimenti_biblio_user_id.riferimento_id_riferimento = riferimenti_biblio.id_riferimento AND riferimenti_biblio_user_id.utente_user_id = utente.user_id AND (nome LIKE %:testo% OR cognome LIKE %:testo%)",
     nativeQuery = true)
-    List<Riferimento> getByAutoreSearch(@Param("nome") String nome, @Param("cognome") String cognome);
+    List<Riferimento> getByAutoreSearch(@Param("testo") String testo);
 
     @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio WHERE doi = ?1", nativeQuery = true)
     List<Riferimento> getByDOISearch(int doi);
