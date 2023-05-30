@@ -1,3 +1,4 @@
+import 'package:alexandria/Model/Ricerca.dart';
 import 'package:alexandria/components/alexandria_navigation_bar.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/components/mini_info_box.dart';
@@ -14,6 +15,7 @@ class SearchResultScreen extends StatefulWidget {
 class _SearchResultScreenState extends State<SearchResultScreen> {
   @override
   Widget build(BuildContext context) {
+    final ricerca = ModalRoute.of(context)!.settings.arguments as Ricerca?;
     return Scaffold(
       bottomNavigationBar: const AlexandriaNavigationBar(
         currentIndex: 0,
@@ -37,9 +39,9 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                         bottomRight: Radius.circular(70),
                       ),
                     ),
-                    child: const Text(
-                      'Risultati per "Nome Riferimento"',
-                      style: TextStyle(fontSize: 20),
+                    child: Text(
+                      'Risultati per ${ricerca?.testo}',
+                      style: const TextStyle(fontSize: 20),
                     ),
                   ),
                 ),
@@ -109,9 +111,11 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                     ),
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: 10,
+                      itemCount: ricerca?.data?.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return MiniInfoBox(name: 'Risultato $index');
+                        return MiniInfoBox(
+                          name: ricerca!.data![index].titolo_riferimento,
+                        );
                       },
                     ),
                   )
