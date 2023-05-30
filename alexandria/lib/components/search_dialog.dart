@@ -284,30 +284,37 @@ class _SearchDialogState extends State<SearchDialog> {
           onPressed: () async {
             // TODO(peppe): fai la ricerca e result_screen
 
-            showDialog<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlexandriaDialog(
-                    content: FutureBuilder(
-                        future: networkHelper.ricerca(
-                          filtro == 'titolo' ? testo : null,
-                          filtro == 'DOI' ? int.parse(testo) : null,
-                          filtro == 'autore' ? testo : null,
-                          categoria,
-                          tipi,
-                        ),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<List<Riferimento>?> snapshot) {
-                          if (snapshot.hasData) {
-                            Navigator.popAndPushNamed(context, 'results',
-                            arguments: Ricerca(testo ,snapshot.data));
-                            return Text('Apro la pagina...');
-                          } else {
-                            return Center(child: CircularProgressIndicator());
-                          }
-                        }),
-                  );
-                });
+            await showDialog<void>(
+              context: context,
+              builder: (BuildContext context) {
+                return AlexandriaDialog(
+                  content: FutureBuilder(
+                    future: networkHelper.ricerca(
+                      filtro == 'titolo' ? testo : null,
+                      filtro == 'DOI' ? int.parse(testo) : null,
+                      filtro == 'autore' ? testo : null,
+                      categoria,
+                      tipi,
+                    ),
+                    builder: (
+                      BuildContext context,
+                      AsyncSnapshot<List<Riferimento>?> snapshot,
+                    ) {
+                      if (snapshot.hasData) {
+                        Navigator.popAndPushNamed(
+                          context,
+                          'results',
+                          arguments: Ricerca(testo, snapshot.data),
+                        );
+                        return const Text('Apro la pagina...');
+                      } else {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  ),
+                );
+              },
+            );
           },
         )
       ],
