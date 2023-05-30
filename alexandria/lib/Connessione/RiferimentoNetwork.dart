@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import '../Model/Categoria.dart';
 import '../Model/Riferimento.dart';
+import '../Model/Utente.dart';
 import '../Model/tipo_enum.dart';
 
 class RiferimentoNetwork {
@@ -14,6 +15,37 @@ class RiferimentoNetwork {
   late Riferimento _riferimento;
   late Map<String, dynamic> _riferimentoMap;
   RiferimentoNetwork(this.url);
+
+  Future<List<Riferimento>> ricerca(String? titolo, int? doi, String? autore, Categoria? categoria, List<tipo_enum>? tipo) async {
+    late List<Riferimento> riferimenti = [];
+    if(titolo != null && doi == null && autore == null && categoria == null && tipo == null) {
+      riferimenti.add(await getRiferimentoByNome(titolo) as Riferimento);
+      return riferimenti;
+    }
+    if(titolo == null && doi != null && autore == null && categoria == null && tipo == null) {
+      riferimenti.add(await getRiferimentoByDOI(doi) as Riferimento);
+      return riferimenti;
+    }
+    if(titolo == null && doi == null && autore != null && categoria == null && tipo == null) {
+      riferimenti += await getRiferimentoByAutore(autore) as List<Riferimento>;
+      return riferimenti;
+    }
+    if(titolo == null && doi == null && autore == null && categoria != null && tipo == null) {
+      riferimenti.add(await getRiferimentoByCategoria(categoria.id_categoria) as Riferimento);
+      return riferimenti;
+    }
+    if(titolo == null && doi == null && autore == null && categoria == null && tipo != null) {
+      for(tipo_enum t in tipo) {
+        riferimenti += await getByTipo(t) as List<Riferimento>;
+      }
+
+      return riferimenti;
+    }
+    if(titolo == null && doi == null && autore == null && categoria == null && tipo == null)
+      print("ERROR: Nessun parametro inserito per la ricerca di un riferimento. Ritorno lista vuota");
+
+      return riferimenti;
+  }
 
   Future<Riferimento?> getRiferimentoById(int rif_id) async {
     _getMapping = "/get/getRiferimentoById/"+rif_id.toString();
@@ -44,7 +76,7 @@ class RiferimentoNetwork {
     else return null;
   }
 
-  Future<List<Riferimento>?> findAll() async {
+  Future<List<Riferimento>> findAll() async {
     late List<Riferimento> riferimenti = [];
     _getMapping = "/get/findAll";
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
@@ -56,12 +88,11 @@ class RiferimentoNetwork {
         riferimenti.add(f);
       }
 
-      return riferimenti;
     }
-    else return null;
+    return riferimenti;
   }
 
-  Future<List<Riferimento>?> getRiferimentoByUserId(int userID) async {
+  Future<List<Riferimento>> getRiferimentoByUserId(int userID) async {
     late List<Riferimento> riferimenti = [];
     _getMapping = "/get/getRiferimentoByUserId/"+userID.toString();
 
@@ -75,16 +106,15 @@ class RiferimentoNetwork {
         riferimenti.add(f);
       }
 
-      return riferimenti;
     }
-    else return null;
+    return riferimenti;
 
   }
 
 
   //Dato un riferimento, vengono restituiti tutti i riferimenti che tale riferimento cita.
 
-  Future<List<Riferimento>?> getRiferimentiCitati(Riferimento riferimento) async {
+  Future<List<Riferimento>> getRiferimentiCitati(Riferimento riferimento) async {
     late List<Riferimento> riferimenti = [];
     _getMapping = "/get/getByRiferimento/"+riferimento.id_riferimento.toString();
 
@@ -97,15 +127,14 @@ class RiferimentoNetwork {
         riferimenti.add(f);
       }
 
-      return riferimenti;
     }
-    else return null;
+    return riferimenti;
   }
 
 
   //Dato un riferimento, vengono restituiti tutti i riferimenti che citano tale riferimento
 
-  Future<List<Riferimento>?> getRiferimentiCitanti(Riferimento riferimento) async {
+  Future<List<Riferimento>> getRiferimentiCitanti(Riferimento riferimento) async {
     late List<Riferimento> riferimenti = [];
     _getMapping = "/get/getRiferimentiCitanti/"+riferimento.id_riferimento.toString();
 
@@ -118,14 +147,13 @@ class RiferimentoNetwork {
         riferimenti.add(f);
       }
 
-      return riferimenti;
     }
-    else return null;
+    return riferimenti;
   }
 
-  Future<List<Riferimento>?> getRiferimentoByAutore(String nome, String cognome) async {
+  Future<List<Riferimento>> getRiferimentoByAutore(String testo) async {
     late List<Riferimento> riferimenti = [];
-    _getMapping = "/get/getByAutoreSearch/"+nome+"/"+cognome;
+    _getMapping = "/get/getByAutoreSearch/"+testo;
 
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
@@ -136,13 +164,12 @@ class RiferimentoNetwork {
         riferimenti.add(f);
       }
 
-      return riferimenti;
     }
-    else return null;
+    return riferimenti;
 
   }
 
-  Future<List<Riferimento>?> getRiferimentoByCategoria(int categoriaID) async {
+  Future<List<Riferimento>> getRiferimentoByCategoria(int categoriaID) async {
     late List<Riferimento> riferimenti = [];
     _getMapping = "/get/getByCategoria/"+categoriaID.toString();
 
@@ -155,13 +182,12 @@ class RiferimentoNetwork {
         riferimenti.add(f);
       }
 
-      return riferimenti;
     }
-    else return null;
+    return riferimenti;
 
   }
 
-  Future<List<Riferimento>?> getRiferimentoByDOI(int DOI) async {
+  Future<List<Riferimento>> getRiferimentoByDOI(int DOI) async {
     late List<Riferimento> riferimenti = [];
     _getMapping = "/get/getByDOISearch/"+DOI.toString();
 
@@ -174,9 +200,8 @@ class RiferimentoNetwork {
         riferimenti.add(f);
       }
 
-      return riferimenti;
     }
-    else return null;
+    return riferimenti;
   }
 
   Future<List<Riferimento>> getByDescrizione(String descrizione) async {
@@ -193,9 +218,9 @@ class RiferimentoNetwork {
         riferimenti.add(f);
       }
 
-      return riferimenti;
     }
-    else return riferimenti;
+
+    return riferimenti;
   }
 
   Future<List<Riferimento>> getCitazioniByUserId(int userID) async {
@@ -212,9 +237,8 @@ class RiferimentoNetwork {
         riferimenti.add(f);
       }
 
-      return riferimenti;
     }
-    else return riferimenti;
+    return riferimenti;
   }
 
   Future<List<Riferimento>> getByTipo(tipo_enum tipo) async {
@@ -231,9 +255,8 @@ class RiferimentoNetwork {
         riferimenti.add(f);
       }
 
-      return riferimenti;
     }
-    else return riferimenti;
+    return riferimenti;
   }
 
   Future<Riferimento?> creaRiferimento(Riferimento riferimento, Categoria categoria, int userID, Riferimento? rifCitanto) async {
