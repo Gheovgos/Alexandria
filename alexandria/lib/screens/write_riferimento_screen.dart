@@ -1104,7 +1104,29 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                     top: 30,
                     bottom: 30,
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    await showDialog<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlexandriaDialog(
+                          content: FutureBuilder(
+                            future: isCreate ? creaRiferimento() : aggiornaRiferimento(),
+                            builder: (BuildContext builder, AsyncSnapshot<Riferimento?> snapshot) {
+                              if (snapshot.hasData) {
+                                if (snapshot.data == null) {
+                                  return const Center(child: Text('Errore!'));
+                                } else {
+                                  return Center(child: Text('Riferimento ${isCreate ? 'creato!' : 'aggiornato!'}'));
+                                }
+                              } else {
+                                return const Center(child: CircularProgressIndicator());
+                              }
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  },
                   child: const Text(
                     'Conferma',
                     style: TextStyle(fontSize: 20),
@@ -1116,5 +1138,28 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
         ],
       ),
     );
+  }
+
+  Future<Riferimento?> creaRiferimento() async {
+    final r = await networkHelper.createRiferimento(riferimento!, categorie[0], currentUser.user_ID, null);
+    if (r != null) {
+      for (var i = 1; i < categorie.length; ++i) {
+        await networkHelper.aggiungiCategoria(r, categorie[i].id_categoria);
+      }
+      for (var i = 0; i < citazioni.length; ++i) {
+        await networkHelper.aggiungiCitazione(r, citazioni[i].id_riferimento);
+      }
+      for (var i = 0; i < autori.length; ++i) {
+        await networkHelper.aggiungiAutore(r, autori[i].user_ID);
+      }
+      (await allRiferimenti)?.add(r);
+      return r;
+    }
+    return null;
+  }
+
+  Future<Riferimento?> aggiornaRiferimento() async {
+    // TODO(peppe): da completare, codice complesso
+
   }
 }
