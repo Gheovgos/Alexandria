@@ -155,6 +155,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                           } else {
                             currentUser = user;
+                            if(rememberMe)
+                              {
+                                preferences.setString('username', user.username);
+                                preferences.setString('password', user.password);
+                              }
                             Navigator.pushNamed(context, 'home');
                           }
                         }

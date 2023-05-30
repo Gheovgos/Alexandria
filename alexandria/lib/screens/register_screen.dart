@@ -275,6 +275,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         );
                                       } else {
                                         currentUser = user;
+                                        if (rememberMe) {
+                                          preferences.setString('username', user.username);
+                                          preferences.setString('password', user.password);
+                                        }
+
+                                        currentUser = user;
                                         Navigator.pushNamed(
                                           context,
                                           'home',

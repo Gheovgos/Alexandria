@@ -1,6 +1,8 @@
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:elliptic_text/elliptic_text.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AnimationScreen extends StatefulWidget {
   const AnimationScreen({super.key});
@@ -13,7 +15,18 @@ class _AnimationScreenState extends State<AnimationScreen> {
   @override
   void initState() {
     super.initState();
+
     Future.delayed(const Duration(seconds: 2), () async {
+      preferences = await SharedPreferences.getInstance();
+      final username = preferences.getString('username');
+      final password = preferences.getString('password');
+      if (username != null && password != null) {
+        final tempUser = await networkHelper.login(username, password);
+        if (tempUser != null) {
+          currentUser = tempUser;
+          Navigator.pushNamed(context, 'home');
+        }
+      }
       Navigator.pushNamed(context, 'welcome');
     });
   }
