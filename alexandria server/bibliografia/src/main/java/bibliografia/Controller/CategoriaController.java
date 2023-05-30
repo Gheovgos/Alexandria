@@ -48,11 +48,16 @@ public class CategoriaController {
     }
 
     @GetMapping("/get/getCategoriaByRiferimento/{id_riferimento}")
-    public CategoriaDto getCategoriaByRiferimento(@PathVariable int id_riferimento)
+    public List<CategoriaDto> getCategoriaByRiferimento(@PathVariable int id_riferimento)
     {
-        Categoria categoria = categoriaService.getCategoriaByRiferimento(id_riferimento);
-        CategoriaDto categoriaDto = convertDto(categoria);
-        return categoriaDto;
+        List<Categoria> categoria = categoriaService.getCategoriaByRiferimento(id_riferimento);
+        List<CategoriaDto> categorieDto = new ArrayList<>();
+
+        for(Categoria c : categoria) {
+            categorieDto.add(convertDto(categoriaService.getCategoriaById(c.getId_categoria())));
+        }
+
+        return categorieDto;
     }
 
     @GetMapping("/get/getSopraCategorie/{categoriaID}")

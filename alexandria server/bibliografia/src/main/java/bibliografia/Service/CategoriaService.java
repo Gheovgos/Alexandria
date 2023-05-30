@@ -41,7 +41,7 @@ public class CategoriaService {
         categoriaRepository.deleteById(categoriaId);
     }
 
-    public Categoria getCategoriaByRiferimento(int id_riferimento) {return categoriaRepository.getCategoriaByRiferimento(id_riferimento);}
+    public List<Categoria> getCategoriaByRiferimento(int id_riferimento) {return categoriaRepository.getCategoriaByRiferimento(id_riferimento);}
 
     public Categoria getCategoriaByName(String name) {return categoriaRepository.getCategoriaByName(name);}
 
