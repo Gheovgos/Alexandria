@@ -660,13 +660,17 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                     pagInizio = int.parse(value);
                                                   },
                                                   decoration: kInputDecoration.copyWith(
+                                                    hintStyle: const TextStyle(
+                                                      fontSize: 14,
+                                                      shadows: [
+                                                        Shadow(offset: Offset(0, 2), blurRadius: 5, color: Colors.grey),
+                                                      ],
+                                                    ),
                                                     hintText: riferimento!.pag_inizio == null
                                                         ? 'Pagina inizio...'
                                                         : riferimento!.pag_inizio.toString(),
                                                     fillColor: kInfoBoxColor,
-                                                    constraints: const BoxConstraints.tightFor(
-                                                      width: 140,
-                                                    ),
+                                                    constraints: const BoxConstraints.tightFor(width: 130),
                                                   ),
                                                 ),
                                               ),
@@ -691,11 +695,17 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                     pagFine = int.parse(value);
                                                   },
                                                   decoration: kInputDecoration.copyWith(
+                                                    hintStyle: const TextStyle(
+                                                      fontSize: 14,
+                                                      shadows: [
+                                                        Shadow(offset: Offset(0, 2), blurRadius: 5, color: Colors.grey),
+                                                      ],
+                                                    ),
                                                     hintText: riferimento!.pag_fine == null
                                                         ? 'Pagina fine...'
                                                         : riferimento!.pag_fine.toString(),
                                                     fillColor: kInfoBoxColor,
-                                                    constraints: const BoxConstraints.tightFor(width: 140),
+                                                    constraints: const BoxConstraints.tightFor(width: 130),
                                                   ),
                                                 ),
                                               ),
@@ -1162,6 +1172,5 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
 
   Future<Riferimento?> aggiornaRiferimento() async {
     // TODO(peppe): da completare, codice complesso
-
   }
 }
