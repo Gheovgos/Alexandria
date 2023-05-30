@@ -31,6 +31,14 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
     allUtenti ??= networkHelper.findAllUsers();
   }
 
+  Future<void> fillLists() async {
+    citazioni = (await networkHelper.getRiferimentiCitati(riferimento!))!;
+    autori = (await networkHelper
+        .getAutoriByRiferimento(riferimento!.id_riferimento))!;
+    // categorie = (await networkHelper.getCategoriaByRiferimento(riferimento!.id_riferimento))!;
+    //ASPETTO CHE GIORGIO SISTEMI
+  }
+
   @override
   Widget build(BuildContext context) {
     riferimento ??= ModalRoute.of(context)!.settings.arguments as Riferimento?;
@@ -38,6 +46,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
       riferimento ??= Riferimento.empty();
       isCreate = true;
     } else {
+      fillLists();
       isCreate = false;
     }
 
