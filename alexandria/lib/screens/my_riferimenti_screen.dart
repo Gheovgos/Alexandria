@@ -86,17 +86,16 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                 const Text('Ordina:'),
                 AlexandriaRoundedButton(
                   onPressed: () async {
-                    if (!sortedAscending) {
-                      (await myRiferimenti)?.sort((a, b) {
+                    (await myRiferimenti)?.sort((a, b) {
+                      if (!sortedAscending) {
                         return a.titolo_riferimento
                             .compareTo(b.titolo_riferimento);
-                      });
-                    } else {
-                      (await myRiferimenti)?.sort((a, b) {
+                      } else {
                         return b.titolo_riferimento
                             .compareTo(a.titolo_riferimento);
-                      });
-                    }
+                      }
+                    });
+
                     sortedAscending = !sortedAscending;
                     setState(() {});
                   },
