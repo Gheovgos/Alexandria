@@ -3,7 +3,9 @@ import 'package:alexandria/Model/tipo_enum.dart';
 import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_navigation_bar.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
+import 'package:alexandria/components/mini_info_box.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:flutter/material.dart';
 
 class WriteRiferimentoScreen extends StatefulWidget {
@@ -16,6 +18,13 @@ class WriteRiferimentoScreen extends StatefulWidget {
 class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
   late bool isCreate;
   Riferimento? riferimento;
+  List<Riferimento> citazioni = [];
+  @override
+  void initState() {
+    super.initState();
+    allRiferimenti ??= networkHelper.findAllRiferimenti();
+  }
+
   @override
   Widget build(BuildContext context) {
     riferimento ??= ModalRoute.of(context)!.settings.arguments as Riferimento?;
@@ -127,7 +136,98 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                         const Text('Riferimento a...'),
                         AlexandriaRoundedButton(
                           child: const Icon(Icons.edit_note_outlined),
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder: (
+                                    BuildContext builder,
+                                    StateSetter setState,
+                                  ) {
+                                    return AlexandriaDialog(
+                                      content: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: kAlexandriaGreen,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 20,
+                                            top: 10,
+                                            right: 20,
+                                            bottom: 15,
+                                          ),
+                                          child: SizedBox(
+                                            height: 450,
+                                            width: 300,
+                                            child: FutureBuilder(
+                                              future: allRiferimenti,
+                                              builder: (
+                                                context,
+                                                AsyncSnapshot<
+                                                        List<Riferimento>?>
+                                                    snapshot,
+                                              ) {
+                                                if (!snapshot.hasData) {
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    itemCount:
+                                                        snapshot.data?.length,
+                                                    itemBuilder: (
+                                                      BuildContext build,
+                                                      int index,
+                                                    ) {
+                                                      final r =
+                                                          snapshot.data?[index];
+                                                      return MiniInfoBox(
+                                                        backgroundColor:
+                                                            citazioni
+                                                                    .contains(r)
+                                                                ? Colors.grey
+                                                                : Colors.white,
+                                                        name: snapshot
+                                                            .data![index]
+                                                            .titolo_riferimento,
+                                                        fontSize: 15,
+                                                        onTap: () {
+                                                          if (citazioni
+                                                              .contains(r)) {
+                                                            citazioni.remove(r);
+                                                          } else {
+                                                            citazioni.add(r!);
+                                                          }
+                                                          setState(() {});
+                                                        },
+                                                        onTapIcon: () {
+                                                          Navigator
+                                                              .popAndPushNamed(
+                                                            context,
+                                                            'view_riferimento',
+                                                            arguments: r,
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  );
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            );
+                          },
                         ),
                       ],
                     ),
