@@ -53,27 +53,6 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
               height: 50,
             ),
             Container(
-              padding: const EdgeInsetsDirectional.only(
-                start: 70,
-                top: 20,
-                bottom: 20,
-                end: 70,
-              ),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadiusDirectional.all(
-                  Radius.circular(50),
-                ),
-              ),
-              child: const Text(
-                'Tipo di ricerca',
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            Container(
               margin: const EdgeInsets.only(left: 15, right: 15),
               padding: const EdgeInsets.only(bottom: 30, left: 30, right: 30),
               decoration: const BoxDecoration(
