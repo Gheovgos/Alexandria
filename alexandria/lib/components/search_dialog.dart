@@ -54,7 +54,7 @@ class _SearchDialogState extends State<SearchDialog> {
                     : Colors.white,
                 child: const Text('Articoli'),
                 onPressed: () {
-                  if (tipi.contains(tipo_enum.Articolo)) {
+                  if (tipi.contains(tipo_enum.Articolo) && tipi.length != 1) {
                     tipi.remove(tipo_enum.Articolo);
                   } else {
                     tipi.add(tipo_enum.Articolo);
@@ -69,7 +69,7 @@ class _SearchDialogState extends State<SearchDialog> {
                     tipi.contains(tipo_enum.Libro) ? Colors.grey : Colors.white,
                 child: const Text('Libri'),
                 onPressed: () {
-                  if (tipi.contains(tipo_enum.Libro)) {
+                  if (tipi.contains(tipo_enum.Libro) && tipi.length != 1) {
                     tipi.remove(tipo_enum.Libro);
                   } else {
                     tipi.add(tipo_enum.Libro);
@@ -86,7 +86,7 @@ class _SearchDialogState extends State<SearchDialog> {
                     : Colors.white,
                 child: const Text('Fascicoli'),
                 onPressed: () {
-                  if (tipi.contains(tipo_enum.Fascicolo)) {
+                  if (tipi.contains(tipo_enum.Fascicolo) && tipi.length != 1) {
                     tipi.remove(tipo_enum.Fascicolo);
                   } else {
                     tipi.add(tipo_enum.Fascicolo);
@@ -108,7 +108,7 @@ class _SearchDialogState extends State<SearchDialog> {
                     : Colors.white,
                 child: const Text('Riviste'),
                 onPressed: () {
-                  if (tipi.contains(tipo_enum.Rivista)) {
+                  if (tipi.contains(tipo_enum.Rivista) && tipi.length != 1) {
                     tipi.remove(tipo_enum.Rivista);
                   } else {
                     tipi.add(tipo_enum.Rivista);
@@ -125,7 +125,7 @@ class _SearchDialogState extends State<SearchDialog> {
                     : Colors.white,
                 child: const Text('Conferenze'),
                 onPressed: () {
-                  if (tipi.contains(tipo_enum.Conferenza)) {
+                  if (tipi.contains(tipo_enum.Conferenza) && tipi.length != 1) {
                     tipi.remove(tipo_enum.Conferenza);
                   } else {
                     tipi.add(tipo_enum.Conferenza);
