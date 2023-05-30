@@ -305,7 +305,8 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                                           ),
                                         ),
                                         child: Text(
-                                          riferimento.descr_riferimento!,
+                                          riferimento.descr_riferimento ??
+                                              '',
                                         ),
                                       ),
                                     ),
