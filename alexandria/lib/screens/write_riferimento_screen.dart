@@ -150,6 +150,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                         AlexandriaRoundedButton(
                           child: const Icon(Icons.edit_note_outlined),
                           onPressed: () {
+                            String? filtroCategoria;
                             showDialog<void>(
                               context: context,
                               builder: (BuildContext context) {
@@ -171,55 +172,87 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                             right: 20,
                                             bottom: 15,
                                           ),
-                                          child: SizedBox(
-                                            height: 450,
-                                            width: 300,
-                                            child: FutureBuilder(
-                                              future: allCategories,
-                                              builder: (
-                                                context,
-                                                AsyncSnapshot<List<Categoria>?> snapshot,
-                                              ) {
-                                                if (!snapshot.hasData) {
-                                                  return const Center(
-                                                    child: CircularProgressIndicator(),
-                                                  );
-                                                } else {
-                                                  String filtroRiferimenti = '';
-                                                  return ListView.builder(
-                                                    padding: EdgeInsets.zero,
-                                                    itemCount: snapshot.data?.length,
-                                                    itemBuilder: (
-                                                      BuildContext build,
-                                                      int index,
-                                                    ) {
-                                                      final c = snapshot.data?[index];
-                                                      return MiniInfoBox(
-                                                        backgroundColor:
-                                                            categorie.contains(c) ? Colors.grey : Colors.white,
-                                                        name: snapshot.data![index].nome,
-                                                        fontSize: 15,
-                                                        onTap: () {
-                                                          if (categorie.contains(c)) {
-                                                            categorie.remove(c);
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                width: 250,
+                                                child: Material(
+                                                  borderRadius: const BorderRadius.all(Radius.circular(33)),
+                                                  elevation: 5,
+                                                  child: TextField(
+                                                    style: const TextStyle(color: Colors.black),
+                                                    keyboardType: TextInputType.text,
+                                                    textAlign: TextAlign.left,
+                                                    onChanged: (value) {
+                                                      filtroCategoria = value;
+                                                      setState((){});
+                                                    },
+                                                    decoration: kInputDecoration.copyWith(
+                                                      hintText: 'Cerca categoria...',
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              SizedBox(
+                                                height: 450,
+                                                width: 300,
+                                                child: FutureBuilder(
+                                                  future: allCategories,
+                                                  builder: (
+                                                    context,
+                                                    AsyncSnapshot<List<Categoria>?> snapshot,
+                                                  ) {
+                                                    if (!snapshot.hasData) {
+                                                      return const Center(
+                                                        child: CircularProgressIndicator(),
+                                                      );
+                                                    } else {
+                                                      return ListView.builder(
+                                                        padding: EdgeInsets.zero,
+                                                        itemCount: snapshot.data?.length,
+                                                        itemBuilder: (
+                                                          BuildContext build,
+                                                          int index,
+                                                        ) {
+                                                          final c = snapshot.data?[index];
+                                                          if (filtroCategoria == null ||
+                                                              c!.nome.contains(
+                                                                RegExp(filtroCategoria!),
+                                                              )) {
+                                                            return MiniInfoBox(
+                                                              backgroundColor:
+                                                                  categorie.contains(c) ? Colors.grey : Colors.white,
+                                                              name: snapshot.data![index].nome,
+                                                              fontSize: 15,
+                                                              onTap: () {
+                                                                if (categorie.contains(c)) {
+                                                                  categorie.remove(c);
+                                                                } else {
+                                                                  categorie.add(c!);
+                                                                }
+                                                                setState(() {});
+                                                              },
+                                                              onTapIcon: () {
+                                                                Navigator.popAndPushNamed(
+                                                                  context,
+                                                                  'view_categoria',
+                                                                  arguments: c,
+                                                                );
+                                                              },
+                                                            );
                                                           } else {
-                                                            categorie.add(c!);
+                                                            return Container();
                                                           }
-                                                          setState(() {});
-                                                        },
-                                                        onTapIcon: () {
-                                                          Navigator.popAndPushNamed(
-                                                            context,
-                                                            'view_categoria',
-                                                            arguments: c,
-                                                          );
                                                         },
                                                       );
-                                                    },
-                                                  );
-                                                }
-                                              },
-                                            ),
+                                                    }
+                                                  },
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
