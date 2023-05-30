@@ -185,7 +185,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                     textAlign: TextAlign.left,
                                                     onChanged: (value) {
                                                       filtroCategoria = value;
-                                                      setState((){});
+                                                      setState(() {});
                                                     },
                                                     decoration: kInputDecoration.copyWith(
                                                       hintText: 'Cerca categoria...',
@@ -283,6 +283,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                         AlexandriaRoundedButton(
                           child: const Icon(Icons.edit_note_outlined),
                           onPressed: () {
+                            String? filtroRiferimento;
                             showDialog<void>(
                               context: context,
                               builder: (BuildContext context) {
@@ -304,54 +305,87 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                             right: 20,
                                             bottom: 15,
                                           ),
-                                          child: SizedBox(
-                                            height: 450,
-                                            width: 300,
-                                            child: FutureBuilder(
-                                              future: allRiferimenti,
-                                              builder: (
-                                                context,
-                                                AsyncSnapshot<List<Riferimento>?> snapshot,
-                                              ) {
-                                                if (!snapshot.hasData) {
-                                                  return const Center(
-                                                    child: CircularProgressIndicator(),
-                                                  );
-                                                } else {
-                                                  return ListView.builder(
-                                                    padding: EdgeInsets.zero,
-                                                    itemCount: snapshot.data?.length,
-                                                    itemBuilder: (
-                                                      BuildContext build,
-                                                      int index,
-                                                    ) {
-                                                      final r = snapshot.data?[index];
-                                                      return MiniInfoBox(
-                                                        backgroundColor:
-                                                            citazioni.contains(r) ? Colors.grey : Colors.white,
-                                                        name: snapshot.data![index].titolo_riferimento,
-                                                        fontSize: 15,
-                                                        onTap: () {
-                                                          if (citazioni.contains(r)) {
-                                                            citazioni.remove(r);
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                width: 250,
+                                                child: Material(
+                                                  borderRadius: const BorderRadius.all(Radius.circular(33)),
+                                                  elevation: 5,
+                                                  child: TextField(
+                                                    style: const TextStyle(color: Colors.black),
+                                                    keyboardType: TextInputType.text,
+                                                    textAlign: TextAlign.left,
+                                                    onChanged: (value) {
+                                                      filtroRiferimento = value;
+                                                      setState(() {});
+                                                    },
+                                                    decoration: kInputDecoration.copyWith(
+                                                      hintText: 'Cerca categoria...',
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              SizedBox(
+                                                height: 450,
+                                                width: 300,
+                                                child: FutureBuilder(
+                                                  future: allRiferimenti,
+                                                  builder: (
+                                                    context,
+                                                    AsyncSnapshot<List<Riferimento>?> snapshot,
+                                                  ) {
+                                                    if (!snapshot.hasData) {
+                                                      return const Center(
+                                                        child: CircularProgressIndicator(),
+                                                      );
+                                                    } else {
+                                                      return ListView.builder(
+                                                        padding: EdgeInsets.zero,
+                                                        itemCount: snapshot.data?.length,
+                                                        itemBuilder: (
+                                                          BuildContext build,
+                                                          int index,
+                                                        ) {
+                                                          final r = snapshot.data?[index];
+                                                          if (filtroRiferimento == null ||
+                                                              r!.titolo_riferimento.contains(
+                                                                RegExp(filtroRiferimento!),
+                                                              )) {
+                                                            return MiniInfoBox(
+                                                              backgroundColor:
+                                                                  citazioni.contains(r) ? Colors.grey : Colors.white,
+                                                              name: snapshot.data![index].titolo_riferimento,
+                                                              fontSize: 15,
+                                                              onTap: () {
+                                                                if (citazioni.contains(r)) {
+                                                                  citazioni.remove(r);
+                                                                } else {
+                                                                  citazioni.add(r!);
+                                                                }
+                                                                setState(() {});
+                                                              },
+                                                              onTapIcon: () {
+                                                                Navigator.popAndPushNamed(
+                                                                  context,
+                                                                  'view_riferimento',
+                                                                  arguments: r,
+                                                                );
+                                                              },
+                                                            );
                                                           } else {
-                                                            citazioni.add(r!);
+                                                            return Container();
                                                           }
-                                                          setState(() {});
-                                                        },
-                                                        onTapIcon: () {
-                                                          Navigator.popAndPushNamed(
-                                                            context,
-                                                            'view_riferimento',
-                                                            arguments: r,
-                                                          );
                                                         },
                                                       );
-                                                    },
-                                                  );
-                                                }
-                                              },
-                                            ),
+                                                    }
+                                                  },
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
