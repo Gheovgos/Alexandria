@@ -42,7 +42,7 @@ class MiniInfoBox extends StatelessWidget {
                 GestureDetector(
                   onTap: onTap ?? () {},
                   child: SizedBox(
-                    width: 180,
+                    width: 150,
                     child: Text(
                       name,
                       maxLines: 1,
