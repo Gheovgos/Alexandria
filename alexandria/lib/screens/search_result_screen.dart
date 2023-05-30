@@ -75,17 +75,16 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                   ),
                   AlexandriaRoundedButton(
                     onPressed: () {
-                      if (!sortedAscending) {
-                        ricerca?.data?.sort((a, b) {
+                      ricerca?.data?.sort((a, b) {
+                        if (!sortedAscending) {
                           return a.titolo_riferimento
                               .compareTo(b.titolo_riferimento);
-                        });
-                      } else {
-                        ricerca?.data?.sort((a, b) {
+                        } else {
                           return b.titolo_riferimento
                               .compareTo(a.titolo_riferimento);
-                        });
-                      }
+                        }
+                      });
+
                       sortedAscending = !sortedAscending;
                       setState(() {});
                     },
