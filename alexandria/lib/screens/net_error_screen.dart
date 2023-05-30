@@ -55,8 +55,7 @@ class _NetErrorScreenState extends State<NetErrorScreen> {
                         '2. Se riavviando il cellulare il problema persiste, prova a cambiare rete da Wi-Fi a dati mobili.\n',
                   ),
                   TextSpan(
-                    text:
-                        'In alternativa, puoi riprovare cliccando il tasto sottostante:',
+                    text: 'In alternativa, puoi riprovare cliccando il tasto sottostante:',
                   )
                 ],
               ),

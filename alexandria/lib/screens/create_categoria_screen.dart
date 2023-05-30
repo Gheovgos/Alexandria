@@ -128,8 +128,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                     ),
                                     elevation: 5,
                                     child: TextField(
-                                      style:
-                                          const TextStyle(color: Colors.black),
+                                      style: const TextStyle(color: Colors.black),
                                       keyboardType: TextInputType.emailAddress,
                                       textAlign: TextAlign.left,
                                       onChanged: (value) {
@@ -150,8 +149,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                       future: allCategories,
                                       builder: (
                                         context,
-                                        AsyncSnapshot<List<Categoria>?>
-                                            snapshot,
+                                        AsyncSnapshot<List<Categoria>?> snapshot,
                                       ) {
                                         if (!snapshot.hasData) {
                                           return const Center(
@@ -166,27 +164,19 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                               int index,
                                             ) {
                                               if (filtroCategoria == null ||
-                                                  snapshot.data![index].nome
-                                                      .contains(
+                                                  snapshot.data![index].nome.contains(
                                                     RegExp(
                                                       filtroCategoria!,
                                                     ),
                                                   )) {
                                                 return MiniInfoBox(
-                                                  backgroundColor:
-                                                      sopraCategoria ==
-                                                              snapshot
-                                                                  .data![index]
-                                                                  .id_categoria
-                                                          ? Colors.grey
-                                                          : Colors.white,
-                                                  name: snapshot
-                                                      .data![index].nome,
+                                                  backgroundColor: sopraCategoria == snapshot.data![index].id_categoria
+                                                      ? Colors.grey
+                                                      : Colors.white,
+                                                  name: snapshot.data![index].nome,
                                                   fontSize: 15,
                                                   onTap: () {
-                                                    sopraCategoria = snapshot
-                                                        .data?[index]
-                                                        .id_categoria;
+                                                    sopraCategoria = snapshot.data?[index].id_categoria;
                                                     setState(() {});
                                                     ScaffoldMessenger.of(
                                                       context,
@@ -202,8 +192,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                                     Navigator.pushNamed(
                                                       context,
                                                       'view_categoria',
-                                                      arguments:
-                                                          snapshot.data![index],
+                                                      arguments: snapshot.data![index],
                                                     );
                                                   },
                                                 );
@@ -235,8 +224,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
             height: 30,
           ),
           AlexandriaRoundedButton(
-            padding:
-                const EdgeInsets.only(left: 50, right: 50, top: 20, bottom: 20),
+            padding: const EdgeInsets.only(left: 50, right: 50, top: 20, bottom: 20),
             child: const Text(
               'Salva',
               style: TextStyle(fontSize: 16),
@@ -288,8 +276,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                   },
                 );
               } else {
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(const SnackBar(content: Text('Errore!')));
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Errore!')));
               }
             },
           ),

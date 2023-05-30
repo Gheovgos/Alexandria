@@ -162,8 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
-                                          keyboardType:
-                                              TextInputType.emailAddress,
+                                          keyboardType: TextInputType.emailAddress,
                                           textAlign: TextAlign.left,
                                           onChanged: (value) {
                                             password = value;
@@ -201,8 +200,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
-                                          keyboardType:
-                                              TextInputType.emailAddress,
+                                          keyboardType: TextInputType.emailAddress,
                                           textAlign: TextAlign.left,
                                           onChanged: (value) {
                                             confermaPassword = value;
@@ -214,8 +212,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          mostraConfermaPassword =
-                                              !mostraConfermaPassword;
+                                          mostraConfermaPassword = !mostraConfermaPassword;
                                         });
                                       },
                                       icon: const Icon(Icons.remove_red_eye),
@@ -249,8 +246,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       email != '' &&
                                       username != '') {
                                     if (kReleaseMode) {
-                                      final user =
-                                          await networkHelper.registrazione(
+                                      final user = await networkHelper.registrazione(
                                         username,
                                         password,
                                         nome,
@@ -266,9 +262,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                               content: SizedBox(
                                                 height: 150,
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     Text(
                                                       'Utente già esistente!',
@@ -296,9 +290,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           content: SizedBox(
                                             height: 150,
                                             child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Text(
                                                   'Non tutti i campi sono stati riempiti!',

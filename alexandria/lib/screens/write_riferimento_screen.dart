@@ -33,8 +33,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
 
   Future<void> fillLists() async {
     citazioni = (await networkHelper.getRiferimentiCitati(riferimento!))!;
-    autori = (await networkHelper
-        .getAutoriByRiferimento(riferimento!.id_riferimento))!;
+    autori = (await networkHelper.getAutoriByRiferimento(riferimento!.id_riferimento))!;
     // categorie = (await networkHelper.getCategoriaByRiferimento(riferimento!.id_riferimento))!;
     //ASPETTO CHE GIORGIO SISTEMI
   }
@@ -116,8 +115,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       height: 30,
                       width: 170,
                       child: Material(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(33)),
+                        borderRadius: const BorderRadius.all(Radius.circular(33)),
                         elevation: 5,
                         child: TextField(
                           style: const TextStyle(color: Colors.black),
@@ -164,8 +162,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                       content: DecoratedBox(
                                         decoration: BoxDecoration(
                                           color: kAlexandriaGreen,
-                                          borderRadius:
-                                              BorderRadius.circular(20),
+                                          borderRadius: BorderRadius.circular(20),
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.only(
@@ -181,37 +178,29 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                               future: allCategories,
                                               builder: (
                                                 context,
-                                                AsyncSnapshot<List<Categoria>?>
-                                                    snapshot,
+                                                AsyncSnapshot<List<Categoria>?> snapshot,
                                               ) {
                                                 if (!snapshot.hasData) {
                                                   return const Center(
-                                                    child:
-                                                        CircularProgressIndicator(),
+                                                    child: CircularProgressIndicator(),
                                                   );
                                                 } else {
+                                                  String filtroRiferimenti = '';
                                                   return ListView.builder(
                                                     padding: EdgeInsets.zero,
-                                                    itemCount:
-                                                        snapshot.data?.length,
+                                                    itemCount: snapshot.data?.length,
                                                     itemBuilder: (
                                                       BuildContext build,
                                                       int index,
                                                     ) {
-                                                      final c =
-                                                          snapshot.data?[index];
+                                                      final c = snapshot.data?[index];
                                                       return MiniInfoBox(
                                                         backgroundColor:
-                                                            categorie
-                                                                    .contains(c)
-                                                                ? Colors.grey
-                                                                : Colors.white,
-                                                        name: snapshot
-                                                            .data![index].nome,
+                                                            categorie.contains(c) ? Colors.grey : Colors.white,
+                                                        name: snapshot.data![index].nome,
                                                         fontSize: 15,
                                                         onTap: () {
-                                                          if (categorie
-                                                              .contains(c)) {
+                                                          if (categorie.contains(c)) {
                                                             categorie.remove(c);
                                                           } else {
                                                             categorie.add(c!);
@@ -219,8 +208,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                           setState(() {});
                                                         },
                                                         onTapIcon: () {
-                                                          Navigator
-                                                              .popAndPushNamed(
+                                                          Navigator.popAndPushNamed(
                                                             context,
                                                             'view_categoria',
                                                             arguments: c,
@@ -274,8 +262,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                       content: DecoratedBox(
                                         decoration: BoxDecoration(
                                           color: kAlexandriaGreen,
-                                          borderRadius:
-                                              BorderRadius.circular(20),
+                                          borderRadius: BorderRadius.circular(20),
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.only(
@@ -291,39 +278,28 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                               future: allRiferimenti,
                                               builder: (
                                                 context,
-                                                AsyncSnapshot<
-                                                        List<Riferimento>?>
-                                                    snapshot,
+                                                AsyncSnapshot<List<Riferimento>?> snapshot,
                                               ) {
                                                 if (!snapshot.hasData) {
                                                   return const Center(
-                                                    child:
-                                                        CircularProgressIndicator(),
+                                                    child: CircularProgressIndicator(),
                                                   );
                                                 } else {
                                                   return ListView.builder(
                                                     padding: EdgeInsets.zero,
-                                                    itemCount:
-                                                        snapshot.data?.length,
+                                                    itemCount: snapshot.data?.length,
                                                     itemBuilder: (
                                                       BuildContext build,
                                                       int index,
                                                     ) {
-                                                      final r =
-                                                          snapshot.data?[index];
+                                                      final r = snapshot.data?[index];
                                                       return MiniInfoBox(
                                                         backgroundColor:
-                                                            citazioni
-                                                                    .contains(r)
-                                                                ? Colors.grey
-                                                                : Colors.white,
-                                                        name: snapshot
-                                                            .data![index]
-                                                            .titolo_riferimento,
+                                                            citazioni.contains(r) ? Colors.grey : Colors.white,
+                                                        name: snapshot.data![index].titolo_riferimento,
                                                         fontSize: 15,
                                                         onTap: () {
-                                                          if (citazioni
-                                                              .contains(r)) {
+                                                          if (citazioni.contains(r)) {
                                                             citazioni.remove(r);
                                                           } else {
                                                             citazioni.add(r!);
@@ -331,8 +307,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                           setState(() {});
                                                         },
                                                         onTapIcon: () {
-                                                          Navigator
-                                                              .popAndPushNamed(
+                                                          Navigator.popAndPushNamed(
                                                             context,
                                                             'view_riferimento',
                                                             arguments: r,
@@ -474,17 +449,13 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                             style: const TextStyle(
                                               color: Colors.black,
                                             ),
-                                            keyboardType:
-                                                TextInputType.emailAddress,
+                                            keyboardType: TextInputType.emailAddress,
                                             textAlign: TextAlign.left,
                                             onChanged: (value) {
                                               descrizione = value;
                                             },
-                                            decoration:
-                                                kInputDecoration.copyWith(
-                                              hintText: riferimento!
-                                                      .descr_riferimento ??
-                                                  'Inserisci testo...',
+                                            decoration: kInputDecoration.copyWith(
+                                              hintText: riferimento!.descr_riferimento ?? 'Inserisci testo...',
                                               fillColor: kInfoBoxColor,
                                             ),
                                           ),
@@ -527,8 +498,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                             onChanged: (value) {
                                               DOI = int.parse(value);
                                             },
-                                            decoration:
-                                                kInputDecoration.copyWith(
+                                            decoration: kInputDecoration.copyWith(
                                               hintText: riferimento!.DOI == null
                                                   ? 'Inserisci testo...'
                                                   : riferimento!.DOI.toString(),
@@ -574,13 +544,10 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                             onChanged: (value) {
                                               edizione = int.parse(value);
                                             },
-                                            decoration:
-                                                kInputDecoration.copyWith(
-                                              hintText:
-                                                  riferimento!.edizione == null
-                                                      ? 'Inserisci testo...'
-                                                      : riferimento!.edizione
-                                                          .toString(),
+                                            decoration: kInputDecoration.copyWith(
+                                              hintText: riferimento!.edizione == null
+                                                  ? 'Inserisci testo...'
+                                                  : riferimento!.edizione.toString(),
                                               fillColor: kInfoBoxColor,
                                             ),
                                           ),
@@ -608,13 +575,11 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                         children: [
                                           Material(
                                             elevation: 2,
-                                            borderRadius:
-                                                const BorderRadius.all(
+                                            borderRadius: const BorderRadius.all(
                                               Radius.circular(30),
                                             ),
                                             child: Material(
-                                              borderRadius:
-                                                  const BorderRadius.all(
+                                              borderRadius: const BorderRadius.all(
                                                 Radius.circular(30),
                                               ),
                                               elevation: 5,
@@ -622,24 +587,17 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                 style: const TextStyle(
                                                   color: Colors.black,
                                                 ),
-                                                keyboardType:
-                                                    TextInputType.number,
+                                                keyboardType: TextInputType.number,
                                                 textAlign: TextAlign.left,
                                                 onChanged: (value) {
                                                   pagInizio = int.parse(value);
                                                 },
-                                                decoration:
-                                                    kInputDecoration.copyWith(
-                                                  hintText: riferimento!
-                                                              .pag_inizio ==
-                                                          null
+                                                decoration: kInputDecoration.copyWith(
+                                                  hintText: riferimento!.pag_inizio == null
                                                       ? 'Pagina inizio...'
-                                                      : riferimento!.pag_inizio
-                                                          .toString(),
+                                                      : riferimento!.pag_inizio.toString(),
                                                   fillColor: kInfoBoxColor,
-                                                  constraints:
-                                                      const BoxConstraints
-                                                          .tightFor(
+                                                  constraints: const BoxConstraints.tightFor(
                                                     width: 140,
                                                   ),
                                                 ),
@@ -648,13 +606,11 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                           ),
                                           Material(
                                             elevation: 2,
-                                            borderRadius:
-                                                const BorderRadius.all(
+                                            borderRadius: const BorderRadius.all(
                                               Radius.circular(30),
                                             ),
                                             child: Material(
-                                              borderRadius:
-                                                  const BorderRadius.all(
+                                              borderRadius: const BorderRadius.all(
                                                 Radius.circular(30),
                                               ),
                                               elevation: 5,
@@ -662,24 +618,17 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                 style: const TextStyle(
                                                   color: Colors.black,
                                                 ),
-                                                keyboardType:
-                                                    TextInputType.number,
+                                                keyboardType: TextInputType.number,
                                                 textAlign: TextAlign.left,
                                                 onChanged: (value) {
                                                   pagFine = int.parse(value);
                                                 },
-                                                decoration:
-                                                    kInputDecoration.copyWith(
-                                                  hintText: riferimento!
-                                                              .pag_fine ==
-                                                          null
+                                                decoration: kInputDecoration.copyWith(
+                                                  hintText: riferimento!.pag_fine == null
                                                       ? 'Pagina fine...'
-                                                      : riferimento!.pag_fine
-                                                          .toString(),
+                                                      : riferimento!.pag_fine.toString(),
                                                   fillColor: kInfoBoxColor,
-                                                  constraints:
-                                                      const BoxConstraints
-                                                          .tightFor(width: 140),
+                                                  constraints: const BoxConstraints.tightFor(width: 140),
                                                 ),
                                               ),
                                             ),
@@ -716,8 +665,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                         style: TextStyle(fontSize: 16),
                                       ),
                                       onPressed: () {
-                                        riferimento!.descr_riferimento =
-                                            descrizione;
+                                        riferimento!.descr_riferimento = descrizione;
                                         riferimento!.DOI = DOI;
                                         riferimento!.edizione = edizione;
                                         riferimento!.pag_inizio = pagInizio;
@@ -756,8 +704,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlexandriaDialog(
-                                  title: const Text(
-                                      'Inserisci il link del riferimento.\n'
+                                  title: const Text('Inserisci il link del riferimento.\n'
                                       'Se non presente, lasciare vuoto.'),
                                   actions: [
                                     AlexandriaRoundedButton(
@@ -807,8 +754,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                         tempURL = value;
                                       },
                                       decoration: kInputDecoration.copyWith(
-                                        hintText: riferimento!.URL ??
-                                            'Inserisci URL...',
+                                        hintText: riferimento!.URL ?? 'Inserisci URL...',
                                       ),
                                     ),
                                   ),
@@ -832,15 +778,13 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       width: 150,
                       child: Material(
                         elevation: 2,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(30)),
+                        borderRadius: const BorderRadius.all(Radius.circular(30)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             const Text('Editore'),
                             Material(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(33)),
+                              borderRadius: const BorderRadius.all(Radius.circular(33)),
                               elevation: 5,
                               child: TextField(
                                 style: const TextStyle(color: Colors.black),
@@ -850,8 +794,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                   riferimento!.editore = value;
                                 },
                                 decoration: kInputDecoration.copyWith(
-                                  hintText: riferimento!.editore ??
-                                      'Inserisci testo...',
+                                  hintText: riferimento!.editore ?? 'Inserisci testo...',
                                 ),
                               ),
                             )
@@ -864,15 +807,13 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       width: 150,
                       child: Material(
                         elevation: 2,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(30)),
+                        borderRadius: const BorderRadius.all(Radius.circular(30)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             const Text('Luogo'),
                             Material(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(33)),
+                              borderRadius: const BorderRadius.all(Radius.circular(33)),
                               elevation: 5,
                               child: TextField(
                                 style: const TextStyle(color: Colors.black),
@@ -882,8 +823,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                   riferimento!.luogo = value;
                                 },
                                 decoration: kInputDecoration.copyWith(
-                                  hintText: riferimento!.luogo ??
-                                      'Inserisci testo...',
+                                  hintText: riferimento!.luogo ?? 'Inserisci testo...',
                                 ),
                               ),
                             )
@@ -904,15 +844,13 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       width: 150,
                       child: Material(
                         elevation: 2,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(30)),
+                        borderRadius: const BorderRadius.all(Radius.circular(30)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             const Text('ISSN'),
                             Material(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(33)),
+                              borderRadius: const BorderRadius.all(Radius.circular(33)),
                               elevation: 5,
                               child: TextField(
                                 style: const TextStyle(color: Colors.black),
@@ -922,8 +860,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                   riferimento!.isnn = value;
                                 },
                                 decoration: kInputDecoration.copyWith(
-                                  hintText:
-                                      riferimento!.isnn ?? 'Inserisci testo...',
+                                  hintText: riferimento!.isnn ?? 'Inserisci testo...',
                                 ),
                               ),
                             )
@@ -936,15 +873,13 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       width: 150,
                       child: Material(
                         elevation: 2,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(30)),
+                        borderRadius: const BorderRadius.all(Radius.circular(30)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             const Text('ISBN'),
                             Material(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(33)),
+                              borderRadius: const BorderRadius.all(Radius.circular(33)),
                               elevation: 5,
                               child: TextField(
                                 style: const TextStyle(color: Colors.black),
@@ -954,8 +889,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                   riferimento!.isbn = value;
                                 },
                                 decoration: kInputDecoration.copyWith(
-                                  hintText:
-                                      riferimento!.isbn ?? 'Inserisci testo...',
+                                  hintText: riferimento!.isbn ?? 'Inserisci testo...',
                                 ),
                               ),
                             )
@@ -993,8 +927,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                       content: DecoratedBox(
                                         decoration: BoxDecoration(
                                           color: kAlexandriaGreen,
-                                          borderRadius:
-                                              BorderRadius.circular(20),
+                                          borderRadius: BorderRadius.circular(20),
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.only(
@@ -1010,36 +943,28 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                               future: allUtenti,
                                               builder: (
                                                 context,
-                                                AsyncSnapshot<List<Utente>?>
-                                                    snapshot,
+                                                AsyncSnapshot<List<Utente>?> snapshot,
                                               ) {
                                                 if (!snapshot.hasData) {
                                                   return const Center(
-                                                    child:
-                                                        CircularProgressIndicator(),
+                                                    child: CircularProgressIndicator(),
                                                   );
                                                 } else {
                                                   return ListView.builder(
                                                     padding: EdgeInsets.zero,
-                                                    itemCount:
-                                                        snapshot.data?.length,
+                                                    itemCount: snapshot.data?.length,
                                                     itemBuilder: (
                                                       BuildContext build,
                                                       int index,
                                                     ) {
-                                                      final u =
-                                                          snapshot.data?[index];
+                                                      final u = snapshot.data?[index];
                                                       return MiniInfoBox(
                                                         backgroundColor:
-                                                            autori.contains(u)
-                                                                ? Colors.grey
-                                                                : Colors.white,
-                                                        name: snapshot
-                                                            .data![index].nome,
+                                                            autori.contains(u) ? Colors.grey : Colors.white,
+                                                        name: snapshot.data![index].nome,
                                                         fontSize: 15,
                                                         onTap: () {
-                                                          if (autori
-                                                              .contains(u)) {
+                                                          if (autori.contains(u)) {
                                                             autori.remove(u);
                                                           } else {
                                                             autori.add(u!);

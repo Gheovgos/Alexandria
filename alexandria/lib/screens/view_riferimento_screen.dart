@@ -20,8 +20,7 @@ class ViewRiferimentoScreen extends StatefulWidget {
 class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
   @override
   Widget build(BuildContext context) {
-    final riferimento =
-        ModalRoute.of(context)!.settings.arguments as Riferimento?;
+    final riferimento = ModalRoute.of(context)!.settings.arguments as Riferimento?;
     return Scaffold(
       floatingActionButton: riferimento!.on_line
           ? FloatingActionButton(
@@ -289,8 +288,7 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                               ),
                               content: SingleChildScrollView(
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
                                   children: [
                                     SizedBox(
                                       height: 300,
@@ -305,8 +303,7 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                                           ),
                                         ),
                                         child: Text(
-                                          riferimento.descr_riferimento ??
-                                              '',
+                                          riferimento.descr_riferimento ?? '',
                                         ),
                                       ),
                                     ),
@@ -400,8 +397,7 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                         height: 150,
                         width: 250,
                         child: FutureBuilder(
-                          future:
-                              networkHelper.getRiferimentiCitati(riferimento),
+                          future: networkHelper.getRiferimentiCitati(riferimento),
                           builder: (
                             context,
                             AsyncSnapshot<List<Riferimento>?> snapshot,
@@ -416,8 +412,7 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                                 itemCount: snapshot.data?.length,
                                 itemBuilder: (BuildContext build, int index) {
                                   return MiniInfoBox(
-                                    name: snapshot
-                                        .data![index].titolo_riferimento,
+                                    name: snapshot.data![index].titolo_riferimento,
                                     fontSize: 15,
                                   );
                                 },

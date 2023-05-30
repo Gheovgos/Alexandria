@@ -25,8 +25,7 @@ class AlexandriaRoundedButton extends StatelessWidget {
         padding: padding,
         backgroundColor: backgroundColor ?? Colors.white,
         elevation: kButtonElevation,
-        shape: border ??
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+        shape: border ?? RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         side: BorderSide(color: borderColor ?? Colors.white),
       ),
       onPressed: onPressed,

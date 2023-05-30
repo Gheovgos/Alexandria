@@ -77,11 +77,9 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                     onPressed: () {
                       ricerca?.data?.sort((a, b) {
                         if (!sortedAscending) {
-                          return a.titolo_riferimento
-                              .compareTo(b.titolo_riferimento);
+                          return a.titolo_riferimento.compareTo(b.titolo_riferimento);
                         } else {
-                          return b.titolo_riferimento
-                              .compareTo(a.titolo_riferimento);
+                          return b.titolo_riferimento.compareTo(a.titolo_riferimento);
                         }
                       });
 

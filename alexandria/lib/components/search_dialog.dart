@@ -43,20 +43,15 @@ class _SearchDialogState extends State<SearchDialog> {
               onChanged: (value) {
                 testo = value;
               },
-              decoration:
-                  kInputDecoration.copyWith(hintText: 'Inserisci $filtro...'),
+              decoration: kInputDecoration.copyWith(hintText: 'Inserisci $filtro...'),
             ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               AlexandriaRoundedButton(
-                backgroundColor: tipi.contains(tipo_enum.Articolo)
-                    ? Colors.grey
-                    : Colors.white,
-                borderColor: tipi.contains(tipo_enum.Articolo)
-                    ? Colors.grey
-                    : Colors.white,
+                backgroundColor: tipi.contains(tipo_enum.Articolo) ? Colors.grey : Colors.white,
+                borderColor: tipi.contains(tipo_enum.Articolo) ? Colors.grey : Colors.white,
                 child: const Text('Articoli'),
                 onPressed: () {
                   if (tipi.contains(tipo_enum.Articolo) && tipi.length != 1) {
@@ -68,10 +63,8 @@ class _SearchDialogState extends State<SearchDialog> {
                 },
               ),
               AlexandriaRoundedButton(
-                backgroundColor:
-                    tipi.contains(tipo_enum.Libro) ? Colors.grey : Colors.white,
-                borderColor:
-                    tipi.contains(tipo_enum.Libro) ? Colors.grey : Colors.white,
+                backgroundColor: tipi.contains(tipo_enum.Libro) ? Colors.grey : Colors.white,
+                borderColor: tipi.contains(tipo_enum.Libro) ? Colors.grey : Colors.white,
                 child: const Text('Libri'),
                 onPressed: () {
                   if (tipi.contains(tipo_enum.Libro) && tipi.length != 1) {
@@ -83,12 +76,8 @@ class _SearchDialogState extends State<SearchDialog> {
                 },
               ),
               AlexandriaRoundedButton(
-                backgroundColor: tipi.contains(tipo_enum.Fascicolo)
-                    ? Colors.grey
-                    : Colors.white,
-                borderColor: tipi.contains(tipo_enum.Fascicolo)
-                    ? Colors.grey
-                    : Colors.white,
+                backgroundColor: tipi.contains(tipo_enum.Fascicolo) ? Colors.grey : Colors.white,
+                borderColor: tipi.contains(tipo_enum.Fascicolo) ? Colors.grey : Colors.white,
                 child: const Text('Fascicoli'),
                 onPressed: () {
                   if (tipi.contains(tipo_enum.Fascicolo) && tipi.length != 1) {
@@ -105,12 +94,8 @@ class _SearchDialogState extends State<SearchDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               AlexandriaRoundedButton(
-                backgroundColor: tipi.contains(tipo_enum.Rivista)
-                    ? Colors.grey
-                    : Colors.white,
-                borderColor: tipi.contains(tipo_enum.Rivista)
-                    ? Colors.grey
-                    : Colors.white,
+                backgroundColor: tipi.contains(tipo_enum.Rivista) ? Colors.grey : Colors.white,
+                borderColor: tipi.contains(tipo_enum.Rivista) ? Colors.grey : Colors.white,
                 child: const Text('Riviste'),
                 onPressed: () {
                   if (tipi.contains(tipo_enum.Rivista) && tipi.length != 1) {
@@ -122,12 +107,8 @@ class _SearchDialogState extends State<SearchDialog> {
                 },
               ),
               AlexandriaRoundedButton(
-                backgroundColor: tipi.contains(tipo_enum.Conferenza)
-                    ? Colors.grey
-                    : Colors.white,
-                borderColor: tipi.contains(tipo_enum.Conferenza)
-                    ? Colors.grey
-                    : Colors.white,
+                backgroundColor: tipi.contains(tipo_enum.Conferenza) ? Colors.grey : Colors.white,
+                borderColor: tipi.contains(tipo_enum.Conferenza) ? Colors.grey : Colors.white,
                 child: const Text('Conferenze'),
                 onPressed: () {
                   if (tipi.contains(tipo_enum.Conferenza) && tipi.length != 1) {
@@ -198,13 +179,9 @@ class _SearchDialogState extends State<SearchDialog> {
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext build, int index) {
                                 if (filtroCategoria == null ||
-                                    snapshot.data![index].nome
-                                        .contains(RegExp(filtroCategoria!))) {
+                                    snapshot.data![index].nome.contains(RegExp(filtroCategoria!))) {
                                   return MiniInfoBox(
-                                    backgroundColor:
-                                        categoria == snapshot.data![index]
-                                            ? Colors.grey
-                                            : Colors.white,
+                                    backgroundColor: categoria == snapshot.data![index] ? Colors.grey : Colors.white,
                                     name: snapshot.data![index].nome,
                                     fontSize: 15,
                                     onTap: () {
@@ -232,8 +209,7 @@ class _SearchDialogState extends State<SearchDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               AlexandriaRoundedButton(
-                backgroundColor:
-                    filtro == 'titolo' ? Colors.grey : Colors.white,
+                backgroundColor: filtro == 'titolo' ? Colors.grey : Colors.white,
                 borderColor: filtro == 'titolo' ? Colors.grey : Colors.white,
                 child: const Text('Titolo'),
                 onPressed: () {

@@ -175,8 +175,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
-                                          keyboardType:
-                                              TextInputType.emailAddress,
+                                          keyboardType: TextInputType.emailAddress,
                                           textAlign: TextAlign.left,
                                           onChanged: (value) {
                                             password = value;
@@ -214,8 +213,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
-                                          keyboardType:
-                                              TextInputType.emailAddress,
+                                          keyboardType: TextInputType.emailAddress,
                                           textAlign: TextAlign.left,
                                           onChanged: (value) {
                                             confermaPassword = value;
@@ -227,8 +225,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          mostraConfermaPassword =
-                                              !mostraConfermaPassword;
+                                          mostraConfermaPassword = !mostraConfermaPassword;
                                         });
                                       },
                                       icon: const Icon(Icons.remove_red_eye),

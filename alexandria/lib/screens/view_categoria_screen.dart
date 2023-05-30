@@ -94,8 +94,7 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                       height: 150,
                       width: 250,
                       child: FutureBuilder(
-                        future: networkHelper
-                            .getRiferimentoByCategoria(categoria.user_id),
+                        future: networkHelper.getRiferimentoByCategoria(categoria.user_id),
                         builder: (
                           BuildContext context,
                           AsyncSnapshot<List<Riferimento>?> snapshot,
@@ -111,8 +110,7 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return MiniInfoBox(
-                                  name:
-                                      snapshot.data![index].titolo_riferimento,
+                                  name: snapshot.data![index].titolo_riferimento,
                                   fontSize: 15,
                                 );
                               },
@@ -165,8 +163,7 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                       height: 150,
                       width: 250,
                       child: FutureBuilder(
-                        future: networkHelper
-                            .getSopraCategorie(categoria.id_categoria),
+                        future: networkHelper.getSopraCategorie(categoria.id_categoria),
                         builder: (
                           BuildContext context,
                           AsyncSnapshot<List<Categoria>?> snapshot,

@@ -27,8 +27,7 @@ class MiniInfoBox extends StatelessWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: backgroundColor ?? Colors.white,
-            borderRadius:
-                const BorderRadiusDirectional.all(Radius.circular(20)),
+            borderRadius: const BorderRadiusDirectional.all(Radius.circular(20)),
           ),
           child: Padding(
             padding: const EdgeInsetsDirectional.only(

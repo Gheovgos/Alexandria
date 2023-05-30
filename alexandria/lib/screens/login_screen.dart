@@ -59,8 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onChanged: (value) {
                       username = value;
                     },
-                    decoration:
-                        kInputDecoration.copyWith(hintText: 'Username...'),
+                    decoration: kInputDecoration.copyWith(hintText: 'Username...'),
                   ),
                 ),
                 const SizedBox(
@@ -77,8 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onChanged: (value) {
                       password = value;
                     },
-                    decoration:
-                        kInputDecoration.copyWith(hintText: 'Password...'),
+                    decoration: kInputDecoration.copyWith(hintText: 'Password...'),
                   ),
                 ),
                 Row(
@@ -136,8 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       onPressed: () async {
                         if (kReleaseMode) {
-                          final user =
-                              await networkHelper.login(username, password);
+                          final user = await networkHelper.login(username, password);
                           if (user == null) {
                             showDialog<void>(
                               context: context,
@@ -147,8 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   content: SizedBox(
                                     height: 150,
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text('Credenziali errate!'),
                                       ],

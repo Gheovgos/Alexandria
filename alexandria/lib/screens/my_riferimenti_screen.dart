@@ -59,8 +59,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                 SizedBox(
                   width: 250,
                   child: Material(
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(33)),
+                    borderRadius: const BorderRadius.all(Radius.circular(33)),
                     elevation: 5,
                     child: TextField(
                       style: const TextStyle(color: Colors.black),
@@ -84,11 +83,9 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                   onPressed: () async {
                     (await myRiferimenti)?.sort((a, b) {
                       if (!sortedAscending) {
-                        return a.titolo_riferimento
-                            .compareTo(b.titolo_riferimento);
+                        return a.titolo_riferimento.compareTo(b.titolo_riferimento);
                       } else {
-                        return b.titolo_riferimento
-                            .compareTo(a.titolo_riferimento);
+                        return b.titolo_riferimento.compareTo(a.titolo_riferimento);
                       }
                     });
 
@@ -128,8 +125,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext build, int index) {
                                 if (filtroRiferimenti == null ||
-                                    snapshot.data![index].titolo_riferimento
-                                        .contains(
+                                    snapshot.data![index].titolo_riferimento.contains(
                                       RegExp(filtroRiferimenti!),
                                     )) {
                                   return InkWell(
@@ -141,8 +137,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                                       );
                                     },
                                     child: MiniInfoBox(
-                                      name: snapshot
-                                          .data![index].titolo_riferimento,
+                                      name: snapshot.data![index].titolo_riferimento,
                                       fontSize: 15,
                                     ),
                                   );
