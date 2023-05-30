@@ -1,9 +1,13 @@
+import 'package:alexandria/Model/Categoria.dart';
 import 'package:alexandria/Model/Riferimento.dart';
+import 'package:alexandria/Model/Utente.dart';
 import 'package:alexandria/Model/tipo_enum.dart';
 import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_navigation_bar.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
+import 'package:alexandria/components/mini_info_box.dart';
 import 'package:alexandria/constants.dart';
+import 'package:alexandria/globals.dart';
 import 'package:flutter/material.dart';
 
 class WriteRiferimentoScreen extends StatefulWidget {
@@ -16,6 +20,25 @@ class WriteRiferimentoScreen extends StatefulWidget {
 class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
   late bool isCreate;
   Riferimento? riferimento;
+  List<Riferimento> citazioni = [];
+  List<Categoria> categorie = [];
+  List<Utente> autori = [];
+  @override
+  void initState() {
+    super.initState();
+    allRiferimenti ??= networkHelper.findAllRiferimenti();
+    allCategories ??= networkHelper.findAllCategories();
+    allUtenti ??= networkHelper.findAllUsers();
+  }
+
+  Future<void> fillLists() async {
+    citazioni = (await networkHelper.getRiferimentiCitati(riferimento!))!;
+    autori = (await networkHelper
+        .getAutoriByRiferimento(riferimento!.id_riferimento))!;
+    // categorie = (await networkHelper.getCategoriaByRiferimento(riferimento!.id_riferimento))!;
+    //ASPETTO CHE GIORGIO SISTEMI
+  }
+
   @override
   Widget build(BuildContext context) {
     riferimento ??= ModalRoute.of(context)!.settings.arguments as Riferimento?;
@@ -23,6 +46,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
       riferimento ??= Riferimento.empty();
       isCreate = true;
     } else {
+      fillLists();
       isCreate = false;
     }
 
@@ -124,10 +148,211 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
+                        const Text('Categoria...'),
+                        AlexandriaRoundedButton(
+                          child: const Icon(Icons.edit_note_outlined),
+                          onPressed: () {
+                            showDialog<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder: (
+                                    BuildContext builder,
+                                    StateSetter setState,
+                                  ) {
+                                    return AlexandriaDialog(
+                                      content: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: kAlexandriaGreen,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 20,
+                                            top: 10,
+                                            right: 20,
+                                            bottom: 15,
+                                          ),
+                                          child: SizedBox(
+                                            height: 450,
+                                            width: 300,
+                                            child: FutureBuilder(
+                                              future: allCategories,
+                                              builder: (
+                                                context,
+                                                AsyncSnapshot<List<Categoria>?>
+                                                    snapshot,
+                                              ) {
+                                                if (!snapshot.hasData) {
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    itemCount:
+                                                        snapshot.data?.length,
+                                                    itemBuilder: (
+                                                      BuildContext build,
+                                                      int index,
+                                                    ) {
+                                                      final c =
+                                                          snapshot.data?[index];
+                                                      return MiniInfoBox(
+                                                        backgroundColor:
+                                                            categorie
+                                                                    .contains(c)
+                                                                ? Colors.grey
+                                                                : Colors.white,
+                                                        name: snapshot
+                                                            .data![index].nome,
+                                                        fontSize: 15,
+                                                        onTap: () {
+                                                          if (categorie
+                                                              .contains(c)) {
+                                                            categorie.remove(c);
+                                                          } else {
+                                                            categorie.add(c!);
+                                                          }
+                                                          setState(() {});
+                                                        },
+                                                        onTapIcon: () {
+                                                          Navigator
+                                                              .popAndPushNamed(
+                                                            context,
+                                                            'view_categoria',
+                                                            arguments: c,
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  );
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  color: Colors.white,
+                  width: 300,
+                  child: Material(
+                    elevation: 2,
+                    borderRadius: const BorderRadius.all(Radius.circular(30)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
                         const Text('Riferimento a...'),
                         AlexandriaRoundedButton(
                           child: const Icon(Icons.edit_note_outlined),
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder: (
+                                    BuildContext builder,
+                                    StateSetter setState,
+                                  ) {
+                                    return AlexandriaDialog(
+                                      content: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: kAlexandriaGreen,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 20,
+                                            top: 10,
+                                            right: 20,
+                                            bottom: 15,
+                                          ),
+                                          child: SizedBox(
+                                            height: 450,
+                                            width: 300,
+                                            child: FutureBuilder(
+                                              future: allRiferimenti,
+                                              builder: (
+                                                context,
+                                                AsyncSnapshot<
+                                                        List<Riferimento>?>
+                                                    snapshot,
+                                              ) {
+                                                if (!snapshot.hasData) {
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    itemCount:
+                                                        snapshot.data?.length,
+                                                    itemBuilder: (
+                                                      BuildContext build,
+                                                      int index,
+                                                    ) {
+                                                      final r =
+                                                          snapshot.data?[index];
+                                                      return MiniInfoBox(
+                                                        backgroundColor:
+                                                            citazioni
+                                                                    .contains(r)
+                                                                ? Colors.grey
+                                                                : Colors.white,
+                                                        name: snapshot
+                                                            .data![index]
+                                                            .titolo_riferimento,
+                                                        fontSize: 15,
+                                                        onTap: () {
+                                                          if (citazioni
+                                                              .contains(r)) {
+                                                            citazioni.remove(r);
+                                                          } else {
+                                                            citazioni.add(r!);
+                                                          }
+                                                          setState(() {});
+                                                        },
+                                                        onTapIcon: () {
+                                                          Navigator
+                                                              .popAndPushNamed(
+                                                            context,
+                                                            'view_riferimento',
+                                                            arguments: r,
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  );
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -741,7 +966,108 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 60,
+                  height: 10,
+                ),
+                Container(
+                  color: Colors.white,
+                  width: 300,
+                  child: Material(
+                    elevation: 2,
+                    borderRadius: const BorderRadius.all(Radius.circular(30)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Text('Autori...'),
+                        AlexandriaRoundedButton(
+                          child: const Icon(Icons.edit_note_outlined),
+                          onPressed: () {
+                            showDialog<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder: (
+                                    BuildContext builder,
+                                    StateSetter setState,
+                                  ) {
+                                    return AlexandriaDialog(
+                                      content: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: kAlexandriaGreen,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 20,
+                                            top: 10,
+                                            right: 20,
+                                            bottom: 15,
+                                          ),
+                                          child: SizedBox(
+                                            height: 450,
+                                            width: 300,
+                                            child: FutureBuilder(
+                                              future: allUtenti,
+                                              builder: (
+                                                context,
+                                                AsyncSnapshot<List<Utente>?>
+                                                    snapshot,
+                                              ) {
+                                                if (!snapshot.hasData) {
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    itemCount:
+                                                        snapshot.data?.length,
+                                                    itemBuilder: (
+                                                      BuildContext build,
+                                                      int index,
+                                                    ) {
+                                                      final u =
+                                                          snapshot.data?[index];
+                                                      return MiniInfoBox(
+                                                        backgroundColor:
+                                                            autori.contains(u)
+                                                                ? Colors.grey
+                                                                : Colors.white,
+                                                        name: snapshot
+                                                            .data![index].nome,
+                                                        fontSize: 15,
+                                                        onTap: () {
+                                                          if (autori
+                                                              .contains(u)) {
+                                                            autori.remove(u);
+                                                          } else {
+                                                            autori.add(u!);
+                                                          }
+                                                          setState(() {});
+                                                        },
+                                                      );
+                                                    },
+                                                  );
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
                 ),
                 AlexandriaRoundedButton(
                   padding: const EdgeInsets.only(
