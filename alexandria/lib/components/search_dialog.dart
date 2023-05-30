@@ -1,4 +1,6 @@
 import 'package:alexandria/Model/Categoria.dart';
+import 'package:alexandria/Model/Ricerca.dart';
+import 'package:alexandria/Model/Riferimento.dart';
 import 'package:alexandria/Model/tipo_enum.dart';
 import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
@@ -15,6 +17,7 @@ class SearchDialog extends StatefulWidget {
 }
 
 class _SearchDialogState extends State<SearchDialog> {
+  String testo = '';
   String? filtroCategoria;
   String filtro = 'titolo';
   Categoria? categoria;
@@ -37,7 +40,9 @@ class _SearchDialogState extends State<SearchDialog> {
               style: const TextStyle(color: Colors.black),
               keyboardType: TextInputType.emailAddress,
               textAlign: TextAlign.left,
-              onChanged: (value) {},
+              onChanged: (value) {
+                testo = value;
+              },
               decoration:
                   kInputDecoration.copyWith(hintText: 'Inserisci $filtro...'),
             ),
@@ -276,8 +281,33 @@ class _SearchDialogState extends State<SearchDialog> {
             Icons.search,
             size: 50,
           ),
-          onPressed: () {
+          onPressed: () async {
             // TODO(peppe): fai la ricerca e result_screen
+
+            showDialog<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlexandriaDialog(
+                    content: FutureBuilder(
+                        future: networkHelper.ricerca(
+                          filtro == 'titolo' ? testo : null,
+                          filtro == 'DOI' ? int.parse(testo) : null,
+                          filtro == 'autore' ? testo : null,
+                          categoria,
+                          tipi,
+                        ),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<List<Riferimento>?> snapshot) {
+                          if (snapshot.hasData) {
+                            Navigator.popAndPushNamed(context, 'results',
+                            arguments: Ricerca(testo ,snapshot.data));
+                            return Text('Apro la pagina...');
+                          } else {
+                            return Center(child: CircularProgressIndicator());
+                          }
+                        }),
+                  );
+                });
           },
         )
       ],
