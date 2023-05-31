@@ -25,7 +25,7 @@ Specifica dei Requisiti.
         
 Documento di Design del sistema.
 
-- [ ] Analisi dell’architettura con esplicita definizione dei criteri di design.  
+- [x] Analisi dell’architettura con esplicita definizione dei criteri di design.  
 - [ ] Descrizione/motivazione delle scelte tecnologiche adottate.  
 - [ ] Diagramma delle classi di design.  
 - [ ] Diagrammi di sequenza di design per i casi d’uso identificati al punto 1.a.iii.  
