@@ -25,9 +25,12 @@ class _AnimationScreenState extends State<AnimationScreen> {
         if (tempUser != null) {
           currentUser = tempUser;
           Navigator.pushNamed(context, 'home');
+        } else {
+          Navigator.pushNamed(context, 'welcome');
         }
+      } else {
+        Navigator.pushNamed(context, 'welcome');
       }
-      Navigator.pushNamed(context, 'welcome');
     });
   }
 
