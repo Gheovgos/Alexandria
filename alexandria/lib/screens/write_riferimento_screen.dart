@@ -23,6 +23,11 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
   List<Riferimento> citazioni = [];
   List<Categoria> categorie = [];
   List<Utente> autori = [];
+  String descrizione = '';
+  int? DOI;
+  int? edizione;
+  int? pagInizio;
+  int? pagFine;
   @override
   void initState() {
     super.initState();
@@ -473,11 +478,6 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                           AlexandriaRoundedButton(
                             child: const Icon(Icons.edit_note_outlined),
                             onPressed: () {
-                              var descrizione = '';
-                              int? DOI;
-                              int? edizione;
-                              int? pagInizio;
-                              int? pagFine;
                               showDialog<void>(
                                 context: context,
                                 builder: (BuildContext context) {
