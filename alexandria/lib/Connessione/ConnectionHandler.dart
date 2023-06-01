@@ -90,7 +90,7 @@ class NetworkHelper {
     return _rifnet.getRiferimentoById(rif_id);
   }
 
-  Future<List<Riferimento>> ricerca(String? titolo, int? doi, String? autore, Categoria? categoria, List<tipo_enum>? tipo) async {
+  Future<List<Riferimento>> ricerca(String? titolo, int? doi, String? autore, List<Categoria>? categoria, List<tipo_enum> tipo) async {
     return _rifnet.ricerca(titolo, doi, autore, categoria, tipo);
   }
 
@@ -100,6 +100,10 @@ class NetworkHelper {
 
   Future<List<Riferimento>?> getRiferimentoByUserId(int userID) async {
     return _rifnet.getRiferimentoByUserId(userID);
+  }
+
+  Future<List<Riferimento>> getRiferimentoBySTitolo(String titolo) async {
+    return _rifnet.getRiferimentoBySTitolo(titolo);
   }
 
   Future<List<Riferimento>?> getRiferimentoByCategoria(int categoriaID) async {
