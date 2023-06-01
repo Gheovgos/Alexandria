@@ -30,6 +30,8 @@ public class RiferimentoService {
 
     public List<Riferimento> getByRiferimento(@PathVariable int riferimento_associato) {return riferimentoRepository.getByRiferimento(riferimento_associato);}
 
+    public List<Riferimento> getBySTitolo(@PathVariable String titolo) {return riferimentoRepository.getBySTitolo(titolo);}
+
     public List<Riferimento> getRiferimentoCitanti(@PathVariable int riferimento_associato) {return riferimentoRepository.getRiferimentoCitanti(riferimento_associato);}
 
 
