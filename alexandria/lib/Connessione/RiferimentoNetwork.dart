@@ -312,35 +312,38 @@ class RiferimentoNetwork {
   }
 
   Future<Riferimento?> creaRiferimento(Riferimento riferimento, Categoria categoria, int userID, Riferimento? rifCitanto) async {
-    if(rifCitanto == null) {
-      _getMapping = "/create/"+userID.toString()+"/"+categoria.id_categoria.toString()+"/-1";
-    } else _getMapping = "/create/"+userID.toString()+"/"+categoria.id_categoria.toString()+"/"+rifCitanto.id_riferimento.toString();
+    if(_typeCheck(riferimento)) {
+      if(rifCitanto == null) {
+        _getMapping = "/create/"+userID.toString()+"/"+categoria.id_categoria.toString()+"/-1";
+      } else _getMapping = "/create/"+userID.toString()+"/"+categoria.id_categoria.toString()+"/"+rifCitanto.id_riferimento.toString();
 
 
 
-    _serverResponse = await post(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
-    }, body: jsonEncode(<String, dynamic> {
-      'id_Rif': 1000, //placeholder
-      'titolo': riferimento.titolo_riferimento,
-      'dataCreazione': DateUtils.dateOnly(riferimento.data_riferimento).toString().substring(0, 10),
-      'tipo': riferimento.tipo.toString().substring(10),
-      'url': riferimento.URL,
-      'doi': riferimento.DOI,
-      'on_line': riferimento.on_line,
-      'descrizione': riferimento.descr_riferimento,
-      'editore': riferimento.editore,
-      'isbn': riferimento.isbn,
-      'isnn': riferimento.isnn,
-      'luogo': riferimento.luogo,
-      'pag_inizio': riferimento.pag_inizio,
-      'pag_fine': riferimento.pag_fine,
-      'edizione': riferimento.edizione,
-    }),);
+      _serverResponse = await post(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
+      }, body: jsonEncode(<String, dynamic> {
+        'id_Rif': 1000, //placeholder
+        'titolo': riferimento.titolo_riferimento,
+        'dataCreazione': DateUtils.dateOnly(riferimento.data_riferimento).toString().substring(0, 10),
+        'tipo': riferimento.tipo.toString().substring(10),
+        'url': riferimento.URL,
+        'doi': riferimento.DOI,
+        'on_line': riferimento.on_line,
+        'descrizione': riferimento.descr_riferimento,
+        'editore': riferimento.editore,
+        'isbn': riferimento.isbn,
+        'isnn': riferimento.isnn,
+        'luogo': riferimento.luogo,
+        'pag_inizio': riferimento.pag_inizio,
+        'pag_fine': riferimento.pag_fine,
+        'edizione': riferimento.edizione,
+      }),);
 
-    print(_serverResponse.statusCode);
-    if(_serverResponse.statusCode == 200) {
-      return await getRiferimentoByNome(riferimento.titolo_riferimento);
-    } else return null;
+      print(_serverResponse.statusCode);
+      if(_serverResponse.statusCode == 200) {
+        return await getRiferimentoByNome(riferimento.titolo_riferimento);
+      } else return null;
+    }
+    else return null;
 
   }
 
@@ -523,6 +526,28 @@ class RiferimentoNetwork {
 
     if(_serverResponse.statusCode == 200) return true;
     else return false;
+  }
+
+  bool _typeCheck(Riferimento r) {
+    switch (r.tipo) {
+      case tipo_enum.Rivista:
+        if(r.DOI != null) return false;
+        else return true;
+      case tipo_enum.Libro:
+        if(r.DOI != null) return false;
+        else return true;
+      case tipo_enum.Fascicolo:
+        if(r.isbn != null || r.editore != null || r.edizione != null || r.isnn != null) return false;
+        else return true;
+      case tipo_enum.Conferenza:
+        if(r.isnn != null || r.isnn != null || r.pag_inizio != null || r.pag_fine != null || r.DOI != null || r.edizione != null || r.editore != null) return false;
+        else return true;
+      case tipo_enum.Articolo:
+        if(r.isbn != null || r.DOI != null) return false;
+        else return true;
+      case null:
+        return false;
+    }
   }
 
 
