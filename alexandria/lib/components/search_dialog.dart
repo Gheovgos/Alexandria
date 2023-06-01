@@ -259,19 +259,19 @@ class _SearchDialogState extends State<SearchDialog> {
           ),
           onPressed: () async {
             // TODO(peppe): fai la ricerca e result_screen
-
+            final ricerca = networkHelper.ricerca(
+              filtro == 'titolo' ? testo : null,
+              filtro == 'DOI' ? int.parse(testo) : null,
+              filtro == 'autore' ? testo : null,
+              categoria,
+              tipi,
+            );
             await showDialog<void>(
               context: context,
               builder: (BuildContext context) {
                 return AlexandriaDialog(
                   content: FutureBuilder(
-                    future: networkHelper.ricerca(
-                      filtro == 'titolo' ? testo : null,
-                      filtro == 'DOI' ? int.parse(testo) : null,
-                      filtro == 'autore' ? testo : null,
-                      categoria,
-                      tipi,
-                    ),
+                    future: ricerca,
                     builder: (
                       BuildContext context,
                       AsyncSnapshot<List<Riferimento>?> snapshot,

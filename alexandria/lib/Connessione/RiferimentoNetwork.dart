@@ -16,35 +16,70 @@ class RiferimentoNetwork {
   late Map<String, dynamic> _riferimentoMap;
   RiferimentoNetwork(this.url);
 
-  Future<List<Riferimento>> ricerca(String? titolo, int? doi, String? autore, Categoria? categoria, List<tipo_enum>? tipo) async {
+  Future<List<Riferimento>> ricerca(String? titolo, int? doi, String? autore, List<Categoria>? categoria, List<tipo_enum> tipo) async {
     late List<Riferimento> riferimenti = [];
-    if(titolo != null && doi == null && autore == null && categoria == null && tipo == null) {
+    late List<Riferimento> riferimentiCategoria = [];
+    late List<Riferimento> riferimentiTipo = [];
+
+    //Ricerca per titolo
+    if(titolo != null && doi == null && autore == null) {
+      riferimenti = await getRiferimentoBySTitolo(titolo) as List<Riferimento>;
+
+      for(Riferimento r in riferimenti) print(r.titolo_riferimento); //DEBUG
+
+      if(categoria != null)  {
+        for(Categoria c in categoria) riferimentiCategoria += await getRiferimentoByCategoria(c.id_categoria) as List<Riferimento>;
+        riferimenti = _filterList(riferimenti, riferimentiCategoria);
+
+        for(Riferimento r in riferimenti) print(r.titolo_riferimento); //DEBUG
+
+      }
+      for(tipo_enum t in tipo) riferimentiTipo += await getByTipo(t) as List<Riferimento>;
+
+      for(Riferimento r in _filterList(riferimenti, riferimentiTipo)) print(r.titolo_riferimento); //DEBUG
+
+
+      return _filterList(riferimenti, riferimentiTipo);
+    }
+
+    if(titolo != null && doi == null && autore == null && categoria == null) {
       riferimenti.add(await getRiferimentoByNome(titolo) as Riferimento);
       return riferimenti;
     }
-    if(titolo == null && doi != null && autore == null && categoria == null && tipo == null) {
+    if(titolo == null && doi != null && autore == null && categoria == null) {
       riferimenti.add(await getRiferimentoByDOI(doi) as Riferimento);
       return riferimenti;
     }
-    if(titolo == null && doi == null && autore != null && categoria == null && tipo == null) {
+    if(titolo == null && doi == null && autore != null && categoria == null) {
       riferimenti += await getRiferimentoByAutore(autore) as List<Riferimento>;
       return riferimenti;
     }
-    if(titolo == null && doi == null && autore == null && categoria != null && tipo == null) {
-      riferimenti.add(await getRiferimentoByCategoria(categoria.id_categoria) as Riferimento);
+    if(titolo == null && doi == null && autore == null && categoria != null) {
+      riferimenti.add(await getRiferimentoByCategoria(categoria[0].id_categoria) as Riferimento);
       return riferimenti;
     }
-    if(titolo == null && doi == null && autore == null && categoria == null && tipo != null) {
-      for(tipo_enum t in tipo) {
-        riferimenti += await getByTipo(t) as List<Riferimento>;
-      }
 
-      return riferimenti;
-    }
-    if(titolo == null && doi == null && autore == null && categoria == null && tipo == null)
+    if(titolo == null && doi == null && autore == null)
       print("ERROR: Nessun parametro inserito per la ricerca di un riferimento. Ritorno lista vuota");
 
       return riferimenti;
+  }
+
+  List<Riferimento> _filterList(List<Riferimento> primaLista, List<Riferimento> secondaLista) {
+    late int flag;
+    List<Riferimento> result = [];
+    for(int i = 0; i < primaLista.length; i++) {
+      flag = 0;
+      for(int j = 0; i < secondaLista.length; j++) {
+        if(primaLista[i].id_riferimento != secondaLista[j].id_riferimento)
+          flag++;
+      }
+      if(flag == secondaLista.length)
+        continue;
+      else result.add(primaLista[i]);
+    }
+
+    return result;
   }
 
   Future<Riferimento?> getRiferimentoById(int rif_id) async {
@@ -222,6 +257,26 @@ class RiferimentoNetwork {
 
     return riferimenti;
   }
+
+  Future<List<Riferimento>> getRiferimentoBySTitolo(String titolo) async {
+    late List<Riferimento> riferimenti = [];
+
+    _getMapping = "/get/getBySTitolo/"+titolo;
+
+    _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
+
+    if(_serverResponse.statusCode == 200) {
+      List<dynamic> riferimentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(var riferimentoJson in riferimentiJson) {
+        Riferimento f = Riferimento.fromJson(riferimentoJson as Map<String, dynamic>);
+        riferimenti.add(f);
+      }
+
+    }
+
+    return riferimenti;
+  }
+
 
   Future<List<Riferimento>> getCitazioniByUserId(int userID) async {
     late List<Riferimento> riferimenti = [];

@@ -34,8 +34,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
   Future<void> fillLists() async {
     citazioni = (await networkHelper.getRiferimentiCitati(riferimento!))!;
     autori = (await networkHelper.getAutoriByRiferimento(riferimento!.id_riferimento))!;
-    // categorie = (await networkHelper.getCategoriaByRiferimento(riferimento!.id_riferimento))!;
-    //ASPETTO CHE GIORGIO SISTEMI
+    categorie = await networkHelper.getCategoriaByRiferimento(riferimento!.id_riferimento);
   }
 
   @override
@@ -86,6 +85,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                   ),
                   onPressed: () async {
                     riferimento!.data_riferimento = (await showDatePicker(
+                      helpText: 'Scegli una data',
                       context: context,
                       initialDate: riferimento!.data_riferimento,
                       firstDate: DateTime(1500),

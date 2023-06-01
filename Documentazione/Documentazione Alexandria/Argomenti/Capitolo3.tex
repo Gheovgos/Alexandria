@@ -1,6 +1,13 @@
 \chapter{Design del Sistema}
 \raggedright{\section{Analisi dell'architettura e motivazioni}}
+L'architettura del software precedente era strutturata in maniera tale che fosse monolitica: era composta da tre strati gerarchici, dove il più basso, la View, era il \gls{layer} deputato al \gls{front end}, il layer centrale, i Model, era deputato alla gestione dei modelli richiesti dal sistema e infine il layer Database, che gestiva la manipolazione dei dati ed eventuale loro creazione, rimozione o modifica. \n
+In Alexandria, nella fase di progettazione dell'architettura del sistema, il compito più arduo è stato quello di mantenere il Database e riutilizzare il codice sorgente ma ristrutturare l'architettura per renderla più flessibile e non monolitica, in particolare di adottare l'architettura \gls{REST}. Il sistema infatti prevede più sottoinsiemi di layer che collettivamente compongono l'applicativo: il front end è composto da tre layer, uno per la comunicazione \gls{HTTP} con il server, uno per l'interfaccia grafica e un'altra per la modellazione delle classi richieste. Il layer per la comunicazione a sua volta è composto da un layer aggiuntivo per la corretta gestione dei dati, utilizzato solamente dal front end nella trasmissione dei dati o per la richiesta di lettura. L'intero sottosistema del front end è inglobato nell'architettura \gls{REST} che comprende anche il lato server. Quest'ultimo infatti rispecchia la rappresentazione di una architettura REST basata su HTTP, dove lo stato dell'applicazione e le funzionalità sono divisi in risorse, ogni risorsa è unica e indirizzabile usando sintassi universale per uso nei link ipertestuali. Tutte le risorse sono condivise come interfaccia uniforme per il trasferimento di stato tra front end e risorse, questo consiste in un insieme vincolato di operazioni ben definite, un insieme vincolato di contenuti, opzionalmente supportato da codice a richiesta.
 
-\raggedright{\section{Da spostare in cap 2}}
+\raggedright{\section{Descrizione e motivazioni delle scelte tecnologiche adottate}
+Flutter Spring Boot PostgresSQL Azure
+
+\raggedright{\section{Diagrammi delle classi di design}}
 
 \raggedright{\section{Diagrammi di sequenza di design}}
+
+\raggedright{\section{Codice sorgente e Dockerfile}}
