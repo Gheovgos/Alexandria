@@ -25,38 +25,38 @@ class RiferimentoNetwork {
     if(titolo != null && doi == null && autore == null) {
       riferimenti = await getRiferimentoBySTitolo(titolo) as List<Riferimento>;
 
-      for(Riferimento r in riferimenti) print(r.titolo_riferimento); //DEBUG
-
       if(categoria != null)  {
         for(Categoria c in categoria) riferimentiCategoria += await getRiferimentoByCategoria(c.id_categoria) as List<Riferimento>;
         riferimenti = _filterList(riferimenti, riferimentiCategoria);
-
-        for(Riferimento r in riferimenti) print(r.titolo_riferimento); //DEBUG
-
       }
       for(tipo_enum t in tipo) riferimentiTipo += await getByTipo(t) as List<Riferimento>;
-
-      for(Riferimento r in _filterList(riferimenti, riferimentiTipo)) print(r.titolo_riferimento); //DEBUG
-
 
       return _filterList(riferimenti, riferimentiTipo);
     }
 
-    if(titolo != null && doi == null && autore == null && categoria == null) {
-      riferimenti.add(await getRiferimentoByNome(titolo) as Riferimento);
-      return riferimenti;
+    //Ricerca per DOI
+    if(titolo == null && doi != null && autore == null) {
+      riferimenti = await getRiferimentoByDOI(doi) as List<Riferimento>;
+
+      if(categoria != null)  {
+        for(Categoria c in categoria) riferimentiCategoria += await getRiferimentoByCategoria(c.id_categoria) as List<Riferimento>;
+        riferimenti = _filterList(riferimenti, riferimentiCategoria);
+      }
+      for(tipo_enum t in tipo) riferimentiTipo += await getByTipo(t) as List<Riferimento>;
+
+      return _filterList(riferimenti, riferimentiTipo);
     }
-    if(titolo == null && doi != null && autore == null && categoria == null) {
-      riferimenti.add(await getRiferimentoByDOI(doi) as Riferimento);
-      return riferimenti;
-    }
-    if(titolo == null && doi == null && autore != null && categoria == null) {
-      riferimenti += await getRiferimentoByAutore(autore) as List<Riferimento>;
-      return riferimenti;
-    }
-    if(titolo == null && doi == null && autore == null && categoria != null) {
-      riferimenti.add(await getRiferimentoByCategoria(categoria[0].id_categoria) as Riferimento);
-      return riferimenti;
+    
+    if(titolo == null && doi == null && autore != null) {
+      riferimenti = await getRiferimentoByAutore(autore) as List<Riferimento>;
+
+      if(categoria != null)  {
+        for(Categoria c in categoria) riferimentiCategoria += await getRiferimentoByCategoria(c.id_categoria) as List<Riferimento>;
+        riferimenti = _filterList(riferimenti, riferimentiCategoria);
+      }
+      for(tipo_enum t in tipo) riferimentiTipo += await getByTipo(t) as List<Riferimento>;
+
+      return _filterList(riferimenti, riferimentiTipo);
     }
 
     if(titolo == null && doi == null && autore == null)
@@ -66,17 +66,14 @@ class RiferimentoNetwork {
   }
 
   List<Riferimento> _filterList(List<Riferimento> primaLista, List<Riferimento> secondaLista) {
-    late int flag;
     List<Riferimento> result = [];
-    for(int i = 0; i < primaLista.length; i++) {
-      flag = 0;
-      for(int j = 0; i < secondaLista.length; j++) {
-        if(primaLista[i].id_riferimento != secondaLista[j].id_riferimento)
-          flag++;
+
+    for(Riferimento primo in primaLista) {
+      for(Riferimento secondo in secondaLista) {
+
+        if(primo.id_riferimento == secondo.id_riferimento)
+          result.add(primo);
       }
-      if(flag == secondaLista.length)
-        continue;
-      else result.add(primaLista[i]);
     }
 
     return result;
