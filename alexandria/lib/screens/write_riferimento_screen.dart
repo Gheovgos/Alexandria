@@ -1036,7 +1036,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                         setState(() {});
                                                       },
                                                       decoration: kInputDecoration.copyWith(
-                                                        hintText: 'Cerca riferimento...',
+                                                        hintText: 'Cerca autori...',
                                                       ),
                                                     ),
                                                   ),
@@ -1073,6 +1073,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                                 u.cognome.contains(RegExp(filtroUtente!)) ||
                                                                 (u.nome + u.cognome).contains(RegExp(filtroUtente!))) {
                                                               return MiniInfoBox(
+                                                                icon: Icons.person,
                                                                 backgroundColor:
                                                                     autori.contains(u) ? Colors.grey : Colors.white,
                                                                 name: u!.nome + u.cognome,
@@ -1121,6 +1122,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       bottom: 30,
                     ),
                     onPressed: () async {
+                      print(isCreate);
                       await showDialog<void>(
                         context: context,
                         builder: (BuildContext context) {
