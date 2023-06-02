@@ -10,12 +10,19 @@ Le tecnologie usate durante lo sviluppo del progetto sono essenzialmente tre: Po
 \raggedright{\subsection{PostgreSQL}}
 PostgreSQL è un \gls{DBMS} di tipo relazionale in cui è possibile inserire dati, modificarli,  ricercarli ed eliminarli. E' inoltre fornito di funzionalità aggiuntive come la creazione di funzioni tramite PLPGSQL o SQL Dinamico. \\
 In Alexandria, il back-end è gestito in parte da PostgreSQL. Il motivo principale di questa scelta è la già nota esistenza di un Database apposito e le modifche pensate durante la fase di progettazione non erano tali da dover reimplementare interamente il Database. Non avrebbe avuto senso dover reimplementare lo stesso database con le stesse funzioni per un nuovo DBMS, perdendo così tempo per la progettazione dell'applicativo, anche perché il Database risultava perfettamente funzionante durante la fase di testing del vecchio applicativo. \\
-Il DBMS ci ha permesso di implementare funzioni apposite per determinate query, soprattutto per le relazioni ricorsive, tipi enumerativi e cast dedicati, funzionalità che magari non erano presenti in altri DBMS. 
-\raggedright{\subsection{Spring Boot}}
-\gls{Spring Boot} è un API Rest atto a implementare un applicativo capace di comunicare mediante archiettura REST. 
+Il DBMS ci ha permesso di implementare funzioni apposite per determinate query, soprattutto per le relazioni ricorsive, tipi enumerativi e cast dedicati, funzionalità che magari non erano presenti in altri DBMS. \newpage
+\raggedright{\subsection{Spring Boot JPA}}
+\gls{Spring Boot} è un API Rest atto a implementare un applicativo capace di comunicare mediante archiettura REST. \\
+In Alexandria, Spring Boot è stato uno strumento fondamentale per l'implementazione e la gestione delle risorse dal client al DBMS. Prima dell'implementazioen effettiva, abbiamo avuto dinanzi una vaste alternative di framework per l'implementazione di tale architettura. La scelta finale è però ricaduta su Spring Boot principalmente per due motivi: dato che l'applicativo originale era stato scritto in Java, ci è risultato più conveniente implementare Spring Boot su un eseguibile Java essendo possibile poter recuperare il codice sorgente originale e modificarlo all'occorrenza. Inoltre, Spring Boot offre la possibilità di effettuare query native, oltre a quelle di supporto: in tal modo abbiamo potuto riportare uno a uno le query già implementate nel vecchio sistema, senza doverle reimplementare. L'unico sforzo effettivo è stato quello di adattare le funzioni di query per ogni caso.  \\
 \raggedright{\subsection{Flutter}}
+Flutter è un framework open source per la creazione delle interfacce native per diversi sistemi operativi, tra cui Android. \\
+Una delle motivazioni principali della scelta dell'utilizzo di Flutter è la sua enorme semplicità nella creazione e modifica delle interfacce grafiche. Inoltre, è fornito nativamente il supporto per la maggior parte dei sistemi operativi in uso, così, se si dovesse esportare Alexandria su nuove piattaforme, basterà solamente compilare il codice sorgente e distribuire l'applicativo. In caso di modifiche alle schermate in base alle esigenze del dispositivo che lo richiede, basterà modificare i metodi appositi, senza dover ricorrere ad artifizi particolari. Infine, essendo un linguaggio particolarmente simile a Java, è stato semplice dover esportare il codice originale in Flutter, modificando però opportunamente il codice in caso di incompatibilità.
 
 \raggedright{\section{Diagrammi delle classi di design}}
+
+        \begin{center}
+            \includegraphics[width=1.0\textwidth]{Immagini/Alexandria/UML Design.PNG} 
+        \end{center}
 
 \raggedright{\section{Diagrammi di sequenza di design}}
 
