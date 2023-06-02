@@ -287,6 +287,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                                 } else {
                                                   if (snapshot.data!) {
                                                     currentUser = newUser;
+                                                    if (rememberMe) {
+                                                      preferences
+                                                        ..setString('username', currentUser.username)
+                                                        ..setString('password', currentUser.password);
+                                                    }
                                                     return const Center(child: Text('Dati aggiornati!'));
                                                   } else {
                                                     return const Center(child: Text("Errore nell'aggiornare dati!"));
