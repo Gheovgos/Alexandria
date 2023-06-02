@@ -21,7 +21,7 @@ class AlexandriaNavigationBar extends StatelessWidget {
             case 1:
               Navigator.popAndPushNamed(context, 'my_riferimenti');
             case 2:
-              Navigator.popAndPushNamed(context, 'write_riferimento');
+              Navigator.popAndPushNamed(context, 'write_riferimento',arguments: null);
             case 3:
               Navigator.popAndPushNamed(context, 'create_categoria');
             case 4:
