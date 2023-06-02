@@ -154,8 +154,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         } else {
                           currentUser = user;
                           if (rememberMe) {
-                            await preferences.setString('username', user.username);
-                            await preferences.setString('password', user.password);
+                            await preferences.setString('username', username);
+                            await preferences.setString('password', password);
                           }
                           Navigator.pushNamed(context, 'home');
                         }
