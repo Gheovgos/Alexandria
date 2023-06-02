@@ -26,8 +26,8 @@ Specifica dei Requisiti.
 Documento di Design del sistema.
 
 - [x] Analisi dell’architettura con esplicita definizione dei criteri di design.  
-- [ ] Descrizione/motivazione delle scelte tecnologiche adottate.  
-- [ ] Diagramma delle classi di design.  
+- [x] Descrizione/motivazione delle scelte tecnologiche adottate.  
+- [x] Diagramma delle classi di design.  
 - [ ] Diagrammi di sequenza di design per i casi d’uso identificati al punto 1.a.iii.  
         
 - [ ] Codice Sorgente sviluppato, comprensivo di eventuale Dockerfile. 
