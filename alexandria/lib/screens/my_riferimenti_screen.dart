@@ -183,7 +183,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                 20,
               ),
               onPressed: () {
-                // TODO(peppe): apri write_riferimento
+                Navigator.pushNamed(context, 'write_riferimento', arguments: snapshot.data![index]);
               },
               child: const Text('Modifica'),
             ),
