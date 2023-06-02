@@ -3,7 +3,6 @@ import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,8 +14,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late String username;
-  late String password;
+  String username = '';
+  String password = '';
   bool rememberMe = false;
   @override
   Widget build(BuildContext context) {
@@ -133,37 +132,33 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       onPressed: () async {
-                        if (kReleaseMode) {
-                          final user = await networkHelper.login(username, password);
-                          if (user == null) {
-                            showDialog<void>(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return const AlexandriaDialog(
-                                  title: Text('Errore!'),
-                                  content: SizedBox(
-                                    height: 150,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text('Credenziali errate!'),
-                                      ],
-                                    ),
+                        final user = await networkHelper.login(username, password);
+                        if (user == null || username.trim() == '' || password.trim() == '') {
+                          await showDialog<void>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const AlexandriaDialog(
+                                title: Text('Errore!'),
+                                content: SizedBox(
+                                  height: 150,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('Credenziali errate!'),
+                                    ],
                                   ),
-                                );
-                              },
-                            );
-                          } else {
-                            currentUser = user;
-                            if(rememberMe)
-                              {
-                                await preferences.setString('username', user.username);
-                                await preferences.setString('password', user.password);
-                              }
-                            Navigator.pushNamed(context, 'home');
+                                ),
+                              );
+                            },
+                          );
+                        } else {
+                          currentUser = user;
+                          if (rememberMe) {
+                            await preferences.setString('username', user.username);
+                            await preferences.setString('password', user.password);
                           }
+                          Navigator.pushNamed(context, 'home');
                         }
-                        Navigator.pushNamed(context, 'home');
                       },
                     ),
                   ],
