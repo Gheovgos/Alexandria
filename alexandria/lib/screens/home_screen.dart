@@ -44,7 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           GestureDetector(
             onTap: () {
-              // TODO(peppe): pulsante Ricerca
               showDialog<void>(
                 context: context,
                 builder: (BuildContext context) => const SearchDialog(),
@@ -78,7 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           GestureDetector(
             onTap: () {
-              // TODO(peppe): pulsante Cronologia
               showDialog<void>(
                 context: context,
                 builder: (BuildContext context) => const HistoryDialog(),
