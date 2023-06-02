@@ -2,7 +2,6 @@ import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
 import 'package:alexandria/globals.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -245,47 +244,45 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       cognome != '' &&
                                       email != '' &&
                                       username != '') {
-                                    if (kReleaseMode) {
-                                      final user = await networkHelper.registrazione(
-                                        username,
-                                        password,
-                                        nome,
-                                        cognome,
-                                        email,
-                                      );
-                                      if (user == null) {
-                                        showDialog<void>(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return const AlexandriaDialog(
-                                              title: Text('Errore!'),
-                                              content: SizedBox(
-                                                height: 150,
-                                                child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      'Utente già esistente!',
-                                                    ),
-                                                  ],
-                                                ),
+                                    final user = await networkHelper.registrazione(
+                                      username,
+                                      password,
+                                      nome,
+                                      cognome,
+                                      email,
+                                    );
+                                    if (user == null) {
+                                      showDialog<void>(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const AlexandriaDialog(
+                                            title: Text('Errore!'),
+                                            content: SizedBox(
+                                              height: 150,
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    'Utente già esistente!',
+                                                  ),
+                                                ],
                                               ),
-                                            );
-                                          },
-                                        );
-                                      } else {
-                                        currentUser = user;
-                                        if (rememberMe) {
-                                          await preferences.setString('username', user.username);
-                                          await preferences.setString('password', user.password);
-                                        }
-
-                                        currentUser = user;
-                                        Navigator.pushNamed(
-                                          context,
-                                          'home',
-                                        );
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    } else {
+                                      currentUser = user;
+                                      if (rememberMe) {
+                                        await preferences.setString('username', user.username);
+                                        await preferences.setString('password', user.password);
                                       }
+
+                                      currentUser = user;
+                                      Navigator.pushNamed(
+                                        context,
+                                        'home',
+                                      );
                                     }
                                   } else {
                                     showDialog<void>(
