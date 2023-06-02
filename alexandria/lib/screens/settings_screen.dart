@@ -1,3 +1,5 @@
+import 'package:alexandria/Model/Utente.dart';
+import 'package:alexandria/components/alexandria_dialog.dart';
 import 'package:alexandria/components/alexandria_navigation_bar.dart';
 import 'package:alexandria/components/alexandria_rounded_button.dart';
 import 'package:alexandria/constants.dart';
@@ -271,12 +273,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         cognome != '' &&
                                         email != '' &&
                                         username != '') {
-                                      currentUser.nome = nome;
-                                      currentUser.cognome = cognome;
-                                      currentUser.email = email;
-                                      currentUser.password = password;
-                                      networkHelper.updateUser(currentUser);
-                                      // TODO(peppe): finire qui, mostrare dialog
+                                      final newUser =
+                                          Utente(currentUser.user_ID, username, nome, cognome, email, password);
+                                      await showDialog<void>(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlexandriaDialog(
+                                            content: FutureBuilder(
+                                              future: networkHelper.updateUser(currentUser),
+                                              builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                                                if (!snapshot.hasData) {
+                                                  return const Center(child: CircularProgressIndicator());
+                                                } else {
+                                                  if (snapshot.data!) {
+                                                    currentUser = newUser;
+                                                    return const Center(child: Text('Dati aggiornati!'));
+                                                  } else {
+                                                    return const Center(child: Text("Errore nell'aggiornare dati!"));
+                                                  }
+                                                }
+                                              },
+                                            ),
+                                          );
+                                        },
+                                      );
                                     }
                                   },
                                   child: const Text(
