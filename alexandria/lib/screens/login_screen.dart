@@ -19,6 +19,11 @@ class _LoginScreenState extends State<LoginScreen> {
   bool rememberMe = false;
   @override
   Widget build(BuildContext context) {
+    final skip = ModalRoute.of(context)!.settings.arguments as bool?;
+    if(skip!)
+      {
+        Navigator.pushNamed(context, 'home');
+      }
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(

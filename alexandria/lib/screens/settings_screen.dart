@@ -256,7 +256,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               children: [
                                 AlexandriaRoundedButton(
                                   onPressed: () {
-                                    Navigator.popUntil(context, ModalRoute.withName('animation'));
+                                    Navigator.popUntil(context, ModalRoute.withName('login'));
                                   },
                                   child: const Text(
                                     'Logout',
