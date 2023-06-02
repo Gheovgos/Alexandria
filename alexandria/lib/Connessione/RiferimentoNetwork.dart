@@ -347,31 +347,70 @@ class RiferimentoNetwork {
 
   }
 
-  Future<bool> aggiornaRiferimento(Riferimento riferimento) async {
+  Future<bool> aggiornaRiferimento(Riferimento riferimento,List<Categoria> oldCategoria, List<Categoria> newCategoria,
+      List<Riferimento> oldCitazione, List<Riferimento> newCitazione,
+      List<Utente> oldAutore, List<Utente> newAutore) async {
     _getMapping = "/update";
+    if(_typeCheck(riferimento)) {
+      _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
+      }, body: jsonEncode(<String, dynamic> {
+        'id_Rif': riferimento.id_riferimento,
+        'titolo': riferimento.titolo_riferimento,
+        'dataCreazione': riferimento.data_riferimento.toString().substring(0, 10),
+        'tipo': riferimento.tipo.toString().substring(10),
+        'url': riferimento.URL,
+        'doi': riferimento.DOI,
+        'on_line': riferimento.on_line,
+        'descrizione': riferimento.descr_riferimento,
+        'editore': riferimento.editore,
+        'isbn': riferimento.isbn,
+        'isnn': riferimento.isnn,
+        'luogo': riferimento.luogo,
+        'pag_inizio': riferimento.pag_inizio,
+        'pag_fine': riferimento.pag_fine,
+        'edizione': riferimento.edizione,
+      }),);
 
-    _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
-    }, body: jsonEncode(<String, dynamic> {
-      'id_Rif': riferimento.id_riferimento,
-      'titolo': riferimento.titolo_riferimento,
-      'dataCreazione': riferimento.data_riferimento.toString().substring(0, 10),
-      'tipo': riferimento.tipo.toString().substring(10),
-      'url': riferimento.URL,
-      'doi': riferimento.DOI,
-      'on_line': riferimento.on_line,
-      'descrizione': riferimento.descr_riferimento,
-      'editore': riferimento.editore,
-      'isbn': riferimento.isbn,
-      'isnn': riferimento.isnn,
-      'luogo': riferimento.luogo,
-      'pag_inizio': riferimento.pag_inizio,
-      'pag_fine': riferimento.pag_fine,
-      'edizione': riferimento.edizione,
-    }),);
+      if(_serverResponse.statusCode == 200) {
+        int i = 0;
+        bool categoriaBool = true;
+        bool citazioneBool = true;
+        bool autoreBool = true;
 
-    if(_serverResponse.statusCode == 200) {
-      return true;
-    } else return false;
+        if(oldCategoria.length == newCategoria.length) {
+          for(Categoria c in oldCategoria) {
+            if(!(await aggiornaRiferimentoCategoria(riferimento, c.id_categoria, newCategoria[i].id_categoria) as bool)) {
+              categoriaBool = false;
+            }
+            i++;
+          }
+        } else categoriaBool = false;
+        i = 0;
+
+        if(oldCitazione.length == newCitazione.length) {
+          for(Riferimento c in oldCitazione) {
+            if(!(await aggiornaRiferimentoCitazione(riferimento, c.id_riferimento, newCitazione[i].id_riferimento) as bool)) {
+              citazioneBool = false;
+            }
+            i++;
+          }
+        } else citazioneBool = false;
+        i = 0;
+        if(oldAutore.length == newAutore.length) {
+          for(Utente a in oldAutore) {
+            if(!(await aggiornaRiferimentoAutore(riferimento, a.user_ID, newAutore[i].user_ID) as bool)) {
+              autoreBool = false;
+            }
+            i++;
+          }
+        } else citazioneBool = false;
+
+        return categoriaBool && citazioneBool && autoreBool;
+
+      } else return false;
+    }
+    else return false;
+
   }
 
   Future<bool> aggiornaRiferimentoAutore(Riferimento riferimento, int oldAutoreID, int newAutoreID) async {
