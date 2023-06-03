@@ -18,12 +18,33 @@ In Alexandria, Spring Boot è stato uno strumento fondamentale per l'implementaz
 Flutter è un framework open source per la creazione delle interfacce native per diversi sistemi operativi, tra cui Android. \\
 Una delle motivazioni principali della scelta dell'utilizzo di Flutter è la sua enorme semplicità nella creazione e modifica delle interfacce grafiche. Inoltre, è fornito nativamente il supporto per la maggior parte dei sistemi operativi in uso, così, se si dovesse esportare Alexandria su nuove piattaforme, basterà solamente compilare il codice sorgente e distribuire l'applicativo. In caso di modifiche alle schermate in base alle esigenze del dispositivo che lo richiede, basterà modificare i metodi appositi, senza dover ricorrere ad artifizi particolari. Infine, essendo un linguaggio particolarmente simile a Java, è stato semplice dover esportare il codice originale in Flutter, modificando però opportunamente il codice in caso di incompatibilità.
 
-\raggedright{\section{Diagrammi delle classi di design}}
+\newpage
 
+\raggedright{\section{Diagramma delle classi di design}}
+Alla luce di quanto è stato detto, viene riporrtato il seguente diagramma delle classi di Design del front-end: 
+\\~\\
         \begin{center}
-            \includegraphics[width=1.0\textwidth]{Immagini/Alexandria/UML Design.PNG} 
+            \includegraphics[width=.95\textwidth]{Immagini/Alexandria/UML Design.PNG} 
         \end{center}
+L'applicativo consta in tre package principali, uno per gli Screen (GUI), uno per la connettività e infine uno per rappresentare i Model. Inoltre sono presenti classi globali come appunto \textit{globals} che fugnono da intermediario fra i package o per l'avvio dell'applicativo. In questo diagramma sono stati rappresentati in dettaglio le relazioni fra le classi e gli attributi, ma sono stati omessi i tipi di ritorno e i parametri dei metodi in maniera tale da rendere l'intero diagramma più leggibile. Se si volesse consultare in dettaglio ogni metodo utilizzato, si consiglia di leggere la sezione \hyperref[sourceCode]{apposita}. Inoltre, sono stati omessi dal diagramma anche le classi che implementano widget o componenti particolari per l'interfaccia grafica: essendo solamente classi di supporto, abbiamo considerato ridondante la loro presenza nel Class Diagram soprastante, anche perché le classi contenute nel package Screen sono autoesplicative e fanno intendere il loro funzionamento anche senza specificare le componenti che sfruttano per la loro corretta esecuzione. Infine, sono stati omessi gli attributi degli screen e i loro metodi essendo la maggior parte attributi nativi e solamente tecnici che non contribuiscono alla comprensione della visione complessiva del sistema.
+
 
 \raggedright{\section{Diagrammi di sequenza di design}}
+Di seguito vengono riportati i Sequence Diagram per i casi d'uso identificato nella \hyperref[casiUso]{sezione 2.3}. \\~\\
+\raggedright{\subsection{Ricerca Riferimenti}}
+        \begin{center}
+            \includegraphics[width=1.0\textwidth]{Immagini/Alexandria/SequenceDesignRicerca.PNG} 
+        \end{center}
+Il seguente Sequence Diagram mostra le entità coinvolte durante la fase di ricerca. Da notare che sono state incluse entrambi i sottosistemi front-end e back-end. Nota: il metodo \textit{getRiferimentoByX} sta a indicare diversi metodi che hanno lo stesso nome ma che si differenziano per X, ovvero il tipo di ricerca che viene effettuata (per Titolo, per Autore o per DOI).
+\raggedright{\subsection{Creazione Riferimento}}
+        \begin{center}
+            \includegraphics[width=1.0\textwidth]{Immagini/Alexandria/SequenceDesignCreazione.PNG} 
+        \end{center}
+\raggedright{\subsection{Modifica Riferimento}}
+\raggedright{\subsection{Creazione Categoria}}
+
+
+
 
 \raggedright{\section{Codice sorgente e Dockerfile}}
+\label{sourceCode}
