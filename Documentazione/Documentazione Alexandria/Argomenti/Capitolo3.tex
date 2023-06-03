@@ -40,11 +40,21 @@ Il seguente Sequence Diagram mostra le entità coinvolte durante la fase di rice
         \begin{center}
             \includegraphics[width=1.0\textwidth]{Immagini/Alexandria/SequenceDesignCreazione.PNG} 
         \end{center}
+Il seguente Sequence Diagram mostra le classi coinvolte durante la fase di creazione di un riferimento. Il sequence assume un comportamento diverso in base al metodo typeCheck: se l'utente inserisce valori non validi per un determinato tipo, allora l'operazione di post non viene effettuata. 
 \raggedright{\subsection{Modifica Riferimento}}
+        \begin{center}
+            \includegraphics[width=1.0\textwidth]{Immagini/Alexandria/SequenceDesignModifica.PNG} 
+        \end{center}
+Il seguente Sequence Diagram mostra le classi coinvolte e i metodi coinvolti durante la fase di modifica di un riferimento. Anche in questo caso, si può notare un comportamento differente in base al check basato sui valori inseriti dall'utente. Inoltre, viene restituito un AND fra gli i vari valori modificati: se un valore, per esempio Autore, viene modificato, si effettua un controllo effettivo sulla modifica e viene restituito un AND con il riferimento modificato che restituirà il risultato finale.
 \raggedright{\subsection{Creazione Categoria}}
-
+        \begin{center}
+            \includegraphics[width=1.0\textwidth]{Immagini/Alexandria/SequenceDesignCategoria.PNG} 
+        \end{center}
+Il seguente Sequence Diagram mostra le classi coinvolte durante la fase di creazione di una categoria. Non è un'operazione complessa data la natura semplice della categoria stessa, quindi non vengono effettuati particolari check sugli attributi. 
 
 
 
 \raggedright{\section{Codice sorgente e Dockerfile}}
 \label{sourceCode}
+E' possibile visionare e consultare l'intero codice sorgente, dockerfile e file vari presso la seguente \href{https://github.com/Gheovgos/Alexandria/tree/main}{repository (testo cliccabile).} In particolare, è possibile consultare il codice sorgente dell'applicativo del front-end in \href{https://github.com/Gheovgos/Alexandria/tree/main/alexandria}{questa subdirectory}, il codice sorgente del back-end in \href{https://github.com/Gheovgos/Alexandria/tree/main/alexandria%20server}{questa subdirectory} e dockerfile in \href{url}{questa subdirectory}. \\
+Abbiamo cercato di rendere l'applicativo più modulare possibile in maniera tale che le modifiche da apportare in futuro, se necessario, saranno più facili da effettuare e per poter integrare nuove funzionalità con semplicità nel codice. Inoltre sono presenti nella nostra API funzioni non utilizzate per offrire supporto in futuro, se necessario.
