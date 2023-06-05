@@ -20,7 +20,7 @@ class _SearchDialogState extends State<SearchDialog> {
   String testo = '';
   String? filtroCategoria;
   String filtro = 'titolo';
-  Categoria? categoria;
+  List<Categoria> categorie = [];
   List<tipo_enum> tipi = [tipo_enum.Articolo];
   @override
   void initState() {
@@ -178,15 +178,17 @@ class _SearchDialogState extends State<SearchDialog> {
                             return ListView.builder(
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext build, int index) {
-                                if (filtroCategoria == null ||
-                                    snapshot.data![index].nome.contains(RegExp(filtroCategoria!))) {
+                                final c = snapshot.data![index];
+                                if (filtroCategoria == null || c.nome.contains(RegExp(filtroCategoria!))) {
                                   return MiniInfoBox(
-                                    backgroundColor: categoria == snapshot.data![index] ? Colors.grey : Colors.white,
-                                    name: snapshot.data![index].nome,
+                                    backgroundColor: categorie.contains(c) ? Colors.grey : Colors.white,
+                                    name: c.nome,
                                     fontSize: 15,
                                     onTap: () {
-                                      if (categoria != snapshot.data![index]) {
-                                        categoria = snapshot.data![index];
+                                      if (categorie.contains(c)) {
+                                        categorie.remove(c);
+                                      } else {
+                                        categorie.add(c);
                                       }
                                       setState(() {});
                                     },
@@ -258,12 +260,11 @@ class _SearchDialogState extends State<SearchDialog> {
             size: 50,
           ),
           onPressed: () async {
-            // TODO(peppe): fai la ricerca e result_screen
             final ricerca = networkHelper.ricerca(
               filtro == 'titolo' ? testo : null,
               filtro == 'DOI' ? int.parse(testo) : null,
               filtro == 'autore' ? testo : null,
-              categoria,
+              categorie,
               tipi,
             );
             await showDialog<void>(

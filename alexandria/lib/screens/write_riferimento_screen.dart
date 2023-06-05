@@ -20,9 +20,17 @@ class WriteRiferimentoScreen extends StatefulWidget {
 class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
   late bool isCreate;
   Riferimento? riferimento;
+  List<Riferimento> oldCitazioni = [];
+  List<Categoria> oldCategorie = [];
+  List<Utente> oldAutori = [];
   List<Riferimento> citazioni = [];
   List<Categoria> categorie = [];
   List<Utente> autori = [];
+  String descrizione = '';
+  int? DOI;
+  int? edizione;
+  int? pagInizio;
+  int? pagFine;
   @override
   void initState() {
     super.initState();
@@ -33,8 +41,11 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
 
   Future<void> fillLists() async {
     citazioni = (await networkHelper.getRiferimentiCitati(riferimento!))!;
+    oldCitazioni = citazioni;
     autori = (await networkHelper.getAutoriByRiferimento(riferimento!.id_riferimento))!;
+    oldAutori = autori;
     categorie = await networkHelper.getCategoriaByRiferimento(riferimento!.id_riferimento);
+    oldCategorie = categorie;
   }
 
   @override
@@ -473,11 +484,6 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                           AlexandriaRoundedButton(
                             child: const Icon(Icons.edit_note_outlined),
                             onPressed: () {
-                              var descrizione = '';
-                              int? DOI;
-                              int? edizione;
-                              int? pagInizio;
-                              int? pagFine;
                               showDialog<void>(
                                 context: context,
                                 builder: (BuildContext context) {
@@ -1030,7 +1036,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                         setState(() {});
                                                       },
                                                       decoration: kInputDecoration.copyWith(
-                                                        hintText: 'Cerca riferimento...',
+                                                        hintText: 'Cerca autori...',
                                                       ),
                                                     ),
                                                   ),
@@ -1067,6 +1073,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                                 u.cognome.contains(RegExp(filtroUtente!)) ||
                                                                 (u.nome + u.cognome).contains(RegExp(filtroUtente!))) {
                                                               return MiniInfoBox(
+                                                                icon: Icons.person,
                                                                 backgroundColor:
                                                                     autori.contains(u) ? Colors.grey : Colors.white,
                                                                 name: u!.nome + u.cognome,
@@ -1115,13 +1122,14 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       bottom: 30,
                     ),
                     onPressed: () async {
+                      print(isCreate);
                       await showDialog<void>(
                         context: context,
                         builder: (BuildContext context) {
                           return AlexandriaDialog(
                             content: FutureBuilder(
                               future: isCreate ? creaRiferimento() : aggiornaRiferimento(),
-                              builder: (BuildContext builder, AsyncSnapshot<Riferimento?> snapshot) {
+                              builder: (BuildContext builder, AsyncSnapshot<dynamic> snapshot) {
                                 if (snapshot.hasData) {
                                   if (snapshot.data == null) {
                                     return const Center(child: Text('Errore!'));
@@ -1170,7 +1178,15 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
     return null;
   }
 
-  Future<Riferimento?> aggiornaRiferimento() async {
-    // TODO(peppe): da completare, codice complesso
+  Future<bool> aggiornaRiferimento() async {
+    return networkHelper.aggiornaRiferimento(
+      riferimento!,
+      oldCategorie,
+      categorie,
+      oldCitazioni,
+      citazioni,
+      oldAutori,
+      autori,
+    );
   }
 }

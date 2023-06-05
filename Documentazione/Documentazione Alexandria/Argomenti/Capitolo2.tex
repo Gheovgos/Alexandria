@@ -27,6 +27,7 @@ Un altro target di utenti sono le case editrici che intendono gestire le varie e
 Considerando tutti i possibili utenti, il team si impegna di poter soddisfare tutte le esigenze degli usufruitori e di poter garantire un'eccellente usabilità e affidabilità del sistema.
 
 \raggedright{\section{Casi d'uso significativi nel dettaglio}}
+\label{casiUso}
 Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando il template di Cockburn. La sezione \textit{Descrizione}, presente in tutte le tabelle, indica lo scenario di successo. Le estensioni indicano uno scenario di falllimento o tipi di errore. Lo scenario sottovariante indica una variante del caso di successo.
 \raggedright{\subsection{Caso d'uso: Ricerca Riferimenti}}
 
@@ -416,7 +417,7 @@ Alla luce delle nuove funzionalità da inserire, vengono apportate queste nuove 
             \includegraphics[width=.90\textwidth]{Immagini/Alexandria/UML DB.PNG} 
         \end{center}
         
-La tabella utente ha nuovi attributi: \textit{password hashed}, che contiene la password hashata, \textit{salt}, che servirà per comporre l'hash nel Database e \textit{username}, che serve agli utenti per effettuare il login. Inoltre vengono rimossi gli attributi di \textit{Data Inizio Validità} e \textit{Data Fine Validità} poiché non venivano utilizzati all'interno dell'applicativo e non viene richiesto il suo scopo. Per il resto, la tabella ci è sembrata pressoché pertinente allo sviluppo della nuova app reingegnerizzata.
+La tabella utente ha nuovi attributi: \textit{password hashed}, che contiene la password hashata, \textit{salt}, che servirà per comporre l'hash nel Database e \textit{username}, che serve agli utenti per effettuare il login. Inoltre vengono rimossi gli attributi di \textit{Data Inizio Validità} e \textit{Data Fine Validità} poiché non venivano utilizzati all'interno dell'applicativo e non viene richiesto il suo scopo. Inoltre, alla tabella di associazione \textit{Autore-Riferimento} vengono rimossi gli attributi \textit{Ordine} e \textit{Descrizione Utente}, il primo perché ininfluente ai fini dell'implementazione del Database, il secondo perché ridondante. Per il resto, l'intero sistema ci è sembrato pressoché pertinente allo sviluppo della nuova app reingegnerizzata.
 
 \raggedright{\section{Diagrammi di Sequenza}}
 Di seguito vengono riportati i Sequence Diagram di design di due funzionalità: la ricerca di un autore e la creazione di un riferimento. 
