@@ -1,7 +1,9 @@
 package bibliografia.Repository;
 
 import bibliografia.Model.Utente;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -26,5 +28,11 @@ public interface UtenteRepository extends JpaRepository<Utente, Integer> {
 
     @Query(value = "SELECT * FROM utente WHERE username = :username AND password_hashed = :password_hashed", nativeQuery = true)
     Utente login(@Param("username") String username, @Param("password_hashed") String password_hashed);
+
+    @Modifying
+    @Query(value = "UPDATE utente SET username = :newUsername, nome = :newNome, cognome = :newCognome, email = :newEmail, password_hashed = :newPassword WHERE user_id = :userID ;", nativeQuery = true)
+    @Transactional
+    void updateUser(@Param("userID") int userID, @Param("newUsername") String newUsername, @Param("newNome") String newNome,
+                    @Param("newCognome") String newCognome, @Param("newEmail") String newEmail, @Param("newPassword") String newPassword);
 
  }
