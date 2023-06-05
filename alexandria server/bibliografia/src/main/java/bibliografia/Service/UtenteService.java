@@ -35,11 +35,9 @@ public class UtenteService {
 
     public void update(Utente utente)
     {
-        if(utente.getPassword_hashed() != getUtenteById(utente.getUser_ID()).getPassword_hashed()) {
-            Integer hash = utente.getPassword_hashed().hashCode() ^ utente.getSalt().hashCode();
-            utente.setPassword_hashed(hash.toString());
-        } else utente.setPassword_hashed(getUtenteById(utente.getUser_ID()).getPassword_hashed());
-        System.out.println(utente.getUsername()+utente.getEmail()+utente.getUser_ID());
+        System.out.println(utente.getPassword_hashed());
+        Integer hash = utente.getPassword_hashed().hashCode() ^ utente.getSalt().hashCode();
+        utente.setPassword_hashed(hash.toString());
         utenteRepository.updateUser(utente.getUser_ID(), utente.getUsername(), utente.getNome(), utente.getCognome(), utente.getEmail(), utente.getPassword_hashed());
     }
 
