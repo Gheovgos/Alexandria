@@ -18,8 +18,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   late String cognome;
   late String email;
   late String username;
+  late String vecchiaPassword;
   late String password;
   late String confermaPassword;
+  bool mostraVecchiaPassword = false;
   bool mostraPassword = false;
   bool mostraConfermaPassword = false;
   bool rememberMe = false;
@@ -167,6 +169,44 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                const Text('Vecchia Password'),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Material(
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(33),
+                                        ),
+                                        elevation: 5,
+                                        child: TextField(
+                                          obscureText: !mostraVecchiaPassword,
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                          keyboardType: TextInputType.visiblePassword,
+                                          textAlign: TextAlign.left,
+                                          onChanged: (value) {
+                                            vecchiaPassword = value;
+                                          },
+                                          decoration: kInputDecoration,
+                                        ),
+                                      ),
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          mostraPassword = !mostraPassword;
+                                        });
+                                      },
+                                      icon: const Icon(Icons.remove_red_eye),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                                 const Text('Password'),
                                 Row(
                                   children: [
@@ -276,7 +316,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         nome != '' &&
                                         cognome != '' &&
                                         email != '' &&
-                                        username != '') {
+                                        username != '' &&
+                                        (await networkHelper.login(currentUser.username, vecchiaPassword) != null)) {
                                       final newUser =
                                           Utente(currentUser.user_ID, username, nome, cognome, email, password);
                                       await showDialog<void>(
