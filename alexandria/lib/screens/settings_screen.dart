@@ -81,13 +81,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   elevation: 5,
                                   child: TextField(
                                     style: const TextStyle(color: Colors.black),
-                                    keyboardType: TextInputType.emailAddress,
+                                    controller: TextEditingController(text: currentUser.nome),
+                                    keyboardType: TextInputType.name,
                                     textAlign: TextAlign.left,
                                     onChanged: (value) {
                                       nome = value;
                                     },
                                     decoration: kInputDecoration.copyWith(
-                                      hintText: currentUser.nome,
+                                      hintText: 'Nome...',
                                     ),
                                   ),
                                 )
@@ -104,13 +105,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   elevation: 5,
                                   child: TextField(
                                     style: const TextStyle(color: Colors.black),
-                                    keyboardType: TextInputType.name,
+                                    controller: TextEditingController(text: currentUser.cognome),
+                                    keyboardType: TextInputType.text,
                                     textAlign: TextAlign.left,
                                     onChanged: (value) {
                                       cognome = value;
                                     },
                                     decoration: kInputDecoration.copyWith(
-                                      hintText: currentUser.cognome,
+                                      hintText: 'Cognome...',
                                     ),
                                   ),
                                 )
@@ -126,12 +128,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   ),
                                   elevation: 5,
                                   child: TextField(
+                                    controller: TextEditingController(text: currentUser.email),
                                     keyboardType: TextInputType.emailAddress,
                                     onChanged: (value) {
                                       email = value;
                                     },
                                     decoration: kInputDecoration.copyWith(
-                                      hintText: currentUser.email,
+                                      hintText: 'Email...',
                                     ),
                                   ),
                                 )
@@ -147,6 +150,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   ),
                                   elevation: 5,
                                   child: TextField(
+                                    controller: TextEditingController(text: currentUser.username),
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.name,
                                     textAlign: TextAlign.left,
@@ -154,7 +158,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       username = value;
                                     },
                                     decoration: kInputDecoration.copyWith(
-                                      hintText: currentUser.username,
+                                      hintText: 'Username...',
                                     ),
                                   ),
                                 )
@@ -177,7 +181,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
-                                          keyboardType: TextInputType.emailAddress,
+                                          keyboardType: TextInputType.visiblePassword,
                                           textAlign: TextAlign.left,
                                           onChanged: (value) {
                                             password = value;
@@ -215,7 +219,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
-                                          keyboardType: TextInputType.emailAddress,
+                                          keyboardType: TextInputType.visiblePassword,
                                           textAlign: TextAlign.left,
                                           onChanged: (value) {
                                             confermaPassword = value;
