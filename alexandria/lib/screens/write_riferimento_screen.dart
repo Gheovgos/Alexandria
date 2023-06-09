@@ -819,6 +819,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                         ),
                                         onPressed: () {
                                           riferimento!.URL = tempURL;
+                                          riferimento!.on_line = tempURL.trim().isNotEmpty;
                                           Navigator.pop(context);
                                         },
                                       ),
