@@ -94,7 +94,7 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                       height: 150,
                       width: 250,
                       child: FutureBuilder(
-                        future: networkHelper.getRiferimentoByCategoria(categoria.user_id),
+                        future: networkHelper.getRiferimentoByCategoria(categoria.id_categoria),
                         builder: (
                           BuildContext context,
                           AsyncSnapshot<List<Riferimento>?> snapshot,
