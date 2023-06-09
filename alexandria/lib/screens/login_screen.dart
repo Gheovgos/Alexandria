@@ -19,8 +19,10 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final skip = ModalRoute.of(context)!.settings.arguments as bool?;
-      if (skip!) {
-        Navigator.pushNamed(context, 'home');
+      if (skip != null) {
+        if (skip) {
+          Navigator.pushNamed(context, 'home');
+        }
       }
     });
   }
