@@ -83,5 +83,9 @@ public class Categoria {
         this.user_id.setUser_ID(id);
     }
 
-    public Integer getUser_id() {return this.user_id.getUser_ID(); }
+    public Integer getUser_id() {
+        if(this.user_id != null)
+        return this.user_id.getUser_ID();
+        else return null;
+    }
 }

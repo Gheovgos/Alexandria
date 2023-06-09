@@ -188,12 +188,13 @@ public class RiferimentoController {
     }
 
 
-    @PostMapping("/create/{userID}/{categoriaID}/{riferimentoCitatoID}")
+    @PostMapping("/create/{userID}/{categoriaID}")
     @ResponseBody
-    public void create(@RequestBody RiferimentoDto riferimentoDto, @PathVariable int userID, @PathVariable int categoriaID, @PathVariable Integer riferimentoCitatoID)
+    public void create(@RequestBody RiferimentoDto riferimentoDto, @PathVariable int userID, @PathVariable int categoriaID)
     {
+        System.out.println("+++++++++++++++Sono entrato!!!");
         Riferimento riferimento = convertEntity(riferimentoDto);
-        riferimentoService.create(riferimento, userID, categoriaID, riferimentoCitatoID);
+        riferimentoService.create(riferimento, userID, categoriaID);
     }
 
     @PutMapping("/update")

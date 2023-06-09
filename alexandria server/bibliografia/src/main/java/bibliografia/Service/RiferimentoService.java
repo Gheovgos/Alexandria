@@ -77,13 +77,12 @@ public class RiferimentoService {
         riferimentoRepository.insertRiferimentoCitante(riferimento.getIdRiferimento(), citanteID);
     }
 
-    public void create(Riferimento riferimento, int userID, int categoriaID, Integer riferimentoCitatoID)
+    public void create(Riferimento riferimento, int userID, int categoriaID)
     {
         if(riferimentoRepository.save(riferimento) != null) {
             Integer rif_id = getRiferimentoByNome(riferimento.getTitolo_riferimento()).getIdRiferimento();
             riferimentoRepository.insertAutoreRiferimento(rif_id, userID);
             riferimentoRepository.insertCategoriaRiferimento(rif_id, categoriaID);
-            if(riferimentoCitatoID != -1) riferimentoRepository.insertRiferimentoCitante(riferimentoCitatoID, rif_id);
         }
     }
 

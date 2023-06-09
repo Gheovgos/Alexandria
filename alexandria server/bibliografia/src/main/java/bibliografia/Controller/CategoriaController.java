@@ -32,8 +32,10 @@ public class CategoriaController {
     {
         List<Categoria> categorie = categoriaService.getCategorie();
         List<CategoriaDto> categorieDto = new ArrayList<>();
-        for(Categoria categoria : categorie)
+        for(Categoria categoria : categorie) {
             categorieDto.add(convertDto(categoria));
+        }
+
 
         return categorieDto;
     }
