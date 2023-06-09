@@ -248,14 +248,12 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                 20,
               ),
               onPressed: () async {
-                if ((await myRiferimenti)!.remove(r)) {
-                  unawaited(
-                    networkHelper.deleteRiferimento(
-                      r,
-                    ),
-                  );
-                  setState(() {});
+                final veraLista = await myRiferimenti;
+                if (veraLista!.remove(r)) {
+                  unawaited(networkHelper.deleteRiferimento(r));
                 }
+                setState(() {});
+                Navigator.pop(context);
               },
               child: const Text(
                 'Conferma',
