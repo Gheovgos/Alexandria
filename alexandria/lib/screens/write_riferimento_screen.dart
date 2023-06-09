@@ -1167,20 +1167,20 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
   }
 
   Future<Riferimento?> creaRiferimento() async {
-    final r = await networkHelper.createRiferimento(riferimento!, categorie[0], currentUser.user_ID);
-    if (r != null) {
-      for (var i = 1; i < categorie.length; ++i) {
-        await networkHelper.aggiungiCategoria(r, categorie[i].id_categoria);
-      }
-      for (var i = 0; i < citazioni.length; ++i) {
-        await networkHelper.aggiungiCitazione(r, citazioni[i].id_riferimento);
-      }
-      for (var i = 0; i < autori.length; ++i) {
-        await networkHelper.aggiungiAutore(r, autori[i].user_ID);
-      }
-      (await allRiferimenti)?.add(r);
-      return r;
-    }
+    // final r = await networkHelper.createRiferimento(riferimento!, categorie[0], currentUser.user_ID);
+    // if (r != null) {
+    //   for (var i = 1; i < categorie.length; ++i) {
+    //     await networkHelper.aggiungiCategoria(r, categorie[i].id_categoria);
+    //   }
+    //   for (var i = 0; i < citazioni.length; ++i) {
+    //     await networkHelper.aggiungiCitazione(r, citazioni[i].id_riferimento);
+    //   }
+    //   for (var i = 0; i < autori.length; ++i) {
+    //     await networkHelper.aggiungiAutore(r, autori[i].user_ID);
+    //   }
+    //   (await allRiferimenti)?.add(r);
+    //   return r;
+    // }
     return null;
   }
 
