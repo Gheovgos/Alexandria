@@ -1074,7 +1074,8 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                                   RegExp(filtroUtente!),
                                                                 ) ||
                                                                 u.cognome.contains(RegExp(filtroUtente!)) ||
-                                                                (u.nome + u.cognome).contains(RegExp(filtroUtente!))) {
+                                                                '${u.nome} ${u.cognome}'
+                                                                    .contains(RegExp(filtroUtente!))) {
                                                               return MiniInfoBox(
                                                                 icon: Icons.person,
                                                                 backgroundColor:
