@@ -42,7 +42,7 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                   color: Colors.white,
                 ),
                 child: SizedBox(
-                  width: 250,
+                  width: 200,
                   child: Text(
                     categoria!.nome,
                     textAlign: TextAlign.start,
