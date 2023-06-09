@@ -195,7 +195,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          mostraPassword = !mostraPassword;
+                                          mostraVecchiaPassword = !mostraVecchiaPassword;
                                         });
                                       },
                                       icon: const Icon(Icons.remove_red_eye),
