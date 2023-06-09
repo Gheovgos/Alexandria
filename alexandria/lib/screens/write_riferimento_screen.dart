@@ -1133,6 +1133,9 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                             content: FutureBuilder(
                               future: isCreate! ? creaRiferimento() : aggiornaRiferimento(),
                               builder: (BuildContext builder, AsyncSnapshot<dynamic> snapshot) {
+                                if (snapshot.hasError) {
+                                  return const Center(child: Text('Errore!'));
+                                }
                                 if (snapshot.hasData) {
                                   if (snapshot.data == null) {
                                     return const Center(child: Text('Errore!'));
