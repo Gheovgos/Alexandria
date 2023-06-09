@@ -18,7 +18,7 @@ class WriteRiferimentoScreen extends StatefulWidget {
 }
 
 class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
-  late bool isCreate;
+  bool? isCreate;
   Riferimento? riferimento;
   List<Riferimento> oldCitazioni = [];
   List<Categoria> oldCategorie = [];
@@ -50,15 +50,16 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    riferimento ??= ModalRoute.of(context)!.settings.arguments as Riferimento?;
-    if (riferimento == null) {
-      riferimento ??= Riferimento.empty();
-      isCreate = true;
-    } else {
-      fillLists();
-      isCreate = false;
+    if (isCreate == null) {
+      riferimento ??= ModalRoute.of(context)!.settings.arguments as Riferimento?;
+      if (riferimento == null) {
+        riferimento ??= Riferimento.empty();
+        isCreate = true;
+      } else {
+        fillLists();
+        isCreate = false;
+      }
     }
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: kAlexandriaGreen,
@@ -818,6 +819,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                         ),
                                         onPressed: () {
                                           riferimento!.URL = tempURL;
+                                          riferimento!.on_line = tempURL.trim().isNotEmpty;
                                           Navigator.pop(context);
                                         },
                                       ),
@@ -1066,12 +1068,14 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                             int index,
                                                           ) {
                                                             final u = snapshot.data?[index];
-                                                            if (filtroUtente == null ||
+                                                            if (u?.user_ID != currentUser.user_ID ||
+                                                                filtroUtente == null ||
                                                                 u!.nome.contains(
                                                                   RegExp(filtroUtente!),
                                                                 ) ||
                                                                 u.cognome.contains(RegExp(filtroUtente!)) ||
-                                                                (u.nome + u.cognome).contains(RegExp(filtroUtente!))) {
+                                                                '${u.nome} ${u.cognome}'
+                                                                    .contains(RegExp(filtroUtente!))) {
                                                               return MiniInfoBox(
                                                                 icon: Icons.person,
                                                                 backgroundColor:
@@ -1122,19 +1126,21 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       bottom: 30,
                     ),
                     onPressed: () async {
-                      print(isCreate);
                       await showDialog<void>(
                         context: context,
                         builder: (BuildContext context) {
                           return AlexandriaDialog(
                             content: FutureBuilder(
-                              future: isCreate ? creaRiferimento() : aggiornaRiferimento(),
+                              future: isCreate! ? creaRiferimento() : aggiornaRiferimento(),
                               builder: (BuildContext builder, AsyncSnapshot<dynamic> snapshot) {
+                                if (snapshot.hasError) {
+                                  return const Center(child: Text('Errore!'));
+                                }
                                 if (snapshot.hasData) {
                                   if (snapshot.data == null) {
                                     return const Center(child: Text('Errore!'));
                                   } else {
-                                    return Center(child: Text('Riferimento ${isCreate ? 'creato!' : 'aggiornato!'}'));
+                                    return Center(child: Text('Riferimento ${isCreate! ? 'creato!' : 'aggiornato!'}'));
                                   }
                                 } else {
                                   return const Center(child: CircularProgressIndicator());
@@ -1161,7 +1167,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
   }
 
   Future<Riferimento?> creaRiferimento() async {
-    final r = await networkHelper.createRiferimento(riferimento!, categorie[0], currentUser.user_ID, null);
+    final r = await networkHelper.createRiferimento(riferimento!, categorie[0], currentUser.user_ID);
     if (r != null) {
       for (var i = 1; i < categorie.length; ++i) {
         await networkHelper.aggiungiCategoria(r, categorie[i].id_categoria);

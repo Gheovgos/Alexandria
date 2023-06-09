@@ -311,13 +311,9 @@ class RiferimentoNetwork {
     return riferimenti;
   }
 
-  Future<Riferimento?> creaRiferimento(Riferimento riferimento, Categoria categoria, int userID, Riferimento? rifCitanto) async {
+  Future<Riferimento?> creaRiferimento(Riferimento riferimento, Categoria categoria, int userID) async {
     if(_typeCheck(riferimento)) {
-      if(rifCitanto == null) {
-        _getMapping = "/create/"+userID.toString()+"/"+categoria.id_categoria.toString()+"/-1";
-      } else _getMapping = "/create/"+userID.toString()+"/"+categoria.id_categoria.toString()+"/"+rifCitanto.id_riferimento.toString();
-
-
+      _getMapping = "/create/"+userID.toString()+"/"+categoria.id_categoria.toString();
 
       _serverResponse = await post(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
       }, body: jsonEncode(<String, dynamic> {

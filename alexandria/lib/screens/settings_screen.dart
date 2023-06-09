@@ -18,8 +18,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
   late String cognome;
   late String email;
   late String username;
+  late String vecchiaPassword;
   late String password;
   late String confermaPassword;
+  bool mostraVecchiaPassword = false;
   bool mostraPassword = false;
   bool mostraConfermaPassword = false;
   bool rememberMe = false;
@@ -81,13 +83,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   elevation: 5,
                                   child: TextField(
                                     style: const TextStyle(color: Colors.black),
-                                    keyboardType: TextInputType.emailAddress,
+                                    controller: TextEditingController(text: currentUser.nome),
+                                    keyboardType: TextInputType.name,
                                     textAlign: TextAlign.left,
                                     onChanged: (value) {
                                       nome = value;
                                     },
                                     decoration: kInputDecoration.copyWith(
-                                      hintText: currentUser.nome,
+                                      hintText: 'Nome...',
                                     ),
                                   ),
                                 )
@@ -104,13 +107,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   elevation: 5,
                                   child: TextField(
                                     style: const TextStyle(color: Colors.black),
-                                    keyboardType: TextInputType.name,
+                                    controller: TextEditingController(text: currentUser.cognome),
+                                    keyboardType: TextInputType.text,
                                     textAlign: TextAlign.left,
                                     onChanged: (value) {
                                       cognome = value;
                                     },
                                     decoration: kInputDecoration.copyWith(
-                                      hintText: currentUser.cognome,
+                                      hintText: 'Cognome...',
                                     ),
                                   ),
                                 )
@@ -126,12 +130,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   ),
                                   elevation: 5,
                                   child: TextField(
+                                    controller: TextEditingController(text: currentUser.email),
                                     keyboardType: TextInputType.emailAddress,
                                     onChanged: (value) {
                                       email = value;
                                     },
                                     decoration: kInputDecoration.copyWith(
-                                      hintText: currentUser.email,
+                                      hintText: 'Email...',
                                     ),
                                   ),
                                 )
@@ -147,6 +152,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   ),
                                   elevation: 5,
                                   child: TextField(
+                                    controller: TextEditingController(text: currentUser.username),
                                     style: const TextStyle(color: Colors.black),
                                     keyboardType: TextInputType.name,
                                     textAlign: TextAlign.left,
@@ -154,9 +160,47 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       username = value;
                                     },
                                     decoration: kInputDecoration.copyWith(
-                                      hintText: currentUser.username,
+                                      hintText: 'Username...',
                                     ),
                                   ),
+                                )
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text('Vecchia Password'),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Material(
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(33),
+                                        ),
+                                        elevation: 5,
+                                        child: TextField(
+                                          obscureText: !mostraVecchiaPassword,
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                          keyboardType: TextInputType.visiblePassword,
+                                          textAlign: TextAlign.left,
+                                          onChanged: (value) {
+                                            vecchiaPassword = value;
+                                          },
+                                          decoration: kInputDecoration,
+                                        ),
+                                      ),
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          mostraPassword = !mostraPassword;
+                                        });
+                                      },
+                                      icon: const Icon(Icons.remove_red_eye),
+                                    )
+                                  ],
                                 )
                               ],
                             ),
@@ -177,7 +221,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
-                                          keyboardType: TextInputType.emailAddress,
+                                          keyboardType: TextInputType.visiblePassword,
                                           textAlign: TextAlign.left,
                                           onChanged: (value) {
                                             password = value;
@@ -215,7 +259,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                           style: const TextStyle(
                                             color: Colors.black,
                                           ),
-                                          keyboardType: TextInputType.emailAddress,
+                                          keyboardType: TextInputType.visiblePassword,
                                           textAlign: TextAlign.left,
                                           onChanged: (value) {
                                             confermaPassword = value;
@@ -272,7 +316,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         nome != '' &&
                                         cognome != '' &&
                                         email != '' &&
-                                        username != '') {
+                                        username != '' &&
+                                        (await networkHelper.login(currentUser.username, vecchiaPassword) != null)) {
                                       final newUser =
                                           Utente(currentUser.user_ID, username, nome, cognome, email, password);
                                       await showDialog<void>(
