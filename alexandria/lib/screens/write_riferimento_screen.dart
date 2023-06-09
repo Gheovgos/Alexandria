@@ -1068,7 +1068,8 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                             int index,
                                                           ) {
                                                             final u = snapshot.data?[index];
-                                                            if (filtroUtente == null ||
+                                                            if (u?.user_ID != currentUser.user_ID ||
+                                                                filtroUtente == null ||
                                                                 u!.nome.contains(
                                                                   RegExp(filtroUtente!),
                                                                 ) ||
