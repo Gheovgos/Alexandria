@@ -16,6 +16,7 @@ class UtenteNetwork {
 
   Future<Utente?> login(String username, String password) async {
     _getMapping = "/login/"+username+"/"+password;
+    print(url+_requestMapping+_getMapping);
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {

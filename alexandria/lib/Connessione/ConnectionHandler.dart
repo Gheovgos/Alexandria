@@ -111,8 +111,9 @@ class NetworkHelper {
     return _rifnet.getRiferimentoByCategoria(categoriaID);
   }
 
-  Future<Riferimento?> createRiferimento(Riferimento riferimento, Categoria categoria, int userID, Riferimento? rifCitanto) async {
-    return _rifnet.creaRiferimento(riferimento, categoria, userID, rifCitanto);
+  Future<Riferimento?> createRiferimento(Riferimento? riferimento, Categoria categoria, int userID) async {
+    if(riferimento == null) return null;
+    else return _rifnet.creaRiferimento(riferimento, categoria, userID);
   }
 
   Future<bool> aggiungiAutore(Riferimento riferimento, int autoreID) async {
