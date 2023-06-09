@@ -60,7 +60,6 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
         isCreate = false;
       }
     }
-    print(isCreate);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: kAlexandriaGreen,
@@ -1125,7 +1124,6 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       bottom: 30,
                     ),
                     onPressed: () async {
-                      print(isCreate);
                       await showDialog<void>(
                         context: context,
                         builder: (BuildContext context) {
