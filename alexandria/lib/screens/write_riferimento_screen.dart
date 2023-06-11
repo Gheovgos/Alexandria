@@ -580,6 +580,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                             ),
                                             elevation: 5,
                                             child: TextField(
+                                              enabled: riferimento?.tipo == tipo_enum.Fascicolo,
                                               style: const TextStyle(
                                                 color: Colors.black,
                                               ),
@@ -591,7 +592,9 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                               },
                                               decoration: kInputDecoration.copyWith(
                                                 hintText: 'Inserisci DOI...',
-                                                fillColor: kInfoBoxColor,
+                                                fillColor: riferimento?.tipo == tipo_enum.Fascicolo
+                                                    ? kInfoBoxColor
+                                                    : Colors.grey,
                                               ),
                                             ),
                                           ),
@@ -625,6 +628,8 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                             ),
                                             elevation: 5,
                                             child: TextField(
+                                              enabled: riferimento?.tipo != tipo_enum.Fascicolo &&
+                                                  riferimento?.tipo != tipo_enum.Conferenza,
                                               style: const TextStyle(
                                                 color: Colors.black,
                                               ),
@@ -637,7 +642,10 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                               },
                                               decoration: kInputDecoration.copyWith(
                                                 hintText: 'Inserisci edizione...',
-                                                fillColor: kInfoBoxColor,
+                                                fillColor: riferimento?.tipo != tipo_enum.Fascicolo &&
+                                                        riferimento?.tipo != tipo_enum.Conferenza
+                                                    ? kInfoBoxColor
+                                                    : Colors.grey,
                                               ),
                                             ),
                                           ),
@@ -673,6 +681,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                 ),
                                                 elevation: 5,
                                                 child: TextField(
+                                                  enabled: riferimento?.tipo != tipo_enum.Conferenza,
                                                   style: const TextStyle(
                                                     color: Colors.black,
                                                   ),
@@ -692,7 +701,9 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                       ],
                                                     ),
                                                     hintText: 'Pagina inizio...',
-                                                    fillColor: kInfoBoxColor,
+                                                    fillColor: riferimento?.tipo != tipo_enum.Conferenza
+                                                        ? kInfoBoxColor
+                                                        : Colors.grey,
                                                     constraints: const BoxConstraints.tightFor(width: 130),
                                                   ),
                                                 ),
@@ -709,6 +720,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                 ),
                                                 elevation: 5,
                                                 child: TextField(
+                                                  enabled: riferimento?.tipo != tipo_enum.Conferenza,
                                                   style: const TextStyle(
                                                     color: Colors.black,
                                                   ),
@@ -727,7 +739,9 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                       ],
                                                     ),
                                                     hintText: 'Pagina fine...',
-                                                    fillColor: kInfoBoxColor,
+                                                    fillColor: riferimento?.tipo != tipo_enum.Conferenza
+                                                        ? kInfoBoxColor
+                                                        : Colors.grey,
                                                     constraints: const BoxConstraints.tightFor(width: 130),
                                                   ),
                                                 ),
@@ -889,6 +903,8 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 borderRadius: const BorderRadius.all(Radius.circular(33)),
                                 elevation: 5,
                                 child: TextField(
+                                  enabled: riferimento?.tipo != tipo_enum.Fascicolo &&
+                                      riferimento?.tipo != tipo_enum.Conferenza,
                                   style: const TextStyle(color: Colors.black),
                                   controller: TextEditingController(text: riferimento?.editore),
                                   keyboardType: TextInputType.emailAddress,
@@ -898,6 +914,10 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                   },
                                   decoration: kInputDecoration.copyWith(
                                     hintText: 'Inserisci editore...',
+                                    fillColor: riferimento?.tipo != tipo_enum.Fascicolo &&
+                                            riferimento?.tipo != tipo_enum.Conferenza
+                                        ? kTextBoxColor
+                                        : Colors.grey,
                                   ),
                                 ),
                               )
@@ -957,6 +977,8 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 borderRadius: const BorderRadius.all(Radius.circular(33)),
                                 elevation: 5,
                                 child: TextField(
+                                  enabled: riferimento?.tipo != tipo_enum.Fascicolo &&
+                                      riferimento?.tipo != tipo_enum.Conferenza,
                                   style: const TextStyle(color: Colors.black),
                                   controller: TextEditingController(text: riferimento?.isnn),
                                   keyboardType: TextInputType.emailAddress,
@@ -965,7 +987,11 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                     riferimento!.isnn = value;
                                   },
                                   decoration: kInputDecoration.copyWith(
-                                    hintText: 'Inserisci ISNN...',
+                                    hintText: 'Inserisci ISSN...',
+                                    fillColor: riferimento?.tipo != tipo_enum.Fascicolo &&
+                                            riferimento?.tipo != tipo_enum.Conferenza
+                                        ? kTextBoxColor
+                                        : Colors.grey,
                                   ),
                                 ),
                               )
@@ -987,6 +1013,9 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 borderRadius: const BorderRadius.all(Radius.circular(33)),
                                 elevation: 5,
                                 child: TextField(
+                                  enabled: riferimento?.tipo != tipo_enum.Fascicolo &&
+                                      riferimento?.tipo != tipo_enum.Conferenza &&
+                                      riferimento?.tipo != tipo_enum.Articolo,
                                   style: const TextStyle(color: Colors.black),
                                   controller: TextEditingController(text: riferimento?.isbn),
                                   keyboardType: TextInputType.emailAddress,
@@ -996,6 +1025,11 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                   },
                                   decoration: kInputDecoration.copyWith(
                                     hintText: 'Inserisci ISBN...',
+                                    fillColor: riferimento?.tipo != tipo_enum.Fascicolo &&
+                                            riferimento?.tipo != tipo_enum.Conferenza &&
+                                            riferimento?.tipo != tipo_enum.Articolo
+                                        ? kTextBoxColor
+                                        : Colors.grey,
                                   ),
                                 ),
                               )
