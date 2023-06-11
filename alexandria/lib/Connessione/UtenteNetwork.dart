@@ -116,6 +116,8 @@ class UtenteNetwork {
   Future<bool> updateUser(Utente newUtente) async {
     _getMapping = "/update";
 
+    print(newUtente.password);
+    print(newUtente.username);
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String> { 'Content-Type': 'application/json; charset=UTF-8', },
       body: jsonEncode(<String, dynamic> {
         'user_ID': newUtente.user_ID,
@@ -124,7 +126,7 @@ class UtenteNetwork {
         'cognome': newUtente.cognome,
         'email': newUtente.email,
         'password_hashed': newUtente.password,
-        'salt': newUtente.salt,}), );
+        'salt': (await getUtenteById(newUtente.user_ID))?.salt}), );
     if(_serverResponse.statusCode == 200) return true;
     else return false;
   }
