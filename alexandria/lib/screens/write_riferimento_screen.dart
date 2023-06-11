@@ -418,6 +418,8 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Articolo
                             ? () {
+                          riferimento?.isbn = null;
+                          riferimento?.DOI = null;
                                 setState(() {
                                   riferimento?.tipo = tipo_enum.Articolo;
                                 });
@@ -428,6 +430,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Libro
                             ? () {
+                          riferimento?.DOI = null;
                                 setState(() {
                                   riferimento?.tipo = tipo_enum.Libro;
                                 });
@@ -438,6 +441,10 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Fascicolo
                             ? () {
+                          riferimento?.isbn = null;
+                          riferimento?.editore = null;
+                          riferimento?.edizione = null;
+                          riferimento?.isnn = null;
                                 setState(() {
                                   riferimento!.tipo = tipo_enum.Fascicolo;
                                 });
@@ -453,6 +460,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Rivista
                             ? () {
+                          riferimento?.DOI = null;
                                 setState(() {
                                   riferimento!.tipo = tipo_enum.Rivista;
                                 });
@@ -463,6 +471,13 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Conferenza
                             ? () {
+                          riferimento?.isbn = null;
+                          riferimento?.editore = null;
+                          riferimento?.edizione = null;
+                          riferimento?.isnn = null;
+                          riferimento?.pag_inizio = null;
+                          riferimento?.pag_fine = null;
+                          riferimento?.DOI = null;
                                 setState(() {
                                   riferimento!.tipo = tipo_enum.Conferenza;
                                 });
