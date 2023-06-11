@@ -425,7 +425,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 });
                               }
                             : null,
-                        child: const Text('Articoli'),
+                        child: const Text('Articolo'),
                       ),
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Libro
@@ -436,7 +436,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 });
                               }
                             : null,
-                        child: const Text('Libri'),
+                        child: const Text('Libro'),
                       ),
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Fascicolo
@@ -450,7 +450,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 });
                               }
                             : null,
-                        child: const Text('Fascicoli'),
+                        child: const Text('Fascicolo'),
                       ),
                     ],
                   ),
@@ -466,7 +466,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 });
                               }
                             : null,
-                        child: const Text('Riviste'),
+                        child: const Text('Rivista'),
                       ),
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Conferenza
@@ -483,7 +483,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 });
                               }
                             : null,
-                        child: const Text('Conferenze'),
+                        child: const Text('Conferenza'),
                       ),
                     ],
                   ),
