@@ -418,8 +418,8 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Articolo
                             ? () {
-                          riferimento?.isbn = null;
-                          riferimento?.DOI = null;
+                                riferimento?.isbn = null;
+                                riferimento?.DOI = null;
                                 setState(() {
                                   riferimento?.tipo = tipo_enum.Articolo;
                                 });
@@ -430,7 +430,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Libro
                             ? () {
-                          riferimento?.DOI = null;
+                                riferimento?.DOI = null;
                                 setState(() {
                                   riferimento?.tipo = tipo_enum.Libro;
                                 });
@@ -441,10 +441,10 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Fascicolo
                             ? () {
-                          riferimento?.isbn = null;
-                          riferimento?.editore = null;
-                          riferimento?.edizione = null;
-                          riferimento?.isnn = null;
+                                riferimento?.isbn = null;
+                                riferimento?.editore = null;
+                                riferimento?.edizione = null;
+                                riferimento?.isnn = null;
                                 setState(() {
                                   riferimento!.tipo = tipo_enum.Fascicolo;
                                 });
@@ -460,7 +460,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Rivista
                             ? () {
-                          riferimento?.DOI = null;
+                                riferimento?.DOI = null;
                                 setState(() {
                                   riferimento!.tipo = tipo_enum.Rivista;
                                 });
@@ -471,13 +471,13 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Conferenza
                             ? () {
-                          riferimento?.isbn = null;
-                          riferimento?.editore = null;
-                          riferimento?.edizione = null;
-                          riferimento?.isnn = null;
-                          riferimento?.pag_inizio = null;
-                          riferimento?.pag_fine = null;
-                          riferimento?.DOI = null;
+                                riferimento?.isbn = null;
+                                riferimento?.editore = null;
+                                riferimento?.edizione = null;
+                                riferimento?.isnn = null;
+                                riferimento?.pag_inizio = null;
+                                riferimento?.pag_fine = null;
+                                riferimento?.DOI = null;
                                 setState(() {
                                   riferimento!.tipo = tipo_enum.Conferenza;
                                 });
@@ -538,13 +538,14 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                               style: const TextStyle(
                                                 color: Colors.black,
                                               ),
+                                              controller: TextEditingController(text: riferimento?.descr_riferimento),
                                               keyboardType: TextInputType.emailAddress,
                                               textAlign: TextAlign.left,
                                               onChanged: (value) {
                                                 descrizione = value;
                                               },
                                               decoration: kInputDecoration.copyWith(
-                                                hintText: riferimento!.descr_riferimento ?? 'Inserisci testo...',
+                                                hintText: 'Inserisci descrizione...',
                                                 fillColor: kInfoBoxColor,
                                               ),
                                             ),
@@ -582,15 +583,14 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                               style: const TextStyle(
                                                 color: Colors.black,
                                               ),
+                                              controller: TextEditingController(text: riferimento?.DOI?.toString()),
                                               keyboardType: TextInputType.number,
                                               textAlign: TextAlign.left,
                                               onChanged: (value) {
                                                 DOI = int.parse(value);
                                               },
                                               decoration: kInputDecoration.copyWith(
-                                                hintText: riferimento!.DOI == null
-                                                    ? 'Inserisci testo...'
-                                                    : riferimento!.DOI.toString(),
+                                                hintText: 'Inserisci DOI...',
                                                 fillColor: kInfoBoxColor,
                                               ),
                                             ),
@@ -628,15 +628,15 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                               style: const TextStyle(
                                                 color: Colors.black,
                                               ),
+                                              controller:
+                                                  TextEditingController(text: riferimento?.edizione?.toString()),
                                               keyboardType: TextInputType.number,
                                               textAlign: TextAlign.left,
                                               onChanged: (value) {
                                                 edizione = int.parse(value);
                                               },
                                               decoration: kInputDecoration.copyWith(
-                                                hintText: riferimento!.edizione == null
-                                                    ? 'Inserisci testo...'
-                                                    : riferimento!.edizione.toString(),
+                                                hintText: 'Inserisci edizione...',
                                                 fillColor: kInfoBoxColor,
                                               ),
                                             ),
@@ -676,6 +676,9 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                   style: const TextStyle(
                                                     color: Colors.black,
                                                   ),
+                                                  controller: TextEditingController(
+                                                    text: riferimento?.pag_inizio?.toString(),
+                                                  ),
                                                   keyboardType: TextInputType.number,
                                                   textAlign: TextAlign.left,
                                                   onChanged: (value) {
@@ -688,9 +691,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                         Shadow(offset: Offset(0, 2), blurRadius: 5, color: Colors.grey),
                                                       ],
                                                     ),
-                                                    hintText: riferimento!.pag_inizio == null
-                                                        ? 'Pagina inizio...'
-                                                        : riferimento!.pag_inizio.toString(),
+                                                    hintText: 'Pagina inizio...',
                                                     fillColor: kInfoBoxColor,
                                                     constraints: const BoxConstraints.tightFor(width: 130),
                                                   ),
@@ -711,6 +712,8 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                   style: const TextStyle(
                                                     color: Colors.black,
                                                   ),
+                                                  controller:
+                                                      TextEditingController(text: riferimento?.pag_fine?.toString()),
                                                   keyboardType: TextInputType.number,
                                                   textAlign: TextAlign.left,
                                                   onChanged: (value) {
@@ -723,9 +726,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                         Shadow(offset: Offset(0, 2), blurRadius: 5, color: Colors.grey),
                                                       ],
                                                     ),
-                                                    hintText: riferimento!.pag_fine == null
-                                                        ? 'Pagina fine...'
-                                                        : riferimento!.pag_fine.toString(),
+                                                    hintText: 'Pagina fine...',
                                                     fillColor: kInfoBoxColor,
                                                     constraints: const BoxConstraints.tightFor(width: 130),
                                                   ),
@@ -848,13 +849,14 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                         style: const TextStyle(
                                           color: Colors.black,
                                         ),
+                                        controller: TextEditingController(text: riferimento?.URL),
                                         keyboardType: TextInputType.url,
                                         textAlign: TextAlign.left,
                                         onChanged: (value) {
                                           tempURL = value;
                                         },
                                         decoration: kInputDecoration.copyWith(
-                                          hintText: riferimento!.URL ?? 'Inserisci URL...',
+                                          hintText: 'Inserisci URL...',
                                         ),
                                       ),
                                     ),
@@ -888,13 +890,14 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 elevation: 5,
                                 child: TextField(
                                   style: const TextStyle(color: Colors.black),
+                                  controller: TextEditingController(text: riferimento?.editore),
                                   keyboardType: TextInputType.emailAddress,
                                   textAlign: TextAlign.left,
                                   onChanged: (value) {
                                     riferimento!.editore = value;
                                   },
                                   decoration: kInputDecoration.copyWith(
-                                    hintText: riferimento!.editore ?? 'Inserisci testo...',
+                                    hintText: 'Inserisci editore...',
                                   ),
                                 ),
                               )
@@ -917,13 +920,14 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 elevation: 5,
                                 child: TextField(
                                   style: const TextStyle(color: Colors.black),
+                                  controller: TextEditingController(text: riferimento?.luogo),
                                   keyboardType: TextInputType.emailAddress,
                                   textAlign: TextAlign.left,
                                   onChanged: (value) {
                                     riferimento!.luogo = value;
                                   },
                                   decoration: kInputDecoration.copyWith(
-                                    hintText: riferimento!.luogo ?? 'Inserisci testo...',
+                                    hintText: 'Inserisci luogo...',
                                   ),
                                 ),
                               )
@@ -954,13 +958,14 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 elevation: 5,
                                 child: TextField(
                                   style: const TextStyle(color: Colors.black),
+                                  controller: TextEditingController(text: riferimento?.isnn),
                                   keyboardType: TextInputType.emailAddress,
                                   textAlign: TextAlign.left,
                                   onChanged: (value) {
                                     riferimento!.isnn = value;
                                   },
                                   decoration: kInputDecoration.copyWith(
-                                    hintText: riferimento!.isnn ?? 'Inserisci testo...',
+                                    hintText: 'Inserisci ISNN...',
                                   ),
                                 ),
                               )
@@ -983,13 +988,14 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                 elevation: 5,
                                 child: TextField(
                                   style: const TextStyle(color: Colors.black),
+                                  controller: TextEditingController(text: riferimento?.isbn),
                                   keyboardType: TextInputType.emailAddress,
                                   textAlign: TextAlign.left,
                                   onChanged: (value) {
                                     riferimento!.isbn = value;
                                   },
                                   decoration: kInputDecoration.copyWith(
-                                    hintText: riferimento!.isbn ?? 'Inserisci testo...',
+                                    hintText: 'Inserisci ISBN...',
                                   ),
                                 ),
                               )
