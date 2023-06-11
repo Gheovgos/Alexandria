@@ -14,13 +14,13 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  late String nome;
-  late String cognome;
-  late String email;
-  late String username;
-  late String vecchiaPassword;
-  late String password;
-  late String confermaPassword;
+  String nome = '';
+  String cognome = '';
+  String email = '';
+  String username = '';
+  String vecchiaPassword = '';
+  String password = '';
+  String confermaPassword = '';
   bool mostraVecchiaPassword = false;
   bool mostraPassword = false;
   bool mostraConfermaPassword = false;
@@ -312,11 +312,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 AlexandriaRoundedButton(
                                   onPressed: () async {
                                     if (confermaPassword == password &&
-                                        password != '' &&
-                                        nome != '' &&
-                                        cognome != '' &&
-                                        email != '' &&
-                                        username != '' &&
+                                        nome.trim() != '' &&
+                                        cognome.trim() != '' &&
+                                        email.trim() != '' &&
+                                        username.trim() != '' &&
                                         (await networkHelper.login(currentUser.username, vecchiaPassword) != null)) {
                                       final newUser =
                                           Utente(currentUser.user_ID, username, nome, cognome, email, password);
