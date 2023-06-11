@@ -325,7 +325,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         builder: (BuildContext context) {
                                           return AlexandriaDialog(
                                             content: FutureBuilder(
-                                              future: networkHelper.updateUser(currentUser),
+                                              future: networkHelper.updateUser(newUser),
                                               builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
                                                 if (!snapshot.hasData) {
                                                   return const Center(child: CircularProgressIndicator());
