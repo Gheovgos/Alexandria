@@ -575,7 +575,7 @@ class RiferimentoNetwork {
         if(r.isbn != null || r.editore != null || r.edizione != null || r.isnn != null) return false;
         else return true;
       case tipo_enum.Conferenza:
-        if(r.isnn != null || r.isnn != null || r.pag_inizio != null || r.pag_fine != null || r.DOI != null || r.edizione != null || r.editore != null) return false;
+        if(r.isnn != null || r.isbn != null || r.pag_inizio != null || r.pag_fine != null || r.DOI != null || r.edizione != null || r.editore != null) return false;
         else return true;
       case tipo_enum.Articolo:
         if(r.isbn != null || r.DOI != null) return false;
