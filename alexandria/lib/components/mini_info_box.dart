@@ -10,10 +10,12 @@ class MiniInfoBox extends StatelessWidget {
     this.onTap,
     this.onTapIcon,
     this.backgroundColor,
+    this.hasIcon = true,
   });
   final String name;
   final double? fontSize;
   final IconData? icon;
+  final bool hasIcon;
   final void Function()? onTap;
   final void Function()? onTapIcon;
   final Color? backgroundColor;
@@ -54,7 +56,7 @@ class MiniInfoBox extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: onTapIcon ?? () {},
-                  child: Icon(icon ?? Icons.info_outline),
+                  child: hasIcon? Icon(icon ?? Icons.info_outline): null,
                 )
               ],
             ),
