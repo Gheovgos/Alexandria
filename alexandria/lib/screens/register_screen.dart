@@ -12,12 +12,12 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  late String nome;
-  late String cognome;
-  late String email;
-  late String username;
-  late String password;
-  late String confermaPassword;
+  String nome = '';
+  String cognome = '';
+  String email = '';
+  String username = '';
+  String password = '';
+  String confermaPassword = '';
   bool mostraPassword = false;
   bool mostraConfermaPassword = false;
   bool rememberMe = false;
@@ -239,11 +239,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               child: AlexandriaRoundedButton(
                                 onPressed: () async {
                                   if (confermaPassword == password &&
-                                      password != '' &&
-                                      nome != '' &&
-                                      cognome != '' &&
-                                      email != '' &&
-                                      username != '') {
+                                      password.trim() != '' &&
+                                      nome.trim() != '' &&
+                                      cognome.trim() != '' &&
+                                      email.trim() != '' &&
+                                      username.trim() != '') {
                                     final user = await networkHelper.registrazione(
                                       username,
                                       password,
@@ -274,8 +274,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     } else {
                                       currentUser = user;
                                       if (rememberMe) {
-                                        await preferences.setString('username', user.username);
-                                        await preferences.setString('password', user.password);
+                                        await preferences.setString('username', username);
+                                        await preferences.setString('password', password);
                                       }
 
                                       currentUser = user;
