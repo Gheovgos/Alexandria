@@ -315,23 +315,6 @@ class RiferimentoNetwork {
     if(_typeCheck(riferimento)) {
       _getMapping = "/create/"+userID.toString()+"/"+categoria.id_categoria.toString();
 
-      print("Stampo tutti i valori di riferimento: id = "+riferimento.id_riferimento.toString());
-      print(riferimento.titolo_riferimento);
-      print(riferimento.data_riferimento.toString());
-      print(riferimento.tipo.toString());
-      print(riferimento.URL);
-      print(riferimento.DOI.toString());
-      print(riferimento.on_line.toString());
-      print(riferimento.descr_riferimento);
-      print(riferimento.editore);
-      print(riferimento.isbn);
-      print(riferimento.isnn);
-      print(riferimento.luogo);
-      print(riferimento.pag_inizio.toString());
-      print(riferimento.pag_fine.toString());
-      print(riferimento.edizione.toString());
-
-
       _serverResponse = await post(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
       }, body: jsonEncode(<String, dynamic> {
         'id_Rif': 1000, //placeholder
@@ -351,7 +334,7 @@ class RiferimentoNetwork {
         'edizione': riferimento.edizione,
       }),);
 
-      print(_serverResponse.statusCode);
+      print("++++Devo essere fallito: ${_serverResponse.statusCode}");
       if(_serverResponse.statusCode == 200) {
         return await getRiferimentoByNome(riferimento.titolo_riferimento);
       } else return null;
