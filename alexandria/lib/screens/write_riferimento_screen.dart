@@ -124,7 +124,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                         width: 20,
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 40,
                         width: 170,
                         child: Material(
                           borderRadius: const BorderRadius.all(Radius.circular(33)),
@@ -137,6 +137,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                               riferimento!.titolo_riferimento = value;
                             },
                             decoration: kInputDecoration.copyWith(
+                              contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                               hintText: riferimento!.titolo_riferimento == ''
                                   ? 'Inserisci testo...'
                                   : riferimento!.titolo_riferimento,
