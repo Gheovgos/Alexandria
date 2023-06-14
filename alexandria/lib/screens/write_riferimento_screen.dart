@@ -1186,15 +1186,15 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                           return AlexandriaDialog(
                             content: FutureBuilder(
                               future: isCreate! ? creaRiferimento() : aggiornaRiferimento(),
-                              builder: (BuildContext builder, AsyncSnapshot<dynamic> snapshot) {
+                              builder: (BuildContext builder, AsyncSnapshot<bool> snapshot) {
                                 if (snapshot.hasError) {
                                   return const Center(child: Text('Errore!'));
                                 }
                                 if (snapshot.hasData) {
-                                  if (snapshot.data == null) {
-                                    return const Center(child: Text('Errore!'));
-                                  } else {
+                                  if (snapshot.data!) {
                                     return Center(child: Text('Riferimento ${isCreate! ? 'creato!' : 'aggiornato!'}'));
+                                  } else {
+                                    return const Center(child: Text('Errore!'));
                                   }
                                 } else {
                                   return const Center(child: CircularProgressIndicator());
@@ -1220,8 +1220,8 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
     );
   }
 
-  Future<Riferimento?> creaRiferimento() async {
-    final r = await networkHelper.createRiferimento(riferimento!, categorie[0], currentUser.user_ID);
+  Future<bool> creaRiferimento() async {
+    final r = await networkHelper.createRiferimento(riferimento, categorie[0], currentUser.user_ID);
     if (r != null) {
       for (var i = 1; i < categorie.length; ++i) {
         await networkHelper.aggiungiCategoria(r, categorie[i].id_categoria);
@@ -1233,9 +1233,9 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
         await networkHelper.aggiungiAutore(r, autori[i].user_ID);
       }
       (await allRiferimenti)?.add(r);
-      return r;
+      return true;
     }
-    return null;
+    return false;
   }
 
   Future<bool> aggiornaRiferimento() async {
