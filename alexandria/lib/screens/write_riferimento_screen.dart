@@ -1123,14 +1123,13 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                             int index,
                                                           ) {
                                                             final u = snapshot.data?[index];
-                                                            if (u?.user_ID != currentUser.user_ID ||
+                                                            if (u?.user_ID != currentUser.user_ID && (
                                                                 filtroUtente == null ||
-                                                                u!.nome.contains(
-                                                                  RegExp(filtroUtente!),
+                                                                u!.nome.contains(RegExp(filtroUtente!),
                                                                 ) ||
                                                                 u.cognome.contains(RegExp(filtroUtente!)) ||
                                                                 '${u.nome} ${u.cognome}'
-                                                                    .contains(RegExp(filtroUtente!))) {
+                                                                    .contains(RegExp(filtroUtente!)))) {
                                                               return MiniInfoBox(
                                                                 icon: Icons.person,
                                                                 backgroundColor:
