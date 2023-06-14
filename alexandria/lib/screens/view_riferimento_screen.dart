@@ -244,6 +244,7 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                                 itemCount: snapshot.data?.length,
                                 itemBuilder: (BuildContext build, int index) {
                                   return MiniInfoBox(
+                                    hasIcon: false,
                                     name: '${snapshot.data![index].nome} '
                                         '${snapshot.data![index].cognome}',
                                     fontSize: 15,
