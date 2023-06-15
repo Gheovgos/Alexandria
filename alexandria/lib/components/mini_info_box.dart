@@ -56,7 +56,11 @@ class MiniInfoBox extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: onTapIcon ?? () {},
-                  child: hasIcon? Icon(icon ?? Icons.info_outline): null,
+                  child: hasIcon
+                      ? Icon(icon ?? Icons.info_outline)
+                      : const SizedBox(
+                          height: 24,
+                        ),
                 )
               ],
             ),
