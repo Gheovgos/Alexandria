@@ -16,20 +16,31 @@ class RiferimentoNetwork {
   late Map<String, dynamic> _riferimentoMap;
   RiferimentoNetwork(this.url);
 
-  Future<List<Riferimento>> ricerca(String? titolo, int? doi, String? autore, List<Categoria>? categoria, List<tipo_enum> tipo) async {
+  Future<List<Riferimento>> ricerca(String? titolo, int? doi, String? autore, List<Categoria> categoria, List<tipo_enum> tipo) async {
     late List<Riferimento> riferimenti = [];
     late List<Riferimento> riferimentiCategoria = [];
     late List<Riferimento> riferimentiTipo = [];
 
+
     //Ricerca per titolo
     if(titolo != null && doi == null && autore == null) {
       riferimenti = await getRiferimentoBySTitolo(titolo) as List<Riferimento>;
+      for(Riferimento r in riferimenti) print(r.titolo_riferimento+" tipo: "+tipo[0].toString());
+      print(riferimenti.length);
 
-      if(categoria != null)  {
+      if(categoria.length > 0)  {
+        print("Ci entro?");
         for(Categoria c in categoria) riferimentiCategoria += await getRiferimentoByCategoria(c.id_categoria) as List<Riferimento>;
         riferimenti = _filterList(riferimenti, riferimentiCategoria);
       }
+      print(riferimenti.length);
+
+
       for(tipo_enum t in tipo) riferimentiTipo += await getByTipo(t) as List<Riferimento>;
+
+      for(Riferimento r in  _filterList(riferimenti, riferimentiTipo)) print("Terza print "+r.titolo_riferimento);
+      print(riferimenti.length);
+
 
       return _filterList(riferimenti, riferimentiTipo);
     }
@@ -38,7 +49,7 @@ class RiferimentoNetwork {
     if(titolo == null && doi != null && autore == null) {
       riferimenti = await getRiferimentoByDOI(doi) as List<Riferimento>;
 
-      if(categoria != null)  {
+      if(categoria.length > 0)  {
         for(Categoria c in categoria) riferimentiCategoria += await getRiferimentoByCategoria(c.id_categoria) as List<Riferimento>;
         riferimenti = _filterList(riferimenti, riferimentiCategoria);
       }
@@ -50,7 +61,7 @@ class RiferimentoNetwork {
     if(titolo == null && doi == null && autore != null) {
       riferimenti = await getRiferimentoByAutore(autore) as List<Riferimento>;
 
-      if(categoria != null)  {
+      if(categoria.length > 0)  {
         for(Categoria c in categoria) riferimentiCategoria += await getRiferimentoByCategoria(c.id_categoria) as List<Riferimento>;
         riferimenti = _filterList(riferimenti, riferimentiCategoria);
       }
@@ -66,6 +77,9 @@ class RiferimentoNetwork {
   }
 
   List<Riferimento> _filterList(List<Riferimento> primaLista, List<Riferimento> secondaLista) {
+    if(secondaLista.length == 0) return primaLista;
+    if(primaLista.length == 0) return secondaLista;
+
     List<Riferimento> result = [];
 
     for(Riferimento primo in primaLista) {

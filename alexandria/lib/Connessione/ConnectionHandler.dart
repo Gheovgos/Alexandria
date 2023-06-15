@@ -8,7 +8,7 @@ import 'package:alexandria/Model/tipo_enum.dart';
 import 'package:flutter/foundation.dart';
 
 class NetworkHelper {
-  final String url = "http://192.168.43.141:8090";
+  final String url = "http://192.168.189.93:8090";
   late UtenteNetwork _unet = UtenteNetwork(url);
   late CategoriaNetwork _catnet = CategoriaNetwork(url);
   late RiferimentoNetwork _rifnet = RiferimentoNetwork(url);
@@ -90,7 +90,7 @@ class NetworkHelper {
     return _rifnet.getRiferimentoById(rif_id);
   }
 
-  Future<List<Riferimento>> ricerca(String? titolo, int? doi, String? autore, List<Categoria>? categoria, List<tipo_enum> tipo) async {
+  Future<List<Riferimento>> ricerca(String? titolo, int? doi, String? autore, List<Categoria> categoria, List<tipo_enum> tipo) async {
     return _rifnet.ricerca(titolo, doi, autore, categoria, tipo);
   }
 
