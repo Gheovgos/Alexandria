@@ -302,6 +302,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   onPressed: () {
                                     preferences.setString('username', '');
                                     preferences.setString('password', '');
+                                    myRiferimenti = null;
+                                    allRiferimenti = null;
+                                    allCategories = null;
+                                    allUtenti = null;
                                     Navigator.popUntil(context, ModalRoute.withName('login'));
                                   },
                                   child: const Text(
