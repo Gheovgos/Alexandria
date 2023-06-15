@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "612320102638",
+    "project_id": "alexandria-8be13",
+    "storage_bucket": "alexandria-8be13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612320102638:android:e4ed0ce9c2143ade0b4bff",
+        "android_client_info": {
+          "package_name": "com.snesnopic.alexandria"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612320102638-1u9vp0fto0r3bmpkuj8t4n5tusveh0nn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt0hC6782GgObhosyO-gmK2w_D49KqXX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612320102638-1u9vp0fto0r3bmpkuj8t4n5tusveh0nn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
