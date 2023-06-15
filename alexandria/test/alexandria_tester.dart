@@ -39,6 +39,7 @@ void main() {
       final aggiornaRiferimentoAutore = await networkHelper.aggiornaRiferimentoAutore(riferimento!, 1, 2);
       expect(aggiornaRiferimentoAutore, true);
       expect(aggiornaRiferimentoAutore, false);
+
     });
   });
 
