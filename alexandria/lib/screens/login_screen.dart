@@ -170,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             await preferences.setString('username', username);
                             await preferences.setString('password', password);
                           }
-                          Navigator.pushNamed(context, 'home');
+                          Navigator.popAndPushNamed(context, 'home');
                         }
                       },
                     ),
