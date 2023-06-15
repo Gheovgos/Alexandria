@@ -300,6 +300,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               children: [
                                 AlexandriaRoundedButton(
                                   onPressed: () {
+                                    preferences.setString('username', '');
+                                    preferences.setString('password', '');
                                     Navigator.popUntil(context, ModalRoute.withName('login'));
                                   },
                                   child: const Text(
