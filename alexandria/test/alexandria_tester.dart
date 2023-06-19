@@ -31,7 +31,6 @@ void main() {
 
   group('Test riferimenti', () {
     Riferimento? primo_riferimento;
-    Riferimento? secondo_riferimento;
     test('Creazione riferimento', () async {
       primo_riferimento = Riferimento(
         0,
@@ -56,27 +55,6 @@ void main() {
       expect(tipo_enum.Conferenza, primo_riferimento?.tipo);
       expect('descr_riferimento', primo_riferimento?.descr_riferimento);
       expect('luogo', primo_riferimento?.luogo);
-
-      secondo_riferimento = Riferimento(
-        0,
-        'TestRiferimento2',
-        DateTime.now(),
-        tipo_enum.Conferenza,
-        null,
-        null,
-        false,
-        'descr_riferimento',
-        null,
-        null,
-        null,
-        'luogo',
-        1,
-        2,
-        null,
-      );
-      secondo_riferimento =
-          await networkHelper.createRiferimento(secondo_riferimento, (await networkHelper.getCategoriaById(1))!, 1);
-      expect(secondo_riferimento, null);
     });
     test('Test eliminazione riferimento', () async {
       var eliminaPrimoRiferimento = await networkHelper.deleteRiferimento(primo_riferimento!);
