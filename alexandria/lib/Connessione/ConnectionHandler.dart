@@ -8,7 +8,7 @@ import 'package:alexandria/Model/tipo_enum.dart';
 import 'package:flutter/foundation.dart';
 
 class NetworkHelper {
-  final String url = "http://192.168.189.93:8090";
+  final String url = "http://13.51.162.83:8089"; //IP di AWS
   late UtenteNetwork _unet = UtenteNetwork(url);
   late CategoriaNetwork _catnet = CategoriaNetwork(url);
   late RiferimentoNetwork _rifnet = RiferimentoNetwork(url);
