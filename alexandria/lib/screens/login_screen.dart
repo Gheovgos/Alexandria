@@ -28,8 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void attemptLogin() async {
-    final user = await networkHelper.login(username, password);
-    if (user == null || username.trim() == '' || password.trim() == '') {
+    if (username.trim() == '' || password.trim() == '') {
       await showDialog<void>(
         context: context,
         builder: (BuildContext context) {
@@ -40,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Credenziali errate!'),
+                  Text('Username o password non inseriti!'),
                 ],
               ),
             ),
@@ -48,12 +47,33 @@ class _LoginScreenState extends State<LoginScreen> {
         },
       );
     } else {
-      currentUser = user;
-      if (rememberMe) {
-        await preferences.setString('username', username);
-        await preferences.setString('password', password);
+      final user = await networkHelper.login(username, password);
+      if (user == null) {
+        await showDialog<void>(
+          context: context,
+          builder: (BuildContext context) {
+            return const AlexandriaDialog(
+              title: Text('Errore!'),
+              content: SizedBox(
+                height: 150,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Credenziali errate!'),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      } else {
+        currentUser = user;
+        if (rememberMe) {
+          await preferences.setString('username', username);
+          await preferences.setString('password', password);
+        }
+        Navigator.popAndPushNamed(context, 'home');
       }
-      Navigator.popAndPushNamed(context, 'home');
     }
   }
 
