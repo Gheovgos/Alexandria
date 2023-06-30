@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:alexandria/Connessione/CategoriaNetwork.dart';
 import 'package:alexandria/Connessione/RiferimentoNetwork.dart';
 import 'package:alexandria/Connessione/UtenteNetwork.dart';
@@ -28,9 +27,8 @@ class NetworkHelper {
 
   Future<bool> hasConnection() async {
     try {
-      await get(Uri.parse(url+"/api/v1/utente/create/getUtenteById/0")).timeout(const Duration(seconds: 4));
+      await get(Uri.parse('$url/api/v1/utente/create/getUtenteById/0')).timeout(const Duration(seconds: 4));
     } on Exception {
-      print("preso");
       return false;
     }
     return true;
