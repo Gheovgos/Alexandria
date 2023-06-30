@@ -208,7 +208,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           const SizedBox(
-            height: 80,
+            height: 150,
             child: Hero(
               tag: 2,
               child: Image(
@@ -216,6 +216,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
+          const SizedBox(
+            height: 0,
+          )
         ],
       ),
     );

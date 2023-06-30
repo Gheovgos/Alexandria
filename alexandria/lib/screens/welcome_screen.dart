@@ -110,14 +110,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           const Hero(
             tag: 2,
             child: SizedBox(
-              height: 130,
+              height: 150,
               child: Image(
                 image: AssetImage('assets/unina_logo.png'),
               ),
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 55,
           )
         ],
       ),
