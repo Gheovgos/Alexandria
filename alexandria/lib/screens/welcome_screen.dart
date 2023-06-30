@@ -25,30 +25,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     hasConnection = networkHelper.hasConnection();
   }
 
-  Future<void> tryToConnect() async {
-    unawaited(
-      showDialog<void>(
-        barrierDismissible: false,
-        context: context,
-        builder: (_) {
-          return AlexandriaDialog(
-            title: const Text('Controllando la connessione...'),
-            content: Container(
-              padding: const EdgeInsets.all(50),
-              height: 250,
-              child: const CircularProgressIndicator(),
-            ),
-          );
-        },
-      ),
-    );
-    final awaitedHasConnection = await hasConnection;
-    Navigator.popAndPushNamed(
-      context,
-      awaitedHasConnection ? 'login' : 'neterror',
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,7 +73,32 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           AlexandriaRoundedButton(
             padding: const EdgeInsets.all(15),
             backgroundColor: Colors.white,
-            onPressed: tryToConnect,
+            onPressed: () async {
+              showDialog<void>(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) {
+                  return AlexandriaDialog(
+                    title: const Text('Controllando la connessione...'),
+                    content: Container(
+                      padding: const EdgeInsets.all(50),
+                      height: 250,
+                      child: const CircularProgressIndicator(),
+                    ),
+                  );
+                },
+              );
+              final awaitedHasConnection = await hasConnection;
+              Navigator.of(context, rootNavigator: true).pop();
+              if (awaitedHasConnection) {
+                Navigator.of(context).pushNamedAndRemoveUntil('login', (Route<dynamic> route) => false);
+              } else {
+                Navigator.pushNamed(
+                  context,
+                  'neterror',
+                );
+              }
+            },
             child: Text(
               'Unisciti',
               style: TextStyle(
