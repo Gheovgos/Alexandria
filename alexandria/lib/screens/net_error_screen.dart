@@ -73,17 +73,20 @@ class _NetErrorScreenState extends State<NetErrorScreen> {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, 'login');
+              Navigator.pop(context);
             },
           ),
           const Hero(
             tag: 2,
             child: SizedBox(
-              height: 130,
+              height: 150,
               child: Image(
                 image: AssetImage('assets/unina_logo.png'),
               ),
             ),
+          ),
+          const SizedBox(
+            height: 25,
           ),
         ],
       ),
