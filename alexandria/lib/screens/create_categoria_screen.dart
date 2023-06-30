@@ -164,16 +164,14 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                               ) {
                                                 final c = snapshot.data![index];
                                                 if (filtroCategoria == null ||
-                                                    c.nome.contains(
-                                                      RegExp(
-                                                        filtroCategoria!,
-                                                      ),
-                                                    )) {
+                                                    c.nome.toLowerCase().contains(
+                                                          RegExp(
+                                                            filtroCategoria!.toLowerCase(),
+                                                          ),
+                                                        )) {
                                                   return MiniInfoBox(
                                                     backgroundColor:
-                                                        sopraCategoria == c.id_categoria
-                                                            ? Colors.grey
-                                                            : Colors.white,
+                                                        sopraCategoria == c.id_categoria ? Colors.grey : Colors.white,
                                                     name: c.nome,
                                                     fontSize: 15,
                                                     onTap: () {
