@@ -133,8 +133,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                                     onTap: () {
                                       cliccaRiferimentoDialog(
                                         context,
-                                        snapshot,
-                                        index,
+                                        r,
                                       );
                                     },
                                     child: MiniInfoBox(
@@ -166,8 +165,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
 
   Future<void> cliccaRiferimentoDialog(
     BuildContext context,
-    AsyncSnapshot<List<Riferimento>?> snapshot,
-    int index,
+    Riferimento r,
   ) {
     return showDialog<void>(
       context: context,
@@ -175,7 +173,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
         return AlertDialog(
           actionsAlignment: MainAxisAlignment.spaceEvenly,
           content: Text(
-            snapshot.data![index].titolo_riferimento,
+            r.titolo_riferimento,
             textAlign: TextAlign.center,
           ),
           actions: [
@@ -184,7 +182,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                 18,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, 'write_riferimento', arguments: snapshot.data![index]);
+                Navigator.pushNamed(context, 'write_riferimento', arguments: r);
               },
               child: const Text('Modifica'),
             ),
@@ -196,7 +194,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                 Navigator.pushNamed(
                   context,
                   'view_riferimento',
-                  arguments: snapshot.data![index],
+                  arguments: r,
                 );
               },
               child: const Text('Visualizza'),
@@ -208,7 +206,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
               onPressed: () {
                 confermaEliminaRiferimentoDialog(
                   context,
-                  snapshot.data![index],
+                  r,
                 );
               },
               child: const Text('Elimina'),
