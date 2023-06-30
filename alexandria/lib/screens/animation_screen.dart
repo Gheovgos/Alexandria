@@ -24,8 +24,10 @@ class _AnimationScreenState extends State<AnimationScreen> {
         final tempUser = await networkHelper.login(username, password);
         if (tempUser != null) {
           currentUser = tempUser;
-          Navigator.pushNamed(context, 'login',arguments: true);
+          Navigator.pushNamed(context, 'login', arguments: true);
         } else {
+          preferences.remove('username');
+          preferences.remove('password');
           Navigator.pushNamed(context, 'welcome');
         }
       } else {
