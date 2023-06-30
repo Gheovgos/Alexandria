@@ -124,8 +124,9 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                               padding: EdgeInsets.zero,
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext build, int index) {
+                                final r = snapshot.data![index];
                                 if (filtroRiferimenti == null ||
-                                    snapshot.data![index].titolo_riferimento.contains(
+                                    r.titolo_riferimento.contains(
                                       RegExp(filtroRiferimenti!),
                                     )) {
                                   return InkWell(
@@ -137,7 +138,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                                       );
                                     },
                                     child: MiniInfoBox(
-                                      name: snapshot.data![index].titolo_riferimento,
+                                      name: r.titolo_riferimento,
                                       fontSize: 15,
                                     ),
                                   );
