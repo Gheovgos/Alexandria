@@ -181,7 +181,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
           actions: [
             AlexandriaRoundedButton(
               padding: const EdgeInsets.all(
-                20,
+                18,
               ),
               onPressed: () {
                 Navigator.pushNamed(context, 'write_riferimento', arguments: snapshot.data![index]);
@@ -190,7 +190,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
             ),
             AlexandriaRoundedButton(
               padding: const EdgeInsets.all(
-                20,
+                18,
               ),
               onPressed: () {
                 Navigator.pushNamed(
@@ -203,7 +203,7 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
             ),
             AlexandriaRoundedButton(
               padding: const EdgeInsets.all(
-                20,
+                18,
               ),
               onPressed: () {
                 confermaEliminaRiferimentoDialog(
