@@ -162,28 +162,29 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                                 BuildContext build,
                                                 int index,
                                               ) {
+                                                final c = snapshot.data![index];
                                                 if (filtroCategoria == null ||
-                                                    snapshot.data![index].nome.contains(
+                                                    c.nome.contains(
                                                       RegExp(
                                                         filtroCategoria!,
                                                       ),
                                                     )) {
                                                   return MiniInfoBox(
                                                     backgroundColor:
-                                                        sopraCategoria == snapshot.data![index].id_categoria
+                                                        sopraCategoria == c.id_categoria
                                                             ? Colors.grey
                                                             : Colors.white,
-                                                    name: snapshot.data![index].nome,
+                                                    name: c.nome,
                                                     fontSize: 15,
                                                     onTap: () {
-                                                      sopraCategoria = snapshot.data?[index].id_categoria;
+                                                      sopraCategoria = c.id_categoria;
                                                       setState(() {});
                                                       ScaffoldMessenger.of(
                                                         context,
                                                       ).showSnackBar(
                                                         SnackBar(
                                                           content: Text(
-                                                            'Selezionata "${snapshot.data![index].nome}" come sopra-categoria!',
+                                                            'Selezionata "${c.nome}" come sopra-categoria!',
                                                           ),
                                                         ),
                                                       );
@@ -192,7 +193,7 @@ class _CreateCategoriaScreenState extends State<CreateCategoriaScreen> {
                                                       Navigator.pushNamed(
                                                         context,
                                                         'view_categoria',
-                                                        arguments: snapshot.data![index],
+                                                        arguments: c,
                                                       );
                                                     },
                                                   );
