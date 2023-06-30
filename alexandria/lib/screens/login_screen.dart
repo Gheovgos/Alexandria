@@ -27,6 +27,36 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
+  void attemptLogin() async {
+    final user = await networkHelper.login(username, password);
+    if (user == null || username.trim() == '' || password.trim() == '') {
+      await showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return const AlexandriaDialog(
+            title: Text('Errore!'),
+            content: SizedBox(
+              height: 150,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Credenziali errate!'),
+                ],
+              ),
+            ),
+          );
+        },
+      );
+    } else {
+      currentUser = user;
+      if (rememberMe) {
+        await preferences.setString('username', username);
+        await preferences.setString('password', password);
+      }
+      Navigator.popAndPushNamed(context, 'home');
+    }
+  }
+
   String username = '';
   String password = '';
   bool rememberMe = false;
@@ -71,6 +101,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     onChanged: (value) {
                       username = value;
                     },
+                    onSubmitted: (String? inutile) {
+                      attemptLogin();
+                    },
                     decoration: kInputDecoration.copyWith(hintText: 'Username...'),
                   ),
                 ),
@@ -87,6 +120,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     textAlign: TextAlign.center,
                     onChanged: (value) {
                       password = value;
+                    },
+                    onSubmitted: (String? inutile) {
+                      attemptLogin();
                     },
                     decoration: kInputDecoration.copyWith(hintText: 'Password...'),
                   ),
@@ -137,6 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                     AlexandriaRoundedButton(
+                      onPressed: attemptLogin,
                       child: Text(
                         'Accedi',
                         style: TextStyle(
@@ -144,35 +181,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.black.withOpacity(0.7),
                         ),
                       ),
-                      onPressed: () async {
-                        final user = await networkHelper.login(username, password);
-                        if (user == null || username.trim() == '' || password.trim() == '') {
-                          await showDialog<void>(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return const AlexandriaDialog(
-                                title: Text('Errore!'),
-                                content: SizedBox(
-                                  height: 150,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text('Credenziali errate!'),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          );
-                        } else {
-                          currentUser = user;
-                          if (rememberMe) {
-                            await preferences.setString('username', username);
-                            await preferences.setString('password', password);
-                          }
-                          Navigator.popAndPushNamed(context, 'home');
-                        }
-                      },
                     ),
                   ],
                 ),
