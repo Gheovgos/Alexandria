@@ -126,9 +126,9 @@ class _MyRiferimentiScreenState extends State<MyRiferimentiScreen> {
                               itemBuilder: (BuildContext build, int index) {
                                 final r = snapshot.data![index];
                                 if (filtroRiferimenti == null ||
-                                    r.titolo_riferimento.contains(
-                                      RegExp(filtroRiferimenti!),
-                                    )) {
+                                    r.titolo_riferimento.toLowerCase().contains(
+                                          RegExp(filtroRiferimenti!.toLowerCase()),
+                                        )) {
                                   return InkWell(
                                     onTap: () {
                                       cliccaRiferimentoDialog(
