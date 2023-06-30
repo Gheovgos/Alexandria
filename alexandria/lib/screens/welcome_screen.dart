@@ -43,7 +43,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       ),
     );
     final awaitedHasConnection = await hasConnection;
-    Navigator.pushNamed(
+    Navigator.popAndPushNamed(
       context,
       awaitedHasConnection ? 'login' : 'neterror',
     );

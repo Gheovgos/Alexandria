@@ -21,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
       final skip = ModalRoute.of(context)!.settings.arguments as bool?;
       if (skip != null) {
         if (skip) {
-          Navigator.pushNamed(context, 'home');
+          Navigator.popAndPushNamed(context, 'home');
         }
       }
     });
