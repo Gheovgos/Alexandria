@@ -179,7 +179,8 @@ class _SearchDialogState extends State<SearchDialog> {
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext build, int index) {
                                 final c = snapshot.data![index];
-                                if (filtroCategoria == null || c.nome.contains(RegExp(filtroCategoria!))) {
+                                if (filtroCategoria == null ||
+                                    c.nome.toLowerCase().contains(RegExp(filtroCategoria!.toLowerCase()))) {
                                   return MiniInfoBox(
                                     backgroundColor: categorie.contains(c) ? Colors.grey : Colors.white,
                                     name: c.nome,
