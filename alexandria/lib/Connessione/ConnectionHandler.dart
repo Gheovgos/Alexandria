@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:alexandria/Connessione/CategoriaNetwork.dart';
 import 'package:alexandria/Connessione/RiferimentoNetwork.dart';
 import 'package:alexandria/Connessione/UtenteNetwork.dart';
@@ -5,6 +7,7 @@ import 'package:alexandria/Model/Categoria.dart';
 import 'package:alexandria/Model/Riferimento.dart';
 import 'package:alexandria/Model/Utente.dart';
 import 'package:alexandria/Model/tipo_enum.dart';
+import 'package:http/http.dart';
 
 class NetworkHelper {
   NetworkHelper();
@@ -22,8 +25,15 @@ class NetworkHelper {
     return _unet.registrazione(username, password, nome, cognome, email);
   }
 
+
   Future<bool> hasConnection() async {
-    return await getUtenteById(1) != null;
+    try {
+      await get(Uri.parse(url+"/api/v1/utente/create/getUtenteById/0")).timeout(const Duration(seconds: 4));
+    } on Exception {
+      print("preso");
+      return false;
+    }
+    return true;
   }
 
   Future<Utente?> getUtenteById(int user_id) async {
