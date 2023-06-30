@@ -5,15 +5,14 @@ import 'package:alexandria/Model/Categoria.dart';
 import 'package:alexandria/Model/Riferimento.dart';
 import 'package:alexandria/Model/Utente.dart';
 import 'package:alexandria/Model/tipo_enum.dart';
-import 'package:flutter/foundation.dart';
 
 class NetworkHelper {
-  final String url = "http://13.51.162.83:8089"; //IP di AWS
-  late UtenteNetwork _unet = UtenteNetwork(url);
-  late CategoriaNetwork _catnet = CategoriaNetwork(url);
-  late RiferimentoNetwork _rifnet = RiferimentoNetwork(url);
-
   NetworkHelper();
+
+  final String url = 'http://13.51.162.83:8089'; //IP di AWS
+  late final UtenteNetwork _unet = UtenteNetwork(url);
+  late final CategoriaNetwork _catnet = CategoriaNetwork(url);
+  late final RiferimentoNetwork _rifnet = RiferimentoNetwork(url);
 
   Future<Utente?> login(String username, String password) async {
     return _unet.login(username, password);
@@ -22,12 +21,9 @@ class NetworkHelper {
   Future<Utente?> registrazione(String username, String password, String nome, String cognome, String email) async {
     return _unet.registrazione(username, password, nome, cognome, email);
   }
+
   Future<bool> hasConnection() async {
-    if(!kReleaseMode) {
-      return true;
-    } else {
-      return await getUtenteById(1) == null;
-    }
+    return await getUtenteById(1) != null;
   }
 
   Future<Utente?> getUtenteById(int user_id) async {
@@ -90,7 +86,13 @@ class NetworkHelper {
     return _rifnet.getRiferimentoById(rif_id);
   }
 
-  Future<List<Riferimento>> ricerca(String? titolo, int? doi, String? autore, List<Categoria> categoria, List<tipo_enum> tipo) async {
+  Future<List<Riferimento>> ricerca(
+    String? titolo,
+    int? doi,
+    String? autore,
+    List<Categoria> categoria,
+    List<tipo_enum> tipo,
+  ) async {
     return _rifnet.ricerca(titolo, doi, autore, categoria, tipo);
   }
 
@@ -107,13 +109,14 @@ class NetworkHelper {
   }
 
   Future<List<Riferimento>?> getRiferimentoByCategoria(int categoriaID) async {
-
     return _rifnet.getRiferimentoByCategoria(categoriaID);
   }
 
   Future<Riferimento?> createRiferimento(Riferimento? riferimento, Categoria categoria, int userID) async {
-    if(riferimento == null) return null;
-    else return _rifnet.creaRiferimento(riferimento, categoria, userID);
+    if (riferimento == null)
+      return null;
+    else
+      return _rifnet.creaRiferimento(riferimento, categoria, userID);
   }
 
   Future<bool> aggiungiAutore(Riferimento riferimento, int autoreID) async {
@@ -132,10 +135,24 @@ class NetworkHelper {
     return _rifnet.getRiferimentoByNome(titolo);
   }
 
-  Future<bool> aggiornaRiferimento(Riferimento riferimento,List<Categoria> oldCategoria, List<Categoria> newCategoria,
-      List<Riferimento> oldCitazione, List<Riferimento> newCitazione,
-      List<Utente> oldAutore, List<Utente> newAutore) async {
-    return _rifnet.aggiornaRiferimento(riferimento, oldCategoria, newCategoria, oldCitazione, newCitazione, oldAutore, newAutore);
+  Future<bool> aggiornaRiferimento(
+    Riferimento riferimento,
+    List<Categoria> oldCategoria,
+    List<Categoria> newCategoria,
+    List<Riferimento> oldCitazione,
+    List<Riferimento> newCitazione,
+    List<Utente> oldAutore,
+    List<Utente> newAutore,
+  ) async {
+    return _rifnet.aggiornaRiferimento(
+      riferimento,
+      oldCategoria,
+      newCategoria,
+      oldCitazione,
+      newCitazione,
+      oldAutore,
+      newAutore,
+    );
   }
 
   Future<bool> aggiornaRiferimentoAutore(Riferimento riferimento, int oldAutoreID, int newAutoreID) async {
@@ -193,6 +210,4 @@ class NetworkHelper {
   Future<bool> deleteRiferimentoCitazione(Riferimento r, int citazioneID) async {
     return _rifnet.deleteRiferimentoCitazione(r, citazioneID);
   }
-
-
 }
