@@ -137,7 +137,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                               riferimento!.titolo_riferimento = value;
                             },
                             decoration: kInputDecoration.copyWith(
-                              contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                               hintText: riferimento!.titolo_riferimento == ''
                                   ? 'Inserisci testo...'
                                   : riferimento!.titolo_riferimento,
@@ -1124,13 +1124,14 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                                                             int index,
                                                           ) {
                                                             final u = snapshot.data?[index];
-                                                            if (u?.user_ID != currentUser.user_ID && (
-                                                                filtroUtente == null ||
-                                                                u!.nome.contains(RegExp(filtroUtente!),
-                                                                ) ||
-                                                                u.cognome.contains(RegExp(filtroUtente!)) ||
-                                                                '${u.nome} ${u.cognome}'
-                                                                    .contains(RegExp(filtroUtente!)))) {
+                                                            if (u?.user_ID != currentUser.user_ID &&
+                                                                (filtroUtente == null ||
+                                                                    u!.nome.contains(
+                                                                      RegExp(filtroUtente!),
+                                                                    ) ||
+                                                                    u.cognome.contains(RegExp(filtroUtente!)) ||
+                                                                    '${u.nome} ${u.cognome}'
+                                                                        .contains(RegExp(filtroUtente!)))) {
                                                               return MiniInfoBox(
                                                                 icon: Icons.person,
                                                                 backgroundColor:
