@@ -186,8 +186,9 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                               shrinkWrap: true,
                               itemCount: snapshot.data?.length,
                               itemBuilder: (BuildContext context, int index) {
+                                final c = snapshot.data![index];
                                 return MiniInfoBox(
-                                  name: snapshot.data![index].nome,
+                                  name: c.nome,
                                   fontSize: 15,
                                 );
                               },
