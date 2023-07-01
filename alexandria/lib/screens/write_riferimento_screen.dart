@@ -98,6 +98,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                   onPressed: () async {
                     riferimento!.data_riferimento = (await showDatePicker(
                       helpText: 'Scegli una data',
+                      locale: const Locale('it', 'IT'),
                       context: context,
                       initialDate: riferimento!.data_riferimento,
                       firstDate: DateTime(1500),

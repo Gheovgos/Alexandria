@@ -12,10 +12,18 @@ import 'package:alexandria/screens/view_riferimento_screen.dart';
 import 'package:alexandria/screens/welcome_screen.dart';
 import 'package:alexandria/screens/write_riferimento_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(
     MaterialApp(
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('it'),
+      ],
       theme: ThemeData(fontFamily: 'Josefin Sans'),
       title: 'Alexandria',
       initialRoute: 'animation',
