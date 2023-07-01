@@ -412,8 +412,16 @@ class _ViewRiferimentoScreenState extends State<ViewRiferimentoScreen> {
                                 padding: EdgeInsets.zero,
                                 itemCount: snapshot.data?.length,
                                 itemBuilder: (BuildContext build, int index) {
+                                  final r = snapshot.data![index];
                                   return MiniInfoBox(
-                                    name: snapshot.data![index].titolo_riferimento,
+                                    name: r.titolo_riferimento,
+                                    onTapIcon: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        'view_riferimento',
+                                        arguments: r,
+                                      );
+                                    },
                                     fontSize: 15,
                                   );
                                 },
