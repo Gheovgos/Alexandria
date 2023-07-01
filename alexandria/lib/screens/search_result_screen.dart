@@ -104,13 +104,14 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                       shrinkWrap: true,
                       itemCount: ricerca?.data?.length,
                       itemBuilder: (BuildContext context, int index) {
+                        final r = ricerca!.data![index];
                         return MiniInfoBox(
-                          name: ricerca!.data![index].titolo_riferimento,
+                          name: r.titolo_riferimento,
                           onTapIcon: () {
                             Navigator.pushNamed(
                               context,
                               'view_riferimento',
-                              arguments: ricerca.data![index],
+                              arguments: r,
                             );
                           },
                         );
