@@ -189,6 +189,13 @@ class _ViewCategoriaScreenState extends State<ViewCategoriaScreen> {
                                 final c = snapshot.data![index];
                                 return MiniInfoBox(
                                   name: c.nome,
+                                  onTapIcon: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      'view_categoria',
+                                      arguments: c,
+                                    );
+                                  },
                                   fontSize: 15,
                                 );
                               },
