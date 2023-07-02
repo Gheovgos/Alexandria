@@ -46,7 +46,7 @@ public class RiferimentoService {
 
     public List<Riferimento> getCitazioniByUserId(@PathVariable int userID) { return riferimentoRepository.getCitazioniByUserId(userID);}
 
-    public Integer getNextId(){return riferimentoRepository.getNextId();}
+    public Integer getNextId(){return riferimentoRepository.getNextId() + 1;}
 
     public void update(Riferimento riferimento)
     {
@@ -79,6 +79,7 @@ public class RiferimentoService {
 
     public void create(Riferimento riferimento, int userID, int categoriaID)
     {
+        riferimento.setId_riferimento(getNextId());
         if(riferimentoRepository.save(riferimento) != null) {
             Integer rif_id = getRiferimentoByNome(riferimento.getTitolo_riferimento()).getIdRiferimento();
             riferimentoRepository.insertAutoreRiferimento(rif_id, userID);

@@ -192,7 +192,6 @@ public class RiferimentoController {
     @ResponseBody
     public void create(@RequestBody RiferimentoDto riferimentoDto, @PathVariable int userID, @PathVariable int categoriaID)
     {
-        System.out.println("+++++++++++++++Sono entrato!!!");
         Riferimento riferimento = convertEntity(riferimentoDto);
         riferimentoService.create(riferimento, userID, categoriaID);
     }
