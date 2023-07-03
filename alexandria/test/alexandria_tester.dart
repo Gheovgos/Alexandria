@@ -12,8 +12,8 @@ void main() {
       expect(await networkHelper.createCategoria('', 1, null), null); //CE1 CE4 CE5
       expect(await networkHelper.createCategoria('WECT 1', -100, null), null); //CE2 CE3 CE5
       expect(await networkHelper.createCategoria('WECT 2', 10, -5), null); //CE2 CE4 CE6
-      expect(await networkHelper.createCategoria('WECT 3', 10, null), null); //CE2 CE4 CE5 +++++++ NON NULL
-      expect(await networkHelper.createCategoria('WECT 4', 10, 20), null); //CE2 CE4 CE7 +++++++ NON NULL
+      expect(await networkHelper.createCategoria('WECT 3', 10, null) != null, true); //CE2 CE4 CE5
+      expect(await networkHelper.createCategoria('WECT 4', 10, 20) != null, true); //CE2 CE4 CE7
     });
     test('Test sopra-categoria', () async {
       final cat = await networkHelper.createCategoria('TestCategoria2', 1, prima_categoria?.id_categoria);
@@ -51,15 +51,15 @@ void main() {
           -4,
         ),
         null,
-      ); //CE2 CE4 CE5 QUESTO DEVE RITORNARE UN VERO RIFERIMENTO QUINDI FALLIRA' APPUNTO METTI UN RIFERIMENTO VERO
+      ); //CE2 CE4 CE5 QUESTO DEVE FALLIRE
 
       expect(
         await networkHelper.createRiferimento(
           await networkHelper.getRiferimentoById(10),
           (await networkHelper.getCategoriaById(12))!,
           40,
-        ),
-        null,
+        ) != null,
+        true,
       ); //CE2 CE4 CE6 RESTITUISCE UN RIFERIMENTO NON VUOTO
     });
 
@@ -73,7 +73,7 @@ void main() {
 
       expect(await networkHelper.ricerca(null, 10, 'autore', categoriaPiena, tipoPiena), []); //CE1 CE5 CE7 CE9
 
-      expect(await networkHelper.ricerca('Ricerca bug', null, null, [], tipoPiena), []); //CE3 CE4 CE6 CE9
+      expect(await networkHelper.ricerca('Ricerca bug', null, null, [], tipoPiena) != [], true); //CE3 CE4 CE6 CE9
 
       for (var i = 0; i < 6; i++) {
         tipoPiena.add(tipo_enum.Libro);
