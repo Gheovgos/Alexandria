@@ -261,40 +261,51 @@ class _SearchDialogState extends State<SearchDialog> {
             size: 50,
           ),
           onPressed: () async {
-            final ricerca = networkHelper.ricerca(
-              filtro == 'titolo' ? testo : null,
-              filtro == 'DOI' ? int.parse(testo) : null,
-              filtro == 'autore' ? testo : null,
-              categorie,
-              tipi,
-            );
-            await showDialog<void>(
-              context: context,
-              builder: (BuildContext context) {
-                return AlexandriaDialog(
-                  content: FutureBuilder(
-                    future: ricerca,
-                    builder: (
-                      BuildContext context,
-                      AsyncSnapshot<List<Riferimento>?> snapshot,
-                    ) {
-                      if (snapshot.hasData) {
-                        Future.delayed(const Duration(milliseconds: 100), () {
-                          Navigator.popAndPushNamed(
-                            context,
-                            'results',
-                            arguments: Ricerca(testo, snapshot.data),
-                          );
-                        });
-                        return const Center(child: Text('Apro la pagina...'));
-                      } else {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                    },
-                  ),
-                );
-              },
-            );
+            if ((filtro == 'DOI' && int.tryParse(testo) != null) || (testo.isNotEmpty && filtro != 'DOI')) {
+              final ricerca = networkHelper.ricerca(
+                filtro == 'titolo' ? testo : null,
+                filtro == 'DOI' ? int.parse(testo) : null,
+                filtro == 'autore' ? testo : null,
+                categorie,
+                tipi,
+              );
+              await showDialog<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlexandriaDialog(
+                    content: FutureBuilder(
+                      future: ricerca,
+                      builder: (
+                        BuildContext context,
+                        AsyncSnapshot<List<Riferimento>?> snapshot,
+                      ) {
+                        if (snapshot.hasData) {
+                          Future.delayed(const Duration(milliseconds: 100), () {
+                            Navigator.popAndPushNamed(
+                              context,
+                              'results',
+                              arguments: Ricerca(testo, snapshot.data),
+                            );
+                          });
+                          return const Center(child: Text('Apro la pagina...'));
+                        } else {
+                          return const Center(child: CircularProgressIndicator());
+                        }
+                      },
+                    ),
+                  );
+                },
+              );
+            } else {
+              await showDialog<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlexandriaDialog(
+                    content: Center(child: Text('Non hai scritto nessun $filtro!')),
+                  );
+                },
+              );
+            }
           },
         )
       ],
