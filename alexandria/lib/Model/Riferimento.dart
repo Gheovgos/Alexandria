@@ -44,7 +44,7 @@ class Riferimento {
     tipo = tipo_enum.Articolo;
     on_line = false;
   }
-  late int id_riferimento;
+  late final int id_riferimento;
   late String titolo_riferimento;
   late DateTime data_riferimento;
   tipo_enum? tipo;
