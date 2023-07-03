@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:alexandria/Model/Categoria.dart';
 import 'package:alexandria/Model/Riferimento.dart';
 import 'package:alexandria/Model/tipo_enum.dart';
@@ -14,8 +16,6 @@ void main() {
       assert(await networkHelper.createCategoria("WECT 2", 10, -5) == null)        //CE2 CE4 CE6
       assert(await networkHelper.createCategoria("WECT 3", 10, null) == null)      //CE2 CE4 CE5
       assert(await networkHelper.createCategoria("WECT 4", 10, 20) == null)        //CE2 CE4 CE7
-
-
     });
     test('Test sopra-categoria', () async {
       final cat = await networkHelper.createCategoria('TestCategoria2', 1, prima_categoria?.id_categoria);
@@ -34,30 +34,40 @@ void main() {
 
   group('Test riferimenti', () {
     Riferimento? primo_riferimento;
-    test('Creazione riferimento', () async {
-      primo_riferimento = Riferimento(
-        0,
-        'TestRiferimento',
-        DateTime.now(),
-        tipo_enum.Conferenza,
-        null,
-        null,
-        false,
-        'descr_riferimento',
-        null,
-        null,
-        null,
-        'luogo',
-        null,
-        null,
-        null,
-      );
-      primo_riferimento =
-          await networkHelper.createRiferimento(primo_riferimento, (await networkHelper.getCategoriaById(1))!, 1);
-      expect('TestRiferimento', primo_riferimento?.titolo_riferimento);
-      expect(tipo_enum.Conferenza, primo_riferimento?.tipo);
-      expect('descr_riferimento', primo_riferimento?.descr_riferimento);
-      expect('luogo', primo_riferimento?.luogo);
+    test('Test Creazione riferimento', () async {
+      assert(await networkHelper.createRiferimento(await networkHelper.getRiferimentoById(-1) as Riferimento,
+          await networkHelper.getCategoriaById(10) as Categoria, 10) == null); //CE1 CE4 CE6
+
+      assert(await networkHelper.createRiferimento(await networkHelper.getRiferimentoById(10) as Riferimento,
+          await networkHelper.getCategoriaById(-10) as Categoria, 10) == null); //CE2 CE3 CE6
+
+      assert(await networkHelper.createRiferimento(await networkHelper.getRiferimentoById(10) as Riferimento,
+          await networkHelper.getCategoriaById(12) as Categoria, -4) == null); //CE2 CE4 CE5
+
+      assert(await networkHelper.createRiferimento(await networkHelper.getRiferimentoById(10) as Riferimento,
+          await networkHelper.getCategoriaById(12) as Categoria, 40) == null); //CE2 CE4 CE6
+
+    });
+
+    test('Test Ricerca Riferimento', () async {
+
+      List<Categoria> categoriaPiena = [];
+      categoriaPiena.add(await networkHelper.getCategoriaById(1) as Categoria);
+      List<tipo_enum> tipoPiena = [];
+      tipoPiena.add(tipo_enum.Libro);
+
+      assert(await networkHelper.ricerca("", 10, "autore", categoriaPiena, tipoPiena) == null); //CE2 CE5 CE7 CE9
+
+      assert(await networkHelper.ricerca(null, 10, "autore", categoriaPiena, []) == null); //CE1 CE5 CE7 CE8
+
+      assert(await networkHelper.ricerca(null, 10, "autore", categoriaPiena, tipoPiena) == null); //CE1 CE5 CE7 CE9
+
+      assert(await networkHelper.ricerca("Ricerca bug", null, null, [], tipoPiena) == null); //CE3 CE4 CE6 CE9
+
+      for(int i = 0; i < 6; i++) tipoPiena.add(tipo_enum.Libro);
+
+      assert(await networkHelper.ricerca(null, 10, "autore", categoriaPiena, tipoPiena) == null); //CE1 CE5 CE7 CE10
+
     });
     test('Test eliminazione riferimento', () async {
       var eliminaPrimoRiferimento = await networkHelper.deleteRiferimento(primo_riferimento!);
@@ -65,6 +75,12 @@ void main() {
       eliminaPrimoRiferimento = await networkHelper.deleteRiferimento(primo_riferimento!);
       expect(eliminaPrimoRiferimento, false);
     });
+    test('Test Aggiungere Citazione', () async {
+      assert(await networkHelper.aggiungiCitazione(await networkHelper.getRiferimentoById(-1) as Riferimento, 1));    //CE1 CE4
+      assert(await networkHelper.aggiungiCitazione(await networkHelper.getRiferimentoById(8) as Riferimento, -10));   //CE2 CE3
+      assert(await networkHelper.aggiungiCitazione(await networkHelper.getRiferimentoById(8) as Riferimento, 10));    //CE2 CE4
+    });
+
     test('Test aggiorna riferimento autore', () async {
       final riferimento = Riferimento(
         -1,

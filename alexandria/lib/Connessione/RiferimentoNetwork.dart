@@ -27,7 +27,6 @@ class RiferimentoNetwork {
       riferimenti = await getRiferimentoBySTitolo(titolo) as List<Riferimento>;
 
       if(categoria.length > 0)  {
-        print("Ci entro?");
         for(Categoria c in categoria) riferimentiCategoria += await getRiferimentoByCategoria(c.id_categoria) as List<Riferimento>;
         riferimenti = _filterList(riferimenti, riferimentiCategoria);
       }
