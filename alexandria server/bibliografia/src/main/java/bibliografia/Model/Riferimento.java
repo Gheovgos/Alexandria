@@ -14,7 +14,6 @@ import java.util.List;
 public class Riferimento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id_riferimento;
 

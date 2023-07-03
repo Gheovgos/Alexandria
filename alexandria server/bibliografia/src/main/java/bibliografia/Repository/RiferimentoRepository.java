@@ -37,13 +37,13 @@ public interface RiferimentoRepository extends JpaRepository<Riferimento, Intege
     @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio JOIN riferimenti_biblio_categorie ON riferimenti_biblio.id_riferimento = riferimenti_biblio_categorie.riferimento_id_riferimento  WHERE riferimenti_biblio_categorie.categorie_id_categoria = :categoriaID", nativeQuery = true)
     List<Riferimento> getByCategoria(@Param("categoriaID") int categoriaID);
 
-    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio WHERE descrizione LIKE %:descr%", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio WHERE descrizione ILIKE %:descr%", nativeQuery = true)
     List<Riferimento> getByDescrizione(@Param("descr") String descr);
 
-    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio WHERE titolo_riferimento LIKE %:descr%", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio WHERE titolo_riferimento ILIKE %:descr%", nativeQuery = true)
     List<Riferimento> getBySTitolo(@Param("descr") String descr);
 
-    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio, riferimenti_biblio_user_id, utente WHERE riferimenti_biblio_user_id.riferimento_id_riferimento = riferimenti_biblio.id_riferimento AND riferimenti_biblio_user_id.utente_user_id = utente.user_id AND (nome LIKE %:testo% OR cognome LIKE %:testo%)",
+    @Query(value = "SELECT DISTINCT riferimenti_biblio.* FROM riferimenti_biblio, riferimenti_biblio_user_id, utente WHERE riferimenti_biblio_user_id.riferimento_id_riferimento = riferimenti_biblio.id_riferimento AND riferimenti_biblio_user_id.utente_user_id = utente.user_id AND (nome ILIKE %:testo% OR cognome ILIKE %:testo%)",
     nativeQuery = true)
     List<Riferimento> getByAutoreSearch(@Param("testo") String testo);
 
