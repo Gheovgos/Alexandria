@@ -92,6 +92,7 @@ class CategoriaNetwork {
 
 
   Future<Categoria?> creaCategoria(String nome, int user_id, int? superCategoria) async {
+    if(nome == "" || user_id < 0 || superCategoria! < 0) return null;
     final int id = await _getNextId() as int;
     _categoria = Categoria(id, nome, user_id, superCategoria);
     _getMapping = "/create/"+user_id.toString();

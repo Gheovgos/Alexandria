@@ -9,10 +9,13 @@ void main() {
     Categoria? prima_categoria;
     Categoria? seconda_categoria;
     test('Creazione categoria', () async {
-      prima_categoria = await networkHelper.createCategoria('TestCategoria', 1, null);
-      expect('TestCategoria', prima_categoria?.nome);
-      expect(null, prima_categoria?.super_Categoria);
-      expect(1, prima_categoria?.user_id);
+      assert(await networkHelper.createCategoria("", 1, null) == null);            //CE1 CE4 CE5
+      assert(await networkHelper.createCategoria("WECT 1", -100, null) == null)    //CE2 CE3 CE5
+      assert(await networkHelper.createCategoria("WECT 2", 10, -5) == null)        //CE2 CE4 CE6
+      assert(await networkHelper.createCategoria("WECT 3", 10, null) == null)      //CE2 CE4 CE5
+      assert(await networkHelper.createCategoria("WECT 4", 10, 20) == null)        //CE2 CE4 CE7
+
+
     });
     test('Test sopra-categoria', () async {
       final cat = await networkHelper.createCategoria('TestCategoria2', 1, prima_categoria?.id_categoria);
