@@ -1,5 +1,6 @@
 import 'package:alexandria/Model/Categoria.dart';
 import 'package:alexandria/Model/Riferimento.dart';
+import 'package:alexandria/Model/Utente.dart';
 import 'package:alexandria/Model/tipo_enum.dart';
 import 'package:alexandria/globals.dart';
 import 'package:test/test.dart';
@@ -32,20 +33,14 @@ void main() {
 
   group('Test riferimenti', () {
     Riferimento? primo_riferimento;
-    test('Test Creazione riferimento', () async {
-      expect( await networkHelper.createRiferimento(await networkHelper.getRiferimentoById(-1), (await networkHelper.getCategoriaById(10))!, 10,),
-        null,); //CE1 CE4 CE6
+    test('Test Registrazione', () async {
+      expect(await networkHelper.registrazione("", "password", "nome", "cognome", "email"), null); //CE1 CE4 CE6 CE8 CE10
+      expect(await networkHelper.registrazione("username", "", "nome", "cognome", "email"), null); //CE2 CE3 CE6 CE8 CE10
+      expect(await networkHelper.registrazione("username", "password", "", "cognome", "email"), null); //CE2 CE4 CE5 CE8 CE10
+      expect(await networkHelper.registrazione("username", "password", "nome", "", "email"), null); //CE2 CE4 CE5 CE7 CE10
+      expect(await networkHelper.registrazione("username", "password", "nome", "cognome", ""), null); //CE2 CE4 CE5 CE8 CE9
+      expect(await networkHelper.registrazione("username", "password", "nome", "cognome", "email") != null, true); //CE2 CE4 CE6 CE8 CE10
 
-      expect(await networkHelper.createRiferimento(await networkHelper.getRiferimentoById(10), (await networkHelper.getCategoriaById(12))!, -4,
-        ),
-        null,
-      ); //CE2 CE4 CE5
-
-      expect(
-        await networkHelper.createRiferimento( await networkHelper.getRiferimentoById(10), (await networkHelper.getCategoriaById(12))!, 40,
-        ) != null,
-        true,
-      ); //CE2 CE4 CE6
     });
 
     test('Test Ricerca Riferimento', () async {
@@ -73,11 +68,12 @@ void main() {
       eliminaPrimoRiferimento = await networkHelper.deleteRiferimento(primo_riferimento!);
       expect(eliminaPrimoRiferimento, false);
     });
-    test('Test Aggiungere Citazione', () async {
+    test('Test calcolo hash', () async {
+      Utente u = Utente(-1, "Test", "nome", "cognome", "email", "password");
+      expect(u.calculateHash("", "salt"), ""); //CE1 CE4
+      expect(u.calculateHash("password", ""), ""); //CE2 CE3
+      expect(u.calculateHash("unhashedPassword", "salt") != null, true); //CE2 CE4
 
-      expect(await networkHelper.aggiungiCitazione((await networkHelper.getRiferimentoById(8))!, -10, ), false,); //CE1 CE2
-
-      expect(await networkHelper.aggiungiCitazione((await networkHelper.getRiferimentoById(8))!, 10,), true,); //CE1 CE3
     });
 
     test('Test aggiorna riferimento autore', () async {
