@@ -11,7 +11,7 @@ import 'package:http/http.dart';
 class NetworkHelper {
   NetworkHelper();
 
-  final String url = 'http://13.51.162.83:8089'; //IP di AWS
+  final String url = 'http://13.51.162.83:8089'; //IP di AWS: 'http://13.51.162.83:8089'
   late final UtenteNetwork _unet = UtenteNetwork(url);
   late final CategoriaNetwork _catnet = CategoriaNetwork(url);
   late final RiferimentoNetwork _rifnet = RiferimentoNetwork(url);
@@ -23,7 +23,6 @@ class NetworkHelper {
   Future<Utente?> registrazione(String username, String password, String nome, String cognome, String email) async {
     return _unet.registrazione(username, password, nome, cognome, email);
   }
-
 
   Future<bool> hasConnection() async {
     try {
@@ -121,10 +120,11 @@ class NetworkHelper {
   }
 
   Future<Riferimento?> createRiferimento(Riferimento? riferimento, Categoria categoria, int userID) async {
-    if (riferimento == null)
+    if (riferimento == null) {
       return null;
-    else
+    } else {
       return _rifnet.creaRiferimento(riferimento, categoria, userID);
+    }
   }
 
   Future<bool> aggiungiAutore(Riferimento riferimento, int autoreID) async {

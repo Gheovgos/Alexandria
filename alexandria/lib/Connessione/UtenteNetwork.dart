@@ -1,28 +1,25 @@
 import 'dart:convert';
 
+import 'package:alexandria/Model/Utente.dart';
 import 'package:http/http.dart';
 
-import '../Model/Utente.dart';
-
 class UtenteNetwork {
+
+  UtenteNetwork(this.url);
   String url;
-  String _requestMapping = "/api/v1/utente";
+  final String _requestMapping = '/api/v1/utente';
   late String _getMapping;
   late Response _serverResponse;
   late Utente _utente;
   late Map<String, dynamic> _userMap;
 
-  UtenteNetwork(this.url);
-
   Future<Utente?> login(String username, String password) async {
-    _getMapping = "/login/"+username+"/"+password;
-    print(url+_requestMapping+_getMapping);
+    _getMapping = '/login/$username/$password';
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
       _userMap = jsonDecode(_serverResponse.body) as Map<String, dynamic>;
-      _utente = Utente.fromJson(_userMap);
-      return _utente;
+      return Utente.fromJson(_userMap);
     }
     else {
       return null;
@@ -30,11 +27,10 @@ class UtenteNetwork {
   }
 
   Future<Utente?> registrazione(String username, String password, String nome, String cognome, String email) async {
-    final int id = await _getNextId() as int;
-    _utente = Utente(id, username, nome, cognome, email, password);
-    String json = jsonEncode(_utente); //Linea di codice consigliato dalla documentazione ma, se messa nella post, non funziona. Linguaggio di merda
-    
-    _getMapping = "/create";
+    final id = await _getNextId();
+    _utente = Utente(id!, username, nome, cognome, email, password);
+
+    _getMapping = '/create';
     _serverResponse = await post(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
     }, body: jsonEncode(<String, dynamic> {
       'user_ID': _utente.user_ID,
@@ -54,13 +50,12 @@ class UtenteNetwork {
   }
 
   Future<Utente?> getUtenteById(int user_id) async {
-    _getMapping = "/create/getUtenteById/"+user_id.toString();
+    _getMapping = '/create/getUtenteById/$user_id';
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
       _userMap = jsonDecode(_serverResponse.body) as Map<String, dynamic>;
-      _utente = Utente.fromJson(_userMap);
-      return _utente;
+      return Utente.fromJson(_userMap);
     }
     else {
       return null;
@@ -68,14 +63,14 @@ class UtenteNetwork {
   }
 
   Future<List<Utente>?> findAll() async {
-    late List<Utente> utenti = [];
-    _getMapping = "/create/findAll";
+    late final utenti = <Utente>[];
+    _getMapping = '/create/findAll';
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
-      List<dynamic> utentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
-      for(var utenteJson in utentiJson) {
-        Utente u = Utente.fromJson(utenteJson as Map<String, dynamic>);
+      final utentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(final utenteJson in utentiJson) {
+        final u = Utente.fromJson(utenteJson as Map<String, dynamic>);
         utenti.add(u);
       }
 
@@ -87,14 +82,14 @@ class UtenteNetwork {
   }
 
   Future<List<Utente>?> getAutoriByRiferimento(int riferimentoID) async {
-    late List<Utente> utenti = [];
-    _getMapping = "/create/getAutoriByRiferimento/"+riferimentoID.toString();
+    late final utenti = <Utente>[];
+    _getMapping = '/create/getAutoriByRiferimento/$riferimentoID';
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
-      List<dynamic> utentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
-      for(var utenteJson in utentiJson) {
-        Utente u = Utente.fromJson(utenteJson as Map<String, dynamic>);
+      final utentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(final utenteJson in utentiJson) {
+        final u = Utente.fromJson(utenteJson as Map<String, dynamic>);
         utenti.add(u);
       }
 
@@ -106,18 +101,19 @@ class UtenteNetwork {
   }
 
   Future<bool> deleteUserFromId(int user_id) async {
-    _getMapping = "/delete/"+user_id.toString();
+    _getMapping = '/delete/$user_id';
 
     _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',}, );
-    if(_serverResponse.statusCode == 200) return true;
-    else return false;
+    if(_serverResponse.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future<bool> updateUser(Utente newUtente) async {
-    _getMapping = "/update";
+    _getMapping = '/update';
 
-    print(newUtente.password);
-    print(newUtente.username);
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String> { 'Content-Type': 'application/json; charset=UTF-8', },
       body: jsonEncode(<String, dynamic> {
         'user_ID': newUtente.user_ID,
@@ -127,12 +123,15 @@ class UtenteNetwork {
         'email': newUtente.email,
         'password_hashed': newUtente.password,
         'salt': (await getUtenteById(newUtente.user_ID))?.salt}), );
-    if(_serverResponse.statusCode == 200) return true;
-    else return false;
+    if(_serverResponse.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future<int?> _getNextId() async {
-    _getMapping = "/create/getNextId";
+    _getMapping = '/create/getNextId';
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
@@ -140,7 +139,9 @@ class UtenteNetwork {
 
       return id;
     }
-    else return null;
+    else {
+      return null;
+    }
   }
 
 }

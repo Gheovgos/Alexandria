@@ -43,8 +43,8 @@ class Utente {
   }
 
   String calculateHash(String unhashedPassword, String salt) {
-    int hash = unhashedPassword.hashCode ^ salt.hashCode;
-    String password_hashed = hash.toString();
+    final hash = unhashedPassword.hashCode ^ salt.hashCode;
+    final password_hashed = hash.toString();
 
     return password_hashed;
   }

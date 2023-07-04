@@ -1,101 +1,107 @@
 import 'dart:convert';
 
+import 'package:alexandria/Model/Categoria.dart';
 import 'package:http/http.dart';
-import '../Model/Categoria.dart';
 
 class CategoriaNetwork {
+  CategoriaNetwork(this.url);
   String url;
-  String _requestMapping = "/categoria";
+  final String _requestMapping = '/categoria';
   late String _getMapping;
   late Response _serverResponse;
   late Categoria _categoria;
   late Map<String, dynamic> _categoriaMap;
-  CategoriaNetwork(this.url);
 
   Future<Categoria?> getCategoriaById(int categoriaID) async {
-    _getMapping = "/get/getCategoriaById/"+categoriaID.toString();
+    _getMapping = '/get/getCategoriaById/$categoriaID';
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
       _categoriaMap = jsonDecode(_serverResponse.body) as Map<String, dynamic>;
-      _categoria = Categoria.fromJson(_categoriaMap);
 
-      return _categoria;
+      return Categoria.fromJson(_categoriaMap);
     }
-    else return null;
+    else {
+      return null;
+    }
   }
 
   Future<List<Categoria>?> findAll() async {
-    late List<Categoria> categorie = [];
-    _getMapping = "/get/findAll";
+    late final categorie = <Categoria>[];
+    _getMapping = '/get/findAll';
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
-      List<dynamic> categorieJson = jsonDecode(_serverResponse.body) as List<dynamic>;
-      for(var categoriaJson in categorieJson) {
-        Categoria c = Categoria.fromJson(categoriaJson as Map<String, dynamic>);
+      final categorieJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(final categoriaJson in categorieJson) {
+        final c = Categoria.fromJson(categoriaJson as Map<String, dynamic>);
         categorie.add(c);
       }
 
       return categorie;
     }
-    else return null;
+    else {
+      return null;
+    }
   }
 
   Future<Categoria?> getCategoriaByName(String nome) async {
-    _getMapping = "/get/getCategoriaByName/"+nome;
+    _getMapping = '/get/getCategoriaByName/$nome';
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
       _categoriaMap = jsonDecode(_serverResponse.body) as Map<String, dynamic>;
-      _categoria = Categoria.fromJson(_categoriaMap);
 
-      return _categoria;
+      return Categoria.fromJson(_categoriaMap);
     }
-    else return null;
+    else {
+      return null;
+    }
   }
 
   Future<List<Categoria>?> getSopraCategorie(int? categoriaID) async {
-    late List<Categoria> categorie = [];
-    _getMapping = "/get/getSopraCategorie/"+categoriaID.toString();
+    late final categorie = <Categoria>[];
+    _getMapping = '/get/getSopraCategorie/$categoriaID';
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
-      List<dynamic> categorieJson = jsonDecode(_serverResponse.body) as List<dynamic>;
-      for(var categoriaJson in categorieJson) {
-        Categoria c = Categoria.fromJson(categoriaJson as Map<String, dynamic>);
+      final categorieJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(final categoriaJson in categorieJson) {
+        final c = Categoria.fromJson(categoriaJson as Map<String, dynamic>);
         categorie.add(c);
       }
 
       return categorie;
     }
-    else return null;
+    else {
+      return null;
+    }
   }
 
   Future<List<Categoria>?> getSottoCategorie(int? categoriaID) async {
-    late List<Categoria> categorie = [];
-    _getMapping = "/get/getSottoCategorie/"+categoriaID.toString();
+    late final categorie = <Categoria>[];
+    _getMapping = '/get/getSottoCategorie/$categoriaID';
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
-      List<dynamic> categorieJson = jsonDecode(_serverResponse.body) as List<dynamic>;
-      for(var categoriaJson in categorieJson) {
-        Categoria c = Categoria.fromJson(categoriaJson as Map<String, dynamic>);
+      final categorieJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(final categoriaJson in categorieJson) {
+        final c = Categoria.fromJson(categoriaJson as Map<String, dynamic>);
         categorie.add(c);
       }
 
       return categorie;
     }
-    else return null;
+    else {
+      return null;
+    }
   }
 
-
-
   Future<Categoria?> creaCategoria(String nome, int user_id, int? superCategoria) async {
-    if(nome == "" || user_id < 0 || superCategoria! < 0) return null;
-    final int id = await _getNextId() as int;
-    _categoria = Categoria(id, nome, user_id, superCategoria);
-    _getMapping = "/create/"+user_id.toString();
+    if(nome == '' || user_id < 0 || superCategoria! < 0) return null;
+    final id = await _getNextId();
+    _categoria = Categoria(id!, nome, user_id, superCategoria);
+    _getMapping = '/create/$user_id';
     _serverResponse = await post(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String>{ 'Content-Type': 'application/json; charset=UTF-8',
     }, body: jsonEncode(<String, dynamic> {
       'descr_categoria': _categoria.nome,
@@ -104,12 +110,14 @@ class CategoriaNetwork {
       'id_categoria': _categoria.id_categoria,}),);
     if(_serverResponse.statusCode == 200) {
       return _categoria;
-    } else return null;
+    } else {
+      return null;
+    }
 
   }
 
   Future<bool> updateCategoria(Categoria newCategoria) async {
-    _getMapping = "/update/"+newCategoria.user_id.toString();
+    _getMapping = '/update/${newCategoria.user_id}';
 
     _serverResponse = await put(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String> { 'Content-Type': 'application/json; charset=UTF-8', },
       body: jsonEncode(<String, dynamic> {
@@ -117,12 +125,15 @@ class CategoriaNetwork {
         'super_Categoria': newCategoria.super_Categoria,
         'id_utente': newCategoria.user_id,
         'id_categoria': newCategoria.id_categoria,}),);
-    if(_serverResponse.statusCode == 200) return true;
-    else return false;
+    if(_serverResponse.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future<bool> deleteCategoriaById(Categoria c) async {
-    _getMapping = "/delete";
+    _getMapping = '/delete';
 
     _serverResponse = await delete(Uri.parse(url+_requestMapping+_getMapping), headers: <String, String> { 'Content-Type': 'application/json; charset=UTF-8', },
       body: jsonEncode(<String, dynamic> {
@@ -130,19 +141,22 @@ class CategoriaNetwork {
         'super_Categoria': c.super_Categoria,
         'id_utente': c.user_id,
         'id_categoria': c.id_categoria,}),);
-    if(_serverResponse.statusCode == 200) return true;
-    else return false;
+    if(_serverResponse.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future<List<Categoria>> getCategoriaByRiferimento(int id_riferimento) async {
-    late List<Categoria> categorie = [];
-    _getMapping = "/get/getCategoriaByRiferimento/"+id_riferimento.toString();
+    late final categorie = <Categoria>[];
+    _getMapping = '/get/getCategoriaByRiferimento/$id_riferimento';
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
-      List<dynamic> riferimentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
-      for(var riferimentoJson in riferimentiJson) {
-        Categoria f = Categoria.fromJson(riferimentoJson as Map<String, dynamic>);
+      final riferimentiJson = jsonDecode(_serverResponse.body) as List<dynamic>;
+      for(final riferimentoJson in riferimentiJson) {
+        final f = Categoria.fromJson(riferimentoJson as Map<String, dynamic>);
         categorie.add(f);
       }
 
@@ -151,10 +165,8 @@ class CategoriaNetwork {
 
   }
 
-
-
   Future<int?> _getNextId() async {
-    _getMapping = "/get/getNextId";
+    _getMapping = '/get/getNextId';
     _serverResponse = await get(Uri.parse(url+_requestMapping+_getMapping));
 
     if(_serverResponse.statusCode == 200) {
@@ -162,7 +174,9 @@ class CategoriaNetwork {
 
       return id;
     }
-    else return null;
+    else {
+      return null;
+    }
   }
 
 }

@@ -33,34 +33,19 @@ void main() {
   group('Test riferimenti', () {
     Riferimento? primo_riferimento;
     test('Test Creazione riferimento', () async {
-      expect( await networkHelper.createRiferimento( await networkHelper.getRiferimentoById(-1), (await networkHelper.getCategoriaById(10))!, 10,), null,); //CE1 CE4 CE6
+      expect( await networkHelper.createRiferimento(await networkHelper.getRiferimentoById(-1), (await networkHelper.getCategoriaById(10))!, 10,),
+        null,); //CE1 CE4 CE6
 
-      // expect(
-      //   await networkHelper.createRiferimento(
-      //     await networkHelper.getRiferimentoById(10),
-      //     (await networkHelper.getCategoriaById(-10))!,
-      //     10,
-      //   ),
-      //   null,
-      // ); //CE2 CE3 CE6 QUESTO CRASHA COMPLETAMENTE È DA RIMUOVERE PERCHÈ CATEGORIA NON PUO' ESSERE NULL
-
-      expect(
-        await networkHelper.createRiferimento(
-          await networkHelper.getRiferimentoById(10),
-          (await networkHelper.getCategoriaById(12))!,
-          -4,
+      expect(await networkHelper.createRiferimento(await networkHelper.getRiferimentoById(10), (await networkHelper.getCategoriaById(12))!, -4,
         ),
         null,
-      ); //CE2 CE4 CE5 QUESTO DEVE FALLIRE
+      ); //CE2 CE4 CE5
 
       expect(
-        await networkHelper.createRiferimento(
-          await networkHelper.getRiferimentoById(10),
-          (await networkHelper.getCategoriaById(12))!,
-          40,
+        await networkHelper.createRiferimento( await networkHelper.getRiferimentoById(10), (await networkHelper.getCategoriaById(12))!, 40,
         ) != null,
         true,
-      ); //CE2 CE4 CE6 RESTITUISCE UN RIFERIMENTO NON VUOTO
+      ); //CE2 CE4 CE6
     });
 
     test('Test Ricerca Riferimento', () async {
@@ -89,25 +74,10 @@ void main() {
       expect(eliminaPrimoRiferimento, false);
     });
     test('Test Aggiungere Citazione', () async {
-      // expect(await networkHelper.aggiungiCitazione(
-      //     await networkHelper.getRiferimentoById(-1) as Riferimento, 1), null); //CE1 CE4
-      //QUESTO È DA RIMUOVERE PERCHÈ NON PUO' ESSERE ESEGUITO
 
-      expect(
-        await networkHelper.aggiungiCitazione(
-          (await networkHelper.getRiferimentoById(8))!,
-          -10,
-        ),
-        false,
-      ); //CE2 CE3
+      expect(await networkHelper.aggiungiCitazione((await networkHelper.getRiferimentoById(8))!, -10, ), false,); //CE1 CE2
 
-      expect(
-        await networkHelper.aggiungiCitazione(
-          (await networkHelper.getRiferimentoById(8))!,
-          10,
-        ),
-        true,
-      ); //CE2 CE4
+      expect(await networkHelper.aggiungiCitazione((await networkHelper.getRiferimentoById(8))!, 10,), true,); //CE1 CE3
     });
 
     test('Test aggiorna riferimento autore', () async {
