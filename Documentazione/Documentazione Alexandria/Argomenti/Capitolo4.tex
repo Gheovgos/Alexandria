@@ -1,17 +1,65 @@
 \chapter{Testing e valutazione sul campo dell'usabilità}
 \raggedright{\section{Codice xUnit}}
 Di seguito viene riportato il codice dartUnit per 4 metodi non banali che abbiano almeno due parametri.\\
-\raggedright{\subsection{Creazione Categoria}}
-\lstinputlisting[language=Java]{Codice/creaCategoria.dart}
-\raggedright{\subsection{Eliminazione Categoria}}
-\lstinputlisting[language=Java]{Codice/eliminaCategoria.dart}
-\newpage
-\raggedright{\subsection{Creazione Riferimento}}
-\lstinputlisting[language=Java]{Codice/creaRiferimento.dart}
-\raggedright{\subsection{Eliminazione Riferimento}}
-\lstinputlisting[language=Java]{Codice/eliminaRiferimento.dart}
 
-\raggedright{\subsection{strategie adottate per la progettazione dei test}}
+\raggedright{\subsection{Unit Testing: Creazione Categoria}}
+\lstinputlisting[language=Java]{dartUnit/creaCategoria.dart}
+
+\newpage
+\raggedright{\subsection{Unit Testing: Ricerca di un Riferimento}}
+\lstinputlisting[language=Java]{dartUnit/ricercaRiferimento.dart}
+\newpage
+\raggedright{\subsection{Unit Testing: Calcolo hash}}
+\lstinputlisting[language=Java]{dartUnit/calcoloHash.dart}
+\raggedright{\subsection{Unit Testing: Regitrazione}}
+\lstinputlisting[language=Java]{dartUnit/registrazione.dart}
+\newpage
+\raggedright{\subsection{Strategie adottate per la progettazione dei test}}
+Tali unità di test sono state implementate mediante un approccio Black Box, anche se il codice sorgente era ovviamente disponibile. Questo perché abbiamo preferito testare il comportamento esterno dell'applicativo, senza doverci focalizzare sulle sfaccettature del codice. \\
+Abbiamo deciso di presentare quattro unità di test tra i tanti metodi che sarebbero stati maggiormente utilizzati in Alexandria: un metodo per la creazione di una categoria, uno per la ricerca di un riferimento, uno per la creazione di un riferimento e infine uno per l'aggiunta di una citazione. In particolare, sono stati individuate tali classi d'equivalenza:
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{creazioneCategoria}  &                           &                           &                          \\ \hline
+String nome         & CE1: \{""\} n. v.         & CE2: \{"abc"\} val.       &                          \\ \hline
+int user\_id        & CE3: \{minInt, -1\} n. v. & CE4: \{0, maxInt\} val.   &                          \\ \hline
+int? superCategoria & CE5: \{null\} val.        & CE6: \{minInt, -1\} n. v. & CE7:  \{0, maxInt\} val. \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{ricercaRiferimento}                      &                       &                              &                                \\ \hline
+String? titolo                          & CE1: \{null\} val.    & CE2: \{""\} n. v.            & CE3: \{"abc"\} val.            \\ \hline
+int? doi                                & CE4: \{null\} val.    & CE5: \{minInt, maxInt\} val. &                                \\ \hline
+List\textless{}Categoria\textgreater c  & CE6: \{{[}{]}\} val.  & CE7: \{{[}1, .., n{]}\} val. &                                \\ \hline
+List\textless{}tipo\_enum\textgreater t & CE8: \{{[}{]}\} n. v. & CE9: \{{[}1, .., 5{]}\} val. & CE10: \{{[}6, .., n{]}\} n. v. \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{registrazioneUtente}     &                           &                         \\ \hline
+String username         & CE1: \{""\} n. v.       & CE2: \{"abc"\} val.     \\ \hline
+String unhashedPassword & CE3: \{""\} n. v. & CE4: \{"abc"\} val. \\ \hline
+String nome             & CE5: \{""\} n. v.         & CE6: \{"abc"\} val.     \\ \hline
+String cognome          & CE7: \{""\} n. v.         & CE8: \{"abc"\} val.     \\ \hline
+String email            & CE9: \{""\} n. v.         & CE10: \{"abc"\} val.    \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{calculateHash}  &                           &                         \\ \hline
+String unhashedPassword & CE1: \{""\} n. v.       &  CE2: \{"abc"\} val.                       \\ \hline
+String salt    & CE3: \{""\} n. v. & CE4: \{"abc"\} val. \\ \hline
+\end{tabular}
+\end{table}
+Il criterio di copertura utilizzato è la \textit{\gls{Weak Equivalence Class Testing}}.
+Le caratteristiche individuate per ogni classe d'equivalenza rispecchiano i casi limite dei possibili valori che un parametro della funzione possa assumere.  
 
 \raggedright{\section{Valutazione dell'usabilità sul campo}}
 
