@@ -429,6 +429,9 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                             : null,
                         child: const Text('Articolo'),
                       ),
+                      const SizedBox(
+                        width: 20,
+                      ),
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Libro
                             ? () {
@@ -439,6 +442,9 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                               }
                             : null,
                         child: const Text('Libro'),
+                      ),
+                      const SizedBox(
+                        width: 20,
                       ),
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Fascicolo
@@ -469,6 +475,9 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                               }
                             : null,
                         child: const Text('Rivista'),
+                      ),
+                      const SizedBox(
+                        width: 20,
                       ),
                       AlexandriaRoundedButton(
                         onPressed: riferimento!.tipo != tipo_enum.Conferenza
