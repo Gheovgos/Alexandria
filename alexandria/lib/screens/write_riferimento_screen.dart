@@ -1182,7 +1182,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 30,
                   ),
                   AlexandriaRoundedButton(
                     padding: const EdgeInsets.only(
