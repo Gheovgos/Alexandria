@@ -68,29 +68,41 @@ A prodotto finito, ci siamo avvalsi dell'uso di \href{https://analytics.google.c
     \centering
     \includegraphics[width=0.99\textwidth]{Immagini/Alexandria/Report/panoramica-1.png}
     \caption{Panoramica generale}
-    \label{fig:mesh}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.99\textwidth]{Immagini/Alexandria/Report/eventi-1.png}
     \caption{Panoramica degli eventi}
-    \label{fig:mesh}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.99\textwidth]{Immagini/Alexandria/Report/conversioni-1.png}
     \caption{Panoramica delle conversioni}
-    \label{fig:mesh}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.99\textwidth]{Immagini/Alexandria/Report/dettagliTecnologia-1.png}
     \caption{Panoramica dettagli delle tecnologie}
-    \label{fig:mesh}
 \end{figure}
 
-In particolare, abbiamo deciso principalmente di apportare due modifiche all'applicativo finale: la gradazione del colore principale dell'applicazione e migliorie alle schermate di controllo per aumentare \textit{l'affordance.}
+In particolare, abbiamo deciso principalmente di apportare due modifiche all'applicativo finale: la gradazione del colore principale dell'applicazione e migliorie alle schermate di controllo per aumentare \textit{l'affordance.} Abbiamo deciso di tenere traccia dei tasso di successo di pochi utenti per poi modificare eventualmente l'applicativo rendendolo più semplice. Ergo è stata compilata questa tabella:
 
+\begin{table}[h]
+\resizebox{\columnwidth}{!}{\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+                      & \multicolumn{1}{l|}{Task 1: Ricerca Riferimento} & \multicolumn{1}{l|}{Task 2: Creazione Riferimento} & \multicolumn{1}{l|}{Task 3: Creazione Categoria} & \multicolumn{1}{l|}{Task 4: Modifica Riferimento} & \multicolumn{1}{l|}{Task 5: Visualizzazione di un Riferimento} & \multicolumn{1}{l|}{Task 6: Eliminazione Riferimento} \\ \hline
+Utente 1              & S                                                & S                                                  & S                                                & P                                                 & S                                                              & S                                                     \\ \hline
+Utente 2              & S                                                & S                                                  & P                                                & F                                                 & S                                                              & S                                                     \\ \hline
+Utente 3              & S                                                & S                                                  & S                                                & S                                                 & S                                                              & S                                                     \\ \hline
+Utente 4              & S                                                & S                                                  & S                                                & P                                                 & S                                                              & S                                                     \\ \hline
+Utente 5              & S                                                & S                                                  & S                                                & P                                                 & S                                                              & P                                                     \\ \hline
+Percentuale successo: & 100\%                                            & 100\%                                              & 90\%                                             & 45\%                                              & 100\%                                                          & 90\%                                                  \\ \hline
+\end{tabular}}
+\caption{Tasso di successo}
+\end{table}
+Dove S, F e P indicano rispettivamente Successo, Fallimento e Parziale (Successo). E' da precisare inoltre che la tabella non tiene conto del tempo impiegato per ogni utente a svolgere un determinato compito. Tutti gli utenti rivestono il ruolo di un normale utente, non godendo di particolari privilegi del sistema, ma solamente eventuale potere di creare categorie, riferimenti ed eliminare i propri oggetti realizzati.
+
+Una volta analizzati i dati, abbiamo deciso di migliorare le schermate dei Task che generassero un basso tasso di successo. In questo caso, il compito \textit{Modifica Riferimento} genera un tasso di successo < 60\%, dove 60 è un tasso che consideriamo sufficiente per non modificare le schermate correlate. Dunque, la schermata per la modifica di un riferimento ha subito migliorie per evitare fraintendimenti o casi di insuccesso. 
