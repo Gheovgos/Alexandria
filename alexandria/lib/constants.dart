@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const Color kAlexandriaGreen = Color(0xFF37C534);
+const Color kAlexandriaGreen = Color(0xFF0EA220);
 const Color kInfoBoxColor = Color(0xFFF9ECEC);
 const Color kTextBoxColor = Color(0xFFE5FFE4);
 const InputDecoration kInputDecoration = InputDecoration(
