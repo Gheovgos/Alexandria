@@ -66,7 +66,7 @@ class _WriteRiferimentoScreenState extends State<WriteRiferimentoScreen> {
       bottomNavigationBar: const AlexandriaNavigationBar(currentIndex: 2),
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
