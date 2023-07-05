@@ -1,10 +1,12 @@
 \chapter{Requisiti Software}
 \raggedright{\section{Modellazione casi d'uso richiesti}}
 All'interno della nostra applicazione rimodernizzata, da qui in avanti chiamata \gls{Alexandria}, abbiamo individuato 6 \gls{casi d'uso}: un caso d'uso relativo all'autenticazione, un caso d'uso relativo alla ricerca di un \gls{riferimento} e di un \gls{autore}, un caso d'uso relativo alla creazione dei riferimenti, un caso d'uso relativo alla creazione di una \gls{categoria}, un caso d'uso relativo alla visualizzazione e creazione modifica dei propri riferimenti e infine caso d'uso relativo alle impostazioni utente.
-         \begin{center}
-     \hspace{-1cm}
-            \includegraphics[width=.90\textwidth]{Immagini/Alexandria/useCase.png} 
-        \end{center}
+\begin{figure}[H]
+    \centering
+        \includegraphics[width=.90\textwidth]{Immagini/Alexandria/useCase.png} 
+    \caption{Use Case Diagram di Alexandria}
+\end{figure}
+
 \newpage
 Spiegazione dettagliata dei casi d'uso mostrati: 
 \begin{itemize}
@@ -73,20 +75,20 @@ Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando
     \newpage
     
 \begin{table}[H]
-    \def\arraystretch{1.5}
-    \begin{tabularx}{\linewidth}{|l|X|X|X|}
+\def\arraystretch{1.5}
+\begin{tabularx}{\linewidth}{|p{5.5cm}@{}|X|X|X|}
         
- \hline \multirow{2}{*}{Extension A:  L'utente torna indietro} & Step &
+ \hline \multirow{2}{*}{\shortstack[l]{Extension A: \\ L'utente torna indietro}} & Step &
   Attore & Sistema \\
  \cline{2-4} & D.1 a D.7 & Preme su \textit{Indietro} & \\
  \cline{2-4} &  A.1 &  & Mostra frame \textit{HomePage} \\
  \hline
-  \multirow{2}{*}{Extension B: L'utente non inserisce il testo} & Step & Attore & Sistema \\
+  \multirow{2}{*}{\shortstack[l]{Extension B: \\ L'utente non inserisce il testo}} & Step & Attore & Sistema \\
 
   \cline{2-4} & D.1 a D.7 & Preme su ricerca & \\
   \cline{2-4} & B.1 &  & Mostra tutti i riferimenti esistenti \\
  \hline
-  \multirow{2}{*}{Extension C: Non esistono i riferimenti ricercati} & Step & Attore & Sistema \\
+  \multirow{2}{*}{\shortstack[l]{Extension C: \\ Non esistono i \\ riferimenti ricercati}} & Step & Attore & Sistema \\
 
   \cline{2-4} & D.8 + D.9 & Preme su ricerca & \\
   \cline{2-4} & C.1  &  & Mostra frame \textit{Ricerca Vuota} \\
@@ -100,23 +102,20 @@ Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando
 
 
 \end{tabularx}
-
 \end{table}
-
-\newpage
 \raggedright{\subsection{Caso d'uso: Creazione Riferimento}}
 
 \begin{table}[H]
 \def\arraystretch{1.3}
-\begin{tabularx}{\linewidth}{|l|X|X|X|}
+\begin{tabularx}{\linewidth}{|l|p{5.5cm}@{}|X|X|}
 
   \hline Caso d'Uso 2 & \multicolumn{3} {l|}{Creazione di un Riferimento} \\ \hline Obiettivo & \multicolumn{3}{>{\hsize=\dimexpr 3\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{%
     L'obiettivo principale è quello di creare un nuovo riferimento visualizzabile per tutti gli utenti.} \\
  \hline Precondizioni &
   \multicolumn{3}{l|}{L'utente deve essere stato correttamente registrato in precedenza} \\
  \hline Condizioni di successo &
-  \multicolumn{3}{l|}{Viene creato un nuovo riferimento nel sistema, visualizzabile
-    per tutti gli utenti.} \\
+  \multicolumn{3}{l|}{\shortstack[l]{Viene creato un nuovo riferimento nel sistema, \\ visualizzabile
+    per tutti gli utenti.}} \\
  \hline Condizioni di fallimento &
   \multicolumn{3}{l|}{Il riferimento è già esistente nel sistema.} \\
  \hline Attore principale &
@@ -137,7 +136,20 @@ Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando
   \cline{2-4} & 10 & Seleziona il tipo di riferimento & \\
   \cline{2-4} & 11 & & Deseleziona i tipi di riferimento non scelti dall'utente \\
   \cline{2-4} & 12 & Preme su Descrizione & \\
+    \hline Note & \multicolumn{3}{l|}{I dialog sono descritti come \textit{Frame} su Figma.} \\
+   \hline
+
+  \end{tabularx}
+\end{table}
+
+
+
+\begin{table}[H]
+\def\arraystretch{1.3}
+\begin{tabularx}{\linewidth}{|l|p{5.5cm}@{}|X|X|}
+\hline
   \cline{2-4} & 13 & & Mostra dialog \textit{Crea Modifica Citazione Descrizione}\\
+
   \cline{2-4} & 14 & Inserisce una descrizione, un DOI, una edizione e numero delle pagine e preme Ok& \\
   \cline{2-4} & 15 & & Ritorna al frame \textit{Crea Modifica Citazione} \\
   \cline{2-4} & 16 & Preme su Link & \\
@@ -152,22 +164,22 @@ Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando
    \hline
 
   \end{tabularx}
-  \end{table}
+\end{table}
   
 \newpage
 
 \begin{table}[H]
   \def\arraystretch{1.1}
-  \begin{tabularx}{\linewidth}{|l|X|X|X|}
+  \begin{tabularx}{\linewidth}{|p{6.4cm}@{}|X|X|X|}
       
- \hline \multirow{2}{*}{Extension A: Riferimento già esistente} & Step &
+ \hline \multirow{2}{*}{\shortstack[l]{Extension A: \\  Riferimento già esistente}} & Step &
   Attore & Sistema \\
  \cline{2-4} &  D.20 & & Mostra dialog \textit{Crea Modifica Citazione Errore} \\
  \cline{2-4} & A.1 & Attende pochi secondi & \\
 \cline{2-4} & A.2 & & Ritorna sul frame \textit{Crea Modifica Citazione} \\
  \hline
  
-  \multirow{2}{*}{Extension B: Riferimento connesso non esistente} & Step & Attore & Sistema \\
+  \multirow{2}{*}{\shortstack[l]{Extension B:\\ Riferimento connesso non esistente}} & Step & Attore & Sistema \\
   \cline{2-4} & D.7 & Inserisce un riferimento non esistente e preme Ok & \\
   \cline{2-4} & B.1 & & Mostra snackbar \textit{Errore Modifica Citazione Riferimento a} \\
 
@@ -177,15 +189,23 @@ Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando
   \cline{2-4} & D.7 & Lascia un campo vuoto e preme Ok & \\
   \cline{2-4} & C.1 & & Mostra snackbar \textit{Errore Modifica Citazione Riferimento a} \\
 
+ \hline Note & \multicolumn{3}{l|}{} \\
  \hline
- 
+
+
+\end{tabularx}
+\end{table}
+\begin{table}[H]
+  \def\arraystretch{1.1}
+  \begin{tabularx}{\linewidth}{|p{6.4cm}@{}|X|X|X|}
+  \hline
   \multirow{2}{*}{Extension E: URL non valido} & Step & Attore & Sistema \\
   \cline{2-4} & D.17 & Inserisce un link non valido e preme Ok & \\
   \cline{2-4} & E.1 & & Mostra snackbar \textit{Errore Crea Modifica Citazione Link} \\
 
  \hline
  
-  \multirow{2}{*}{Extension F: Descrizione non valida} & Step & Attore & Sistema \\
+  \multirow{2}{*}{\shortstack[l]{Extension F: \\ Descrizione non valida}} & Step & Attore & Sistema \\
   \cline{2-4} & D.13 & Inserisce valori non validi per la descrizione, pagine, edizione o DOI e preme Ok & \\
   \cline{2-4} & F.1 & & Mostra snackbar \textit{Errore Crea Modifica Citazione Descrizione} \\
   \cline{2-4} & F.2 & & Scomparsa della snackbar \\
@@ -206,7 +226,6 @@ Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando
 
 \newpage
 \raggedright{\subsection{Caso d'uso: Modifica propri Riferimenti}}
-
 \begin{table}[H]
 \def\arraystretch{1.5}
 \begin{tabularx}{\linewidth}{|l|X|X|X|}
@@ -239,15 +258,11 @@ Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando
   \cline{2-4} & 12 &  & Mostra dialog \textit{Crea Modifica Citazione Successo}\\
   \cline{2-4} & 13 & Preme su visualizza & \\
   \cline{2-4} & 14 &  & Mostra frame \textit{Visualizza Citazione} \\
-  
-   \hline Note & \multicolumn{3}{l|}{I dettagli sulla modifica dei valori sono 
-   stati omessi.} \\
-   \hline Note & \multicolumn{3}{l|}{Funzionamento analogo alla creazione di un riferimento. Si consulti la sezione 2.3.2.} \\
+
 \hline
 \end{tabularx}
 \end{table}
 
-\newpage
 
 \begin{table}[H]
 \def\arraystretch{1.5}
@@ -284,8 +299,7 @@ Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando
 
 \end{tabularx}
 \end{table}
-
-\newpage
+I dettagi sulla modifica dei valori sono stati omessi. Il funzionamento è analogo alla creazione di un riferimento, si consulti la sezione 2.3.2.
 \raggedright{\subsection{Caso d'uso: Crea Categoria}}
 
 \begin{table}[H]
@@ -297,7 +311,7 @@ Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando
  \hline Precondizioni &
   \multicolumn{3}{l|}{Utente deve essere correttamente registrato} \\
  \hline Condizioni di successo &
-  \multicolumn{3}{l|}{Creare una categoria. Se ha sottocategorie, non deve essere sottocategoria di se stessa} \\
+  \multicolumn{3}{l|}{\shortstack[l]{Creare una categoria. \\ Se ha sottocategorie, non deve essere sottocategoria \\ di se stessa}} \\
  \hline Condizioni di fallimento &
   \multicolumn{3}{l|}{Creare una categoria che sia una sottocategoria di se stessa} \\
  \hline Attore principale &
@@ -347,44 +361,64 @@ Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando
 \newpage
 
 \raggedright{\section{Prototipazione Visuale}}
-L'interfaccia grafica della nuova applicazione prende ispirazione dall'applicativo originale, migliorandolo però dal punto di vista dell'usabilità. \\
+L'interfaccia grafica della nuova applicazione prende ispirazione dall'applicativo originale, applicando però i principi dell'usabilità e puntando alla miglior affordance possibile e realizzabile.
+
 \raggedright{\subsection{Interfaccia Grafica progetto originale}}
 Mostriamo ora alcune schermate dell'applicativo originale spiegando i punti che poi andranno modificati per rispettare un buon criterio di ingegnerizzazione. \\ Innanzitutto, la schermata di accesso iniziale:  
-        \\~\\
-         \begin{center}
-            \includegraphics[width=.60\textwidth]{Immagini/VecchioProgetto/login.jpg} 
-        \end{center}
+\\~\\
+\begin{figure}[H]
+    \centering
+            \includegraphics[width=.60\textwidth]{Immagini/VecchioProgetto/login.jpg}
+    \caption{Schermata di accesso iniziale}
+\end{figure}
+
 È possibile effettuare l'accesso mediante solamente l'ID utente. Come già accennato in \hyperref[nuovo:accesso]{precedenza}, il nuovo sistema di acceso prevede l'utilizzo di credenziali univoche per ogni utente. Da qui, inserendo numeri casuali, è possibile effettuare l'accesso con utenti di cui non si dovrebbero disporre le credenziali. Inoltre, manca un eventuale aiuto se l'utente dovesse dimenticarsi delle proprie credenziali. Infine, l'utente non dovrebbe vedere il proprio ID essendo un'informazione prettamente riservata nel database.
-         \begin{center}
+\\~\\
+\begin{figure}[H]
+    \centering
             \includegraphics[width=.60\textwidth]{Immagini/VecchioProgetto/registrazione.jpg} 
-        \end{center}
+    \caption{Schermata di registraione iniziale}
+\end{figure}
+
 In fase di registrazione, il futuro nuovo utente deve inserire solamente il proprio cognome e nome, mentre l'ID sarà solamente visualizzato. Se l'utente non dovesse vedere il proprio numero, o non capire come effettuare l'accesso successivamente, perderebbe le proprie credenziali inaspettatamente. Dunque, la schermata di registrazione del nuovo applicativo chiederà all'utente, oltre al proprio nome e cognome, una email e una password, da usare successivamente. Inoltre, una volta completata la registrazione, il vecchio sistema non effettua in automatico il login, funzionalità abbastanza comoda che viene introdotta in Alexandria.
-
-         \begin{center}
+\\~\\
+\begin{figure}[H]
+    \centering
             \includegraphics[width=.80\textwidth]{Immagini/VecchioProgetto/homepage.jpg} 
-        \end{center}
+
+    \caption{Home Page dell'applicativo originale}
+\end{figure}
+
 La HomePage del vecchio applicativo ci è sembrato piuttosto ambiguo su alcuni aspetti: che cosa si intende per \textit{Ultimi 5 riferimenti}? Gli ultimi 5 riferimenti creati dall'utente insertiti, gli ultimi 5 riferimenti visualizzati dall'utente, oppure ancora gli ultimi 5 riferimenti inseriti da altri utenti? Discorso analogo per quanto riguarda le citazioni. Abbiamo quindi interpretato che questi fossero delle cronologie delle citazioni e riferimenti inserite dall'utente stesso. Inoltre, si cercherà di migliorare l'affordance generale della schermata, facendo capire a intuito dove inserire il testo per cercare e come cercare.
+\\~\\
+\begin{figure}[H]
+    \centering
+            \includegraphics[width=.80\textwidth]{Immagini/VecchioProgetto/crea riferimento.jpg}  
 
-         \begin{center}
-            \includegraphics[width=.80\textwidth]{Immagini/VecchioProgetto/crea riferimento.jpg} 
-        \end{center}
+    \caption{Schermata creazione di un nuovo riferimento}
+\end{figure}
+
 La schermata originale della creazione di un nuovo riferimento ci è risultata piuttosto confusonaria e alcune sezioni troppo grandi (come la lista degli autori) o troppo piccole (come quella della descrizione). Il nuovo applicativo cercherà di raggruppare tutte queste informazioni in spazi più piccoli e più intuibili, mostrando solamente le informazioni necessarie per l'inserimento.
+\begin{figure}[H]
+    \centering
+            \includegraphics[width=.80\textwidth]{Immagini/VecchioProgetto/crea categoria.jpg}  
 
-        \begin{center}
-            \includegraphics[width=.80\textwidth]{Immagini/VecchioProgetto/crea categoria.jpg} 
-        \end{center}
+    \caption{Schermata creazione di una nuova categoria}
+\end{figure}
 
 Discorso analogo vale per la creazione di una categoria, ci è sembrato eccessivo mostrate tutte le sopra-categorie possibili. Essendo molte risulta poi difficoltoso per un utente ricercare quella desiderata.
-
-        \begin{center}
+\begin{figure}[H]
+    \centering
             \includegraphics[width=.80\textwidth]{Immagini/VecchioProgetto/visualizza riferimenti.jpg} 
-        \end{center}
-        
-La schermata di visualizzazione dei riferimenti è ambigua nel suo nome: non solo è possibile visualizzare tutti i propri riferimenti creati, ma anche modificarli ed eliminarli. Verrà quindi descritto il suo scopo.
-\raggedright{\subsection{Interfaccia Grafica di Alexandria}}
-Queste sono alcune delle nuove schermate prototipizzate:
-\newpage
 
+    \caption{Schermata per visualizzare i propri riferimenti}
+\end{figure}
+
+La schermata di visualizzazione dei riferimenti è ambigua nel suo nome: non solo è possibile visualizzare tutti i propri riferimenti creati, ma anche modificarli ed eliminarli. Verrà quindi descritto il suo scopo. \\
+\raggedright{\subsection{Interfaccia Grafica di Alexandria}}
+Di seguito vengono riportati alcuni mock-up delle nuove schermate realizzate per Alexandria.\\
+Esse sono state realizzate cercando di rispettare i principi di usabilità e di sfruttare al massimo le icone che esprimono già azioni o immagini universalmente condivise. Per esempio, abbiamo utilizzato l'icona di un omino per esprimere che quel determinato oggetto è un autore e non un riferimento. Abbiamo quindi introdotto una barra di navigazione che godesse di queste proprietà, mediante la quale si possono effettuare inoltre le operazioni più comuni, ponendo al centro la creazione di un riferimento, dato che il centro cattura immediatamente l'occhio. Invece la schermata iniziale sarà principalmente quello per la ricerca, perché è un'altra azione di maggiore utilizzo per la \textit{Alexandria}. Le azioni restanti saranno disponibili o navigando attravero la bottom-bar.
+\newpage
  \begin{figure}
 \centering
 \begin{minipage}{.5\textwidth}
@@ -398,24 +432,28 @@ Queste sono alcune delle nuove schermate prototipizzate:
 \end{minipage}
 \end{figure}
 
-La schermata di accesso e la schermata di homepage. Se si volesse consultare la prototipizzazione completa basta consulatare \href{https://www.figma.com/file/O9LZ0W5HYZAW2BCnP167fL/Alexandria?node-id=0%3A1&t=rqKqdyohunSYcSgf-1}{questo link cliccabile}, dove è annesso il flow dell'applicazione e tutti i frame completi, ognuno realizzato con Figma.
+Queste sono la schermata di accesso e la schermata di homepage. Se si volesse consultare la prototipizzazione completa basta consulatare \href{https://www.figma.com/file/O9LZ0W5HYZAW2BCnP167fL/Alexandria?node-id=0%3A1&t=rqKqdyohunSYcSgf-1}{questo link cliccabile}, dove è annesso il flow dell'applicazione e tutti i frame completi, ognuno realizzato con Figma.
 
 
 \raggedright{\section{Valutazione dell'usabilità}}
 Come già ribadito in precedenza, la nuova interfaccia grafica di Alexandria è stata pensata cercando di rispettare tutti i principi di buona usabilità. Uno dei cambiamenti principali è stato il tema principale dell'applicazione. Attraverso la \href{https://www.my-personaltrainer.it/salute-benessere/la-ruota-delle-emozioni-di-plutchik-cos-e-a-cosa-serve-e-quali-sono-i-suoi-benefici.html}{ruota di Plutchik} abbiamo deciso di assegnare alla nostra nuova applicazione un nuovo colore: il verde chiaro e le sue variazioni. \\~\\
-
-        \begin{center}
+\begin{figure}[H]
+    \centering
             \includegraphics[width=.40\textwidth]{Immagini/Ruota di Plutchik.png} 
-        \end{center}
+    \caption{Ruota di Plutchik}
+\end{figure}
+
 Essendo un'applicazione che deve gestire i propri riferimenti, è importante che tale applicazione esprima \textit{Fiducia} nei confronti dell'utente, e consultando la ruota delle emozioni il verde ci è sembrato il colore più adatto alla scelta del tema principale dell'applicazione. \\
 Abbiamo inoltre deciso che a schermo non verranno mostrate più informazioni del necessario se non richiesto. Le informaizoni presenti sull'interfaccia grafica sono minimali e riassuntive, per non caricare troppo la memoria a breve termine dell'utente. Inoltre, le icone sono state pensate per rispettare l'uso comune di esse e abbiamo tentato di rendere ogni icona autoesplicativa. Considerato che l'applicativo deve girare su dispositivi mobili, l'interfaccia è stata pensata per apparire su schermi più piccoli, e che quindi l'utente ha una percezione minore rispetto a un monitor: per ovviare a questo problema abbiamo tentato di rendere i pulsanti che creino contrasto con lo sfondo, abbiamo ridotto la quantità di testo per non occupare troppo spazio su schermo, abbiamo preferito uno stile che non sia troppo sfarzoso e ingombrante. Infine, in caso di più pulsanti, essi sono posti distanziati (nei limiti, ovviamente, dei vincoli dell'usabilità e visivi) per evitare che si prema accidentalmente un bottone anziché di un altro, penalizzando l'esperienza dell'utente.
-
+\newpage
 \raggedright{\section{Classi, oggetti e relazioni d'analisi}}
 Alla luce delle nuove funzionalità da inserire, vengono apportate queste nuove modifiche al Database: 
-
-        \begin{center}
+\begin{figure}[H]
+    \centering
             \includegraphics[width=.90\textwidth]{Immagini/Alexandria/UML DB.PNG} 
-        \end{center}
+    \caption{Diagramma delle classi}
+\end{figure}
+
         
 La tabella utente ha nuovi attributi: \textit{password hashed}, che contiene la password hashata, \textit{salt}, che servirà per comporre l'hash nel Database e \textit{username}, che serve agli utenti per effettuare il login. Inoltre vengono rimossi gli attributi di \textit{Data Inizio Validità} e \textit{Data Fine Validità} poiché non venivano utilizzati all'interno dell'applicativo e non viene richiesto il suo scopo. Inoltre, alla tabella di associazione \textit{Autore-Riferimento} vengono rimossi gli attributi \textit{Ordine} e \textit{Descrizione Utente}, il primo perché ininfluente ai fini dell'implementazione del Database, il secondo perché ridondante. Per il resto, l'intero sistema ci è sembrato pressoché pertinente allo sviluppo della nuova app reingegnerizzata.
 
@@ -423,10 +461,6 @@ La tabella utente ha nuovi attributi: \textit{password hashed}, che contiene la 
 Di seguito vengono riportati i Sequence Diagram di design di due funzionalità: la ricerca di un autore e la creazione di un riferimento. 
 
 \raggedright{\subsection{Diagramma di Sequenza: Ricerca di un Autore}}
-
-        \begin{center}
-            \includegraphics[width=.95\textwidth]{Immagini/Alexandria/sequenceDiagramDesign1.PNG} 
-        \end{center}
 
 Il sequence Diagram qui presente rappresenta l'istante in cui un utente preme su \textit{Ricerca} una volta inseriti tutti i parametri preferiti, supponendo non abbia riscontrato problemi prima di premere invio. 
 
