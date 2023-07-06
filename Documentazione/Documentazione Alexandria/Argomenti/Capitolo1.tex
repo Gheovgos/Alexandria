@@ -14,7 +14,7 @@ Il sistema permette infine di effettuare interrogazioni avanzate, con possibilit
 Inoltre è richiesto lo sviluppo di nuove funzionalità da integrare nel sistema informativo già esistente.
 \newpage
 \raggedright{\section{Stato progetto originale}}
-L'applicativo originale, seppur lasciato in ottimo stato, presenta alcuni punti deboli per quanto riguarda la progettazione software e usabilità. In particolare, verranno mostrati le varie funzionalità e i vari aspetti dell'applicativo che verranno modificati affinché possa rispettare gli standard odierni.
+L'applicativo originale, seppur lasciato in ottimo stato, presenta alcuni punti deboli per quanto riguarda la progettazione software e usabilità. In particolare, verranno mostrate le varie funzionalità e i vari aspetti dell'applicativo che verranno modificati affinché possa rispettare gli standard odierni.
 \\~\\
 \raggedright{{\subsection{Base di dati}}}
 
@@ -28,8 +28,8 @@ Analizzando la base di dati originale, possiamo dedurre le seguenti informazioni
 \\~\\
 \begin{itemize}
     \item la tabella \textit{Utente} descrive il possible utente che accede alla piattaforma dei riferimenti bibliografici. Contiene un identificativo univoco, un nome e cognome e due date di inzio e fine validità rispettivamente. \\
-    \item La tabella \textit{Autore-Riferimento} descrive il possible ideatore o relatore in base a che tipologia di riferimento bibliografico si analizzi. \\
-    \item La tabella \textit{Riferimento Bibliografico} descrive il possible riferimento bibliografico e le sue caratteristiche in base alla tipologia. \\
+    \item La tabella \textit{Autore-Riferimento} descrive il possibile ideatore o relatore in base a che tipologia di riferimento bibliografico si analizzi. \\
+    \item La tabella \textit{Riferimento Bibliografico} descrive il possibile riferimento bibliografico e le sue caratteristiche in base alla tipologia. \\
     \item La tabella \textit{Categoria} descrive una categoria e le sue possibili sottocategorie. \\
     \item La tabella \textit{Associazione-Riferimenti} è un descrittore di un riferimento che può essere associato a un insieme di rimandi. \\
     \item La tabella \textit{Categoria-Riferimento} è un descrittore di una categoria che è associata ad  un riferimento. \\
@@ -55,7 +55,7 @@ Dall'analisi di questo Package Diagram possiamo dedurre che il sistema originale
 \raggedright{\section{Migliorie del progetto originale e nuove funzionalità}}
 La nuova versione del progetto prevede la modifica delle seguenti funzionalità: \\~\\
 \begin{itemize}
-    \item \label{nuovo:accesso} Nuovo sistema di accesso: il sistema non prevederà l'utilizzo dell'ID utente ma di una email e password apposita. Durante la registrazione verrà richiesto infatti di inserire le due informaizoni che saranno poi salvate nel database. Inoltre, per preservare la sicurezza degli utenti, le password verranno criptate.
+    \item \label{nuovo:accesso} Nuovo sistema di accesso: il sistema non prevederà l'utilizzo dell'ID utente ma di una email e password apposita. Durante la registrazione verrà richiesto infatti di inserire le due informazioni che saranno poi salvate nel database. Inoltre, per preservare la sicurezza degli utenti, le password verranno criptate.
     \item Rimozione visibilità di ID accesso durante la registrazione: poiché l'utente non può più sapere il suo identificativo, non verrà mostrato il suo ID durante la registrazione.
     \item Potenziamento modalità di ricerca: la ricerca di riferimenti, citazioni e categorie verrà modificato e sarà più intuitivo ed efficiente.
     \item Apertura collegamenti: l'applicativo sarà capace di aprire gli URL inseriti per migliorare l'esperienza dell'utente, funzionalità mancante dell'applicativo originale.
