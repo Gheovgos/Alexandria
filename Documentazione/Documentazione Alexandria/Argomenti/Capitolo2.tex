@@ -227,7 +227,7 @@ Vengono qui riportati quattro casi d'uso significativi nel dettaglio utilizzando
 \newpage
 \raggedright{\subsection{Caso d'uso: Modifica propri Riferimenti}}
 \begin{table}[H]
-\def\arraystretch{1.5}
+\def\arraystretch{1.3}
 \begin{tabularx}{\linewidth}{|l|X|X|X|}
 
   \hline Caso d'Uso 3 & \multicolumn{3} {l|}{Modifica dei propri riferimenti creati} \\ \hline Obiettivo & \multicolumn{3}{>{\hsize=\dimexpr 3\hsize+4\tabcolsep+2\arrayrulewidth\relax}X|}{%
@@ -436,7 +436,24 @@ Queste sono la schermata di accesso e la schermata di homepage. Se si volesse co
 
 
 \raggedright{\section{Valutazione dell'usabilità}}
-Come già ribadito in precedenza, la nuova interfaccia grafica di Alexandria è stata pensata cercando di rispettare tutti i principi di buona usabilità. Uno dei cambiamenti principali è stato il tema principale dell'applicazione. Attraverso la \href{https://www.my-personaltrainer.it/salute-benessere/la-ruota-delle-emozioni-di-plutchik-cos-e-a-cosa-serve-e-quali-sono-i-suoi-benefici.html}{ruota di Plutchik} abbiamo deciso di assegnare alla nostra nuova applicazione un nuovo colore: il verde chiaro e le sue variazioni. \\~\\
+I principali criteri che abbiamo individuato per garantire una buona usabilità sono i seguenti:
+\begin{itemize}
+    \item Facilità di apprendimento: Quanto è facile per gli utenti imparare ad utilizzare l'applicazione? Un'interfaccia intuitiva, con istruzioni chiare e un flusso logico, può facilitare l'apprendimento dell'applicazione.
+
+    \item Efficienza: L'applicazione permette agli utenti di compiere le loro attività in modo rapido ed efficiente? Ad esempio, se l'applicazione richiede molti clic o azioni per compiere una determinata operazione, potrebbe essere considerata meno efficiente.
+
+    \item Memorabilità: Gli utenti riescono a ricordare come utilizzare l'applicazione anche dopo un periodo di inattività? Un'interfaccia ben progettata e coerente può favorire la memorabilità dell'applicazione.
+
+    \item Errori dell'utente: L'applicazione fornisce feedback adeguati agli utenti quando commettono errori? Un buon sistema di feedback può aiutare gli utenti a capire cosa hanno fatto di sbagliato e come correggere eventuali errori.
+
+    \item Soddisfazione dell'utente: Gli utenti trovano l'applicazione piacevole da utilizzare? La soddisfazione degli utenti può essere valutata tramite sondaggi, interviste o misurazioni quantitative.
+
+    \item Accessibilità: L'applicazione è accessibile a un'ampia gamma di utenti. Un'applicazione accessibile è progettata in modo tale da consentire a tutti gli utenti di accedervi e utilizzarla in modo efficace.
+
+    \item Affidabilità: L'applicazione funziona in modo affidabile senza errori o malfunzionamenti frequenti? Un'applicazione che si blocca o presenta errori frequenti può influire negativamente sull'usabilità complessiva.
+    
+\end{itemize} 
+Per questo motivo, la nuova interfaccia grafica di Alexandria è stata pensata cercando di rispettare tutti i principi di buona usabilità. Uno dei cambiamenti principali è stato il tema principale dell'applicazione. Attraverso la \href{https://www.my-personaltrainer.it/salute-benessere/la-ruota-delle-emozioni-di-plutchik-cos-e-a-cosa-serve-e-quali-sono-i-suoi-benefici.html}{ruota di Plutchik} abbiamo deciso di assegnare alla nostra nuova applicazione un nuovo colore: il verde chiaro e le sue variazioni. \\~\\
 \begin{figure}[H]
     \centering
             \includegraphics[width=.40\textwidth]{Immagini/Ruota di Plutchik.png} 
@@ -444,8 +461,10 @@ Come già ribadito in precedenza, la nuova interfaccia grafica di Alexandria è 
 \end{figure}
 
 Essendo un'applicazione che deve gestire i propri riferimenti, è importante che tale applicazione esprima \textit{Fiducia} nei confronti dell'utente, e consultando la ruota delle emozioni il verde ci è sembrato il colore più adatto alla scelta del tema principale dell'applicazione. \\
+Abbiamo cercato di rendere le schermate della nostra applicazione il più \textit{minimal} possibile, provando così ad aumentare la facilità dell'apprendimento dell'utente medio. Sullo schermo quindi ci saranno messaggi chiari e indicativi su ogni possibile azione. Abbiamo inoltre tentato di coniugare tale principio con la riduzione del sovraccarico di memoria a breve termine dell'utente, tenendo quindi i progessi salvati nel sistema o su interfaccia grafica, facendo sì che l'utente non debba ricordare più del necessario. \\
+Stesso principio vale per gli errori: essi vengono segnalati ed eventualmente viene mostrato a schermo una eventuale soluzione all'utente, magari spiegando passo dopo passo cosa fare per risolvere il problema, come nel caso di errore di rete. 
 Abbiamo inoltre deciso che a schermo non verranno mostrate più informazioni del necessario se non richiesto. Le informaizoni presenti sull'interfaccia grafica sono minimali e riassuntive, per non caricare troppo la memoria a breve termine dell'utente. Inoltre, le icone sono state pensate per rispettare l'uso comune di esse e abbiamo tentato di rendere ogni icona autoesplicativa. Considerato che l'applicativo deve girare su dispositivi mobili, l'interfaccia è stata pensata per apparire su schermi più piccoli, e che quindi l'utente ha una percezione minore rispetto a un monitor: per ovviare a questo problema abbiamo tentato di rendere i pulsanti che creino contrasto con lo sfondo, abbiamo ridotto la quantità di testo per non occupare troppo spazio su schermo, abbiamo preferito uno stile che non sia troppo sfarzoso e ingombrante. Infine, in caso di più pulsanti, essi sono posti distanziati (nei limiti, ovviamente, dei vincoli dell'usabilità e visivi) per evitare che si prema accidentalmente un bottone anziché di un altro, penalizzando l'esperienza dell'utente.
-\newpage
+
 \raggedright{\section{Classi, oggetti e relazioni d'analisi}}
 Alla luce delle nuove funzionalità da inserire, vengono apportate queste nuove modifiche al Database: 
 \begin{figure}[H]
@@ -456,11 +475,16 @@ Alla luce delle nuove funzionalità da inserire, vengono apportate queste nuove 
 
         
 La tabella utente ha nuovi attributi: \textit{password hashed}, che contiene la password hashata, \textit{salt}, che servirà per comporre l'hash nel Database e \textit{username}, che serve agli utenti per effettuare il login. Inoltre vengono rimossi gli attributi di \textit{Data Inizio Validità} e \textit{Data Fine Validità} poiché non venivano utilizzati all'interno dell'applicativo e non viene richiesto il suo scopo. Inoltre, alla tabella di associazione \textit{Autore-Riferimento} vengono rimossi gli attributi \textit{Ordine} e \textit{Descrizione Utente}, il primo perché ininfluente ai fini dell'implementazione del Database, il secondo perché ridondante. Per il resto, l'intero sistema ci è sembrato pressoché pertinente allo sviluppo della nuova app reingegnerizzata.
-
+\newpage
 \raggedright{\section{Diagrammi di Sequenza}}
 Di seguito vengono riportati i Sequence Diagram di design di due funzionalità: la ricerca di un autore e la creazione di un riferimento. 
 
 \raggedright{\subsection{Diagramma di Sequenza: Ricerca di un Autore}}
+
+\begin{figure}[H]
+    \centering
+            \includegraphics[width=.90\textwidth]{Immagini/Alexandria/sequenceDiagramDesign1} 
+\end{figure}
 
 Il sequence Diagram qui presente rappresenta l'istante in cui un utente preme su \textit{Ricerca} una volta inseriti tutti i parametri preferiti, supponendo non abbia riscontrato problemi prima di premere invio. 
 
@@ -497,12 +521,3 @@ Il sequence diagram di design qui presente rappresenta l'istante in cui un utent
         \begin{center}
             \includegraphics[width=.95\textwidth]{Immagini/Alexandria/Statechart Creazione Categoria.PNG} 
         \end{center}
-
-
-
-
-
-
-
-
-
