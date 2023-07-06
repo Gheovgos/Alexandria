@@ -1,7 +1,7 @@
 # Documentazione
 La documentazione è completamente scritta in Latex. 
 # Versione
-Versione attuale: Bozza | Prima parte della documentazione completata.  
+Versione attuale: Completa. Vedasi il pdf presente nella directory
 Checklist:  
 
 - [x] Introduzione e descrizione progetto originale.  
@@ -35,4 +35,4 @@ Documento di Design del sistema.
 Testing e valutazione sul campo dell’usabilità.  
 
 - [x] Codice xUnit per unit testing di quattro metodi non banali, che abbiano almeno due parametri. In aggiunta al codice, una apposita sezione della documentazione deve descrivere le strategie adottate per la progettazione dei test dei due metodi (e.g.: classi di equivalenza individuate e coperte, criteri di copertura strutturale, etc.).   
-- [ ] Valutazione dell’usabilità sul campo, realizzata sul prodotto finito sia con tecniche simili a quelle messe in atto al punto 1.a.v, sia mediante analisi di file di log. È necessario allegare anche i file di log utilizzati nell’analisi.  
+- [x] Valutazione dell’usabilità sul campo, realizzata sul prodotto finito sia con tecniche simili a quelle messe in atto al punto 1.a.v, sia mediante analisi di file di log. È necessario allegare anche i file di log utilizzati nell’analisi.  
